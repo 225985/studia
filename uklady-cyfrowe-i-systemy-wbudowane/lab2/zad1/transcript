@@ -1,0 +1,45 @@
+# Reading C:/modeltech_6.6e/tcl/vsim/pref.tcl 
+# //  ModelSim SE 6.6e Mar 30 2011 
+# //
+# //  Copyright 1991-2011 Mentor Graphics Corporation
+# //              All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND 
+# //  PROPRIETARY INFORMATION WHICH IS THE PROPERTY
+# //  OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
+# //  AND IS SUBJECT TO LICENSE TERMS.
+# //
+# do {zad1_zad1_sch_tb.fdo} 
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim SE vcom 6.6e Compiler 2011.03 Mar 30 2011
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity zad1
+# -- Compiling architecture behavioral of zad1
+# Model Technology ModelSim SE vcom 6.6e Compiler 2011.03 Mar 30 2011
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity zad1_zad1_sch_tb
+# -- Compiling architecture behavioral of zad1_zad1_sch_tb
+# vsim -lib work -voptargs=\"+acc\" -t 1ps work.zad1_zad1_sch_tb 
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by:   Hostname:   ProcessID: 1
+#           Attempting to use alternate WLF file "./wlftd5kyiy".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftd5kyiy
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading unisim.vcomponents
+# Loading work.zad1_zad1_sch_tb(behavioral)#1
+# Loading work.zad1(behavioral)#1
+# Loading unisim.or2(or2_v)#1
+# Loading unisim.xnor2(xnor2_v)#1
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
