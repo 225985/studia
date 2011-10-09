@@ -18,8 +18,10 @@ NET "Y(3)"  LOC = "P34";
 #NET LED<6>  LOC = "P26";
 #NET LED<7>  LOC = "P25";
 
+
+
 # DISPL. 7-SEG
-NET "Z(0)" LOC = "P8";
-NET "Z(1)" LOC = "P6";
-NET "Z(2)" LOC = "P4";
-NET "Z(3)" LOC = "P9";
+NET "H(0)" LOC = "P8";
+NET "H(1)" LOC = "P6";
+NET "H(2)" LOC = "P4";
+NET "H(3)" LOC = "P9";

@@ -21,8 +21,35 @@
 
   <sourceproject xmlns="http://www.xilinx.com/XMLSchema" xil_pn:fileType="FILE_XISE" xil_pn:name="lab1.xise"/>
 
-  <files xmlns="http://www.xilinx.com/XMLSchema"/>
+  <files xmlns="http://www.xilinx.com/XMLSchema">
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_VHDL" xil_pn:name="zad1.vhf"/>
+  </files>
 
-  <transforms xmlns="http://www.xilinx.com/XMLSchema"/>
+  <transforms xmlns="http://www.xilinx.com/XMLSchema">
+    <transform xil_pn:end_ts="1318109451" xil_pn:name="TRAN_copyInitialToAbstractSimulation" xil_pn:start_ts="1318109451">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1318109451" xil_pn:in_ck="6319415297525384704" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1318109451">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="zad1test.vhd"/>
+    </transform>
+    <transform xil_pn:end_ts="1318109453" xil_pn:in_ck="5328695867324" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="-8108882774540861722" xil_pn:start_ts="1318109451">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="zad1.vhf"/>
+    </transform>
+    <transform xil_pn:end_ts="1318109453" xil_pn:in_ck="-6184061632103018974" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1318109453">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="zad1.vhf"/>
+      <outfile xil_pn:name="zad1test.vhd"/>
+    </transform>
+    <transform xil_pn:end_ts="1318109968" xil_pn:in_ck="-6184061632103018974" xil_pn:name="TRAN_MSimulateBehavioralModel" xil_pn:prop_ck="-95172617148775950" xil_pn:start_ts="1318109963">
+      <status xil_pn:value="FailedRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+  </transforms>
 
 </generated_project>
