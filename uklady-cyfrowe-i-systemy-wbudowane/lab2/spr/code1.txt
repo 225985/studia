@@ -1,0 +1,21 @@
+# Keys
+NET "X1" LOC = "P42";
+NET "X2" LOC = "P40";
+#NET "K<2>" LOC = "P43";
+#NET "K<3>" LOC = "P38";
+#NET "K<4>" LOC = "P37";
+#NET "K<5>" LOC = "P36";  # shared with ROT_A
+#NET "K<6>" LOC = "P24";  # shared with ROT_B
+#NET "K<7>" LOC = "P39";  # GSR
+
+# LEDS
+NET "Y1"  LOC = "P35";
+NET "Y2"  LOC = "P29";
+#NET LED<2>  LOC = "P33";
+#NET LED<3>  LOC = "P34";
+#NET LED<4>  LOC = "P28";
+#NET LED<5>  LOC = "P27";
+#NET LED<6>  LOC = "P26";
+#NET LED<7>  LOC = "P25";
+
+

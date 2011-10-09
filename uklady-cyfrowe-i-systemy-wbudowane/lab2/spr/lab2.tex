@@ -1,0 +1,176 @@
+\documentclass[wide,a4paper,titlepage,12pt] {article}
+\usepackage{polski}
+\usepackage[cp1250]{inputenc}
+\usepackage{listings}
+\usepackage{slashbox}
+\usepackage[table]{xcolor}
+\usepackage{graphicx,pdflscape}
+\usepackage{placeins}
+
+
+\title{Uk³ady cyfrowe i systemy wbudowane}
+\author{Tymon Tobolski (181037)\\ Jacek Wieczorek (181043)}
+
+% Title page layout (fold)
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{titlepage}
+  \begin{center}
+    \vspace*{3cm}
+    \LARGE \@title \par
+    \vspace{2cm}
+    \textit{\small Autor:}\par
+    \normalsize \@author\par \normalsize
+    \vspace{3cm}
+    \textit{\small Prowadz¹cy:}\par
+    Dr in¿. Jaros³aw Sugier \par
+    \vspace{2cm}
+    Wydzia³ Elektroniki\\ III rok\\ Pn 14.15 - 16.00\par
+    \vspace{4cm}
+    \small \@date
+  \end{center}
+\end{titlepage}
+}
+\makeatother
+% Title page layout (end)
+
+
+
+\begin{document}
+\maketitle
+  \section{Cel laboratorium}
+  Celem laboratorium by³o zapoznanie siê z p³yt¹ $ZL-9572$ oraz obs³ug¹ œrodowiska Xilinx ISE, konfigurowanie zestawu przez interfejs JTAG oraz tworzenie prostych projektów opisanych za pomoc¹ schematów.
+  \section{Zadanie nr 1}
+  Zamodelowanie uk³adu sk³adaj¹cego siê z dwóch wejœæ: \textit{$x_{1}$}, \textit{$x_{2}$}, oraz dwóch wyjœæ: \textit{$y_{1}$} i \textit{$y_{2}$}. Schemat uk³adu, sk³adaj¹cego siê z bramek \textit{or} i \textit{xor}, zamieszczony jest na rysunku poni¿ej. \newline
+      \begin{figure}[htbp]
+	 \begin{center}
+         \includegraphics[scale=0.7]{pic1.PNG}
+      \caption{Schemta uk³adu}
+      \end{center}
+  \end{figure}
+  
+  Nastêpnym etapem æwiczenia by³o napisanie testów, oraz odpowiednie zmodyfikowanie pliku \textit{ZL-9572.ucf} pozwalaj¹ce na zasymulowanie uk³adu.
+	\\ \\
+	\paragraph{}
+	Fragment zmodyfikowanego pliku \textit{ZL-9572.ucf} :
+	\lstinputlisting[language=Vhdl]{code1.txt}  
+	
+	\paragraph{}
+	Testy napisane w jêzyku \textit{VHDL}
+	\lstinputlisting[language=Vhdl]{code2.txt}
+  
+  
+  \paragraph{}
+  Kolejnym etapem zadania by³o zamodelowanie dzia³ania schematu za pomoc¹ programu ModelSim oraz zaprogramowanie urz¹dzenia za pomoc¹ z³¹cza \textit{JTAG}.
+  
+  \section{Zadanie nr 2}
+  Celem æwiczenia drugiego by³o zaprojektowanie, zooptymalizowanie, modelowanie i wgranie do urz¹dzenia uk³adu obliczaj¹cego wynik równania \textit{Y = (17-X) mod 16}. Dane wprowadzane i wyprowadzane by³y za pomoc¹ magistarli cztero-wejœciowej/wyjœciowej. Dodatkowym zadaniem jakiego siê podjeliœmy by³o wyswietlenie wyniku zadania na wyœwietlaczu segmentowym. W celu stworzenia i zooptymalizowania uk³adu pos³u¿ylismy siê moetod¹ siatek Karnaugh. \\
+  \paragraph{}
+	  
+	  \begin{center}
+	  
+	  \begin{tabular}{|c|c|c|c||c|c|c|c|}
+		  \hline
+		  $x_{3}$ & $x_{2}$ & $x_{1}$ & $x_{0}$ & $y_{3}$ & $y_{2}$ & $y_{1}$ & $y_{0}$ \\ \hline
+		  0 & 0 & 0 & 0 & 0 & 0 & 0 & 1  \\
+			0 & 0 & 0 & 1 & 0 & 0 & 0 & 0  \\
+			0 & 0 & 1 & 0 & 1 & 1 & 1 & 1  \\
+			0 & 0 & 1 & 1 & 1 & 1 & 1 & 0  \\
+			0 & 1 & 0 & 0 & 1 & 1 & 0 & 1  \\
+			0 & 1 & 0 & 1 & 1 & 1 & 0 & 0  \\
+			0 & 1 & 1 & 0 & 1 & 0 & 1 & 1  \\
+			0 & 1 & 1 & 1 & 1 & 0 & 1 & 0  \\
+			1 & 0 & 0 & 0 & 1 & 0 & 0 & 1  \\
+			1 & 0 & 0 & 1 & 1 & 0 & 0 & 0  \\
+			1 & 0 & 1 & 0 & 0 & 1 & 1 & 1 \\
+			1 & 0 & 1 & 1 & 0 & 1 & 1 & 0  \\
+			1 & 1 & 0 & 0 & 0 & 1 & 0 & 1  \\
+			1 & 1 & 0 & 1 & 0 & 1 & 0 & 0  \\
+			1 & 1 & 1 & 0 & 0 & 0 & 1 & 1  \\
+			1 & 1 & 1 & 1 & 0 & 0 & 1 & 0  \\ \hline
+	  \end{tabular}
+	 \\ Tabela prawdy 
+	  \end{center}
+	 
+	 
+	
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			\backslashbox{$x_{1}$$x_{0}$}{$x_{3}$$x_{2}$} & 00 & 01 & 11 & 10 \\ \hline
+			00 & 0 & \cellcolor[gray]{0.8} 1 & 0 & \cellcolor[gray]{0.8} 1 \\ \hline
+			01 & 0 & \cellcolor[gray]{0.8} 1 & 0 & \cellcolor[gray]{0.8} 1 \\ \hline
+			11 & \cellcolor[gray]{0.8} 1 & \cellcolor[gray]{0.8} 1 & 0 & 0 \\ \hline
+			10 & \cellcolor[gray]{0.8} 1 & \cellcolor[gray]{0.8} 1 & 0 & 0 \\ \hline
+		\end{tabular}
+		\\ $y_{3}$ = $\bar{x_{3}}$$x_{2}$ $+$ $\bar{x_{3}}$$x_{1}$ $+$ $x_{3}$$\bar{x_{2}}$$\bar{x_{1}}$ 
+	\end{center}
+	
+
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			\backslashbox{$x_{1}$$x_{0}$}{$x_{3}$$x_{2}$} & 00 & 01 & 11 & 10 \\ \hline
+			00 & 0 & \cellcolor[gray]{0.8} 1 & \cellcolor[gray]{0.8} 1 &0 \\ \hline
+			01 & 0 & \cellcolor[gray]{0.8} 1 & \cellcolor[gray]{0.8} 1 & 0 \\ \hline
+			11 & \cellcolor[gray]{0.8} 1 &0 & 0 & \cellcolor[gray]{0.8} 1 \\ \hline
+			10 & \cellcolor[gray]{0.8} 1 & 0 & 0 & \cellcolor[gray]{0.8} 1\\ \hline
+		\end{tabular}
+		\\ $y_{2}$ = $x_{2}$$\bar{x_{1}}$ $+$ $\bar{x_{2}}$$x_{1}$ $=$ $x_{2}$ $\oplus$ $x_{1}$ 
+	\end{center}
+
+
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			\backslashbox{$x_{1}$$x_{0}$}{$x_{3}$$x_{2}$} & 00 & 01 & 11 & 10 \\ \hline
+			00 & 0 & 0 & 0  &0 \\ \hline
+			01 & 0 & 0 & 0  &0 \\ \hline
+			11 & \cellcolor[gray]{0.8} 1 &\cellcolor[gray]{0.8} 1 & \cellcolor[gray]{0.8} 1 & \cellcolor[gray]{0.8} 1 \\ \hline
+			10 & \cellcolor[gray]{0.8} 1 &\cellcolor[gray]{0.8} 1 & \cellcolor[gray]{0.8} 1 & \cellcolor[gray]{0.8} 1 \\ \hline
+		\end{tabular}
+		 \\ $y_{1}$ = $x_{1}$
+	\end{center}
+	
+
+		\begin{center}
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			\backslashbox{$x_{1}$$x_{0}$}{$x_{3}$$x_{2}$} & 00 & 01 & 11 & 10 \\ \hline
+			00 & \cellcolor[gray]{0.8} 1 &\cellcolor[gray]{0.8} 1 & \cellcolor[gray]{0.8} 1 & \cellcolor[gray]{0.8} 1 \\ \hline
+			01 & 0 & 0 & 0  &0 \\ \hline
+			11 & 0 & 0 & 0  &0 \\ \hline
+			10 & \cellcolor[gray]{0.8} 1 &\cellcolor[gray]{0.8} 1 & \cellcolor[gray]{0.8} 1 & \cellcolor[gray]{0.8} 1 \\ \hline
+		\end{tabular}
+		 \\ $y_{0}$ = $\bar{x_{0}}$
+	\end{center}
+	
+	\paragraph{}
+	
+	\begin{figure}[htbp]
+	 		\begin{center}
+         \includegraphics[scale=0.7]{pic2.PNG}
+      \caption{Schemta uk³adu}
+     \end{center}
+  \end{figure}
+  
+  Nastêpnym etapem æwiczenia by³o napisanie testów, oraz odpowiednie zmodyfikowanie pliku \textit{ZL-9572.ucf} pozwalaj¹ce na zasymulowanie uk³adu i wyœwietlenie wyników na diodach oraz wyœwietlaczu 7-Seg. W tym celu do³¹czyliœmy odpowiedni¹ bibliotekê, pobran¹ ze strony kursu. 
+	\\ \\ \\
+	\paragraph{}
+	Fragment zmodyfikowanego pliku \textit{ZL-9572.ucf} :
+	\lstinputlisting[language=Vhdl]{code3.txt}  
+	
+	\paragraph{}
+	Testy napisane w jêzyku \textit{VHDL}
+	\lstinputlisting[language=Vhdl]{code4.txt}
+	
+	\paragraph{}
+	Podobnie jak w przypadku pierwszego zadania, uk³ad zosta³ najpierw zasymulowany i sprawdzony za pomoc¹ programu ModelSim, a nastêpnie wgrany do urz¹dzenia i przetestowany na uk³adzie scalonym.
+  
+  
+  \paragraph{}
+  
+  \section{Wnioski}
+  Laboratorium pozwoli³o nam zapoznaæ siê z obs³ug¹ œrodowiska Xilinx, narzêdzia do modelowania ModelSim oraz programu wgrywaj¹cego uk³ad na p³ytê $ZL-9572$ za pomoc¹ z³¹cza $JTAG$. Dziêki edytorowi ECS, byliœmy wstanie zaprojektowaæ uk³ady bez znajomoœci jêzyka VHDL. 
+  
+\end{document}
