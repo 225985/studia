@@ -2,9 +2,13 @@ LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 LIBRARY UNISIM;
-USE UNISIM.Vcomponents.ALL;
+USE UNISIM.Vcomponents.ALL'
+
+
 ENTITY zad1_zad1_sch_tb IS
 END zad1_zad1_sch_tb;
+
+
 ARCHITECTURE behavioral OF zad1_zad1_sch_tb IS 
 
    COMPONENT zad1

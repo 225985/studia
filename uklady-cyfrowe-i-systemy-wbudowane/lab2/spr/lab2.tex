@@ -50,7 +50,7 @@
   \end{figure}
   
   Nastêpnym etapem æwiczenia by³o napisanie testów, oraz odpowiednie zmodyfikowanie pliku \textit{ZL-9572.ucf} pozwalaj¹ce na zasymulowanie uk³adu.
-	\\ \\
+	\newpage
 	\paragraph{}
 	Fragment zmodyfikowanego pliku \textit{ZL-9572.ucf} :
 	\lstinputlisting[language=Vhdl]{code1.txt}  
@@ -154,9 +154,10 @@
      \end{center}
   \end{figure}
   
+  \paragraph{}
   Nastêpnym etapem æwiczenia by³o napisanie testów, oraz odpowiednie zmodyfikowanie pliku \textit{ZL-9572.ucf} pozwalaj¹ce na zasymulowanie uk³adu i wyœwietlenie wyników na diodach oraz wyœwietlaczu 7-Seg. W tym celu do³¹czyliœmy odpowiedni¹ bibliotekê, pobran¹ ze strony kursu. 
 	\\ \\ \\
-	\paragraph{}
+	\paragraph{} 
 	Fragment zmodyfikowanego pliku \textit{ZL-9572.ucf} :
 	\lstinputlisting[language=Vhdl]{code3.txt}  
 	
@@ -169,8 +170,8 @@
   
   
   \paragraph{}
-  
+  \newpage
   \section{Wnioski}
-  Laboratorium pozwoli³o nam zapoznaæ siê z obs³ug¹ œrodowiska Xilinx, narzêdzia do modelowania ModelSim oraz programu Imapct, wgrywaj¹cego uk³ad na p³ytê $ZL-9572$ za pomoc¹ z³¹cza $JTAG$. Dziêki edytorowi ECS, byliœmy wstanie zaprojektowaæ uk³ady bez znajomoœci jêzyka VHDL. 
+  Laboratorium pozwoli³o nam zapoznaæ siê z obs³ug¹ œrodowiska Xilinx, narzêdzia do symulacji ModelSim oraz programu Impact, wgrywaj¹cego uk³ad na p³ytê $ZL-9572$ za pomoc¹ z³¹cza $JTAG$. Dziêki edytorowi ECS, byliœmy wstanie zaprojektowaæ uk³ady bez znajomoœci jêzyka VHDL. Uk³¹dy w obu zadaniach dzia³a³y zgodnie z za³o¿eniami. Ze wzglêdu na specifikê elektroniczn¹ p³yty $ZL-9572$ diody zapala³y siê pod wp³ywem sygna³u $\mbox{'}0\mbox{'}$, a nie jakby mo¿na by siê by³o spodziewaæ $\mbox{'}1\mbox{'}$. W celu otrzymania ,,naturalnej'' reprezentacji wyjœcia ($\mbox{'}1\mbox{'}$ dioda zapalona, $\mbox{'}0\mbox{'}$ - zgaszona), nale¿a³oby zanegowaæ wszytskie bity wyjœæia. 
   
 \end{document}
