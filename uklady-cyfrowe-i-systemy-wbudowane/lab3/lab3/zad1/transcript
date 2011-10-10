@@ -1,0 +1,65 @@
+# Reading C:/modeltech_6.6e/tcl/vsim/pref.tcl 
+# //  ModelSim SE 6.6e Mar 30 2011 
+# //
+# //  Copyright 1991-2011 Mentor Graphics Corporation
+# //              All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND 
+# //  PROPRIETARY INFORMATION WHICH IS THE PROPERTY
+# //  OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
+# //  AND IS SUBJECT TO LICENSE TERMS.
+# //
+# do {zad1_zad1_sch_tb.tdo} 
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim SE vcom 6.6e Compiler 2011.03 Mar 30 2011
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vital_timing
+# -- Loading package vcomponents
+# -- Loading package vital_primitives
+# -- Loading package textio
+# -- Loading package vpackage
+# -- Compiling entity zad1
+# -- Compiling architecture structure of zad1
+# Model Technology ModelSim SE vcom 6.6e Compiler 2011.03 Mar 30 2011
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity zad1_zad1_sch_tb
+# -- Compiling architecture behavioral of zad1_zad1_sch_tb
+# vsim -lib work -voptargs=\"+acc\" -sdfmax /UUT=netgen/fit/zad1_timesim.sdf -t 1ps work.zad1_zad1_sch_tb 
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by:   Hostname:   ProcessID: 1
+#           Attempting to use alternate WLF file "./wlftam8qza".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftam8qza
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading unisim.vcomponents
+# Loading work.zad1_zad1_sch_tb(behavioral)#1
+# Loading std.textio(body)
+# Loading vital2000.vital_timing(body)
+# Loading simprim.vcomponents
+# Loading vital2000.vital_primitives(body)
+# Loading simprim.vpackage(body)
+# Loading work.zad1(structure)#1
+# Loading simprim.x_buf(x_buf_v)#1
+# Loading simprim.x_xor2(x_xor2_v)#1
+# Loading simprim.x_or2(x_or2_v)#1
+# Loading simprim.x_zero(x_zero_v)#1
+# Loading simprim.x_ff(x_ff_v)#1
+# Loading simprim.x_and2(x_and2_v)#1
+# Loading simprim.x_inv(x_inv_v)#1
+# Loading simprim.x_roc(x_roc_v)#1
+# Loading instances from netgen/fit/zad1_timesim.sdf
+# Loading timing data from netgen/fit/zad1_timesim.sdf
+# ** Note: (vsim-3587) SDF Backannotation Successfully Completed.
+#    Time: 0 ps  Iteration: 0  Region: /zad1_zad1_sch_tb  File: zad1test.vhd
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# Can't move the Now cursor.
+# Can't move the Now cursor.
