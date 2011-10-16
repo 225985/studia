@@ -39,38 +39,12 @@
 \begin{document}
 \maketitle
   \section{Cel laboratorium}
-  TODO
-  Celem...
+
   \section{Zadanie nr 1}
-  TODO
-  Zamodelowanie .... \newline
-      \begin{figure}[htbp]
-	 \begin{center}
-         \includegraphics[scale=0.7]{pic1.PNG}
-      \caption{Schemta układu}
-      \end{center}
-  \end{figure}
-  TODO
-  Następnym etapem ...
-	\newpage
-	\paragraph{}
-	TODO
-	Fragment zmodyfikowanego pliku \textit{ZL-9572.ucf} :
-	\lstinputlisting[language=Vhdl]{code1.txt}
+  Celem zadania było zamodelowanie układu licznika wykonującego sekwencję 2 0 1 3 4 5 6 7, przetestowanie jego działania w symulatorze, a następnie uruchomienie go na płycie $ZL-9572$. Układ miał za zadanie wyświetlać na diodach LED kolejne cyfry sekwencji (w reprezentacji binarnej) po naciśnięciu przycisku. Drugi przycisk służył do resetowania stanu licznika do pozycji początkowej. Ponadto ćwiczenie zakładało sprawdzenie czasu reakcji przerzutnika na zmianę sygnału zegara za pomocą symulatora. Do realizacji tego układu zostały wykorzystane trzy przerzutniki typu D sterowane jednym sygnałem zegarowym. Dodatkowym zadaniem przy realizacji tego układu było sterowanie licznikiem za pomocą komunikacji szeregowej z komputerem za pomocą portu $RS232$.
 
-	\paragraph{}
-	TODO
-	Testy napisane w języku \textit{VHDL}
-	\lstinputlisting[language=Vhdl]{code2.txt}
+  W celu wyznaczenia odpowiednich kombinacji syngałów dla wejść przerzutników zostosowana została metoda siatek Karnaugh.
 
-
-  \paragraph{}
-  TODO
-  Kolejnym etapem zadania było zamodelowanie działania schematu za pomocą programu ModelSim oraz zaprogramowanie urządzenia za pomocą złącza \textit{JTAG}.
-
-  \section{Zadanie nr 2}
-  TODO
-  Celem ćwiczenia drugiego było zaprojektowanie, zooptymalizowanie, modelowanie i wgranie do urządzenia układu obliczającego wynik równania \textit{Y = (17-X) mod 16}. Dane wprowadzane i wyprowadzane były za pomocą magistarli cztero-wejściowej/wyjściowej. Dodatkowym zadaniem jakiego się podjeliśmy było wyświetlenie wyniku zadania na wyświetlaczu segmentowym. W celu stworzenia i zooptymalizowania układu posłużylismy się metodą siatek Karnaugh. \\
   \paragraph{}
 
 	  \begin{center}
@@ -89,7 +63,7 @@
       1 & 1 & 1 & 0 & 1 & 0 \\
       \hline
 	  \end{tabular}
-	 \\ Tabela prawdy
+	 \\ Tabela zmiany stanu przerzutników
 	  \end{center}
 
     \begin{center}
@@ -135,22 +109,18 @@ TODO
   \end{figure}
 
   \paragraph{}
-  TODO
-  Następnym etapem ćwiczenia było napisanie testów, oraz odpowiednie zmodyfikowanie pliku \textit{ZL-9572.ucf} pozwalające na zasymulowanie układu i wyświetlenie wyników na diodach oraz wyświetlaczu 7-Seg. W tym celu dołączyliśmy odpowiednią bibliotekę, pobraną ze strony kursu.
+  Następnym etapem ćwiczenia było napisanie testów, oraz odpowiednie zmodyfikowanie pliku \textit{ZL-9572.ucf} pozwalające na zasymulowanie układu i wyświetlenie wyników na diodach.
 	\\ \\ \\
 	\paragraph{}
-	TODO
 	Fragment zmodyfikowanego pliku \textit{ZL-9572.ucf} :
 	\lstinputlisting[language=Vhdl]{code3.txt}
 
 	\paragraph{}
-	TODO
 	Testy napisane w języku \textit{VHDL}
 	\lstinputlisting[language=Vhdl]{code4.txt}
 
 	\paragraph{}
-	TODO
-	Podobnie jak w przypadku pierwszego zadania, układ został najpierw zasymulowany i sprawdzony za pomocą programu ModelSim, a następnie wgrany do urządzenia i przetestowany na układzie scalonym.
+	Układ został najpierw zasymulowany i sprawdzony za pomocą programu ModelSim, a następnie wgrany do urządzenia i przetestowany na układzie scalonym.
 
 
   \paragraph{}
