@@ -1,0 +1,64 @@
+# Reading C:/modeltech_6.6e/tcl/vsim/pref.tcl 
+# //  ModelSim SE 6.6e Mar 30 2011 
+# //
+# //  Copyright 1991-2011 Mentor Graphics Corporation
+# //              All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND 
+# //  PROPRIETARY INFORMATION WHICH IS THE PROPERTY
+# //  OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
+# //  AND IS SUBJECT TO LICENSE TERMS.
+# //
+# do {lab4_lab4_sch_tb.fdo} 
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim SE vcom 6.6e Compiler 2011.03 Mar 30 2011
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity lab4
+# -- Compiling architecture behavioral of lab4
+# Model Technology ModelSim SE vcom 6.6e Compiler 2011.03 Mar 30 2011
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity lab4_lab4_sch_tb
+# -- Compiling architecture behavioral of lab4_lab4_sch_tb
+# vsim -lib work -voptargs=\"+acc\" -t 1ps work.lab4_lab4_sch_tb 
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading unisim.vcomponents
+# Loading work.lab4_lab4_sch_tb(behavioral)#1
+# Loading work.lab4(behavioral)#1
+# Loading unisim.and3b1(and3b1_v)#1
+# Loading unisim.and2b1(and2b1_v)#1
+# Loading unisim.or2(or2_v)#1
+# Loading unisim.and2(and2_v)#1
+# Loading unisim.and3b2(and3b2_v)#1
+# Loading unisim.xnor2(xnor2_v)#1
+# Loading unisim.or3(or3_v)#1
+# Loading unisim.fdce(fdce_v)#1
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading unisim.vcomponents
+# Loading work.lab4_lab4_sch_tb(behavioral)#1
+# Loading work.lab4(behavioral)#1
+# Loading unisim.and3b1(and3b1_v)#1
+# Loading unisim.and2b1(and2b1_v)#1
+# Loading unisim.or2(or2_v)#1
+# Loading unisim.and2(and2_v)#1
+# Loading unisim.and3b2(and3b2_v)#1
+# Loading unisim.xnor2(xnor2_v)#1
+# Loading unisim.or3(or3_v)#1
+# Loading unisim.fdce(fdce_v)#1
+run 100 ns
+run 1000 ns
