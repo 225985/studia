@@ -120,11 +120,69 @@
 		3. CZ podaje odpowiednie dane dotyczace konkretnego pracownika
     4. System wyświetla liste pracowników odpowiedających kryteriom wyszukiwania
   b) przepływ komunikatów
-    1. "Wysuzkaj pracownika" - CZ inicjuje PU, klikając przcisk "Wyszukaj pracownika"
+    1. "Wyszukaj pracownika" - CZ inicjuje PU, klikając przcisk "Wyszukaj pracownika"
     2. Wypełnij dane - CZ wypełnia dane do wyszukania pracownika
     3. Wyświetlenie listy pracowników
-  c)
+
+  c) przeplyw alternatywny
     1. Brak pracowników odpowiedających podanym kryteriom wyszukiwania - powrót do formularza wyszukiwania
 
+6. PU - Założenie nowego spotkania
+  - Cel PU : Celem PU jest umieszczenie w systemie informacji i nowym spotkaniu między Klientem a Zarządem
+  - Warunki wstępne : PU inicjowany jest przez członka zarządu
+  - Przebieg sposobu realizaji
+  a) Podstawowy
+    1. CZ wydaje polecenie "Zaplanuj nowe spotkanie" poprzez kliknięcie przycisku "Zaplanuj nowe spotkanie"
+    2. Wyświetlony zostaje formularz pozwalający na wpisanie opisu tematyki spotkania
+    3. CZ podaje w formularzu dane dotyczące spotkania
+    4. CZ dodaje osoby zainteresowany tym spotkaniem ktore maja dostac powiadomienie
+    5. CZ zatwierdza formularz klikając w przycisk "Zapisz spotkanie"
+    6. Wyswietlenie komunikatu potwierdzajacego zapisanie nowego spotkania
+  b) Przeplyw komunikatow
+    1. "Zaplanuj nowe spotkanie" - CZ inicjuje PU klikajac przycisk "Zaplanuj nowe spotkanie"
+    2. Wypełnij dane - CZ wypełnia niezbędne dane dotyczące spotkania
+    3. Dodaj osoby zainteresowane - CZ dodaje do spotkania zainteresowane osoby
+    4. Zatwierdz spotkanie - CZ zatwierdza spotkanie
+    5. Komunikat potwierdzający
+
+  c) przeplyw alternatywny
+    1. Rezygnacja z dodania nowego spotkania - wyjscie z systemu
+
+7. PU - Wprowadzenie możliwego terminu spotkania przez członka zarządu
+  - Cel PU : Celem PU jest zadeklarowanie przez członka zarządu możliwego terminu spotkania
+  - Warunki wstępne : W systemie istnieje założone spotkanie
+  - Przebieg sposobu realizacji
+  a) Podstawowy
+		1. Aktywowany zostaje PU Wyświetl spotkania
+		2. Powrót do PU wyswietl spotkania
+		3. CZ wprowadza możliwey termin spotkania
+		4. CZ zatwierdza termin klikając na przycisk "Zapisz termin spotkania"
+		5. Wyświetlnie komunikatu potwierdzającego
+  b) Przepływ komunikatów
+    1. "Wyświetl spotkania" - CZ inicjuje PU Wyświetl spotkania
+    2. Wybór spotkania
+    3. Wprowadzenie terminu
+    4. Potwierdzenie
+    5. Komunikat potwierdzający
+
+  c) przeplyw alternatywny
+    1. Rezygnacja z podania terminu spotkania - wyjscie z systemu
+
+8. PU - Wyświetl spotkania
+  - Cel PU : Celem PU jest wyswietlnie dostępnych spotkań dla członka zarządu
+  - Warunki wstepne : W systemiie istanieja zaloznie spotkania
+  - Przebieg sposobu realizacji
+  a) Podstawowy
+    1. CZ wydaje polecenie "Wyswietl spotkania" poprzez klikniecie przycisku "Wyswietl spotkania"
+		2. Wyświetlona zostaje lista spotkan do ktorych jest zapisany CZ
+		3. CZ wybiera spotkanie poprzez klikniecie na jego nazwe
+		4. Wyscie z PU
+	b) przepływ komunikatów
+    1. "Wyświetl spotkania" - CZ inicjuje PU Wyświetl spotkania
+    2. Wybór spotkania
+    3. Wyjście z PU
+
+  c) przepływ alternatywny
+    1. Rezygnacja z wyboru spotkania - wyjście z systemu
 
 
