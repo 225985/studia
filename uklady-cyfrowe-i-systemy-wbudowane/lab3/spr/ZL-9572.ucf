@@ -1,0 +1,27 @@
+# Clocks
+
+#Dla diod
+NET "Clk_LF" LOC = "P7" | BUFG = CLK;
+
+#Dla rotora i RSA
+NET "Clk_XT" LOC = "P5" | BUFG = CLK;
+
+# Keys
+NET "K0" LOC = "P42";
+NET "K7" LOC = "P39";  # GSR
+
+# LEDS
+NET LED<0>  LOC = "P35";
+NET LED<1>  LOC = "P29";
+NET LED<2>  LOC = "P33";
+NET LED<3>  LOC = "P34";
+
+# Dla rotora
+# Rotary encoder
+NET "ROT_A" LOC = "P36";	# shared with Key<5>
+NET "ROT_B" LOC = "P24";	# shared with Key<6>
+
+
+# RS-232
+NET "RS_RX" LOC = "P1";
+NET "RS_TX" LOC = "P44";

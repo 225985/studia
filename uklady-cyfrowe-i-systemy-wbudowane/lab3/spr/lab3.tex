@@ -41,7 +41,7 @@
   \section{Cel laboratorium}
 
   \section{Zadanie nr 1}
-  Celem zadania było zamodelowanie układu licznika wykonującego sekwencję 2 0 1 3 4 5 6 7, przetestowanie jego działania w symulatorze, a następnie uruchomienie go na płycie $ZL-9572$. Układ miał za zadanie wyświetlać na diodach LED kolejne cyfry sekwencji (w reprezentacji binarnej) po naciśnięciu przycisku. Drugi przycisk służył do resetowania stanu licznika do pozycji początkowej. Ponadto ćwiczenie zakładało sprawdzenie czasu reakcji przerzutnika na zmianę sygnału zegara za pomocą symulatora. Do realizacji tego układu zostały wykorzystane trzy przerzutniki typu D sterowane jednym sygnałem zegarowym. Dodatkowym zadaniem przy realizacji tego układu było sterowanie licznikiem za pomocą komunikacji szeregowej z komputerem za pomocą portu $RS232$.
+  Celem zadania było zamodelowanie układu licznika wykonującego sekwencję 2 0 1 3 4 5 6 7, przetestowanie jego działania w symulatorze, a następnie uruchomienie go na płycie $ZL-9572$. Układ miał za zadanie wyświetlać na diodach LED kolejne cyfry sekwencji (w reprezentacji binarnej) po naciśnięciu przycisku. Drugi przycisk służył do resetowania stanu licznika do pozycji początkowej. Ponadto ćwiczenie zakładało sprawdzenie czasu reakcji przerzutnika na zmianę sygnału zegara za pomocą symulatora. Do realizacji tego układu zostały wykorzystane trzy przerzutniki typu D sterowane jednym sygnałem zegarowym. Dodatkowym zadaniem przy realizacji tego układu było sterowanie licznikiem za pomocą Rotora komunikacji szeregowej z komputerem za pomocą portu $RS232$.
 
   W celu wyznaczenia odpowiednich kombinacji syngałów dla wejść przerzutników zostosowana została metoda siatek Karnaugh.
 
@@ -73,7 +73,7 @@
         0 & 0 & 0 & \cellcolor[gray]{0.8} 1 & \cellcolor[gray]{0.8} 1 \\ \hline
         1 & 0 & \cellcolor[gray]{0.8} 1 & 0 & \cellcolor[gray]{0.8} 1 \\ \hline
       \end{tabular}
-      \\ $Q_{2}'$ = $Q_{2} \bar{Q_{0}} + Q_{2} \bar{Q_{1}} Q_{0} + \bar{Q_{2}} Q_{1} Q_{0}$
+      \\ $Q_{2}'$ = $Q_{2} \bar{Q_{0}} + Q_{2} \bar{Q_{1}} + \bar{Q_{2}} Q_{1} \bar{Q_{0}}$
     \end{center}
 
     \begin{center}
@@ -90,8 +90,8 @@
       \begin{tabular}{|c|c|c|c|c|}
         \hline
         \backslashbox{$Q_{0}$}{$Q_{2}$$Q_{1}$} & 00 & 01 & 11 & 10 \\ \hline
-        0 & 0 & 0 & \cellcolor[gray]{0.8} 1 & 0 \\ \hline
-        1 & \cellcolor[gray]{0.8} 1 & 0 & \cellcolor[gray]{0.8} 1 & \cellcolor[gray]{0.8} 1 \\ \hline
+        0 & \cellcolor[gray]{0.8} 1 & 0 & \cellcolor[gray]{0.8} 1 & \cellcolor[gray]{0.8} 1 \\ \hline
+        1 & \cellcolor[gray]{0.8} 1 & 0 & 0 & 0 \\ \hline
       \end{tabular}
       \\ $Q_{0}'$ = $Q_{2} \bar{Q_{0}} + \bar{Q_{2}} \bar{Q_{1}}$
     \end{center}
@@ -100,10 +100,9 @@
 
 	\paragraph{}
 
-TODO
 	\begin{figure}[htbp]
 	 		\begin{center}
-         \includegraphics[scale=0.7]{pic2.PNG}
+         \includegraphics[scale=0.7]{Capture.PNG}
       \caption{Schemta układu}
      \end{center}
   \end{figure}
@@ -113,20 +112,37 @@ TODO
 	\\ \\ \\
 	\paragraph{}
 	Fragment zmodyfikowanego pliku \textit{ZL-9572.ucf} :
-	\lstinputlisting[language=Vhdl]{code3.txt}
-
-	\paragraph{}
-	Testy napisane w języku \textit{VHDL}
-	\lstinputlisting[language=Vhdl]{code4.txt}
+	\lstinputlisting[language=Vhdl]{ZL-9572.ucf}
 
 	\paragraph{}
 	Układ został najpierw zasymulowany i sprawdzony za pomocą programu ModelSim, a następnie wgrany do urządzenia i przetestowany na układzie scalonym.
+
+		\paragraph{}
+	Testy w języku VHDL:
+	\lstinputlisting[language=Vhdl]{code4.txt}
+		\paragraph{}
+		\paragraph{}
+
+	Następnie za pomocą symulatora ModelSim został sprawdzony czas reakcji przerzutnika na zmiane sygnału zegara co widać na Rysunku 2.
+
+		\paragraph{}
+
+		\begin{figure}[htbp]
+	 		\begin{center}
+         \includegraphics[scale=0.4]{screen.png}
+      \caption{Prezentacja czasu reakcji przerzutnika}
+     \end{center}
+  \end{figure}
+
+  \paragraph{}
+  Podłączenie rotora pozwalało na inkrementacje sekwencji licznika za pomocą obrotu rotorem w prawo oraz powrót do wartości początkowej za pomocą obrotu w lewo.
+
+  Po podłączeniu układu RS232 możliwe stało się sterowanie licznikiem za pomocą komputera podłączonego do układu poprzez port szeregowy. W celu uproszczenia dekodera danych w układzie licznik zwiększał się przy wysłaniu z terminala dowolnej małej litery alfabetu, a resetował się przy wysłaniu dowolnej dużej litery. Takie założenia pozwoliły na maksymalne uproszczenie układu dekodującego do dwóch bramek, ponieważ w kodzie ASCII każda mała litera alfabetu ma wartość 5-tego bitu równą 1, natomiast każda duża litera ma w tym miejscu wartość 0.
 
 
   \paragraph{}
   \newpage
   \section{Wnioski}
-  TODO
-  Laboratorium pozwoliło nam zapoznać się z obsługą środowiska Xilinx, narzędzia do symulacji ModelSim oraz programu Impact, wgrywającego układ na płytę $ZL-9572$ za pomocą złącza $JTAG$. Dzięki edytorowi ECS, byliśmy wstanie zaprojektować układy bez znajomości języka VHDL. Ukłądy w obu zadaniach działały zgodnie z założeniami. Ze względu na specifikę elektroniczną płyty $ZL-9572$ diody zapalały się pod wpływem sygnału $\mbox{'}0\mbox{'}$, a nie jakby można by się było spodziewać $\mbox{'}1\mbox{'}$. W celu otrzymania ,,naturalnej'' reprezentacji wyjścia ($\mbox{'}1\mbox{'}$ dioda zapalona, $\mbox{'}0\mbox{'}$ - zgaszona), należałoby zanegować wszytskie bity wyjśćia.
+  Edytor ECS pozwala na modelowanie bardziej skomplikowanych układów za pomocą składania ich z prostszych, wcześniej przygotowanych elementów (np. Rotor, RS232). ozwala to skupić się na istocie problemu, a nie na szczegółach technicznych np. komunikacji z komputerem. Układ we wszystkich wersjach (przyciski, rotor, rs232) działał zgodnie z założeniami.
 
 \end{document}

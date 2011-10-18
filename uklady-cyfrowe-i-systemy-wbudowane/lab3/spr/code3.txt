@@ -1,0 +1,17 @@
+# Keys
+NET "X(0)" LOC = "P42";
+NET "X(1)" LOC = "P40";
+NET "X(2)" LOC = "P43";
+NET "X(3)" LOC = "P38";
+
+# LEDS
+NET "Y(0)"  LOC = "P35";
+NET "Y(1)"  LOC = "P29";
+NET "Y(2)"  LOC = "P33";
+NET "Y(3)"  LOC = "P34";
+
+# DISPL. 7-SEG
+NET "H(0)" LOC = "P8";
+NET "H(1)" LOC = "P6";
+NET "H(2)" LOC = "P4";
+NET "H(3)" LOC = "P9";

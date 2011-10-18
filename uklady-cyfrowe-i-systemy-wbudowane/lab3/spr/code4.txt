@@ -1,0 +1,36 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+USE ieee.numeric_std.ALL;
+LIBRARY UNISIM;
+USE UNISIM.Vcomponents.ALL;
+ENTITY zad1_zad1_sch_tb IS
+END zad1_zad1_sch_tb;
+ARCHITECTURE behavioral OF zad1_zad1_sch_tb IS
+
+   COMPONENT zad1
+   PORT( Y	:	OUT	STD_LOGIC_VECTOR (2 DOWNTO 0);
+          K0	:	IN	STD_LOGIC;
+          CLK_LF	:	IN	STD_LOGIC;
+          K7	:	IN	STD_LOGIC);
+   END COMPONENT;
+
+   SIGNAL Y	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
+   SIGNAL K0	:	STD_LOGIC;
+   SIGNAL CLK_LF	:	STD_LOGIC := '0';
+   SIGNAL K7	:	STD_LOGIC;
+
+BEGIN
+
+   UUT: zad1 PORT MAP(
+		Y => Y,
+		K0 => K0,
+		CLK_LF => CLK_LF,
+		K7 => K7
+   );
+
+   K0 <= '1';
+   K7 <= '0';
+   CLK_LF <= NOT CLK_LF after 100 ns;
+
+
+END;
