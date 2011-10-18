@@ -1,0 +1,130 @@
+1. PU - zgłoś podanie o urlop
+
+	- Cel PU : Celem PU jest złożenie w systemie podania o urlop
+	- Warunki wstępne : PU jest inicjowany przez pracownika
+	- Przebieg sposobu realizacji
+		a) podstawowy
+			1. Pracownik wydaje polecenie "Złożenie nowego podania o urlop" poprzez wybranie w systemie zakładki "Podania"
+			2. Wyświetlona zostaje okno z listą dostęnych podań
+			3. Pracownik wybiera podanie o urlop
+			4. Pracownik wypełnia kwestionariusz
+			5. Pracownik klika przsycisk "Złóż podanie"
+			6. Wyświetlenie komunikatu wynikowego : Potwierdzenie złożenia podania
+			7. Wyjście z systemu
+
+		b) przepływ komunikatów
+			1. "Złóż podanie o urlop" - pracownik inicjuje PU, klikając "Złóż podanie" w oknie "Podania"
+			2. Wybór podania - pracownik wybiera podanie o urlop osobisty
+			3. Dane wniosku - Pracownik podaje dane o terminie urlopu wypełniając pola edycyjne
+			4. Złóż wniosek - pracownik inicjuje złożenie wniosku
+			5. Komunikat wynikowy : Potwierdzenie złożenia podania
+			6. Powrót - pracownik opuszcza zakładkę podania
+
+		c) alternatywny
+			1. W dowolnym momencie pracownik może zamknąć zakładkę podania
+
+	- Warunki końcowe : PU uznaje się za zakończony po złożeniu podania lub po opuszczeniu zakładki Podania
+
+2. PU - wprowadź przepracowane godziny
+	- Cel PU : Celem PU jest zapisanie w systemie przepracowanych godzin
+	- Warunki wstępne : PU inicjowany przez Pracownika
+	- Przebieg sposobu realizacji
+		a) Podstawowy
+			1. Pracownik wydaje polecenie "Wprowadź przepracowane godziny" poprzez kliknięcie w systemie przycisku "Wprowadź godziny"
+			2. Wyświetlone zosatje okno z polami do wprowadzania ilości godzin
+			3. Pracownik wypełnia formularz
+			4. Pracownik klika przycisk Zatwierdź
+			5. Aktywowany zostaje PU Kontrola Nadgodzin
+			6. Następuje powrót z PU Kontrola Nadgodzin
+			7. Aktywowany zostaje PU Kontrola Weekendów i świąt
+			8. Następuje powrót z PU Kontrola Weekendów i świąt
+			9. KOmunikat potwierdzenia wprowadzenia godzin
+			10. Zamknięcie okna do wprowadzania godzin
+
+		b) przepływ komunikatów
+			1. "Wprowadź przepracwoane godziny" - pracownik inicjuje PU, klikając przycisk "Wprowadź godziny"
+			2. Dane formularza - Pracownik wprowadza godziny wypełniajac pola edycyjne
+			3. Zapisz - Pracownik inicjuje zapis godzin naciskając przycisk Zapisz
+			4. Kontrola nadgodzin - PU inicjuje PU Kontroluj nadgodziny
+			6. Powrót do PU Wprowadź przepracowane godziny
+			7. Kontrola weekendów świąt - PU inicjuje PU KOntroluj weekendy i święta
+			8. Powrót do PU Wprowadź przepracowane godziny
+			9. Komunikat wynikowy o wprowadzeniu danych
+			10. Zamknij - Pracownik zamuka okno
+
+		c) alternatywny
+			1. W dowolnym momencie pracownik może zamknąc okno Wprowadzania godzin
+
+	- Warunki końcowe : PU uznaje się za zakończony po zapisaniu godzin lub po opuszczeniu okna formularza
+
+3. PU - Rozpatrzenie podania
+	- Cel PU : Celem PU jest rozpatrzenie podania o urlop
+	- Warunki wsepne : Pu inicjowany jest przez koordyantora, istnieją podania do rozpatrzenia
+	- Przebieg sposobu realizacji
+		a) Podstawowy
+			1. Koordynator wydaje polecenie "Rozpatrz podanie" poprzez kliknięcie w systemie przycisku "Złożone podania"
+			2. Wyświetlone zosatje okno z Podaniem do rozpatrzenia
+			3. Koordynator zapoznaje się z treścia podania o urlop
+			4. Koordynator klika przycisk zatwierdź
+			5. Aktywowany zostaje PU Wysyłanei powiadomienia o decyzji
+			6. Następuje powrót z PU Wysyłanie powiadomienia o decyzji
+			7. Komunikat potwierdzający wykonanie operacji
+			8. Zamknięcie okna do rozpatrywania podań
+
+		b) przepływ komunikatów
+			1. "Rozpatrz podanie" - Koordyantor inicjuje PU, klikając przycisk "Rozpatrz podanie"
+			2. Dane formularza - Koordynator zapoznaje się z podaniem
+			3. Akceptuj/Odrzuć - Koordynator przyjmuje lub odrzuca podanie
+			4. Wysyłanie komunikatu - PU inicjuje PU Wysyłanie powiadomienia o decyzji
+			5. Powrót do PU rozpatrzenie decyzji
+			6. Komuniakt potwierdzający wykonanie operacji
+			7. Zamknij - Koordynator zamyka okno
+
+		c) alternatywny
+			1. W dowolnym momencie koordynator może zamknąć okno rozpatrzania podań
+			2. Koordynator może odrzucić podanie.
+
+4. PU - Kontrola pracowników
+	- Cel PU : Celem PU jest kontrolowanie jakości wykonywanej pracy przez pracowników, a także monitoring wykorzystania przysługujących im świadczeń
+	- Warunki wstępne : PU inicjowany jest przez członka zarządu
+	- Przebieg sposobu realizacji
+		a) Podstawowy
+			1. Członek zarządu wydaje polecenie "Kontroluj pracownika" poprzez kliknięcie w systemie przycisku "Kontroluj pracownika"
+			2. Aktywowany zostaje PU - Wyszukaj pracownika
+			3. Następuje wyjście z PU Wyszukaj pracownika
+			4. CZ wybiera opcje kontroluj jakość pracy
+			5. Aktywowany zostaje PU kontroluj jakość pracy
+			6. Wyświetlone zostają statystyki dotyczące danego pracownika
+			7. Powrót do PU Kontrola pracownika
+			8. Zamknij - CZ zamyka okno
+		b) przeplyw komunikatów
+			1. "Kontroluj pracownika" - CZ inicjuje PU, klikająć przycisk "Kontroluj pracownika"
+			3. Wyszukaj pracownika - PU inicjuje PU Wyszukaj pracownika
+			4. Powrót do PU kontrola pracownika
+			5. Kontrola jakośći pracy - Pracownik wybiera odpowiedni przycisk
+			6. PU inicjuje PU Kontrola jakości pracy
+			7. Powrót do PU kontrola pracownika
+			8. Zamknij - CZ zamyka okno
+
+		c) przepływ alternatywny
+			1. Pracownik zamaist Opcji kontroluj jakość pracy wybiera opcje KOntrola urlopów, lub wybiera oba na raz. Aktywowane zostają odpowiednie PU.
+			2. Pracownik nie zostaje wyszukany , powrót do kroku 2
+
+5. PU - Wyszukaj pracownika
+  - Cel PU : Celem PU jest wyszukanie konkretnej osoby w bazie pracowników firmy
+  - Warunki wstępne : PU inicjowany jest przez członka zarządu
+  - Przebieg sposobu realizacji
+  a) Podstawowy
+    1. Członek zarządu wydaje polecenie "Wyszukaj pracownika" poprzez kliknięcie w systemie przycisku "Wyszukaj pracownika"
+    2. Wyświetlone zostaje okno z Opcją wyszukania pracwownika
+		3. CZ podaje odpowiednie dane dotyczace konkretnego pracownika
+    4. System wyświetla liste pracowników odpowiedających kryteriom wyszukiwania
+  b) przepływ komunikatów
+    1. "Wysuzkaj pracownika" - CZ inicjuje PU, klikając przcisk "Wyszukaj pracownika"
+    2. Wypełnij dane - CZ wypełnia dane do wyszukania pracownika
+    3. Wyświetlenie listy pracowników
+  c)
+    1. Brak pracowników odpowiedających podanym kryteriom wyszukiwania - powrót do formularza wyszukiwania
+
+
+
