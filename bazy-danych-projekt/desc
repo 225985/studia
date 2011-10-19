@@ -1,0 +1,12 @@
+Baza danych : Neodatis
+Język implementacji : Java
+WebApi : Java/RoR/Scala
+System kontroli wersji : ewentualnie git
+Prosta wersja jiry/red mine'a
+
+User : Programista, Team Leader, admin(full), ceo
+
+Rozliczanie : godzinowe
+
+Funkcjonalność : Dodawanie task'ów TODO, określanie estymacji, przydzielanie zadań poszczególnym user'om, zmiana statusu zadań na "In progress" lub "Completed"
+kontrola postępów, wykresy, statystyki
