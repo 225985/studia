@@ -1,0 +1,88 @@
+\documentclass[wide,a4paper,titlepage,12pt] {article}
+\usepackage{polski}
+\usepackage[cp1250]{inputenc}
+\usepackage{listings}
+\usepackage{slashbox}
+\usepackage[table]{xcolor}
+\usepackage{graphicx,pdflscape}
+\usepackage{placeins}
+
+
+\title{Urz¹dzenia peryferyjne}
+\author{Tymon Tobolski (181037)\\ Jacek Wieczorek (181043)}
+
+% Title page layout (fold)
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{titlepage}
+  \begin{center}
+    \vspace*{3cm}
+    \LARGE \@title \par
+    \vspace{2cm}
+    \textit{\small Autor:}\par
+    \normalsize \@author\par \normalsize
+    \vspace{3cm}
+    \textit{\small Prowadz¹cy:}\par
+    Dr in¿. Jacek Mazurkiewicz \par
+    \vspace{2cm}
+    Wydzia³ Elektroniki\\ III rok\\ Pn 8.15 - 11.00\par
+    \vspace{4cm}
+    \small \@date
+  \end{center}
+\end{titlepage}
+}
+\makeatother
+% Title page layout (end)
+
+
+
+\begin{document}
+\maketitle
+
+\section{Cel laboratorium}
+Celem laboratorium by³o zapoznanie siê z dzia³aniem modemu, komendami Hayes'a oraz nawi¹zaniu po³¹czenia telefonicznego pomiêdzy dwoma komputerami. W tym celu korzystaliœmy z dwóch modemów Pentagram Shadow 56K, z którymi ³¹czyliœmy siê za pomoc¹ kabla RS232.
+\section{Nawi¹zanie po³¹czenia}
+W celu nawi¹zania po³¹czenia telefonicznego pomiêdzy dwoma modemami korzystaliœmy z terminalu Putty.\\
+Paramtery po³¹czenia :
+\begin{itemize}
+	\item liczba bitów na sekundê – domyœlnie 9600
+	\item bity danych – domyœlnie 8
+	\item parzystoœæ – domyœlnie brak
+	\item bity stopu – domyœlnie 1
+	\item sterowanie przep³ywem – domyœlnie brak 
+\end{itemize}
+Nawi¹zanie po³¹czenia:
+\begin{itemize}
+	\item \textit{ATD $<$numer$>$} - nawi¹zanie po³¹czenia
+	\item \textit{ATH} - podniesienie s³uchawki
+	\item \textit{+++} - przejœcie do trybu komend (sekwencja escapowa) 
+\end{itemize}
+Opis diod i ich wskazañ :
+\begin{itemize}
+	\item \textit{CD} – carrier detect –modem jest pod³¹czony, a sygna³ zawiera noœn¹
+	\item \textit{OH} – off hook – modem pod³¹czony do linii telefonicznej
+	\item \textit{RD} – received data – odbiór danych
+	\item \textit{TD} – transmit data – wysy³anie danych
+	\item \textit{TR} – terminal ready – terminal gotowy
+	\item \textit{MR} – mode ready – modem gotowy do pracy
+	\item \textit{AA} – auto answer – tryb automatycznej odpowiedzi
+	\item \textit{HS} – high speed – transmisja z wysok¹ prêdkoœci¹
+\end{itemize}
+ 
+\section{Program do obs³ugi modemu}
+Program do obs³ugi modemu napisany zosta³ w jêzyku \textit{c$\#$}. Aplikacja pozwala na pe³ne ustawienie parametrów po³¹czenia po porcie szeregowym, oraz przesy³ania komend AT do modemu. \\
+Schemat dzia³ania programu :
+\begin{itemize}
+	\item Wybranie numeru portu
+	\item Ustawienie Baud rate
+	\item Ustawienie parzystoœci
+	\item Ustawienie bitów danych
+	\item Ustawienie bitu stopu
+	\item Ustawienie handshake'u
+	\item Zainicjowanie po³¹czenia
+	\item Uruchomieneie w¹tku nas³uchuj¹cego
+\end{itemize}
+Naszym celem by³o przes³¹nie pliku z danymi, jednak nasza aplikacja nie umo¿liwi³a nam na nawi¹zanie pe³nego po³¹czenia jak za pomoc¹ terminalu Putty. Modemy komunikowa³y siê ze sob¹, mo¿na by³o odebraæ po³¹czenie, jednak zostawa³o ono natychmiast zrywane.
+\section{Wnioski}
+Laboratorium pozwoli³o nam na zapoznanie siê z logika dzia³¹nia po³¹czeñ modemowych, nawi¹zaæ samodzielne po³¹czenie, oraz samodzielne sterowanie modemem. Z przyczyn bli¿ej nam nie znanych, nasza aplikacja nie pozwoli³a na nawi¹zanie pe³nego po³¹czenia miêdzy dwoma komputerami i przes³ania pliku, mimo zastosowania tych samych parametrów po³¹czenia jak za pomoc¹ terminalu Putty.
+\end{document}

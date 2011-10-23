@@ -7,7 +7,7 @@ namespace ConsoleApplication1
 {
     class Program
     {
-        static bool _continue;
+        static bool condition;
         static SerialPort sp;
 
         static void Main(string[] args)
@@ -32,14 +32,14 @@ namespace ConsoleApplication1
             sp.WriteTimeout = 1000;
 
             sp.Open();
-            _continue = true;
+            condition = true;
             readThread.Start();
 
 
-            while (_continue)
+            while (condition)
             {
                 message = Console.ReadLine();
-                if(message.Equals("q"))  _continue = false;
+                if (message.Equals("q")) condition = false;
                 else sp.WriteLine(String.Format("{0}\r", message));
                
             }
@@ -51,7 +51,7 @@ namespace ConsoleApplication1
 
         public static void Read()
         {
-            while (_continue)
+            while (condition)
             {
                 try
                 {

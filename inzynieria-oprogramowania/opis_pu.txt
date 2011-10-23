@@ -1,4 +1,4 @@
-1. PU - zgłoś podanie o urlop
+﻿1. PU - zgłoś podanie o urlop
 
 	- Cel PU : Celem PU jest złożenie w systemie podania o urlop
 	- Warunki wstępne : PU jest inicjowany przez pracownika

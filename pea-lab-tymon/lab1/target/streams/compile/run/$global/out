@@ -1,11 +1,11 @@
-[0m[[0minfo[0m] [0mRunning Zad1 5[0m
-[0m[[0mdebug[0m] [0mStarting sandboxed run...[0m
-[0m[[0mdebug[0m] [0mWaiting for threads to exit or System.exit to be called.[0m
-[0m[[0mdebug[0m] [0m  Classpath:[0m
-[0m[[0mdebug[0m] [0m	/Users/teamon/Documents/Studia/V Semestr/pea-lab-tymon/lab1/target/scala-2.8.1.final/classes[0m
-[0m[[0mdebug[0m] [0m	/Users/teamon/Documents/Studia/V Semestr/pea-lab-tymon/lab1/project/boot/scala-2.8.1/lib/scala-library.jar[0m
-[0m[[0mdebug[0m] [0mWaiting for thread run-main to exit[0m
-[0m[[0mdebug[0m] [0m	Thread run-main exited.[0m
-[0m[[0mdebug[0m] [0mInterrupting remaining threads (should be all daemons).[0m
-[0m[[0mdebug[0m] [0mSandboxed run complete..[0m
-[0m[[0mdebug[0m] [0mExited with code 0[0m
+[info] Running Zad1 10
+[debug] Starting sandboxed run...
+[debug] Waiting for threads to exit or System.exit to be called.
+[debug] Waiting for thread run-main to exit
+[debug]   Classpath:
+[debug] 	D:\politechnika\semestr5\semestr-v\pea-lab-tymon\lab1\target\scala-2.8.1.final\classes
+[debug] 	D:\politechnika\semestr5\semestr-v\pea-lab-tymon\lab1\project\boot\scala-2.8.1\lib\scala-library.jar
+[debug] 	Thread run-main exited.
+[debug] Interrupting remaining threads (should be all daemons).
+[debug] Sandboxed run complete..
+[debug] Exited with code 0
