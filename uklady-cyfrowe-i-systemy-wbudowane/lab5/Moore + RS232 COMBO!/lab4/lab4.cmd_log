@@ -1,0 +1,49 @@
+xst -intstyle ise -ifn "C:/Users/lab/Desktop/lab4/Moore + RS232/lab4/lab4.xst" -ofn "C:/Users/lab/Desktop/lab4/Moore + RS232/lab4/lab4.syr" 
+ngdbuild -intstyle ise -dd _ngo -uc C:/Users/lab/Desktop/lab4/ZL-9572.ucf -p xc9572xl-PC44-10 "lab4.ngc" lab4.ngd  
+cpldfit -intstyle ise -p xc9572xl-10-PC44 -ofmt vhdl -optimize density -htmlrpt -loc on -slew fast -init low -inputs 54 -pterms 25 -unused float -power std -terminate keeper lab4.ngd 
+XSLTProcess lab4_build.xml 
+tsim -intstyle ise lab4 lab4.nga 
+taengine -intstyle ise -f lab4 -w --format html1 -l lab4_html/tim/timing_report.htm 
+hprep6 -s IEEE1149 -n lab4 -i lab4 
+xst -intstyle ise -ifn "C:/Users/lab/Desktop/lab4/Moore + RS232/lab4/lab4.xst" -ofn "C:/Users/lab/Desktop/lab4/Moore + RS232/lab4/lab4.syr" 
+xst -intstyle ise -ifn "C:/Users/lab/Desktop/lab4/Moore + RS232/lab4/lab4.xst" -ofn "C:/Users/lab/Desktop/lab4/Moore + RS232/lab4/lab4.syr" 
+xst -intstyle ise -ifn "C:/Users/lab/Desktop/lab4/Moore + RS232/lab4/lab4.xst" -ofn "C:/Users/lab/Desktop/lab4/Moore + RS232/lab4/lab4.syr" 
+ngdbuild -intstyle ise -dd _ngo -uc C:/Users/lab/Desktop/lab4/ZL-9572.ucf -p xc9572xl-PC44-10 "lab4.ngc" lab4.ngd  
+cpldfit -intstyle ise -p xc9572xl-10-PC44 -ofmt vhdl -optimize density -htmlrpt -loc on -slew fast -init low -inputs 54 -pterms 25 -unused float -power std -terminate keeper lab4.ngd 
+XSLTProcess lab4_build.xml 
+tsim -intstyle ise lab4 lab4.nga 
+hprep6 -s IEEE1149 -n lab4 -i lab4 
+xst -intstyle ise -ifn "C:/Users/lab/Desktop/lab4/Moore + RS232 COMBO!/lab4/lab4.xst" -ofn "C:/Users/lab/Desktop/lab4/Moore + RS232 COMBO!/lab4/lab4.syr" 
+ngdbuild -intstyle ise -dd _ngo -uc C:/Users/lab/Desktop/lab4/ZL-9572.ucf -p xc9572xl-PC44-10 "lab4.ngc" lab4.ngd  
+ngdbuild -intstyle ise -dd _ngo -uc C:/Users/lab/Desktop/lab4/ZL-9572.ucf -p xc9572xl-PC44-10 "lab4.ngc" lab4.ngd  
+xst -intstyle ise -ifn "C:/Users/lab/Desktop/lab4/Moore + RS232 COMBO!/lab4/lab4.xst" -ofn "C:/Users/lab/Desktop/lab4/Moore + RS232 COMBO!/lab4/lab4.syr" 
+ngdbuild -intstyle ise -dd _ngo -uc C:/Users/lab/Desktop/lab4/ZL-9572.ucf -p xc9572xl-PC44-10 "lab4.ngc" lab4.ngd  
+cpldfit -intstyle ise -p xc9572xl-10-PC44 -ofmt vhdl -optimize density -htmlrpt -loc on -slew fast -init low -inputs 54 -pterms 25 -unused float -power std -terminate keeper lab4.ngd 
+XSLTProcess lab4_build.xml 
+tsim -intstyle ise lab4 lab4.nga 
+taengine -intstyle ise -f lab4 -w --format html1 -l lab4_html/tim/timing_report.htm 
+hprep6 -s IEEE1149 -n lab4 -i lab4 
+xst -intstyle ise -ifn "C:/Users/lab/Desktop/lab4/Moore + RS232 COMBO!/lab4/lab4.xst" -ofn "C:/Users/lab/Desktop/lab4/Moore + RS232 COMBO!/lab4/lab4.syr" 
+ngdbuild -intstyle ise -dd _ngo -uc C:/Users/lab/Desktop/lab4/ZL-9572.ucf -p xc9572xl-PC44-10 "lab4.ngc" lab4.ngd  
+cpldfit -intstyle ise -p xc9572xl-10-PC44 -ofmt vhdl -optimize density -htmlrpt -loc on -slew fast -init low -inputs 54 -pterms 25 -unused float -power std -terminate keeper lab4.ngd 
+XSLTProcess lab4_build.xml 
+tsim -intstyle ise lab4 lab4.nga 
+hprep6 -s IEEE1149 -n lab4 -i lab4 
+xst -intstyle ise -ifn "C:/Users/lab/Desktop/lab4/Moore + RS232 COMBO!/lab4/lab4.xst" -ofn "C:/Users/lab/Desktop/lab4/Moore + RS232 COMBO!/lab4/lab4.syr" 
+ngdbuild -intstyle ise -dd _ngo -uc C:/Users/lab/Desktop/lab4/ZL-9572.ucf -p xc9572xl-PC44-10 "lab4.ngc" lab4.ngd  
+cpldfit -intstyle ise -p xc9572xl-10-PC44 -ofmt vhdl -optimize density -htmlrpt -loc on -slew fast -init low -inputs 54 -pterms 25 -unused float -power std -terminate keeper lab4.ngd 
+XSLTProcess lab4_build.xml 
+tsim -intstyle ise lab4 lab4.nga 
+hprep6 -s IEEE1149 -n lab4 -i lab4 
+xst -intstyle ise -ifn "C:/Users/lab/Desktop/lab4/Moore + RS232 COMBO!/lab4/lab4.xst" -ofn "C:/Users/lab/Desktop/lab4/Moore + RS232 COMBO!/lab4/lab4.syr" 
+ngdbuild -intstyle ise -dd _ngo -uc C:/Users/lab/Desktop/lab4/ZL-9572.ucf -p xc9572xl-PC44-10 "lab4.ngc" lab4.ngd  
+cpldfit -intstyle ise -p xc9572xl-10-PC44 -ofmt vhdl -optimize density -htmlrpt -loc on -slew fast -init low -inputs 54 -pterms 25 -unused float -power std -terminate keeper lab4.ngd 
+XSLTProcess lab4_build.xml 
+tsim -intstyle ise lab4 lab4.nga 
+hprep6 -s IEEE1149 -n lab4 -i lab4 
+xst -intstyle ise -ifn "C:/Users/lab/Desktop/lab4/Moore + RS232 COMBO!/lab4/lab4.xst" -ofn "C:/Users/lab/Desktop/lab4/Moore + RS232 COMBO!/lab4/lab4.syr" 
+ngdbuild -intstyle ise -dd _ngo -uc C:/Users/lab/Desktop/lab4/ZL-9572.ucf -p xc9572xl-PC44-10 "lab4.ngc" lab4.ngd  
+cpldfit -intstyle ise -p xc9572xl-10-PC44 -ofmt vhdl -optimize density -htmlrpt -loc on -slew fast -init low -inputs 54 -pterms 25 -unused float -power std -terminate keeper lab4.ngd 
+XSLTProcess lab4_build.xml 
+tsim -intstyle ise lab4 lab4.nga 
+hprep6 -s IEEE1149 -n lab4 -i lab4 

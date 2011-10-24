@@ -1,0 +1,19 @@
+V3 24
+FL "C:/Users/lab/Desktop/lab4/Moore + RS232 COMBO!/lab4/lab4.vhf" 2011/10/24.16:38:07 O.61xd
+EN work/AND8_MXILINX_lab4 1319467089 \
+      FL "C:/Users/lab/Desktop/lab4/Moore + RS232 COMBO!/lab4/lab4.vhf" \
+      PB ieee/std_logic_1164 1308643377 PB ieee/NUMERIC_STD 1308643378 LB UNISIM \
+      PH unisim/VCOMPONENTS 1308643377
+AR work/AND8_MXILINX_lab4/BEHAVIORAL 1319467090 \
+      FL "C:/Users/lab/Desktop/lab4/Moore + RS232 COMBO!/lab4/lab4.vhf" \
+      EN work/AND8_MXILINX_lab4 1319467089 CP AND4 CP AND2
+EN work/lab4 1319467091 \
+      FL "C:/Users/lab/Desktop/lab4/Moore + RS232 COMBO!/lab4/lab4.vhf" \
+      PB ieee/std_logic_1164 1308643377 PB ieee/NUMERIC_STD 1308643378 LB UNISIM \
+      PH unisim/VCOMPONENTS 1308643377
+AR work/lab4/BEHAVIORAL 1319467092 \
+      FL "C:/Users/lab/Desktop/lab4/Moore + RS232 COMBO!/lab4/lab4.vhf" \
+      EN work/lab4 1319467091 CP AND8_MXILINX_lab4 CP FDCE CP AND2 CP AND3B2 \
+      CP AND3B1 CP OR2 CP AND4B2 CP AND2B1 CP OR4 CP XOR2 CP AND3 CP RS232_RX CP INV \
+      CP Display4x7S CP BUF CP VCC
+FL "C:/Users/lab/Desktop/lab4/Moore + RS232/lab4/lab4.vhf" 2011/10/24.15:51:23 O.61xd

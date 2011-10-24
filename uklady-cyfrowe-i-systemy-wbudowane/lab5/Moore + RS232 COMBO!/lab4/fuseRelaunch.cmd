@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -o "D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab4/Moore/lab4/lab4_lab4_sch_tb_isim_beh.exe" -prj "D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab4/Moore/lab4/lab4_lab4_sch_tb_beh.prj" "work.lab4_lab4_sch_tb" 

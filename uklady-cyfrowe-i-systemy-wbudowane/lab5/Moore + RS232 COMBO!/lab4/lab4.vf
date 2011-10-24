@@ -1,0 +1,121 @@
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+////////////////////////////////////////////////////////////////////////////////
+//   ____  ____ 
+//  /   /\/   / 
+// /___/  \  /    Vendor: Xilinx 
+// \   \   \/     Version : 13.2
+//  \   \         Application : sch2hdl
+//  /   /         Filename : lab4.vf
+// /___/   /\     Timestamp : 10/24/2011 14:47:23
+// \   \  /  \ 
+//  \___\/\___\ 
+//
+//Command: sch2hdl -intstyle ise -family xa9500xl -verilog C:/Users/lab/Desktop/lab4/Moore/lab4/lab4.vf -w C:/Users/lab/Desktop/lab4/Moore/lab4/lab4.sch
+//Design Name: lab4
+//Device: xa9500xl
+//Purpose:
+//    This verilog netlist is translated from an ECS schematic.It can be 
+//    synthesized and simulated, but it should not be modified. 
+//
+`timescale 1ns / 1ps
+
+module lab4(C, 
+            CE, 
+            CLR, 
+            X, 
+            Q0, 
+            Q1, 
+            Q2, 
+            Y);
+
+    input C;
+    input CE;
+    input CLR;
+    input X;
+   output Q0;
+   output Q1;
+   output Q2;
+   output Y;
+   
+   wire XLXN_53;
+   wire XLXN_54;
+   wire XLXN_55;
+   wire XLXN_100;
+   wire XLXN_101;
+   wire XLXN_102;
+   wire XLXN_103;
+   wire XLXN_104;
+   wire XLXN_105;
+   wire XLXN_116;
+   wire XLXN_117;
+   wire XLXN_118;
+   wire Q0_DUMMY;
+   wire Q1_DUMMY;
+   wire Q2_DUMMY;
+   
+   assign Q0 = Q0_DUMMY;
+   assign Q1 = Q1_DUMMY;
+   assign Q2 = Q2_DUMMY;
+   FDCE #( .INIT(1'b0) ) XLXI_23 (.C(C), 
+                 .CE(CE), 
+                 .CLR(CLR), 
+                 .D(XLXN_53), 
+                 .Q(Q2_DUMMY));
+   FDCE #( .INIT(1'b0) ) XLXI_24 (.C(C), 
+                 .CE(CE), 
+                 .CLR(CLR), 
+                 .D(XLXN_54), 
+                 .Q(Q1_DUMMY));
+   FDCE #( .INIT(1'b0) ) XLXI_25 (.C(C), 
+                 .CE(CE), 
+                 .CLR(CLR), 
+                 .D(XLXN_55), 
+                 .Q(Q0_DUMMY));
+   AND2  XLXI_40 (.I0(Q2_DUMMY), 
+                 .I1(Q0_DUMMY), 
+                 .O(Y));
+   AND3B2  XLXI_41 (.I0(Q0_DUMMY), 
+                   .I1(X), 
+                   .I2(Q2_DUMMY), 
+                   .O(XLXN_100));
+   AND3B1  XLXI_42 (.I0(X), 
+                   .I1(Q0_DUMMY), 
+                   .I2(Q1_DUMMY), 
+                   .O(XLXN_101));
+   OR2  XLXI_45 (.I0(XLXN_101), 
+                .I1(XLXN_100), 
+                .O(XLXN_53));
+   AND4B2  XLXI_46 (.I0(Q1_DUMMY), 
+                   .I1(Q2_DUMMY), 
+                   .I2(Q0_DUMMY), 
+                   .I3(X), 
+                   .O(XLXN_102));
+   OR2  XLXI_48 (.I0(XLXN_103), 
+                .I1(XLXN_102), 
+                .O(XLXN_54));
+   AND2B1  XLXI_49 (.I0(Q0_DUMMY), 
+                   .I1(Q1_DUMMY), 
+                   .O(XLXN_103));
+   OR4  XLXI_50 (.I0(XLXN_118), 
+                .I1(XLXN_117), 
+                .I2(XLXN_116), 
+                .I3(XLXN_105), 
+                .O(XLXN_55));
+   XOR2  XLXI_52 (.I0(X), 
+                 .I1(Q1_DUMMY), 
+                 .O(XLXN_104));
+   AND2B1  XLXI_53 (.I0(Q0_DUMMY), 
+                   .I1(XLXN_104), 
+                   .O(XLXN_105));
+   AND2B1  XLXI_54 (.I0(Q0_DUMMY), 
+                   .I1(Q2_DUMMY), 
+                   .O(XLXN_116));
+   AND2  XLXI_60 (.I0(X), 
+                 .I1(Q2_DUMMY), 
+                 .O(XLXN_117));
+   AND3  XLXI_61 (.I0(Q0_DUMMY), 
+                 .I1(X), 
+                 .I2(Q1_DUMMY), 
+                 .O(XLXN_118));
+endmodule
