@@ -1,4 +1,4 @@
-﻿1. PU - zgłoś podanie o urlop
+﻿1. PU - złożenie podania o urlop
 
 	- Cel PU : Celem PU jest złożenie w systemie podania o urlop
 	- Warunki wstępne : PU jest inicjowany przez pracownika
@@ -66,7 +66,7 @@
 			2. Wyświetlone zosatje okno z Podaniem do rozpatrzenia
 			3. Koordynator zapoznaje się z treścia podania o urlop
 			4. Koordynator klika przycisk zatwierdź
-			5. Aktywowany zostaje PU Wysyłanei powiadomienia o decyzji
+			5. Aktywowany zostaje PU Wysyłanie powiadomienia o decyzji
 			6. Następuje powrót z PU Wysyłanie powiadomienia o decyzji
 			7. Komunikat potwierdzający wykonanie operacji
 			8. Zamknięcie okna do rozpatrywania podań
@@ -93,10 +93,8 @@
 			2. Aktywowany zostaje PU - Wyszukaj pracownika
 			3. Następuje wyjście z PU Wyszukaj pracownika
 			4. CZ wybiera opcje kontroluj jakość pracy
-			5. Aktywowany zostaje PU kontroluj jakość pracy
-			6. Wyświetlone zostają statystyki dotyczące danego pracownika
-			7. Powrót do PU Kontrola pracownika
-			8. Zamknij - CZ zamyka okno
+			5. Powrót do PU Kontrola pracownika
+			6. Zamknij - CZ zamyka okno
 		b) przeplyw komunikatów
 			1. "Kontroluj pracownika" - CZ inicjuje PU, klikająć przycisk "Kontroluj pracownika"
 			3. Wyszukaj pracownika - PU inicjuje PU Wyszukaj pracownika
@@ -107,7 +105,7 @@
 			8. Zamknij - CZ zamyka okno
 
 		c) przepływ alternatywny
-			1. Pracownik zamaist Opcji kontroluj jakość pracy wybiera opcje KOntrola urlopów, lub wybiera oba na raz. Aktywowane zostają odpowiednie PU.
+			1. Pracownik zamaist Opcji kontroluj jakość pracy wybiera opcje Wykorzystanie urlopów.
 			2. Pracownik nie zostaje wyszukany , powrót do kroku 2
 
 5. PU - Wyszukaj pracownika
