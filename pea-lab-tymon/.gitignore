@@ -1,0 +1,8 @@
+.DS_Store
+*.classpath
+*.class
+target/
+lib_managed/
+src_managed/
+lab1/project/boot/
+lab1/data

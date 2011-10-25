@@ -1,0 +1,7 @@
+.DS_Store
+*.classpath
+*.class
+target/
+lib_managed/
+src_managed/
+project/boot/
