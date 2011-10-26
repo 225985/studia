@@ -5,6 +5,10 @@ gem 'rails', '3.1.1'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
+gem 'inherited_resources'
+gem 'simple_form'
+gem 'haml-rails'
+gem 'haml', '3.1.2'
 
 gem 'jruby-openssl'
 gem 'json'
