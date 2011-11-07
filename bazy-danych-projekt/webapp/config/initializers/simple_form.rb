@@ -3,6 +3,10 @@ SimpleForm.setup do |config|
   # Components used by the form builder to generate a complete input. You can remove
   # any of them, change the order, or even add your own components to the stack.
   # config.components = [ :placeholder, :label_input, :hint, :error ]
+  config.components = [ :label, :contained_input ]
+  SimpleForm.wrapper_class = 'clearfix'
+  SimpleForm.wrapper_error_class = 'error'
+  SimpleForm.error_class = 'help-inline'
 
   # Default tag used on hints.
   # config.hint_tag = :span
@@ -63,13 +67,13 @@ SimpleForm.setup do |config|
 
   # Tell browsers whether to use default HTML5 validations (novalidate option).
   # Default is enabled.
-  # config.browser_validations = true
+  config.browser_validations = false
 
   # Determines whether HTML5 types (:email, :url, :search, :tel) and attributes
   # (e.g. required) are used or not. True by default.
   # Having this on in non-HTML5 compliant sites can cause odd behavior in
   # HTML5-aware browsers such as Chrome.
-  # config.html5 = true
+  config.html5 = false
 
   # Custom mappings for input types. This should be a hash containing a regexp
   # to match as key, and the input type that will be used when the field name
@@ -90,4 +94,6 @@ SimpleForm.setup do |config|
 
   # When false, do not use translations for labels, hints or placeholders.
   # config.translate = true
+
+  require 'simple_form/contained_input_component.rb'
 end

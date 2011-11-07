@@ -2,4 +2,7 @@ Listing tasks
 
 %ul
   - @tasks.each do |task|
-    %li= task.name
+    %li= link_to task.name, task_path(task.id)
+
+
+= link_to "Add task", new_task_path, :class => "btn success"

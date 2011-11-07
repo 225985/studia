@@ -1,0 +1,4 @@
+= simple_form_for @task, :url => tasks_path do |f|
+  = f.input :name
+  .actions
+    = f.submit :class => "btn primary"

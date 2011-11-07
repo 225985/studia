@@ -1,5 +1,5 @@
 Webapp::Application.routes.draw do
-  namespace :db do
+  scope :module => "db" do
     resources :tasks
   end
 
