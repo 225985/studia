@@ -4,9 +4,9 @@
 #include <GLUT/glut.h>
 #include <OpenGL/OpenGL.h>
 
-#define W(x) (1000* sin(0.005 * x) / (10*x))
+#define W(x) (100* sin(0.005 * x) / (x))
 
-#define Wc(x) (1000* sin(0.003 * x) / (10*x))
+#define Wc(x) (100* sin(0.004 * x) / (x))
 
 using namespace std;
 
@@ -86,9 +86,9 @@ void reshape(GLsizei horizontal, GLsizei vertical){
 }
 
 void drawSquare(GLfloat x, GLfloat y, GLfloat size, Color c1, Color c2, Color c3, Color c4){
-    if(size < 1.5f) return;
+    if(size < .2f) return;
 
-    cout << x << " x " << y << " | " << size << endl;
+//    cout << x << " x " << y << " | " << size << endl;
     
     GLfloat a = size / 2;
     
@@ -151,11 +151,11 @@ void draw(){
 
 Color randomColor3fv(){
     Color v = new GLfloat[3];
-//    v[0] = v[1] = v[2] = (rand() % 101) / 100.0;
+    v[0] = v[1] = v[2] = (rand() % 101) / 100.0;
     
-    v[0] = (rand() % 101) / 100.0;
-    v[1] = (rand() % 101) / 100.0;
-    v[2] = (rand() % 101) / 100.0;
+//    v[0] = (rand() % 101) / 100.0;
+//    v[1] = (rand() % 101) / 100.0;
+//    v[2] = (rand() % 101) / 100.0;
     return v;
 }
 
