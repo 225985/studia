@@ -203,6 +203,10 @@
   \\ $Q_{0}'$ = $Q_{1} \bar{Q_{0}} \bar{X} + \bar{Q_{1}} \bar{Q_{0}} X + \bar{Q_{1}} Q_{0} X + Q_{2} \bar{Q_{0}} + Q_{2} X$
 \end{center}
 
+  \begin{center}
+    $Y$ = $Q_{2} \bar{Q_{1}} Q_{0} $
+  \end{center}
+
 
   \begin{figure}[htbp]
     \begin{center}
@@ -226,11 +230,11 @@ Dodatkowymi zadaniami do zrealizowania było zaimplementowanie sterowania automa
 
 \paragraph{}
 
-Kolejnym zadaniem dodatkowym było wyświetlenie kodu wysyłanego klawisza na wyświetlaczu 7-segmentowym. Ponadto na wyświetlaczu umieściliśmy również numer aktualnego stanu urządzenia.
+Ostatnim zadaniem dodatkowym było wyświetlenie kodu wysyłanego klawisza na wyświetlaczu 7-segmentowym. Ponadto na wyświetlaczu umieściliśmy również numer aktualnego stanu urządzenia.
 
   \newpage
   \section{Wnioski}
-  Po wykonaniu testów i symulacji okazało się, iż automat Mealy'ego jest podatny na "oszustwo".
+  Po wykonaniu testów i symulacji okazało się, iż automat Mealy'ego jest podatny na "oszustwo" - chwilowa zła detekcja sekwencji dla przekłamanego ostatniego bitu. Wynika to z tego, iż wyjście automatu Mealy'ego zależy bezpośrednio od sygnału wejściowego. Dla podanej w zadaniu sekwencji w momencie nadejścia kolejnego zbocza zegara wejście $X$ jest równe $0$ co powoduje przekłamanie wyjścia automatu. Problem ten nie występuje w automacie Moore'a, gdzie wyjście jest bezpośrednio zależne od stanu automatu.
 
 \end{document}
 
