@@ -1,4 +1,6 @@
-case class Task(index: Int, p: Int, d: Int, w: Int)
+case class Task(index: Int, p: Int, d: Int, w: Int){
+    override def toString = index.toString
+}
 
 object Zad1 {
     def selections[A](list: List[A]): List[(A, List[A])] = list match {
@@ -7,23 +9,69 @@ object Zad1 {
             (x, xs) :: (for((y, ys) <- selections(xs)) yield (y, x :: ys))
     }
 
-    def permute[A](list: List[A]): List[List[A]] = list match {
-        case Nil => List(Nil)
-        case x :: Nil => List(list)
-        case x :: y :: Nil => List(list, List(y, x))
-        case _ => for {
-            (y, ys) <- selections(list)
-            ps <- permute(ys)
-        } yield y :: ps
+    def permute(list: List[Task], lb: Int): (Int, List[Task]) = {
+        val perms = new scala.collection.mutable.ListBuffer[(Int, List[Task])]
+        var cc = 0
+
+        def branch(xs: List[Task], ys: List[Task]): Unit = {
+            cc += 1
+            ys match {
+                case Nil => perms += ((cost(xs), xs))
+                case _ => selections(ys).map { case(z, zs) => if(cost(xs) < lb) branch(xs :+ z, zs) }
+            }
+        }
+
+        branch(Nil, list)
+
+        println(cc)
+        perms.minBy(_._1)
     }
+    //
+    // def permute[A](list: List[A]): List[List[A]] = list match {
+    //     case Nil => List(Nil)
+    //     case x :: Nil => List(list)
+    //     case x :: y :: Nil => List(list, List(y, x))
+    //     case _ => for {
+    //         (y, ys) <- selections(list)
+    //         ps <- permute(ys)
+    //     } yield {
+    //         println((y, ps))
+    //         // println((y :: ps).map(_.index))
+    //         y :: ps
+    //     }
+    // }
+
+
+
+    var costc = 0
+    var costCache = scala.collection.mutable.Map[List[Task], Int]()
 
     def cost(list: List[Task]) = {
-        (list.foldLeft((0,0)){
-            case ((time, cost), x) => (time+x.p, cost + Math.max(0, (time+x.p) - x.d) * x.w)
-        })._2
+        if(costCache.contains(list)){
+            costCache(list)
+        } else {
+            costc += 1
+            val co = (list.foldLeft((0,0)){
+                case ((time, cost), x) => (time+x.p, cost + Math.max(0, (time+x.p) - x.d) * x.w)
+            })._2
+            costCache(list) = co
+            co
+        }
     }
 
     def main(args: Array[String]) {
+        // println(List(1,2,3).permutations.toList)
+
+        // println(permute(Array(1)))
+        // println(permute(List(1,2)))
+        // println(permute(List(1,2,3)))
+        // println(permute(List(1,2,3,4)))
+        // permute(List(1,2,3,4,5))
+        // selections(List(1,2,3)) foreach println
+        // selections(List(1,2,3,4)) foreach println
+        // selections(List(1,2,3,4,5)) foreach println
+
+
         if(args.length == 1){
             val n = args(0).toInt
             println("Zadanie %d" format n)
@@ -38,9 +86,10 @@ object Zad1 {
 
             tasks map { t => "%5d | %5d | %5d".format(t.p, t.d, t.w) } foreach println
 
-            val best = permute(tasks).map {t => (t, cost(t)) }.minBy(_._2)
-            println(best._2)
-            println(best._1.map(_.index))
+
+            println(permute(tasks, cost(tasks)))
+
+            println(costc)
         } else {
             println("Podaj liczbe");
         }
