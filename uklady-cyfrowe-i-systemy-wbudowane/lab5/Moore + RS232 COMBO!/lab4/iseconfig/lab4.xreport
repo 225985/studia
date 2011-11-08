@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2011-10-24T15:58:37</DateModified>
+  <DateModified>2011-11-07T01:21:54</DateModified>
   <ModuleName>lab4</ModuleName>
   <SummaryTimeStamp>Unknown</SummaryTimeStamp>
-  <SavedFilePath>C:/Users/lab/Desktop/lab4/Moore + RS232 COMBO!/lab4/iseconfig/lab4.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>C:/Users/lab/Desktop/lab4/Moore + RS232 COMBO!/lab4\</ImplementationReportsDirectory>
+  <SavedFilePath>D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab5/Moore + RS232 COMBO!/lab4/iseconfig/lab4.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab5/Moore + RS232 COMBO!/lab4\</ImplementationReportsDirectory>
   <DateInitialized>2011-10-17T14:46:21</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>
