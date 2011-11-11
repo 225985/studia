@@ -3,7 +3,7 @@ require File.join(Rails.root, "..", "target", "db.jar")
 module Db
   include_package "db"
 
-  Models = [Task, Project]
+  Models = [Task, Project, Milestone]
 
   Models.each do |model|
     puts model.inspect
@@ -12,7 +12,7 @@ end
 
 Dir[File.join(Rails.root, "app", "models", "db", "*.rb")].each {|f| require f }
 
-Db::Database.init("/tmp/rails_odb_#{rand(100000)}.db4o")
+Db::Database.init("db/dev.db4o")
 
 # Temporary seed
 #

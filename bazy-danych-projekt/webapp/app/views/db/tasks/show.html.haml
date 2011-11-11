@@ -1,3 +1,7 @@
+= debug @project.get_tasks.to_a
+
+= debug Db::Task.all.to_a
+
 %h2= @task.name
 
 = link_to "Edit", edit_project_task_path(@project, @task), :class => "btn"

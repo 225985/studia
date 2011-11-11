@@ -15,9 +15,15 @@ class ListProxy
   end
 
   def create(attrs = {})
+    obj = new(attrs)
+    obj.save
+    obj
+  end
+
+  def new(attrs = {})
+    attrs ||= {}
     obj = @klazz.new(attrs.merge(@pname => @parent))
     __coll << obj
-    obj.save
     obj
   end
 

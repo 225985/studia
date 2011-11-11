@@ -3,7 +3,7 @@
 = link_to "Edit", edit_project_milestone_path(@project, @milestone), :class => "btn"
 = link_to "Delete", project_milestone_path(@project, @milestone), :method => :delete, :class => "btn danger"
 
-
+Tasks
 %ul
   - @milestone.tasks.each do |task|
     %li= link_to task.name, project_task_path(@project, task.id)

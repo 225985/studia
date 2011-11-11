@@ -2,3 +2,16 @@
 
 = link_to "Edit", edit_project_path(@task), :class => "btn"
 = link_to "Delete", project_path(@task), :method => :delete, :class => "btn danger"
+
+= debug @project
+= debug @project.get_tasks.to_a
+
+= debug Db::Task.all.to_a.map {|e| e.project }
+
+%h3 Tasks
+%ul
+  - @project.tasks.each do |task|
+    %li= link_to task.name, project_task_path(@project, task.id)
+
+
+= link_to "Add task", new_project_task_path(@project), :class => "btn success"
