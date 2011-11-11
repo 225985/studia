@@ -10,11 +10,11 @@ public class Project extends DbObject {
 	protected User owner;
 	protected Date createdAt;
 	protected Date updatedAt;
-	//protected List<Milestone> milestones;
+	protected List<Milestone> milestones;
 	protected List<Task> tasks;
-	//protected List<Attachement<Project>> attachments;
-	//protected List<Comment<Project>> comments;
-	//protected List<Role> roles;
+	protected List<Attachment<Project>> attachments;
+	protected List<Comment<Project>> comments;
+	protected List<Role> roles;
 
 	
 	public Project(){
@@ -27,44 +27,78 @@ public class Project extends DbObject {
         this.id = id;
     }
 	
-	public String getName(){
-		return this.name;	
+	
+
+	public String getName() {
+		return name;
 	}
 
-	public String getDecription(){
-		return this.description;	
-	}
-	
-	public Date getCreateAt(){
-		return this.createdAt;
-	}
-	
-	public Date getUpdatedAt(){
-		return this.updatedAt;
-	}
-	
-	public void setName(String name){
+	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public void setDescription(String description){
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	public void setCreatedAt(Date createdAt){
-		this.createdAt = createdAt;
-	}
-	
-	public void setUpdateAt(Date updatedAt){
-		this.updatedAt = updatedAt;
-	}
-	
+
 	public User getOwner() {
 		return owner;
 	}
 
 	public void setOwner(User owner) {
 		this.owner = owner;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	public List<Milestone> getMilestones() {
+		return milestones;
+	}
+
+	public void setMilestones(List<Milestone> milestones) {
+		this.milestones = milestones;
+	}
+
+	public List<Attachment<Project>> getAttachments() {
+		return attachments;
+	}
+
+	public void setAttachments(List<Attachment<Project>> attachments) {
+		this.attachments = attachments;
+	}
+
+	public List<Comment<Project>> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment<Project>> comments) {
+		this.comments = comments;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 
 	public List<Task> getTasks() {
