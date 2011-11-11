@@ -20,8 +20,17 @@ public class Task extends DbObject {
 	protected List<Comment<Task>> comments;
 	protected List<Attachment<Task>> attachments;
 	protected int estimatedTime;
+	protected Project project;
 	
-    public Task(){
+    public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
+	public Task(){
         super();
     }
 
