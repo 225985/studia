@@ -7,11 +7,11 @@ public class Project extends DbObject {
 
 	private String name;
 	private String description;
-	//private User owner;
+	private User owner;
 	private Date createdAt;
 	private Date updatedAt;
 	//private List<Milestone> milestones;
-	//private List<Task> tasks;
+	private List<Task> tasks;
 	//private List<Attachement<Project>> attachments;
 	//private List<Comment<Project>> comments;
 	//private List<Role> roles;
@@ -56,6 +56,22 @@ public class Project extends DbObject {
 	
 	public void setUpdateAt(Date updatedAt){
 		this.updatedAt = updatedAt;
+	}
+	
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+
+	public List<Task> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(List<Task> tasks) {
+		this.tasks = tasks;
 	}
 	
     public static Project find(String sid){

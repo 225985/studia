@@ -14,4 +14,14 @@ public class DbObject {
     public DbObject(){
 
     }
+
+    public boolean save(){
+        Database.save(this);
+        return true;
+    }
+
+    public boolean destroy(){
+        Database.delete(this);
+        return true;
+    }
 }

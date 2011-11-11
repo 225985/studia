@@ -23,16 +23,6 @@ public class Task extends DbObject {
         this.name = name;
     }
 
-    public boolean save(){
-        Database.save(this);
-        return true;
-    }
-
-    public boolean destroy(){
-        Database.delete(this);
-        return true;
-    }
-
     public static Task find(String sid){
         return find(Integer.parseInt(sid));
     }
