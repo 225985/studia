@@ -9,6 +9,7 @@ gem 'inherited_resources'
 gem 'simple_form'
 gem 'haml-rails'
 gem 'haml', '3.1.2'
+gem 'jqueryui_rails'
 
 gem 'jruby-openssl'
 gem 'json'
