@@ -11,14 +11,14 @@ public class Task extends DbObject {
 	protected String name;
 	protected String description;
 	protected User assignee;
-	//protected Enum... status;
+	protected TaskStatus status;
 	protected Date deadline;
-	//protected enum kind kind;
+	protected TaskKind kind;
 	protected Date createdAt;
 	protected Date updatedAt;
-	//protected List<TimeEntries> timeEntries;
-	//protected List<Comment<Task>> comments;
-	//protected List<Attachment<Task>> attachments;
+	protected List<TimeEntry> timeEntries;
+	protected List<Comment<Task>> comments;
+	protected List<Attachment<Task>> attachments;
 	protected int estimatedTime;
 	
     public Task(){
@@ -30,7 +30,31 @@ public class Task extends DbObject {
         this.id = id;
     }
 
-    public String getName(){
+    public TaskStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(TaskStatus status) {
+		this.status = status;
+	}
+
+	public TaskKind getKind() {
+		return kind;
+	}
+
+	public void setKind(TaskKind kind) {
+		this.kind = kind;
+	}
+
+	public List<TimeEntry> getTimeEntries() {
+		return timeEntries;
+	}
+
+	public void setTimeEntries(List<TimeEntry> timeEntries) {
+		this.timeEntries = timeEntries;
+	}
+
+	public String getName(){
         return this.name;
     }
 

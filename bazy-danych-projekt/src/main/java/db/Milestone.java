@@ -14,8 +14,8 @@ public class Milestone extends DbObject {
 	protected Date updatedAt;
 	protected Project project;
 	protected List<Task> tasks;
-	//protected List<Comment<Milestone>> comments;
-	//protected List<Attachment<Milestone>> attachments;
+	protected List<Comment<Milestone>> comments;
+	protected List<Attachment<Milestone>> attachments;
 	
 	
 	public Milestone(){

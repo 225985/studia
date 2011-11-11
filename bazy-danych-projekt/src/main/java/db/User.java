@@ -14,8 +14,8 @@ public class User extends DbObject {
 	private String lastName;
 	private List<Project> projects;
 	private List<Task> tasks;
-	//private List<Comment> comments;
-	//private List<Role> roles;
+	private List<Comment<User>> comments;
+	private List<Role> roles;
 	
 	
 	public User(){
