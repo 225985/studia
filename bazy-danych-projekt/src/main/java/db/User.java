@@ -20,6 +20,8 @@ public class User extends DbObject {
 	
 	public User(){
 		super();
+		this.tasks = new ArrayList<Task>();
+		this.projects = new ArrayList<Project>();
 	}
 	
 	public User(int id){

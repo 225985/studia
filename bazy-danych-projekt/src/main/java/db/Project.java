@@ -5,20 +5,21 @@ import com.db4o.*;
 
 public class Project extends DbObject {
 
-	private String name;
-	private String description;
-	private User owner;
-	private Date createdAt;
-	private Date updatedAt;
-	//private List<Milestone> milestones;
-	private List<Task> tasks;
-	//private List<Attachement<Project>> attachments;
-	//private List<Comment<Project>> comments;
-	//private List<Role> roles;
+	protected String name;
+	protected String description;
+	protected User owner;
+	protected Date createdAt;
+	protected Date updatedAt;
+	//protected List<Milestone> milestones;
+	protected List<Task> tasks;
+	//protected List<Attachement<Project>> attachments;
+	//protected List<Comment<Project>> comments;
+	//protected List<Role> roles;
 
 	
 	public Project(){
         super();
+        tasks = new ArrayList<Task>();
     }
 
     public Project(int id){

@@ -1,0 +1,18 @@
+package db;
+
+import java.util.*;
+import com.db4o.*;
+
+public class Project extends DbObject {
+
+	private String name;
+	private String description;
+	//private User owner;
+	private Date createdAt;
+	private Date updatedAt;
+	//private List<Milestone> milestones;
+	//private List<Task> tasks;
+	//private List<Attachement<Project>> attachments;
+	//private List<Comment<Project>> comments;
+	//private List<Role> roles;
+}
