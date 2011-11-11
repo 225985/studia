@@ -1,2 +1,2 @@
 = simple_form_for @task, :url => project_task_path(@project, @task) do |f|
-  = render :partial => "form"
+  = render :partial => "form", :locals => {:f => f}
