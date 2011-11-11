@@ -1,7 +1,10 @@
 Webapp::Application.routes.draw do
   scope :module => "db" do
-    resources :tasks
+    resources :projects do
+      resources :milestones
+      resources :tasks
+    end
   end
 
-  root :to => "db/tasks#index"
+  root :to => "db/projects#index"
 end

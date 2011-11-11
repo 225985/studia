@@ -1,8 +1,9 @@
-Listing tasks
+Listing tasks in project
+= @project.name
 
 %ul
   - @tasks.each do |task|
-    %li= link_to task.name, task_path(task.id)
+    %li= link_to task.name, project_task_path(@project, task.id)
 
 
-= link_to "Add task", new_task_path, :class => "btn success"
+= link_to "Add task", new_project_task_path(@project), :class => "btn success"

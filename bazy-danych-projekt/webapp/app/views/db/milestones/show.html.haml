@@ -1,0 +1,12 @@
+%h2= @milestone.name
+
+= link_to "Edit", edit_project_milestone_path(@project, @milestone), :class => "btn"
+= link_to "Delete", project_milestone_path(@project, @milestone), :method => :delete, :class => "btn danger"
+
+
+%ul
+  - @milestone.tasks.each do |task|
+    %li= link_to task.name, project_task_path(@project, task.id)
+
+
+= link_to "Add task", new_project_task_path(@project, :task => {:milestone_id => @milestone.id}), :class => "btn success"
