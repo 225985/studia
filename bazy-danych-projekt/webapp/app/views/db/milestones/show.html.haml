@@ -1,0 +1,5 @@
+%h2= @milestone.name
+
+= link_to "Edit", edit_project_milestone_path(@project, @milestone), :class => "btn"
+= link_to "Delete", project_milestone_path(@project, @milestone), :method => :delete, :class => "btn danger"
+

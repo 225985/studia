@@ -1,4 +1,2 @@
-= simple_form_for @task, :url => task_path(@task) do |f|
-  = f.input :name
-  .actions
-    = f.submit :class => "btn primary"
+= simple_form_for @task, :url => project_task_path(@project, @task) do |f|
+  = render :partial => "form"

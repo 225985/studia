@@ -1,5 +1,5 @@
 module Db
-  class TasksController < ApplicationController
+  class MilestonesController < ApplicationController
     belongs_to :project
 
     inherit_resources
