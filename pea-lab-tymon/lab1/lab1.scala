@@ -11,10 +11,8 @@ object Zad1 {
 
     def permute(list: List[Task], lb: Int): (Int, List[Task]) = {
         val perms = new scala.collection.mutable.ListBuffer[(Int, List[Task])]
-        var cc = 0
 
         def branch(xs: List[Task], ys: List[Task]): Unit = {
-            cc += 1
             ys match {
                 case Nil => perms += ((cost(xs), xs))
                 case _ => selections(ys).map { case(z, zs) => if(cost(xs) < lb) branch(xs :+ z, zs) }
@@ -23,9 +21,40 @@ object Zad1 {
 
         branch(Nil, list)
 
-        println(cc)
         perms.minBy(_._1)
     }
+
+    def permute2(list: List[Task], lb: Int): (Int, List[Task]) = {
+
+        println(lb)
+
+        def branch(xs: List[Task], ys: List[Task], qs: List[List[Task]]): List[List[Task]] = {
+            println(xs + " | " + cost(xs))
+            ys match {
+                case Nil =>
+                    xs :: qs
+                case _ => {
+                    if(cost(xs) < lb){
+                        selections(ys).flatMap {
+                            case sel @ (z, zs) =>
+                                branch(xs :+ z, zs, qs)
+                        }
+                    } else {
+                        println("cut!")
+                        Nil
+                    }
+
+                }
+            }
+        }
+
+        val perms = branch(Nil, list, Nil)
+
+        println()
+        perms.map(e => (cost(e), e)).minBy(_._1)
+        // (0, Nil)
+    }
+
     //
     // def permute[A](list: List[A]): List[List[A]] = list match {
     //     case Nil => List(Nil)
@@ -82,11 +111,12 @@ object Zad1 {
                 case (line, index) =>
                     val xs = line.split(" ").map(_.toInt)
                     Task(index+1, xs(0), xs(1), xs(2))
-            }.toList
+            }.toList // take 3
 
             tasks map { t => "%5d | %5d | %5d".format(t.p, t.d, t.w) } foreach println
 
 
+            println(permute2(tasks, 50))
             println(permute(tasks, cost(tasks)))
 
             println(costc)
