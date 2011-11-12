@@ -4,9 +4,33 @@ import java.util.*;
 import com.db4o.*;
 
 public class Task extends DbObject {
-    protected String name;
 
-    public Task(){
+	
+	
+	
+	protected String name;
+	protected String description;
+	protected User assignee;
+	protected TaskStatus status;
+	protected Date deadline;
+	protected TaskKind kind;
+	protected Date createdAt;
+	protected Date updatedAt;
+	protected List<TimeEntry> timeEntries;
+	protected List<Comment<Task>> comments;
+	protected List<Attachment<Task>> attachments;
+	protected int estimatedTime;
+	protected Project project;
+	
+    public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
+	public Task(){
         super();
     }
 
@@ -15,7 +39,31 @@ public class Task extends DbObject {
         this.id = id;
     }
 
-    public String getName(){
+    public TaskStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(TaskStatus status) {
+		this.status = status;
+	}
+
+	public TaskKind getKind() {
+		return kind;
+	}
+
+	public void setKind(TaskKind kind) {
+		this.kind = kind;
+	}
+
+	public List<TimeEntry> getTimeEntries() {
+		return timeEntries;
+	}
+
+	public void setTimeEntries(List<TimeEntry> timeEntries) {
+		this.timeEntries = timeEntries;
+	}
+
+	public String getName(){
         return this.name;
     }
 
@@ -23,17 +71,55 @@ public class Task extends DbObject {
         this.name = name;
     }
 
-    public boolean save(){
-        Database.save(this);
-        return true;
-    }
+    public String getDescription() {
+		return description;
+	}
 
-    public boolean destroy(){
-        Database.delete(this);
-        return true;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public static Task find(String sid){
+	public User getAssignee() {
+		return assignee;
+	}
+
+	public void setAssignee(User assignee) {
+		this.assignee = assignee;
+	}
+
+	public Date getDeadline() {
+		return deadline;
+	}
+
+	public void setDeadline(Date deadline) {
+		this.deadline = deadline;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	public int getEstimatedTime() {
+		return estimatedTime;
+	}
+
+	public void setEstimatedTime(int estimatedTime) {
+		this.estimatedTime = estimatedTime;
+	}
+
+	public static Task find(String sid){
         return find(Integer.parseInt(sid));
     }
 
