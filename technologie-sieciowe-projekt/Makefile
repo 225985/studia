@@ -4,4 +4,4 @@ projekt.pdf: projekt.tex
 all: projekt.pdf
 
 clean:
-	rm -f *.aux *.log projekt.pdf
+	rm -f *.out *.aux *.log projekt.pdf
