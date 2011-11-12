@@ -4,7 +4,7 @@
 #include <GLUT/glut.h>
 #include <OpenGL/OpenGL.h>
 
-#define N 20
+#define N 50
 #define M_POINTS 1
 #define M_MESH   2
 #define M_FILLED 3
@@ -16,10 +16,9 @@ typedef float p3[3];
 float tab[N][N][3];
 float color[N][N][3];
 bool spin = false;
-bool colors = true;
 
 int model = M_FILLED;
-static GLfloat theta[] = {0.0, 0.0, 0.0};
+static GLfloat theta[] = {0.0, 90.0, 0.0};
 
 void draw();
 void reshape(GLsizei, GLsizei);
@@ -38,7 +37,7 @@ int main (int argc, char ** argv){
     
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-    glutInitWindowSize(300, 300);
+    glutInitWindowSize(600, 600);
     glutCreateWindow("Lab 3");
     
     glutDisplayFunc(draw);
@@ -90,16 +89,14 @@ void fillRandomColors(){
     for(int i=0; i<N; i++){
         for(int j=0; j<N; j++){
             for(int k=0; k<3; k++){
-                if(j == N-1){
-                    color[i][j][k] = color[N-i-1][0][k];
-                } else {
-                    //if(j == 0)
-                    //    color[i][j][k] = 1.0;
-                    //else
-                        color[i][j][k] = (rand() % 101)/100.0f;
-
-                }
+                color[i][j][k] = (rand() % 101)/100.0f;
             }
+        }
+    }
+    
+    for(int i=0; i<N; i++){
+        for(int k=0; k<3; k++){
+            color[i][N-1][k] = color[N-i-1][0][k];
         }
     }
 }
@@ -120,7 +117,6 @@ void spinEgg(){
 }
 
 void calc(){
-    // calc
     float u = 0.0, v=0.0;
     
 	for(int i=0; i< N; i++){
@@ -174,31 +170,47 @@ void egg(){
             glColor3f(1.0, 1.0, 1.0);
             glBegin(GL_TRIANGLES);
             
-            for(int i=0; i<N-1; i++){
+            for(int i=0; i<N/2; i++){
                 for(int j=0; j<N-1; j++){
-                    if((i == 6 || i==12) && (j==0 || j == 18)){
-                    
-                    
-                    if(colors) glColor3fv(color[i][j]);
+                    glColor3fv(color[i][j]);
                     glVertex3fv(tab[i][j]);
                     
-                    if(colors) glColor3fv(color[i+1][j]);
+                    glColor3fv(color[i+1][j]);
                     glVertex3fv(tab[i+1][j]);
                     
-                    if(colors) glColor3fv(color[i][j+1]);
+                    glColor3fv(color[i][j+1]);
                     glVertex3fv(tab[i][j+1]);
-    
                     
-                    if(colors) glColor3fv(color[i+1][j+1]);
+                    glColor3fv(color[i][j+1]);
+                    glVertex3fv(tab[i][j+1]);
+                    
+                    glColor3fv(color[i+1][j+1]);
                     glVertex3fv(tab[i+1][j+1]);
-                        
-                    if(colors) glColor3fv(color[i+1][j]);
+                    
+                    glColor3fv(color[i+1][j]);
                     glVertex3fv(tab[i+1][j]);
-                        
-                    if(colors) glColor3fv(color[i][j+1]);
+                }
+            }
+            
+            for(int i=N-1; i>N/2; i--){
+                for(int j=0; j<N-1; j++){
+                    glColor3fv(color[i][j]);
+                    glVertex3fv(tab[i][j]);
+                    
+                    glColor3fv(color[i-1][j]);
+                    glVertex3fv(tab[i-1][j]);
+                    
+                    glColor3fv(color[i][j+1]);
                     glVertex3fv(tab[i][j+1]);
                     
-                    }
+                    glColor3fv(color[i][j+1]);
+                    glVertex3fv(tab[i][j+1]);
+                    
+                    glColor3fv(color[i-1][j+1]);
+                    glVertex3fv(tab[i-1][j+1]);
+                    
+                    glColor3fv(color[i-1][j]);
+                    glVertex3fv(tab[i-1][j]);
                 }
             }
             
@@ -250,10 +262,6 @@ void keys(unsigned char key, int x, int y){
             
         case 's':
             spin = !spin;
-            break;
-        
-        case 'c':
-            colors = !colors;
             break;
             
         case '1':
