@@ -4,7 +4,7 @@
 #include <GLUT/glut.h>
 #include <OpenGL/OpenGL.h>
 
-#define N 40
+#define N 20
 #define M_POINTS 1
 #define M_MESH   2
 #define M_FILLED 3
@@ -15,8 +15,10 @@ typedef float p3[3];
 
 float tab[N][N][3];
 float color[N][N][3];
+bool spin = false;
+bool colors = true;
 
-int model = M_MESH;
+int model = M_FILLED;
 static GLfloat theta[] = {0.0, 0.0, 0.0};
 
 void draw();
@@ -55,7 +57,6 @@ int main (int argc, char ** argv){
     return 0;
 }
 
-
 void axes(){
     p3 x_min = {-5.0, 0.0, 0.0};
     p3 x_max = { 5.0, 0.0, 0.0};
@@ -89,23 +90,33 @@ void fillRandomColors(){
     for(int i=0; i<N; i++){
         for(int j=0; j<N; j++){
             for(int k=0; k<3; k++){
-                color[i][j][k] = (rand() % 101)/100.0f;
+                if(j == N-1){
+                    color[i][j][k] = color[N-i-1][0][k];
+                } else {
+                    //if(j == 0)
+                    //    color[i][j][k] = 1.0;
+                    //else
+                        color[i][j][k] = (rand() % 101)/100.0f;
+
+                }
             }
         }
     }
 }
 
 void spinEgg(){
-    theta[0] += 0.05;
-    if(theta[0] > 360.0) theta[0] -= 360.0;
-    
-    theta[1] += 0.15;
-    if(theta[1] > 360.0) theta[1] -= 360.0;
-    
-    theta[2] += 0.05;
-    if(theta[2] > 360.0) theta[2] -= 360.0;
-    
-    glutPostRedisplay();
+    if(spin){
+        theta[0] += 0.05;
+        if(theta[0] > 360.0) theta[0] -= 360.0;
+        
+        theta[1] += 0.15;
+        if(theta[1] > 360.0) theta[1] -= 360.0;
+        
+        theta[2] += 0.05;
+        if(theta[2] > 360.0) theta[2] -= 360.0;
+        
+        glutPostRedisplay();
+    }
 }
 
 void calc(){
@@ -143,21 +154,17 @@ void egg(){
         case M_MESH:
             glColor3f(1.0, 1.0, 1.0);
             glBegin(GL_LINES);
-            
-            int i1,j1;
-            
-            for(int i=0; i<N; i++){
-                for(int j=0; j<N; j++){
-                    i1 = (i+1) == N ? 0 : i+1;
-                    j1 = (j+1) == N ? 0 : j+1;
-                                        
+                        
+            for(int i=0; i<N-1; i++){
+                for(int j=0; j<N-1; j++){
                     glVertex3fv(tab[i][j]);
-                    glVertex3fv(tab[i1][j]);
+                    glVertex3fv(tab[i+1][j]);
                     
                     glVertex3fv(tab[i][j]);
-                    glVertex3fv(tab[i][j1]);
+                    glVertex3fv(tab[i][j+1]);
                 }
             }
+    
             glEnd();
             
             
@@ -167,29 +174,31 @@ void egg(){
             glColor3f(1.0, 1.0, 1.0);
             glBegin(GL_TRIANGLES);
             
-            
-            for(int i=0; i<N; i++){
-                for(int j=0; j<N; j++){
-                    i1 = (i+1) == N ? 0 : i+1;
-                    j1 = (j+1) == N ? 0 : j+1;
+            for(int i=0; i<N-1; i++){
+                for(int j=0; j<N-1; j++){
+                    if((i == 6 || i==12) && (j==0 || j == 18)){
                     
-                    glColor3fv(color[i][j]);
+                    
+                    if(colors) glColor3fv(color[i][j]);
                     glVertex3fv(tab[i][j]);
                     
-                    glColor3fv(color[i1][j]);
-                    glVertex3fv(tab[i1][j]);
+                    if(colors) glColor3fv(color[i+1][j]);
+                    glVertex3fv(tab[i+1][j]);
                     
-                    glColor3fv(color[i][j1]);
-                    glVertex3fv(tab[i][j1]);
+                    if(colors) glColor3fv(color[i][j+1]);
+                    glVertex3fv(tab[i][j+1]);
+    
                     
-                    glColor3fv(color[i1][j1]);
-                    glVertex3fv(tab[i1][j1]);
+                    if(colors) glColor3fv(color[i+1][j+1]);
+                    glVertex3fv(tab[i+1][j+1]);
+                        
+                    if(colors) glColor3fv(color[i+1][j]);
+                    glVertex3fv(tab[i+1][j]);
+                        
+                    if(colors) glColor3fv(color[i][j+1]);
+                    glVertex3fv(tab[i][j+1]);
                     
-                    glColor3fv(color[i1][j]);
-                    glVertex3fv(tab[i1][j]);
-                    
-                    glColor3fv(color[i][j1]);
-                    glVertex3fv(tab[i][j1]);
+                    }
                 }
             }
             
@@ -226,9 +235,39 @@ void reshape(GLsizei horizontal, GLsizei vertical){
 }
 
 void keys(unsigned char key, int x, int y){
-    if(key == 'p') model = M_POINTS;
-    if(key == 'w') model = M_MESH;
-    if(key == 's') model = M_FILLED;
+    switch(key){
+        case 'p':
+            model = M_POINTS;
+            break;
+            
+        case 'm':
+            model = M_MESH;
+            break;
+            
+        case 'f':
+            model = M_FILLED;
+            break;
+            
+        case 's':
+            spin = !spin;
+            break;
+        
+        case 'c':
+            colors = !colors;
+            break;
+            
+        case '1':
+            theta[0] += 3;
+            break;
+            
+        case '2':
+            theta[1] += 3;
+            break;
+            
+        case '3':
+            theta[2] += 3;
+            break;
+    }
     
     draw();
 }
