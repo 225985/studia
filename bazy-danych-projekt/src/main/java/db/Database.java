@@ -17,11 +17,25 @@ public class Database {
         config.common().add(new TransparentActivationSupport());
 
         odb = Db4oEmbedded.openFile(config, dbname);
-        AutoIncrementSupport.install(odb);
+        //AutoIncrementSupport.install(odb);
     }
 
     public static void save(Object obj){
-        odb.store(obj);
+    	ObjectSet result = odb.query(DbObject.class);
+    	int max = 0;
+    	
+    	Iterator<DbObject> it = result.iterator();
+    	
+    	while(result.hasNext()){
+    		DbObject ob = it.next();
+    		if(ob.getId() > max){
+    			max = ob.getId();
+    		}
+    	}
+    	 DbObject so = (DbObject)obj;
+    	 so.setId(max + 1);
+    	
+        odb.store(so);
     }
 
     public static void delete(Object obj){

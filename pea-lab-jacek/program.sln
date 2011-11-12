@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "program", "program\program.csproj", "{EB44BDAA-D25C-4B51-AB45-8F0C8C0AA3D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BandB.GUI", "BandB.GUI\BandB.GUI.csproj", "{A5D170BF-8084-486E-B939-1BBE2D196736}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C1E32426-FDFD-4171-8F40-35BA2D85077E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB44BDAA-D25C-4B51-AB45-8F0C8C0AA3D8}.Debug|x86.ActiveCfg = Debug|x86
+		{EB44BDAA-D25C-4B51-AB45-8F0C8C0AA3D8}.Debug|x86.Build.0 = Debug|x86
+		{EB44BDAA-D25C-4B51-AB45-8F0C8C0AA3D8}.Release|x86.ActiveCfg = Release|x86
+		{EB44BDAA-D25C-4B51-AB45-8F0C8C0AA3D8}.Release|x86.Build.0 = Release|x86
+		{A5D170BF-8084-486E-B939-1BBE2D196736}.Debug|x86.ActiveCfg = Debug|x86
+		{A5D170BF-8084-486E-B939-1BBE2D196736}.Debug|x86.Build.0 = Debug|x86
+		{A5D170BF-8084-486E-B939-1BBE2D196736}.Release|x86.ActiveCfg = Release|x86
+		{A5D170BF-8084-486E-B939-1BBE2D196736}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

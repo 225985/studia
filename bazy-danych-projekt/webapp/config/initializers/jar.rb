@@ -12,6 +12,9 @@ end
 
 Dir[File.join(Rails.root, "app", "models", "db", "*.rb")].each {|f| require f }
 
+<<<<<<< HEAD
+Db::Database.init(File.join(Rails.root, "app", "tmp", "rails_odb_#{rand(100000)}.neodatis"))
+=======
 Db::Database.init("db/dev.db4o")
 
 # Temporary seed
@@ -28,3 +31,4 @@ Db::Database.init("db/dev.db4o")
 # Project.create(:name => "Project B")
 # Project.create(:name => "Project C")
 #
+>>>>>>> 5fa642980022346677c6c34890051f98cc799514
