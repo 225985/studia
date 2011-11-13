@@ -6,14 +6,6 @@
         <trait edittrait="all:0" />
     </attr>
     <netlist>
-        <signal name="XLXN_13" />
-        <signal name="XLXN_23" />
-        <signal name="XLXN_26" />
-        <signal name="XLXN_27" />
-        <signal name="XLXN_28" />
-        <signal name="XLXN_32" />
-        <signal name="XLXN_33" />
-        <signal name="XLXN_36" />
         <signal name="Q2" />
         <signal name="Q1" />
         <signal name="Q0" />
@@ -21,16 +13,11 @@
         <signal name="XLXN_34" />
         <signal name="CE" />
         <signal name="XLXN_44" />
-        <signal name="XLXN_45" />
-        <signal name="XLXN_49" />
         <signal name="XLXN_50" />
         <signal name="XLXN_51" />
         <signal name="XLXN_53" />
         <signal name="XLXN_54" />
-        <signal name="XLXN_58" />
         <signal name="XLXN_60" />
-        <signal name="XLXN_63" />
-        <signal name="XLXN_64" />
         <port polarity="Output" name="Q2" />
         <port polarity="Output" name="Q1" />
         <port polarity="Output" name="Q0" />
