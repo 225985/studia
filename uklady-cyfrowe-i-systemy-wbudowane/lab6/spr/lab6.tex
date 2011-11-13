@@ -43,7 +43,7 @@
     \begin{center}
       \includegraphics[scale=0.6]{syg.png}
       \caption{Przebieg sygnału}
-     \end{center}
+    \end{center}
   \end{figure}
 
   \subsection{Licznik}
@@ -53,7 +53,14 @@
     \begin{center}
       \includegraphics[scale=0.6]{licznik_asynch.png}
       \caption{Schemat licznika asynchronicznego}
-     \end{center}
+    \end{center}
+  \end{figure}
+
+  \begin{figure}[htbp]
+    \begin{center}
+      \includegraphics[scale=0.2]{licznik_beh.png}
+      \caption{Symulacja behawioralna działania licznika asynchronicznego}
+    \end{center}
   \end{figure}
 
   \subsection{Dekoder}
@@ -63,8 +70,22 @@
     \begin{center}
       \includegraphics[scale=0.6]{dekoder.png}
       \caption{Schemat dekodera}
-     \end{center}
+    \end{center}
   \end{figure}
+
+  \subsection{Generator sygnału}
+  Generator został zbudowany z połączenia licznika, dekodera, a następnie potrójnej bramki OR podłączonej do 0, 2 i 6 bitu magistrali wyjścia dekodera.
+
+  \begin{figure}[htbp]
+    \begin{center}
+      \includegraphics[scale=0.4]{uklad.png}
+      \caption{Schemat gotowego układu}
+    \end{center}
+  \end{figure}
+
+
+
+  \section{Wnioski}
 
 \end{document}
 
