@@ -1,10 +1,18 @@
 import Data.List
--- import Criterion.Main
+import System (getArgs)
 
 data Task = Task {index::Int, p::Int, d::Int, w::Int}
 
 instance Show Task where
     show t = show $ index t
+
+showTask :: Task -> String
+showTask t = show [index t, p t, d t, w t]
+
+
+
+readTask :: String -> Int -> Task
+readTask s i = case (map read (words s)) of x:y:z:[] -> Task {index=i, p=x, d=y, w=z}
 
 
 selections :: [a] -> [(a, [a])]
@@ -32,19 +40,24 @@ bruteforce :: [Task] -> ([Task], Int)
 bruteforce = minimumCost . permute
 
 
-branch :: Int -> [Task] -> [Task] -> [[Task]] -> [[Task]]
-branch _ xs [] qs                   = xs : qs
-branch lb xs ys qs | cost xs < lb   = selections ys >>= fm
-    where fm (z, zs) = branch lb (xs ++ [z]) zs qs
-branch _ _ _ _                      = []
-
-
 oneone :: [Task] -> ([Task], Int)
 oneone tasks = minimumCost $ branch (cost tasks) [] tasks []
+      where branch :: Int -> [Task] -> [Task] -> [[Task]] -> [[Task]]
+            branch _ xs [] qs                   = xs : qs
+            branch lb xs ys qs | cost xs < lb   = selections ys >>= fm
+                where fm (z, zs) = branch lb (xs ++ [z]) zs qs
+            branch _ _ _ _                      = []
 
+
+run :: String -> ([Task] -> ([Task], Int)) -> IO ()
+run n f = do
+    x <- readFile ("../data/" ++ n ++ ".txt")
+    print $ f $ map (uncurry readTask) (zip (lines x) [1..] )
 
 main = do
-    let tasks = [Task 1 5 10 1, Task 2 8 4 2 , Task 3 11 22 2 , Task 4 5 23 3 , Task 5 3 2 2]
+    args <- System.getArgs
+    case args of    "b":n:[] -> run n bruteforce
+                    "o":n:[] -> run n oneone
+                    _       -> error "Usage: main [b or o] [n]"
 
-    print $ bruteforce tasks
-    print $ oneone tasks
+
