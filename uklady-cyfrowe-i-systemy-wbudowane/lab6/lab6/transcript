@@ -1,0 +1,71 @@
+# Reading C:/modeltech_6.6e/tcl/vsim/pref.tcl 
+# //  ModelSim SE 6.6e Mar 30 2011 
+# //
+# //  Copyright 1991-2011 Mentor Graphics Corporation
+# //              All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND 
+# //  PROPRIETARY INFORMATION WHICH IS THE PROPERTY
+# //  OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
+# //  AND IS SUBJECT TO LICENSE TERMS.
+# //
+# do {main_main_sch_tb.tdo} 
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim SE vcom 6.6e Compiler 2011.03 Mar 30 2011
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package vital_timing
+# -- Loading package vcomponents
+# -- Loading package vital_primitives
+# -- Loading package textio
+# -- Loading package vpackage
+# -- Compiling entity main
+# -- Compiling architecture structure of main
+# Model Technology ModelSim SE vcom 6.6e Compiler 2011.03 Mar 30 2011
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package vcomponents
+# -- Compiling entity main_main_sch_tb
+# -- Compiling architecture behavioral of main_main_sch_tb
+# vsim -lib work -voptargs=\"+acc\" -sdfmax /UUT=netgen/fit/main_timesim.sdf -t 1ps work.main_main_sch_tb 
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by:   Hostname:   ProcessID: 5
+#           Attempting to use alternate WLF file "./wlftfxvv3c".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftfxvv3c
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading unisim.vcomponents
+# Loading work.main_main_sch_tb(behavioral)#1
+# Loading std.textio(body)
+# Loading vital2000.vital_timing(body)
+# Loading simprim.vcomponents
+# Loading vital2000.vital_primitives(body)
+# Loading simprim.vpackage(body)
+# Loading work.main(structure)#1
+# Loading simprim.x_buf(x_buf_v)#1
+# Loading simprim.x_xor2(x_xor2_v)#1
+# Loading simprim.x_ff(x_ff_v)#1
+# Loading simprim.x_zero(x_zero_v)#1
+# Loading simprim.x_one(x_one_v)#1
+# Loading simprim.x_and2(x_and2_v)#1
+# Loading simprim.x_and3(x_and3_v)#1
+# Loading simprim.x_or2(x_or2_v)#1
+# Loading simprim.x_inv(x_inv_v)#1
+# Loading simprim.x_roc(x_roc_v)#1
+# Loading instances from netgen/fit/main_timesim.sdf
+# Loading timing data from netgen/fit/main_timesim.sdf
+# ** Note: (vsim-3587) SDF Backannotation Successfully Completed.
+#    Time: 0 ps  Iteration: 0  Region: /main_main_sch_tb  File: mainTest.vhd
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+restart
+# Loading instances from netgen/fit/main_timesim.sdf
+# Loading timing data from netgen/fit/main_timesim.sdf
+# ** Note: (vsim-3587) SDF Backannotation Successfully Completed.
+#    Time: 0 ps  Iteration: 0  Region: /main_main_sch_tb  File: mainTest.vhd
+run 2000 ns
