@@ -1,2 +1,2 @@
-sch2hdl,-intstyle,ise,-family,xc9500xl,-flat,-suppress,-vhdl,C:/Users/lab/Desktop/lllllll/lab6/counter.vhf,-w,C:/Users/lab/Desktop/lllllll/lab6/counter.sch
-sch2hdl,-intstyle,ise,-family,xc9500xl,-flat,-suppress,-vhdl,C:/Users/lab/Desktop/lllllll/lab6/main.vhf,-w,C:/Users/lab/Desktop/lllllll/lab6/main.sch
+sch2hdl,-intstyle,ise,-family,spartan3adsp,-flat,-suppress,-vhdl,D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab6/lab6/main.vhf,-w,D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab6/lab6/main.sch
+sch2hdl,-intstyle,ise,-family,spartan3adsp,-flat,-suppress,-vhdl,D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab6/lab6/decoder.vhf,-w,D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab6/lab6/decoder.sch
