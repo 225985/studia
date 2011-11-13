@@ -34,8 +34,8 @@
 
 \begin{document}
 \maketitle
-  \section{Zadanie nr 1}
-  Celem zadania było stworzenie układu generującego sygnał prostokątny o zadanym przebiegu.
+  \section{Cel ćwiczenia}
+  Celem ćwiczenia było stworzenie układu generującego sygnał prostokątny o zadanym przebiegu.
   Układ składał się z dwóch podukładów: licznika "0-7" oraz dekodera "1 z 8".
   Oba podukłady zostały zaimplementowane jako osobne urządzenia, a następnie użyte w głównym układzie.
 
@@ -46,7 +46,11 @@
     \end{center}
   \end{figure}
 
-  \subsection{Licznik}
+  \newpage
+
+  \section{Licznik}
+
+  \subsection{Licznik asynchroniczny}
   Licznik działający asynchronicznie został stworzony za pomocą trzech przerzutników typu T połączonych kaskadowo. Pierwszy przerzutnik był sterowany zegarem, pozostałe były aktywowane opadającym zboczem swojego poprzednika.
 
   \begin{figure}[htbp]
@@ -63,7 +67,20 @@
     \end{center}
   \end{figure}
 
-  \subsection{Dekoder}
+  \newpage
+
+  \subsection{Licznik synchroniczny}
+
+  \begin{figure}[htbp]
+    \begin{center}
+      \includegraphics[scale=0.6]{licznik.png}
+      \caption{Schemat licznika synchronicznego}
+    \end{center}
+  \end{figure}
+
+  \newpage
+
+  \section{Dekoder}
   Dekoder sygnału 3-bitowego na sygnał 8-bitowy został utworzony z 8 po trójnych brame AND z zanegowanymi odpowiednimi wejściami.
 
   \begin{figure}[htbp]
@@ -80,7 +97,9 @@
     \end{center}
   \end{figure}
 
-  \subsection{Generator sygnału}
+  \newpage
+
+  \section{Generator sygnału}
   Generator został zbudowany z połączenia licznika, dekodera, a następnie potrójnej bramki OR podłączonej do 0, 2 i 6 bitu magistrali wyjścia dekodera.
 
   \begin{figure}[htbp]
