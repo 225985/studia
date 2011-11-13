@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dywan_sierpinskiego", "dywan_sierpinskiego\dywan_sierpinskiego.vcxproj", "{0600B9D5-6EB6-4C37-9CAB-1FD88D8EE81E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "trojkat_sierpinskiego", "trojkat_sierpinskiego\trojkat_sierpinskiego.vcxproj", "{99A5F635-C474-438C-AD43-0986D1FA7313}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fraktal_plazmowy", "fraktal_plazmowy\fraktal_plazmowy.vcxproj", "{FC517022-FB88-4744-94F1-733AE352F3DE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "labirynt", "labirynt\labirynt.vcxproj", "{FB881485-302F-40DE-A845-681341CA9FC3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0600B9D5-6EB6-4C37-9CAB-1FD88D8EE81E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0600B9D5-6EB6-4C37-9CAB-1FD88D8EE81E}.Debug|Win32.Build.0 = Debug|Win32
+		{0600B9D5-6EB6-4C37-9CAB-1FD88D8EE81E}.Release|Win32.ActiveCfg = Release|Win32
+		{0600B9D5-6EB6-4C37-9CAB-1FD88D8EE81E}.Release|Win32.Build.0 = Release|Win32
+		{99A5F635-C474-438C-AD43-0986D1FA7313}.Debug|Win32.ActiveCfg = Debug|Win32
+		{99A5F635-C474-438C-AD43-0986D1FA7313}.Debug|Win32.Build.0 = Debug|Win32
+		{99A5F635-C474-438C-AD43-0986D1FA7313}.Release|Win32.ActiveCfg = Release|Win32
+		{99A5F635-C474-438C-AD43-0986D1FA7313}.Release|Win32.Build.0 = Release|Win32
+		{FC517022-FB88-4744-94F1-733AE352F3DE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FC517022-FB88-4744-94F1-733AE352F3DE}.Debug|Win32.Build.0 = Debug|Win32
+		{FC517022-FB88-4744-94F1-733AE352F3DE}.Release|Win32.ActiveCfg = Release|Win32
+		{FC517022-FB88-4744-94F1-733AE352F3DE}.Release|Win32.Build.0 = Release|Win32
+		{FB881485-302F-40DE-A845-681341CA9FC3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FB881485-302F-40DE-A845-681341CA9FC3}.Debug|Win32.Build.0 = Debug|Win32
+		{FB881485-302F-40DE-A845-681341CA9FC3}.Release|Win32.ActiveCfg = Release|Win32
+		{FB881485-302F-40DE-A845-681341CA9FC3}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

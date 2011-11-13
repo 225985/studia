@@ -1,0 +1,240 @@
+\documentclass[wide,a4paper,titlepage,12pt] {article}
+\usepackage{polski}
+\usepackage[cp1250]{inputenc}
+\usepackage{listings}
+\usepackage{slashbox}
+\usepackage[table]{xcolor}
+\usepackage{graphicx,pdflscape}
+\usepackage{placeins}
+
+
+\title{Grafika komputerowa}
+\author{Jacek Wieczorek (181043)}
+
+% Title page layout (fold)
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{titlepage}
+  \begin{center}
+    \vspace*{3cm}
+    \LARGE \@title \par
+    \vspace{2cm}
+    \textit{\small Autor:}\par
+    \normalsize \@author\par \normalsize
+    \vspace{3cm}
+    \textit{\small Prowadz¹cy:}\par
+    Dr in¿. Tomasz Kap³on \par
+    \vspace{2cm}
+    Wydzia³ Elektroniki\\ III rok\\ Pn TP 08.15 - 11.00\par
+    \vspace{4cm}
+    \small \@date
+  \end{center}
+\end{titlepage}
+}
+\makeatother
+% Title page layout (end)
+
+
+
+\begin{document}
+\maketitle
+  \section{Cel laboratorium}
+  Celem laboratorium jest zaprezentowanie elementarnych mo¿liwoœci biblioteki graficznej OpenGL wraz z rozszerzeniem GL Utility Toolkit (GLUT). Æwiczenie niniejsze obejmuje inicjalizacjê i zamykanie trybu OpenGL oraz rysowanie tworów pierwotnych (prymitywów) w przestrzeni 2D.
+  \section{Dywan sierpiñskiego}
+  Pierwszym zadaniem by³o narysowanie dywanu sierpiñskeigo wykorzystuj¹c algorytm iteracyjny oraz rekurencyjny. Ponadto, u¿ytkownik powinien zdefiniowaæ stopieñ dywanu oraz poziom zniekszta³cenia.
+  \subsection{Algorytm iteracyjny}
+  Iteracyjny algorytm rysowania dywanu sierpiñskeigo polega na stworzeniu najpierw pojedynczego, du¿ego kwadratu, a nastêpnie zgodnie ze stopniem figury, wycinaniu mniejszych kwadratów, tworz¹c wzór figury. Co ka¿dy stopieñ iloœc wyciannych kwadratów wzrasta³a 3-krotnie, a pole powierzchni mala³o 3-krotnie.\\ \\
+  Procedura generuj¹ca dywan sierpiñskiego iteracyjnie
+  \lstset{ %
+    language=c++,                % choose the language of the code
+    basicstyle=\scriptsize,       % the size of the fonts that are used for the code
+    numbers=left,                   % where to put the line-numbers
+    numberstyle=\scriptsize,      % the size of the fonts that are used for the line-numbers
+    stepnumber=10,                   % the step between two line-numbers. If it's 1 each line 
+                                    % will be numbered
+    numbersep=9pt,                  % how far the line-numbers are from the code
+    % backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+    showspaces=false,               % show spaces adding particular underscores
+    showstringspaces=false,         % underline spaces within strings
+    showtabs=false,                 % show tabs within strings adding particular underscores
+    % frame=single,                 % adds a frame around the code
+    % tabsize=2,                  % sets default tabsize to 2 spaces
+    % captionpos=b,                   % sets the caption-position to bottom
+    breaklines=true,                % sets automatic line breaking
+    % breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+    % title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                    % also try caption instead of title
+    % escapeinside={\%*}{*)},         % if you want to add a comment within your code
+    % morekeywords={*,...}            % if you want to add more keywords to the set
+    }
+    \lstinputlisting{dsi.cpp}
+ 	\subsection{Algorytm rekurencyjny}
+ 	\lstset{ %
+    language=c++,                % choose the language of the code
+    basicstyle=\scriptsize,       % the size of the fonts that are used for the code
+    numbers=left,                   % where to put the line-numbers
+    numberstyle=\scriptsize,      % the size of the fonts that are used for the line-numbers
+    stepnumber=10,                   % the step between two line-numbers. If it's 1 each line 
+                                    % will be numbered
+    numbersep=9pt,                  % how far the line-numbers are from the code
+    % backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+    showspaces=false,               % show spaces adding particular underscores
+    showstringspaces=false,         % underline spaces within strings
+    showtabs=false,                 % show tabs within strings adding particular underscores
+    % frame=single,                 % adds a frame around the code
+    % tabsize=2,                  % sets default tabsize to 2 spaces
+    % captionpos=b,                   % sets the caption-position to bottom
+    breaklines=true,                % sets automatic line breaking
+    % breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+    % title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                    % also try caption instead of title
+    % escapeinside={\%*}{*)},         % if you want to add a comment within your code
+    % morekeywords={*,...}            % if you want to add more keywords to the set
+    }
+    \lstinputlisting{dsr.cpp}
+    \subsection{Przyk³adowy rysunek}
+    Przyk³adowy obraz dywanu sierpiñskiego trzeciego stopnia o perturbacjach równych 2.
+    \begin{figure}[htbp]
+	 		\begin{center}
+         \includegraphics[scale=0.6]{ds.PNG}
+      \caption{Dywan sierpiñskiego}
+     \end{center}
+  \end{figure}
+  
+  \section{Trójk¹t sierpiñskiego}
+  Drugie zadanie polega³o na narysowaniu trójk¹ta sierpiñskiego dwiema metodami : algorytmu rekurencyjnego oraz za pomoc¹ "gry w chaos"
+  \subsection{Algorytm rekurencyjny}
+  Parametry pocz¹tkowe funkcji : d³ugoœæ boku a, wspó³rzêdne górnego wierzcho³ka, stopieñ \\
+  \\
+  \lstset{ %
+    language=c++,                % choose the language of the code
+    basicstyle=\scriptsize,       % the size of the fonts that are used for the code
+    numbers=left,                   % where to put the line-numbers
+    numberstyle=\scriptsize,      % the size of the fonts that are used for the line-numbers
+    stepnumber=10,                   % the step between two line-numbers. If it's 1 each line 
+                                    % will be numbered
+    numbersep=9pt,                  % how far the line-numbers are from the code
+    % backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+    showspaces=false,               % show spaces adding particular underscores
+    showstringspaces=false,         % underline spaces within strings
+    showtabs=false,                 % show tabs within strings adding particular underscores
+    % frame=single,                 % adds a frame around the code
+    % tabsize=2,                  % sets default tabsize to 2 spaces
+    % captionpos=b,                   % sets the caption-position to bottom
+    breaklines=true,                % sets automatic line breaking
+    % breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+    % title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                    % also try caption instead of title
+    % escapeinside={\%*}{*)},         % if you want to add a comment within your code
+    % morekeywords={*,...}            % if you want to add more keywords to the set
+    }
+    \lstinputlisting{tsr.cpp}
+    \newpage
+     \begin{figure}[htbp]
+	 		\begin{center}
+         \includegraphics[scale=0.6]{tsr.PNG}
+      \caption{Trójk¹t sierpiñskiego perturbacje = 1, stopieñ = 4}
+     \end{center}
+     \end{figure}
+     \subsection{Gra w chaos}
+     Algorytm generowania trójk¹ta sierpiñskeigo poprzez grê w chaos polega na zdefiniowaniu trzech niewspó³liniowych punktów, które bêd¹ tworzy³y trójk¹t. Nastêpnie, dla dowolnie wylosowanego punktu D, nale¿¹cego do œrodka okrêgu losujemy jeden z wierzcho³ków i obliczamy œrodek odcinka i rysujemy punkt w wyliczonych wspó³rzêdnych. Nastêpnie dla nowo powsta³ego punktu, znowu losujemy któryœ z wierzcho³ków trójk¹ta, obliczamy œrodek i rysujemy punkt. Powtarzaj¹c tê sekwencjê okreœlon¹ iloœæ razy otrzymujemy trójk¹ sierpiñskiego. \\ \\
+ \lstset{ %
+    language=c++,                % choose the language of the code
+    basicstyle=\scriptsize,       % the size of the fonts that are used for the code
+    numbers=left,                   % where to put the line-numbers
+    numberstyle=\scriptsize,      % the size of the fonts that are used for the line-numbers
+    stepnumber=10,                   % the step between two line-numbers. If it's 1 each line 
+                                    % will be numbered
+    numbersep=9pt,                  % how far the line-numbers are from the code
+    % backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+    showspaces=false,               % show spaces adding particular underscores
+    showstringspaces=false,         % underline spaces within strings
+    showtabs=false,                 % show tabs within strings adding particular underscores
+    % frame=single,                 % adds a frame around the code
+    % tabsize=2,                  % sets default tabsize to 2 spaces
+    % captionpos=b,                   % sets the caption-position to bottom
+    breaklines=true,                % sets automatic line breaking
+    % breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+    % title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                    % also try caption instead of title
+    % escapeinside={\%*}{*)},         % if you want to add a comment within your code
+    % morekeywords={*,...}            % if you want to add more keywords to the set
+    }
+    \lstinputlisting{tsc.cpp}
+    \begin{figure}[htbp]
+	 		\begin{center}
+         \includegraphics[scale=0.6]{tsc.PNG}
+      \caption{Trójk¹t sierpiñskiego "gra w chaos"}
+     \end{center}
+     \end{figure}   
+     \section{Fraktal plazmowy}
+     Algorytm generuj¹cy fraktal plazmowy zosta³ dok³adnie opisany w pdfie dostêpnym na stronie zak³adu. Jedyn¹ w³asn¹ innwencj¹ by³o opracowanie wykresów funkcji W(x) i Wc(x). Zdecydowa³em siê na u¿ycie nastêpuj¹cej funkcji dla obu równañ : 
+     \begin{equation}
+    	F(x) = 1000*\frac{p*sin(x)}{10*x}
+    \end{equation}
+    gdzie p jest zadawanym parametrem najlepiej z przedzia³u (0.001 - 0.01).
+    \\Program pozwala na rysowanie zarówno kolorowych fraktali, jak i monochromatycznych. Poni¿ej przyk³ad algorytmu generuj¹cego fraktal monochromatyczny\\
+    \\
+    \lstset{ %
+    language=c++,                % choose the language of the code
+    basicstyle=\scriptsize,       % the size of the fonts that are used for the code
+    numbers=left,                   % where to put the line-numbers
+    numberstyle=\scriptsize,      % the size of the fonts that are used for the line-numbers
+    stepnumber=10,                   % the step between two line-numbers. If it's 1 each line 
+                                    % will be numbered
+    numbersep=9pt,                  % how far the line-numbers are from the code
+    % backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+    showspaces=false,               % show spaces adding particular underscores
+    showstringspaces=false,         % underline spaces within strings
+    showtabs=false,                 % show tabs within strings adding particular underscores
+    % frame=single,                 % adds a frame around the code
+    % tabsize=2,                  % sets default tabsize to 2 spaces
+    % captionpos=b,                   % sets the caption-position to bottom
+    breaklines=true,                % sets automatic line breaking
+    % breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+    % title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                    % also try caption instead of title
+    % escapeinside={\%*}{*)},         % if you want to add a comment within your code
+    % morekeywords={*,...}            % if you want to add more keywords to the set
+    }
+    \lstinputlisting{fra.cpp}
+	\begin{figure}[htbp]
+	 		\begin{center}
+         \includegraphics[scale=0.6]{fra.PNG}
+      \caption{a = 150, n = 1500, p dla W(x)=0.005, p dla Wc(x) = 0.003}
+     \end{center}
+     \end{figure}  
+     \section{Labirynt}
+     W tym zadaniu wykorzysta³em rekurencyjny algorytm generuj¹cy labirynt. Polega on na podzieleniu pocz¹tkowej komory dwiema liniami : poziom¹ i pionow¹, na 4 nowe komory. Nastêpnie losujemy 3 linie spoœród nowo powsta³ych (punkt przeciêcia rozdziela je na 2 pionowe i 2 poziome) i w losowym miejscu na nich wycinamy bramê. Algorytm powtarzamy rekurencyjnie dla ka¿dej z komór dopóki jej d³ugoœæ, lub szerokoœæ, nie osi¹gnie zak³adanej szerokoœci tunelu.\\\\
+         \lstset{ %
+    language=c++,                % choose the language of the code
+    basicstyle=\scriptsize,       % the size of the fonts that are used for the code
+    numbers=left,                   % where to put the line-numbers
+    numberstyle=\scriptsize,      % the size of the fonts that are used for the line-numbers
+    stepnumber=10,                   % the step between two line-numbers. If it's 1 each line 
+                                    % will be numbered
+    numbersep=9pt,                  % how far the line-numbers are from the code
+    % backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+    showspaces=false,               % show spaces adding particular underscores
+    showstringspaces=false,         % underline spaces within strings
+    showtabs=false,                 % show tabs within strings adding particular underscores
+    % frame=single,                 % adds a frame around the code
+    % tabsize=2,                  % sets default tabsize to 2 spaces
+    % captionpos=b,                   % sets the caption-position to bottom
+    breaklines=true,                % sets automatic line breaking
+    % breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+    % title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                    % also try caption instead of title
+    % escapeinside={\%*}{*)},         % if you want to add a comment within your code
+    % morekeywords={*,...}            % if you want to add more keywords to the set
+    }
+    \lstinputlisting{maze.cpp}
+     \begin{figure}[htbp]
+	 		\begin{center}
+         \includegraphics[scale=0.6]{maze.PNG}
+      \caption{Przyk³adowy labirynt}
+     \end{center}
+     \end{figure}  
+     \section{Wnioski}
+     Laboratorium pozwoli³o mi na zapoznanie siê z rysowaniem obiektów 2D za pomoca biblioteki OpenGL, a tak¿e pozania algorytmów tworz¹cych wiele podstawowych figur i fraktali.
+\end{document}
