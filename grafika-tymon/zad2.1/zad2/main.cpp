@@ -23,7 +23,7 @@ Color newCenterColor3fv(Color c1, Color c2, Color c3, Color c4, GLfloat x);
 int main (int argc, char ** argv){
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
-    glutInitWindowSize(300, 300);
+    glutInitWindowSize(600, 600);
     glutCreateWindow("Zadanie 2.1");
     
     glutDisplayFunc(draw);
@@ -86,9 +86,7 @@ void reshape(GLsizei horizontal, GLsizei vertical){
 }
 
 void drawSquare(GLfloat x, GLfloat y, GLfloat size, Color c1, Color c2, Color c3, Color c4){
-    if(size < .2f) return;
-
-//    cout << x << " x " << y << " | " << size << endl;
+    if(size < .1f) return;
     
     GLfloat a = size / 2;
     
@@ -140,7 +138,7 @@ void draw(){
         glVertex2f(coords[i][0], coords[i][1]);
     }
     
-    drawSquare(coords[0][0], coords[0][1], 200.0f, colors[0], colors[1], colors[2], colors[3]);
+    drawSquare(coords[0][0], coords[0][1], 300.0f, colors[0], colors[1], colors[2], colors[3]);
     
     
     glEnd();
@@ -151,11 +149,10 @@ void draw(){
 
 Color randomColor3fv(){
     Color v = new GLfloat[3];
-    v[0] = v[1] = v[2] = (rand() % 101) / 100.0;
-    
-//    v[0] = (rand() % 101) / 100.0;
-//    v[1] = (rand() % 101) / 100.0;
-//    v[2] = (rand() % 101) / 100.0;
+    //v[0] = v[1] = v[2] = (rand() % 101) / 100.0;
+    v[0] = (rand() % 101) / 100.0;
+    v[1] = (rand() % 101) / 100.0;
+    v[2] = (rand() % 101) / 100.0;
     return v;
 }
 

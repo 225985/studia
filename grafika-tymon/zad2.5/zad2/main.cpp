@@ -32,15 +32,15 @@ void randomColor();
 void triangleRec(GLfloat x, GLfloat y, GLfloat size, int n);
 void _triangleRec(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat x3, GLfloat y3, int n);
 void triangleRand(GLfloat x, GLfloat y, GLfloat size, int n);
-void carpetRec(GLfloat x, GLfloat y, GLfloat size, int n);
-void _carpetRec(GLfloat x, GLfloat y, GLfloat size, int n);
+void carpetRec(GLfloat x, GLfloat y, GLfloat size, int n, int p);
+void _carpetRec(GLfloat x, GLfloat y, GLfloat size, int n, int p);
 void maze();
 
 int main (int argc, char ** argv){
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
-    glutInitWindowSize(300, 300);
-    glutCreateWindow("Zadanie 2.1");
+    glutInitWindowSize(600, 600);
+    glutCreateWindow("Zadanie");
     
     glutDisplayFunc(draw);
     glutReshapeFunc(reshape);
@@ -86,12 +86,6 @@ void randomColor(){
 
 void triangleRand(GLfloat x, GLfloat y, GLfloat size, int n){
     GLfloat sq = sqrtf(3);
-    GLfloat x1 = -sq/2;
-    GLfloat y1 = -0.5f;
-    GLfloat x2 = sq/2;
-    GLfloat y2 = -0.5f;
-    GLfloat x3 = 0;
-    GLfloat y3 = 1;
     
     randomColor();
     glBegin(GL_POINTS);
@@ -117,7 +111,6 @@ void triangleRand(GLfloat x, GLfloat y, GLfloat size, int n){
         
         glVertex2f(x+xp*size, y+yp*size);
     }
-    
     
     glEnd();
 }
@@ -166,43 +159,62 @@ void _triangleRec(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat x3, GL
 }
 
 
-void carpetRec(GLfloat x, GLfloat y, GLfloat size, int n){
+void carpetRec(GLfloat x, GLfloat y, GLfloat size, int n, int p){
     GLfloat x1 = x-size/2;
     GLfloat y1 = y+size/2;
-    
-    randomColor();
-    glBegin(GL_QUADS);
-    glVertex2f(x1, y1);
-    glVertex2f(x1+size, y1);
-    glVertex2f(x1+size, y1-size);
-    glVertex2f(x1, y1-size);
-    glEnd();
-    
-    _carpetRec(x1, y1, size, n);
+    _carpetRec(x1, y1, size, n, p);
 }
 
-void _carpetRec(GLfloat x, GLfloat y, GLfloat size, int n){
+GLfloat randp(){
+    return ((rand() % 1000) - 500)/ 3000.0;
+}
+
+void _carpetRec(GLfloat x, GLfloat y, GLfloat size, int n, int p){
     if(n == 0) return;
     
     GLfloat a = size/3;
     
-    glColor3f(0.0, 0.0, 0.0);
     glBegin(GL_QUADS);
+    glColor3f(0.0, 0.0, 0.0);
     glVertex2f(x+a,   y-a);
     glVertex2f(x+a+a, y-a);
     glVertex2f(x+a+a, y-a-a);
     glVertex2f(x+a,   y-a-a);
     glEnd();
     
+    
+    if(n == 1){
+        for(int i=-1; i<=1; i++){
+            for(int j=-1; j<=1; j++){
+                if(!(i == 0 && j == 0)){                 
+                    GLfloat xm = x+i*a + p*randp();
+                    GLfloat ym = y+j*a + p*randp();
+                
+                    glBegin(GL_POLYGON);
+                    randomColor();
+                    glVertex2f(xm+a,   ym-a);
+                    randomColor();
+                    glVertex2f(xm+a+a, ym-a);
+                    randomColor();
+                    glVertex2f(xm+a+a, ym-a-a);
+                    randomColor();
+                    glVertex2f(xm+a,   ym-a-a);
+                    glEnd();
+                }
+            }
+        }
+    }
+        
+    
     n -= 1;
-    _carpetRec(x,     y,     a, n);
-    _carpetRec(x+a,   y,     a, n);
-    _carpetRec(x+a+a, y,     a, n);
-    _carpetRec(x,     y-a,   a, n);
-    _carpetRec(x+a+a, y-a,   a, n);
-    _carpetRec(x,     y-a-a, a, n);
-    _carpetRec(x+a,   y-a-a, a, n);
-    _carpetRec(x+a+a, y-a-a, a, n);
+    _carpetRec(x,     y,     a, n, p);
+    _carpetRec(x+a,   y,     a, n, p);
+    _carpetRec(x+a+a, y,     a, n, p);
+    _carpetRec(x,     y-a,   a, n, p);
+    _carpetRec(x+a+a, y-a,   a, n, p);
+    _carpetRec(x,     y-a-a, a, n, p);
+    _carpetRec(x+a,   y-a-a, a, n, p);
+    _carpetRec(x+a+a, y-a-a, a, n, p);
 }
 
 
@@ -338,10 +350,10 @@ void maze(GLfloat x, GLfloat y, GLfloat size){
 void draw(){
     glClear(GL_COLOR_BUFFER_BIT);
     
-    // triangleRec(0, 0, 90, 5);
-    // triangleRand(0, 0, 90, 10000000);
-    carpetRec(0, 0, 90, 4);
-    //maze(0, 0, 180);
+    //triangleRec(0, 0, 90, 7);
+    //triangleRand(0, 0, 90, 100000);
+    //carpetRec(0, 0, 180, 3, 5);
+    maze(0, 0, 180);
     
     glFlush();
 }

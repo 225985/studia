@@ -4,7 +4,7 @@
 #include <GLUT/glut.h>
 #include <OpenGL/OpenGL.h>
 
-#define N 50
+#define N 20
 #define M_POINTS 1
 #define M_MESH   2
 #define M_FILLED 3
