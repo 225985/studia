@@ -46,7 +46,7 @@
     \end{center}
   \end{figure}
 
- 
+
 
   \section{Licznik}
 
@@ -155,7 +155,17 @@
 \newpage
 
   \section{Wnioski}
-Analiza czasowa działania układu przy zastosowaniu licznika asynchronicznego ukazuje niedokładności wynikające z opoźnien przerzutnikow. Przerzutnikii są uruchamiane kaskadowo co powoduje przekłamanie stanu układu przez krótki okres czasu. Widać to np. przy przejściu ze stanu kodującego liczbę 3 do 4. Układ na chwilę znajduje się w stanie 2, a potem 0 (dającymi wynik 1), więc dlatego pojawia się chwilowe przekłamanie. Podobna sytuacja pojawia sie przy przejściu ze stanu 7 na stan 0. Następuje to poprzez stan 6 dający wynik 1 i stan 4, dający 0. Wynikiem tego jest krótkotrwała fala wyników. Jednym ze sposobów eliminacji tego problemu jest zastosowanie licznika synchronicznego, w którym zmiana stanów następuje w tym samym momencie, nie powodując tym samym występowania "fałszywych" sekwencji przekłąmujących układ.
+Analiza czasowa działania układu przy zastosowaniu licznika asynchronicznego ukazuje niedokładności
+wynikające z opoźnień przerzutnikow.
+Przerzutnikii są uruchamiane kaskadowo, co powoduje przekłamanie stanu układu przez krótki okres czasu.
+Widać to np. przy przejściu ze stanu kodującego liczbę 3 do 4. Układ na chwilę znajduje się w stanie 2,
+a potem 0 (dającymi wynik 1), więc dlatego pojawia się chwilowe przekłamanie.
+Podobna sytuacja pojawia sie przy przejściu ze stanu 7 na stan 0.
+Następuje to poprzez stan 6 dający wynik 1 i stan 4, dający 0.
+Wynikiem tego jest krótkotrwała fala wyników.
+Jednym ze sposobów eliminacji tego problemu jest zastosowanie licznika synchronicznego,
+w którym zmiana stanów następuje w tym samym momencie, nie powodując tym samym występowania
+"fałszywych" sekwencji przekłąmujących układ, co widać na Ryskunku 9.
 
 \end{document}
 
