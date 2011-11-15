@@ -37,7 +37,7 @@ Oprogramowanie wykorzystywane przez pracowników:
   \item Pogram pocztowy (dowolny)
   \item System kontroli wersji (svn, git)
   \item Oprogramowanie umożliwiające współdzielenie plików Samba
-  \item Narzędzia służące do wytwarzania oprogramowania : 
+  \item Narzędzia służące do wytwarzania oprogramowania :
   \begin{itemize}
 	\item Windows : Microsoft Visual Studio 2010, Eclipse
 	\item Linux : Eclipse
@@ -63,7 +63,7 @@ Ze względu na charakter i wymagania pracy osób zajmujacych się produkcją opr
 \begin{itemize}
   \item Połączenie między dwoma budnykami firmy będzię zrealizowane za pomocą światłowodu 10 Gb/s
 
-  \item Ze względu na fakt, iż główny ruch w sieci odbywa się między użytkownikiem, a serwerem, gdzie przechowywany jest kod i aplikacje testowe, połączenia pionowe powinny zapewniać większą przepustowość, niż połączenia  poziome. Ten typ połączeń wykonany zostanie za pomocą okablowania typu 1000Base-T Gigabit Ethernet, skrętka ekranowana kategori 6. 
+  \item Ze względu na fakt, iż główny ruch w sieci odbywa się między użytkownikiem, a serwerem, gdzie przechowywany jest kod i aplikacje testowe, połączenia pionowe powinny zapewniać większą przepustowość, niż połączenia  poziome. Ten typ połączeń wykonany zostanie za pomocą okablowania typu 1000Base-T Gigabit Ethernet, skrętka ekranowana kategori 6.
 
   \item Okablowanie poziomie zostanie zrealizowane w technologi 100Base-T Fast Ethernet, skrętka foliowana UTP kategori 6. Decydujemy się na ten typ okablowania, ponieważ pojedynczy użytkownicy sieci, nie będą potrzebowali większej przepustowości niż oferowana przez ten typ połączenia
 
@@ -77,17 +77,23 @@ Biorąc pod uwagę specyfike działania firmy i dynamiczne przydzielanie zadań 
 \paragraph{}
 Ze względu na możliwość pracy zdalnej, pracownicy muszą mieć dostęp do serwerów znajdujących się w siedzibie firmy. Mając na uwadze bezpieczeństwo danych sieć firmowa musi udostępniać usługę VPN. Daje to możliwość monitoringu i logowania dostępu do zasobów w bezpieczny sposób, niezależnie od fizycznej lokalizacji pracownika.
 
+\subsection{Minimalna wymagana przepustowość}
+\paragraph{}
+Szacując ruch sieciowy w firmie należy rozdzielić ruch wewnątrz sieci lokalnej oraz ruch do sieci zewnętrznej (Internet). W przypadku analizy wymaganej przepustowości na zewnątrz sieci trzeba uwzględnić wymagania, które stawia wykorzystywane oprogramowanie.
+
+Analizując profil oferowanych usług przez firmę, wykorzystywane oprogramowanie oraz specyfike branży
+
 \begin{center}
     \begin{tabular}{|c|c|c|}
     \hline
-       & Download [Mb/s] & Upload [MB/s] \\ \hline
-       Komunikator internetowy & 0,1 & 0,1\\ \hline
-      Telekonferencje & 0,1 & 0,1\\ \hline
-      Wideokonferencje & 2 & 0,5\\ \hline
-      Program pocztowy & 1 & 0,5\\ \hline
-      Zdalny pulpit (TeamViewer, RD)  & 2 & 2\\ \hline
-      System kontroli wersji & 1 & 0,5\\ \hline
-      Przeglądanie internetu & 1 & 0,5\\ \hline
+       & Download [Mb/s]                & Upload [MB/s] \\ \hline
+       Komunikator internetowy          & 0,1   & 0,1   \\ \hline
+       Telekonferencje                  & 0,1   & 0,1   \\ \hline
+       Wideokonferencje                 & 2     & 0,5   \\ \hline
+       Program pocztowy                 & 1     & 0,5   \\ \hline
+       Zdalny pulpit (TeamViewer, RD)   & 5     & 5     \\ \hline
+       System kontroli wersji           & 1     & 0,5   \\ \hline
+       Przeglądanie internetu           & 1     & 0,5   \\ \hline
    \end{tabular}
 \end{center}
 
