@@ -55,6 +55,39 @@ object Zad1 {
         // (0, Nil)
     }
 
+    def swap[A](list: List[A]) = list match {
+        case Nil => Nil
+        case x :: Nil => x :: Nil
+        case xx =>
+            val (x::y::xs) = list.reverse
+            (y::x::xs).reverse
+    }
+
+    def twotwo(list: List[Task]): (Int, List[Task]) = {
+        def branch(xs: List[Task], ys: List[Task], qs: List[List[Task]]): List[List[Task]] = {
+            // println(xs + " | " + cost(xs))
+            ys match {
+                case Nil => xs :: qs
+                case _ if cost(swap(xs)) < cost(xs) => {
+                    // println("swap better: " + xs)
+                    qs
+                }
+                case _ => {
+                    selections(ys).flatMap {
+                        case sel @ (z, zs) =>
+                            branch(xs :+ z, zs, qs)
+                    }
+
+                }
+            }
+        }
+
+        val perms = branch(Nil, list, Nil)
+
+        println()
+        perms.map(e => (cost(e), e)).minBy(_._1)
+    }
+
     //
     // def permute[A](list: List[A]): List[List[A]] = list match {
     //     case Nil => List(Nil)
@@ -76,16 +109,16 @@ object Zad1 {
     var costCache = scala.collection.mutable.Map[List[Task], Int]()
 
     def cost(list: List[Task]) = {
-        if(costCache.contains(list)){
-            costCache(list)
-        } else {
+        // if(costCache.contains(list)){
+            // costCache(list)
+        // } else {
             costc += 1
             val co = (list.foldLeft((0,0)){
                 case ((time, cost), x) => (time+x.p, cost + Math.max(0, (time+x.p) - x.d) * x.w)
             })._2
-            costCache(list) = co
+            // costCache(list) = co
             co
-        }
+        // }
     }
 
     def main(args: Array[String]) {
@@ -116,8 +149,14 @@ object Zad1 {
             tasks map { t => "%5d | %5d | %5d".format(t.p, t.d, t.w) } foreach println
 
 
-            println(permute2(tasks, 50))
+            // println(permute2(tasks, 50))
+            costc = 0
             println(permute(tasks, cost(tasks)))
+            println(costc)
+
+            costc = 0
+            println(twotwo(tasks))
+            println(costc)
 
             println(costc)
         } else {

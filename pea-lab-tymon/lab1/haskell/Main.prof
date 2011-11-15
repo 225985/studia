@@ -1,0 +1,50 @@
+	Sun Nov 13 23:38 2011 Time and Allocation Profiling Report  (Final)
+
+	   Main +RTS -p -K64000000 -RTS
+
+	total time  =        0.40 secs   (20 ticks @ 20 ms)
+	total alloc = 1,203,101,932 bytes  (excludes profiling overheads)
+
+COST CENTRE                    MODULE               %time %alloc
+
+cost                           Main                  55.0   51.4
+p                              Main                  15.0    4.7
+eliminate                      Main                  15.0   23.6
+oneone                         Main                   5.0    0.6
+minimumCost                    Main                   5.0    2.7
+d                              Main                   5.0    4.7
+w                              Main                   0.0    4.7
+selections                     Main                   0.0    7.7
+
+
+                                                                                               individual    inherited
+COST CENTRE              MODULE                                               no.    entries  %time %alloc   %time %alloc
+
+MAIN                     MAIN                                                   1           0   0.0    0.0   100.0  100.0
+ CAF                     Main                                                 318           4   0.0    0.0   100.0  100.0
+  selections             Main                                                 334           1   0.0    0.0     0.0    0.0
+  main                   Main                                                 324           1   0.0    0.0   100.0  100.0
+   run                   Main                                                 325           1   0.0    0.0   100.0  100.0
+    readTask             Main                                                 333           9   0.0    0.0     0.0    0.0
+    oneone               Main                                                 326           1   5.0    0.6   100.0  100.0
+     cost                Main                                                 329      623531  55.0   50.9    75.0   64.7
+      p                  Main                                                 332           0  15.0    4.6    15.0    4.6
+      d                  Main                                                 331           0   5.0    4.6     5.0    4.6
+      w                  Main                                                 330           0   0.0    4.6     0.0    4.6
+     eliminate           Main                                                 327           1  15.0   23.6    20.0   34.7
+      selections         Main                                                 335           0   0.0    7.7     0.0    7.7
+      minimumCost        Main                                                 328           1   5.0    2.7     5.0    3.3
+       cost              Main                                                 336        5123   0.0    0.5     0.0    0.6
+        p                Main                                                 339           0   0.0    0.0     0.0    0.0
+        d                Main                                                 338           0   0.0    0.0     0.0    0.0
+        w                Main                                                 337           0   0.0    0.0     0.0    0.0
+ CAF                     GHC.TopHandler                                       317           1   0.0    0.0     0.0    0.0
+ CAF                     Data.Typeable                                        316           2   0.0    0.0     0.0    0.0
+ CAF                     GHC.IO.Exception                                     310           7   0.0    0.0     0.0    0.0
+ CAF                     Text.Read.Lex                                        284           4   0.0    0.0     0.0    0.0
+ CAF                     Data.HashTable                                       256           3   0.0    0.0     0.0    0.0
+ CAF                     GHC.IO.Handle.FD                                     254           2   0.0    0.0     0.0    0.0
+ CAF                     GHC.IO.FD                                            238           2   0.0    0.0     0.0    0.0
+ CAF                     GHC.IO.Handle.Internals                              221           1   0.0    0.0     0.0    0.0
+ CAF                     GHC.IO.Encoding.Iconv                                215           2   0.0    0.0     0.0    0.0
+ CAF                     GHC.Conc.Signal                                      208           1   0.0    0.0     0.0    0.0
