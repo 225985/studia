@@ -42,6 +42,15 @@ eliminate p tasks = minimumCost $ branch [] tasks []
                 where fm (z, zs) = branch (xs ++ [z]) zs qs
             branch _  _  qs              = qs
 
+elimination1' :: [Task] -> ([Task], Int)
+elimination1' tasks = minimumCost $ branch [([], tasks)] [] (cost tasks)
+     where branch :: [([Task], [Task])] -> [[Task]] -> Int -> [[Task]]
+           branch [] res _              = res
+           branch ((xs, []):zs) res st  = let nc = cost xs in if nc < st then branch zs (xs:res) nc else branch zs res st
+           branch ((xs, ys):zs) res st  = branch ([(xs ++ [e], es) | (e,es) <- selections(ys)] ++ zs) res st
+
+
+
 elimination1 :: [Task] -> ([Task], Int)
 elimination1 tasks = eliminate (\xs -> cost xs >= lb) tasks
     where lb = cost tasks
@@ -54,13 +63,14 @@ run n f = do
     x <- readFile ("../data/" ++ n ++ ".txt")
     let tasks = map (uncurry readTask) (zip (lines x) [1..] )
 
-    putStrLn "   P    D    W"
-    putStrLn "--------------"
-    putStrLn $ unlines $ map (\task -> unwords $ map (\e -> T.unpack $ T.justifyRight 4 ' ' (T.pack $ show e)) [p task, d task, w task]) tasks
+    -- putStrLn "   P    D    W"
+    -- putStrLn "--------------"
+    -- putStrLn $ unlines $ map (\task -> unwords $ map (\e -> T.unpack $ T.justifyRight 4 ' ' (T.pack $ show e)) [p task, d task, w task]) tasks
 
     let (res, cost) = f tasks
-    putStrLn $ "Naljepsze uszeregowanie: " ++ (show res)
-    putStrLn $ "                  Koszt: " ++ (show cost)
+    -- putStrLn $ "Naljepsze uszeregowanie: " ++ (show res)
+    -- putStrLn $ "                  Koszt: " ++ (show cost)
+    print $ (res, cost)
 
 -- swap [x1, x2, ... , xn, xm] into [x1, x2, ... , xm, xn]
 swap :: [a] -> [a]
@@ -81,5 +91,6 @@ main = do
     args <- System.getArgs
     case args of    "0":n:[] -> run n bruteforce
                     "1":n:[] -> run n elimination1
+                    "1a":n:[] -> run n elimination1'
                     "2":n:[] -> run n elimination2
                     _        -> error "Usage: Main [0-2] [n]"
