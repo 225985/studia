@@ -10,43 +10,52 @@ import java.util.*;
 public class Database {
     public static ObjectContainer odb;
 
-    public static void init(String dbname){
+    public static synchronized void init(String dbname){
         // config
         EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();
         config.file().generateUUIDs(ConfigScope.GLOBALLY);
         config.common().add(new TransparentActivationSupport());
 
+        if(odb != null) odb.close();
         odb = Db4oEmbedded.openFile(config, dbname);
         //AutoIncrementSupport.install(odb);
     }
 
-    public static void save(Object obj){
-    	ObjectSet result = odb.query(DbObject.class);
-    	int max = 0;
-    	
-    	Iterator<DbObject> it = result.iterator();
-    	
-    	while(result.hasNext()){
-    		DbObject ob = it.next();
-    		if(ob.getId() > max){
-    			max = ob.getId();
-    		}
-    	}
-    	 DbObject so = (DbObject)obj;
-    	 so.setId(max + 1);
-    	
-        odb.store(so);
+    public static synchronized void save(DbObject obj){
+        if(obj.getId() == 0){
+            ObjectSet result = odb.query(DbObject.class);
+            int max = 0;
+
+            Iterator<DbObject> it = result.iterator();
+
+            while(it.hasNext()){
+                DbObject ob = it.next();
+                if(ob.getId() > max){
+                    max = ob.getId();
+                }
+            }
+            obj.setId(max + 1);
+        }
+
+        odb.store(obj);
     }
 
-    public static void delete(Object obj){
+    public static synchronized void delete(Object obj){
         odb.delete(obj);
     }
 
-    public static void commit(){
+    public static synchronized void commit(){
         odb.commit();
     }
 
-    public static List<?> getAllByClass(Class klazz){
+    public static synchronized void close(){
+        if(odb != null) {
+            odb.close();
+            odb = null;
+        }
+    }
+
+    public static synchronized List<?> getAllByClass(Class klazz){
         return odb.query(klazz);
     }
 }

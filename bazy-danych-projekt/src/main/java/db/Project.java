@@ -16,7 +16,7 @@ public class Project extends DbObject {
 	protected List<Comment<Project>> comments;
 	protected List<Role> roles;
 
-	
+
 	public Project(){
         super();
         tasks = new ArrayList<Task>();
@@ -26,8 +26,15 @@ public class Project extends DbObject {
         this();
         this.id = id;
     }
-	
-	
+
+	public Task createTask(Task task){
+        // task.setProject(this);
+	    this.tasks.add(task);
+	    this.save();
+	    return task;
+	}
+
+
 
 	public String getName() {
 		return name;
@@ -108,7 +115,7 @@ public class Project extends DbObject {
 	public void setTasks(List<Task> tasks) {
 		this.tasks = tasks;
 	}
-	
+
     public static Project find(String sid){
         return find(Integer.parseInt(sid));
     }
@@ -121,5 +128,5 @@ public class Project extends DbObject {
     public static List<Project> all(){
         return (List<Project>)Database.getAllByClass(Project.class);
     }
-	
+
 }

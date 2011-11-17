@@ -1,0 +1,30 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                                       Application.index
+
+GET     /projects                               Projects.index
+POST    /projects                               Projects.create
+GET     /projects/new                           Projects._new
+GET     /projects/{id}                          Projects.show
+PUT     /projects/{id}                          Projects.update
+DELETE  /projects/{id}                          Projects.destroy
+GET     /projects/{id}/edit                     Projects.edit
+
+
+
+
+GET     /projects/{projectId}/tasks             Tasks.index
+GET     /projects/{projectId}/tasks/new         Tasks._new
+POST    /projects/{projectId}/tasks             Tasks.create
+
+# Ignore favicon requests
+GET     /favicon.ico                            404
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+# Catch all
+# *       /{controller}/{action}                  {controller}.{action}

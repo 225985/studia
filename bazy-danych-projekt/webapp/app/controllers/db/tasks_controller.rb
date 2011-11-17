@@ -17,10 +17,15 @@ module Db
       Rails.logger.debug Db::Project.all.to_a.inspect
       Rails.logger.debug Db::Task.all.to_a.inspect
 
-      @task = @project.tasks.new(params[:task])
-      if @task.save && @project.save
-        Rails.logger.debug Db::Project.all.to_a.inspect
-        Rails.logger.debug Db::Task.all.to_a.inspect
+      @task = Db::Task.new(params[:java_db_task])
+      @project.create_task @task
+
+      # @task = Db::Task.new(params[:java_db_task])
+      # @project.create_task @task
+
+      if true
+        # Rails.logger.debug Db::Project.all.to_a.inspect
+        # Rails.logger.debug Db::Task.all.to_a.inspect
 
         redirect_to project_task_path(@project, @task)
       else
