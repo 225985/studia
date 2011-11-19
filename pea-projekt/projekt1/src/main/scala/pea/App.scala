@@ -32,16 +32,26 @@ object App {
         }
     }
 
+    def readOptimal(n: Int) = {
+        val source = io.Source.fromURL(getClass.getResource("/wtopt%d.txt" format n))
+        source.getLines.collect {
+            case s if s.trim != "" => s.trim.toInt
+        }.toList
+    }
+
     def main(args: Array[String]){
         if(args.length == 0) sys.exit(-1)
         else {
-            val instances = readInstances(args(0).toInt)
+            val n = args(0).toInt
+            val instances = readInstances(n).zip(readOptimal(n)).drop(120)
 
-            instances.zipWithIndex.foreach { case(tasks, inst) =>
-                println(" == Instance %s == " format (inst+1))
+            instances.zipWithIndex.foreach { case ((tasks, optimal), inst) =>
+                println(" == Instance %s | optimal: %d == " format (inst+1, optimal))
                 (1 to 10) foreach { i =>
                     val (time, res) = bench(SA(tasks))
-                    println("%2d) %-120s | %10d" format (i, res, time))
+                    val diff = (res.cost - optimal) * 100.0 / optimal
+                    val c = if(diff == 0) Console.GREEN else Console.RED
+                    println("%s%2d) %-120s [%5.2f%%] | %10d%s" format (c, i, res, diff, time, Console.RESET))
                 }
 
                 println()
