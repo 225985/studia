@@ -22,15 +22,20 @@ object App {
             }.toList)
 
             val algs: List[(String, Alg)] =
-                ("bruteforce", Bruteforce) ::
-                ("elimination", Elimination) ::
+                // ("bruteforce", Bruteforce) ::
+                // ("elimination", Elimination) ::
                 ("simulated annealing", SA) ::
                 Nil
 
-            algs.foreach {
-                case (name, alg) =>
-                    val (time, res) = bench(alg(tasks))
-                    println("%-20s | %-30s | %5d" format (name, res, time))
+            (1 to 4) foreach { i =>
+
+                algs.foreach {
+                    case (name, alg) =>
+                        val (time, res) = bench(alg(tasks))
+                        println("---")
+                        // println("%-20s | %-30s | %5d" format (name, res, time))
+                }
+
             }
         }
     }
