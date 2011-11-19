@@ -11,6 +11,8 @@ namespace program
     public class Machine
     {
          List<Task> tasks { get; set; }
+        public Task[] tasksArray { get; set; }
+        public int taskCount { get; set; }
         public string fileName { get; set; }
         public int minimalCost { get; set; }
         private int[] per;
@@ -38,6 +40,8 @@ namespace program
                 });
             }
             per = new int[tasks.Count];
+            tasksArray = tasks.ToArray();
+            taskCount = tasks.Count;
             return table;
         }
 
@@ -102,12 +106,10 @@ namespace program
                 if (!used[i])
                 {
                     fill[level] = i;
-                    int[] helpTab = new int[level + 1];
-                    Array.Copy(fill, helpTab, level + 1);
-                    if (level < n - 1 && minimalCost > countCost(helpTab, level +1))
+                    if (level < n - 1 && minimalCost > countCost(fill, level +1))
                     {
                         used[i] = true;
-                        permutation(n, fill, level + 1, used);
+                        countFirstElimination(n, fill, level + 1, used);
                         used[i] = false;
                     }
 
@@ -131,9 +133,10 @@ namespace program
             minimalCost = 0;
             Stopwatch counter = new Stopwatch();
             counter.Reset();
+            int n = tasks.Count;
             counter.Start();
             minimalCost = countCost(tasks);
-            countSecondElimination(tasks.Count, new int[tasks.Count], 0, new bool[tasks.Count]);
+            countSecondElimination(n, new int[n], 0, new bool[n]);
             return counter.ElapsedMilliseconds;
         }
 
@@ -147,11 +150,13 @@ namespace program
                     int[] helpTab = new int[level + 1];
                     Array.Copy(fill, helpTab, level + 1);
                     int tmpCost = countCost(helpTab, level+1);
-                    if (level < n - 1 && minimalCost > tmpCost && checkSecondElimination(helpTab, tmpCost, level+1))
+                    if (level < n - 1 && minimalCost > countCost(helpTab, level + 1) && checkSecondElimination(helpTab, tmpCost, level + 1)) 
                     {
+                        
                         used[i] = true;
-                        permutation(n, fill, level + 1, used);
+                        countSecondElimination(n, fill, level + 1, used);
                         used[i] = false;
+                        
                     }
 
                     else
@@ -170,10 +175,10 @@ namespace program
 
         private bool checkSecondElimination(int[] tab, int cost, int n)
         {
-            int[] tmpTab = new int[tab.Count()];
+            int[] tmpTab = new int[n];
 
-            Array.Copy(tab, tmpTab, tab.Count());
-            for (int i = tab.Count() - 1; i > 0; i--)
+            Array.Copy(tab, tmpTab, n);
+            for (int i = n - 1; i > 0; i--)
             {
                 int tmp = tmpTab[i];
                 tmpTab[i] = tmpTab[i - 1];
@@ -184,6 +189,68 @@ namespace program
             return true;
         }
 
+        public long thirdElimination()
+        {
+
+            minimalCost = 0;
+            Stopwatch counter = new Stopwatch();
+            counter.Reset();
+            int n = tasks.Count;
+            counter.Start();
+            minimalCost = countCost(tasks);
+            countThirdElimination(n, new int[n], 0, new bool[n]);
+            return counter.ElapsedMilliseconds;
+        }
+
+        private void countThirdElimination(int n, int[] fill, int level, bool[] used)
+        {
+            for (int i = 0; i < n; i++)
+            {
+                if (!used[i])
+                {
+                    fill[level] = i;
+                    int[] helpTab = new int[level + 1];
+                    Array.Copy(fill, helpTab, level + 1);
+                    int tmpCost = countCost(helpTab, level + 1);
+                    if (level < n - 1 && minimalCost > countCost(helpTab, level + 1) && checkSecondElimination(helpTab, tmpCost, level + 1) && checkThirdElimination(helpTab, tmpCost, level + 1)) 
+                    {
+                        used[i] = true;
+                        countThirdElimination(n, fill, level + 1, used);
+                        used[i] = false;
+                    }
+
+                    else
+                    {
+                        int cost = countCost(fill, n);
+                        if (minimalCost > cost)
+                        {
+                            minimalCost = cost;
+                            Array.Copy(fill, per, n);
+                        }
+                    }
+                }
+            }
+
+        }
+
+
+        private bool checkThirdElimination(int[] tab, int cost, int n)
+        {
+            int[] tmpTab = new int[n];
+            for (int i = 0; i  < n-1; i++)
+            {
+                if (tasksArray[tab[i]].p > tasksArray[tab[n - 1]].p)
+                {
+                    Array.Copy(tab, tmpTab, n);
+                    int tmp = tmpTab[i];
+                    tmpTab[i] = tmpTab[n - 1];
+                    tmpTab[n - 1] = tmp;
+                    if (cost > countCost(tmpTab, n))
+                        return false;
+                }
+            }
+            return true;
+        }
 
 
         private int countCost(List<Task> list)
@@ -205,8 +272,8 @@ namespace program
             for (int i = 0; i < n; i++)
             {
                 
-                time += tasks[tab[i]].p;
-                cost += Math.Max(0, time - tasks[tab[i]].d) * tasks[tab[i]].w;
+                time += tasksArray[tab[i]].p;
+                cost += Math.Max(0, time - tasksArray[tab[i]].d) * tasksArray[tab[i]].w;
             }
             return cost;
         }

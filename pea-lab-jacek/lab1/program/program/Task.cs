@@ -5,7 +5,7 @@ using System.Text;
 
 namespace program
 {
-    class Task
+    public class Task
     {
         /// <summary>
         /// task time
