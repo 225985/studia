@@ -16,7 +16,7 @@ abstract class SimulatedAnnealing[T, R : Ordering]{
 
     def apply(s0: T) = {
         def inner(oldState: T, t: Double): T = {
-            println(oldState)
+            // println(oldState)
             if(t < Tmin) oldState
             else {
                 val newState = S(oldState)
