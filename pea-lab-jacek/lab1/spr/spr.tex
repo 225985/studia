@@ -1,0 +1,104 @@
+\documentclass[wide,a4paper,titlepage,12pt] {article}
+\usepackage{polski}
+\usepackage[UTF8]{inputenc}
+\usepackage{listings}
+\usepackage{slashbox}
+\usepackage[table]{xcolor}
+\usepackage{graphicx,pdflscape}
+\usepackage{placeins}
+
+
+\title{Projektowanie efektywnych algorytmów}
+\author{Jacek Wieczorek (181043)}
+
+% Title page layout (fold)
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{titlepage}
+  \begin{center}
+    \vspace*{3cm}
+    \LARGE \@title \par
+    \vspace{2cm}
+    \textit{\small Autor:}\par
+    \normalsize \@author\par \normalsize
+    \vspace{3cm}
+    \textit{\small Prowadzący:}\par
+    mgr inż. Karolina Mokrzysz \par
+    \vspace{2cm}
+    Wydział Elektroniki\\ III rok\\ Pn TP 11.15 - 13.00\par
+    \vspace{4cm}
+    \small \@date
+  \end{center}
+\end{titlepage}
+}
+\makeatother
+% Title page layout (end)
+
+
+
+\begin{document}
+\maketitle
+  \section{Opis problemu}
+{\bf Jednoprocesorowy problem szeregowania zadań przy kryterium
+minimalizacji ważonej sumy opóźnień zadań.}
+\paragraph{}
+Danych jest $n$ zadań (o numerach od 1 do $n$), które mają być wykonane bez przerwań przez pojedynczy procesor, mogący wykonywać co najwyżej jedno zadanie jednocześnie.
+Każde zadanie j jest dostępne do wykonania w chwili zero, do wykonania wymaga $p_{j} > 0$ jednostek czasu oraz ma określoną wagę (priorytet) $w_{j} > 0$ i oczekiwany termin zakończenia
+wykonywania $d_{j} > 0$. Zadanie $j$ jest spóźnione, jeżeli zakończy się wykonywać po swoim terminie $d_{j}$, a miarą tego opóźnienia jest wielkość $T_{j} = max(0, C_{j} - d_{j} )$, gdzie $C_{j}$ jest terminem zakończenia
+wykonywania zadania $j$. Problem polega na znalezieniu takiej kolejności wykonywania zadań (permutacji) aby zminimalizować kryterium $TWT = \Sigma_{j=1}^{n} w_{j} T_{j}$. \\\\
+{\it *Opis zapożyczony z opracowania dr Krysiaka.}
+
+\section{Opis algorytmu}
+\subsection{Branch and Bound}
+\paragraph{}
+Branch and Bound jest algorytmem służącym do znajdowania optymalnych rozwiązań dla różnych problemów optymalizacyjnych, szczególnie dla optymalizacji dyskretnej i kombinatorycznej. Polega na systematycznej iteracji po wszystkich kandydujących solucjach porblemu, z których większość jest odrzucana po niespełnienu kryterium dolnego lub górnego ograniczenia.
+\subsection{Użyte algorytmy}
+\paragraph{}
+W celu rozwiązania problemu szeregowania zadań przy kryterium minimalizacji ważonej sumy opóźnień zadań zaimplementowałem 3 metody eliminacji permutacji.
+\subsubsection{Pierwsza metoda eliminacyjna}
+\paragraph{}
+Pierwsza metoda eliminacyjna polega na określeniu parametru $LB$ poprzez wyliczenie wartości początkowej kombinacji zadań. Gdy dla danej permutacji o $k$ elementach $k < n$, zachodzi warunek $LB >\Sigma_{j=1}^{k} w_{j} T_{j} $, wtedy algorytm przechodzi o poziom wyżej w drzewie permutacji, w przeciwnym przypadku rozwiązanie jest odrzucane.
+\subsubsection{Druga metoda eliminacyjna}
+\paragraph{}
+Druga metoda eliminacyjna polega na zamianie $k$-tego zadnia w permutacji $k$-elementowej, $k < n$ na początku z zadaniem $k-1$, następnie $k-2$. Jeżeli w którymś z tych przypadków suma opóźnień bedzie mniejsza niż w przypadku pierwotnej permutacji, rozwiązanie to jest odrzucane.
+\subsubsection{Trzecia metoda eliminacyjna}
+\paragraph{}
+Trzecia metoda eliminacyjna polega na zamianie $k$-tego zadnia w permutacji $k$-elementowej, z elementem $i$-tym, $i < k$, jeżeli $p_{i} > p_{k}$. Jeżeli suma opóźnień będzie mniejsza niż w pierwotnej permutacji, to odrzucamy to rozwiązanie.
+\section{Implementacja i środowisko testowe}
+\paragraph{}
+Językiem implementacji algorytmów jest $C\#$, .NET Framework 4.0, środowisko programistyczne Microsoft Visual Studio 2010.  W celu maksymalnego przyśpieszenia wykonywanych algorytmów, porgram został gruntownie zbadany w $dotTrace'ie$ służacym do profilowania kodu. Wszystkie funkcje języka $C\#$ powodujące zbyt duży narzut czasowy, zostały usunięte.
+\paragraph{}
+Mimo, że porgram wyposażony został w interfejs graficzny, testy zostały przeprowadzone w aplikacji konsolowej (co przyśpiesza rozwiązywanie problemów). Testy dla przeglądu zupełnego i pierwszej metody eliminacyjnej zostały wykonane dla zestawów, zawierających do 11 zadań, natomiast druga i trecia metoda dla wszytskich zestawów. Dla każdego zestawu i każdej metody wykonane zostały po 3 testy, a prezentowany wynik jest ich średnią arytmetyczną. Jednostką czasu są $ms$. \newpage
+\section{Analiza wyników}
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    lz & PZ & 1E & 2E & 3E \\ \hline
+5 & 0 &0 &0 &0 \\ \hline
+6 & 0 &0,66&0 &0\\ \hline
+8 & 27,66 &58,66 &1 &1\\ \hline
+9 & 263 &561,33 &5 &5\\ \hline
+10 & 2958,66 &4880 &21 &16\\ \hline
+11 & 34995,66 &40462,66 &63 &46\\ \hline
+12 & $\infty$ &$\infty$ &230 &143\\ \hline
+13 & $\infty$ &$\infty$ &592,66 &359,66\\ \hline
+15 & $\infty$ &$\infty$ &4898,66 &2533,33\\ \hline
+17 & $\infty$ &$\infty$ &61490,33&23592,66\\ \hline
+18 & $\infty$ &$\infty$ &152486,66 &58963\\ \hline
+   
+    \end{tabular}
+
+  \end{center}
+
+\paragraph{}
+Testy dla przegladu zupełnego i pierwszej eliminacji nie były przeprowadzone dla kompletów zawierających więcej niż 11 zadań z powodu zbyt długie czasu ich wykonywania. Na pierwszy rzut oka zaskoczeniem może wydawać się, iż pierwsza metoda eliminacyjna jest wolniejsza od przeglądu zupełnego. Dzieje się tak iż, liczony przez nas $LB$ nie jest optymalną wartością. Powoduje to wielekrotne używanie funkcji liczącej aktualny koszt, która z moich analiz w profilerze kodu okazałą się najbardziej czasochłonna (około 60-70\% czasu).  Poprawe działania algorytmu można by było osiagnąć poprawiając funkcję obliczającą kryterium $LB$. Problem znika, gdy spojrzymy na drugą część tabeli, gdzie prezentowane są wyniki dla dwóch następnych metod, dające bardzo dobre rezultaty w przyśpieszaniu rozwiązywania algorytmu. Funkcja korzystająca ze wsyztskich 3 metod eliminacyjnych jest zdecydowanie najszybsz i najbardziej efektywna.
+\section{Wnioski}
+\paragraph{}
+Algorytm $B\&B$ daje w wiekszości przypadków wymierne korzyści w przyśpieszaniu rozwiązywania problemu $sNPh$, jednak wymaga on wielu zabiegów, metod i często skomplikowanych algorytmów w celu przeprowadzania procesów eliminacji. Nie mamy też gwarancji, że układ zadań, obliczone $LB$ czy $UP$, rzeczywiście przyśpieszą rozwiązanie problemu. W pesymistycznym przypadku, algorytm może dawać gorsze wyniki niż przegląd zupełny, a zakres jego używalności wynosi do około 30 zadań. 
+
+
+
+
+	
+\end{document}

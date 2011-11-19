@@ -30,7 +30,7 @@ namespace BandB.GUI
                 if (!fileName.Equals(""))
                 {
                     machine = new Machine(fileName);
-                    TextBox.AppendText(String.Format("Loaded file : {0}\n\n", fileName));
+                    TextBox.AppendText(String.Format("\nLoaded file : {0}\n\n", fileName));
                     TextBox.AppendText(machine.loadTasks());
                 }
             }
@@ -47,7 +47,7 @@ namespace BandB.GUI
             }
             else
             {
-                TextBox.AppendText("Load File!!!\n");
+                TextBox.AppendText("\nLoad File!!!\n");
             }
             GC.Collect();
             GC.WaitForPendingFinalizers();
@@ -88,6 +88,23 @@ namespace BandB.GUI
             GC.Collect();
             GC.WaitForPendingFinalizers();
 
+        }
+
+        private void BTThirdElimination_Click(object sender, EventArgs e)
+        {
+            if (!fileName.Equals(""))
+            {
+                TextBox.AppendText("\nThird Elimination :\n");
+                TextBox.AppendText(String.Format("Time [ms] : {0}\n", machine.thirdElimination()));
+                TextBox.AppendText(String.Format("Minimal cost : {0}\n", machine.minimalCost));
+                TextBox.AppendText(machine.getTasks());
+            }
+            else
+            {
+                TextBox.AppendText("Load File!!!\n");
+            }
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
     }
 }

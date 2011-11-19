@@ -74,6 +74,7 @@
             this.BTThirdElimination.TabIndex = 3;
             this.BTThirdElimination.Text = "3 elimination";
             this.BTThirdElimination.UseVisualStyleBackColor = true;
+            this.BTThirdElimination.Click += new System.EventHandler(this.BTThirdElimination_Click);
             // 
             // BTLoad
             // 
