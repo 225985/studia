@@ -78,7 +78,7 @@ Przebieg algorytmu :
 Jezykiem implementacji algorytmu jest $Scala$ w wersji $2.9.1$ działająca na $JVM$. 
 \paragraph{}
 Algorytm oparty został na funkcji rekurencyjnej (rekurencja ogonowa) implementującej symulowane wyżarzanie. W celu bezpiecznego zrównoleglenia uruchamiania programy na wiele wątków i tym samym przyśpieszyć wyliczanie skorzystaliśmy z programowania funkcyjnego.
-\\ Funkcja 
+\\ Funkcja : \\
 \lstset{ %
     language=java,                % choose the language of the code
     basicstyle=\scriptsize,       % the size of the fonts that are used for the code
@@ -102,13 +102,30 @@ Algorytm oparty został na funkcji rekurencyjnej (rekurencja ogonowa) implementu
     % morekeywords={*,...}            % if you want to add more keywords to the set
     }
     \lstinputlisting{sa.scala}
+\paragraph{}
+gdzie :
+\begin{itemize}
+  \item $S$ - funkcja generujaca nowy losowy stan na postawie podanego
+  \item $F$ - funkcja celu/kosztu
+\end{itemize}
 \newpage
 \section{Testy}
 \paragraph{}
 Testy algorytmu symulowanego wyżarzania przeprowadzone zostały dla trzech zestawów testów o róznym rozmiarze porblemu $n$, każdy składający się ze 125 instancji. Parametry podstawowe jak $T_{min}$ i $T_{max}$ w przypadku każdego testu były takie same. Zmieniany natomiast był parametr $T_{d}$.
 \\TODO poprawic
 \paragraph{}
-Jako wyniki testów przedstawiamy średni czas liczenia wszystkich instancji dla danego rozmiaru problemu, a także średni błąd wzgledny najlepszych rozwiązań dla każdej instancji. 
+Jako wyniki testów przedstawiamy średni czas liczenia wszystkich instancji dla danego rozmiaru problemu - $\bar{t}$, a także średni błąd wzgledny  rozwiązań dla każdej instancji - $\bar{x}$. Według wzoru : \\
+\begin{equation}
+	\bar{t} = \frac{\Sigma_{j=0}^{n}\frac{\Sigma_{i=1}^{k}t_{i}}{k}}{n}
+\end{equation}
+\begin{equation}
+	\bar{x} = \frac{\Sigma_{j=0}^{n}\frac{\Sigma_{i=1}^{k}x_{i}}{k}}{n}
+\end{equation}
+gdzie : \\
+\begin{itemize}
+  \item $k$ - ilość rozwiązań w instancji
+  \item $n$ - ilość instancji danego problemu
+\end{itemize}
 \paragraph{}
 Parametry niezmienne : 
 \begin{itemize}
