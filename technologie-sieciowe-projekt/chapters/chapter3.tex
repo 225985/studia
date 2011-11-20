@@ -1,4 +1,26 @@
 \section{Analiza potrzeb użytkownika}
+\paragraph{}
+Przy projektowaniu sieci lokalnej dla tak duzej firmy informatycznej nalezy wziac pod uwagę bardzo
+wiele czynników, ale przede wszystkim zapewnić ciagły dostęp do zasobów, a także jak największa predkość
+łącza.
+\subsection{Główne wymagania jakie stawiane są wobec tworzonej sieci}
+\begin{enumerate}
+	\item Możliwość przeprowadzania tele i wideokonferencji przy minimalizacji zakłóceń przy transmisji zadań
+	\item Ciągła możliwość połączenia z serwerem
+	\item Bez problemowy $dwonload$ i $upload$ kodu z serwera
+	\item Przeglądanie witryn internetowych
+	\item Współdzielenie plików miedzy komputerami, serwerami. Bez problemowa wymiana plików między stacjami używającymi systemów operacyjnych Linux i Mac OS, a stacjami używającymi Windows.
+	\item Backup danych składowanych na serwerach
+	\item Możliwość pracy zdalnej za pomocą Remote Desktop i ssh.
+\end{enumerate}
+
+\subsection{Bezpieczeństwo sieci}
+\begin{enumerate}
+	\item Konfiguracja Firewall
+	\item Oprogramowanie antywirusowe
+	\item Urządzenie limitujące ruch sieciowy
+\end{enumerate}
+
 \subsection{Tele i wideokonference}
 \paragraph{}
 Z racji świadczonych usług dla klientów midzynarodowych niezbędne jest zapewnienie odpowiedniej przepustowości sieci do prowadzenia tele oraz videokonferencji.
@@ -8,18 +30,9 @@ W każdej sali konferencyjnej znajduje się punkt dostępowy sieci bezprzewodowe
 \paragraph{}
 Ze względu na charakter i wymagania pracy osób zajmujacych się produkcją oprogramowania dla urządzeń mobilnych, zachodzi potrzeba utworzenia bezpicznej sieci bezprzewodowej z dostępem do sieci wewnętrznej firmy. Sieć ta o ograniczonym zasięgu, dostępna będzie dla wybranych urządzeń o zautoryzowanych adresach $MAC$.
 
-\subsection{Okablowanie}
+\subsection{Program antywirusowy}
 \paragraph{}
-
-
-\begin{itemize}
-  \item Połączenie między dwoma budnykami firmy będzię zrealizowane za pomocą światłowodu 10 Gb/s
-
-  \item Ze względu na fakt, iż główny ruch w sieci odbywa się między użytkownikiem, a serwerem, gdzie przechowywany jest kod i aplikacje testowe, połączenia pionowe powinny zapewniać większą przepustowość, niż połączenia  poziome. Ten typ połączeń wykonany zostanie za pomocą okablowania typu 1000Base-T Gigabit Ethernet, skrętka ekranowana kategori 6.
-
-  \item Okablowanie poziomie zostanie zrealizowane w technologi 100Base-T Fast Ethernet, skrętka foliowana UTP kategori 6. Decydujemy się na ten typ okablowania, ponieważ pojedynczy użytkownicy sieci, nie będą potrzebowali większej przepustowości niż oferowana przez ten typ połączenia
-
-\end{itemize}
+W celu zabezpiecznenia stacji roboczych przed złośliwym oprogramowaniem, użyty zostanie program antywirusowy ESET Nod32. Jest to opragramowanie zapewniające duży poziom bezpieczeństwa, jednocześnie nie obciążając zbytnio systemu komputerowego. Kolejna zaletą jest możliwość instalacji go na systemach Linux.
 
 \subsection{VLAN}
 \paragraph{}
@@ -52,3 +65,16 @@ Analizując profil oferowanych usług przez firmę, wykorzystywane oprogramowani
        Przeglądanie internetu           & 1     & 0,5   \\ \hline
    \end{tabular}
 \end{center}
+
+\subsection{Okablowanie}
+\paragraph{}
+
+
+\begin{itemize}
+  \item Połączenie między dwoma budnykami firmy będzię zrealizowane za pomocą światłowodu 10 Gb/s
+
+  \item Ze względu na fakt, iż główny ruch w sieci odbywa się między użytkownikiem, a serwerem, gdzie przechowywany jest kod i aplikacje testowe, połączenia pionowe powinny zapewniać większą przepustowość, niż połączenia  poziome. Ten typ połączeń wykonany zostanie za pomocą okablowania typu 1000Base-T Gigabit Ethernet, skrętka ekranowana kategori 6.
+
+  \item Okablowanie poziomie zostanie zrealizowane w technologi 100Base-T Fast Ethernet, skrętka foliowana UTP kategori 6. Decydujemy się na ten typ okablowania, ponieważ pojedynczy użytkownicy sieci, nie będą potrzebowali większej przepustowości niż oferowana przez ten typ połączenia
+
+\end{itemize}
