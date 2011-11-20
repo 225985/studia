@@ -1,14 +1,5 @@
 \section{Inwentaryzacja sprzętu i infrastruktury dostępnej w przedsiębiorstwie}
 
-Z racji świadczonych usług dla klientów midzynarodowych niezbędne jest zapewnienie odpowiedniej przepustowości sieci do prowadzenia tele oraz videokonferencji.
-
-
-\subsection{Telekonferencje}
-
-
-\subsection{Videokonferencje}
-
-
 \subsection{Wyposażenie}
 \paragraph{}
 Wyposażeniem każdego pracownika jest stacjonarny zestaw komputerowy, w skład którego wchodzą: jednostka centralna, mysz, klawiatura, monitor, kamera internetowa, słuchawki z mikrofonem.
@@ -47,53 +38,8 @@ Oprogramowanie wykorzystywane przez pracowników:
  \item Pakiet Office
 \end{itemize}
 
-%ToDO limiter sieci
+\subsection{Budynki}
 
 
-\subsection{Sieć bezprzewodowa}
-\paragraph{}
-W każdej sali konferencyjnej znajduje się punkt dostępowy sieci bezprzewodowej  oferujący jedynie dostęp do Internetu i innych komputerów w obrębie tej sali. Ma to na celu zwiększenie bezpiczeństwa i zablokowanie dostępu do sieci wewnętrznej firmy osobom postronnym. Sieć bezprzewodowa wykoanna będzie w standardzie 802.11g, będącym całkowicie zgodnym z poprzednim standardem 802.11b. Uwierzytelnienie użytkowników podłączających się do sieci odbywać się będzie za pomocą szyfrowania $WPA-PSK$.
-\paragraph{}
-Ze względu na charakter i wymagania pracy osób zajmujacych się produkcją oprogramowania dla urządzeń mobilnych, zachodzi potrzeba utworzenia bezpicznej sieci bezprzewodowej z dostępem do sieci wewnętrznej firmy. Sieć ta o ograniczonym zasięgu, dostępna będzie dla wybranych urządzeń o zautoryzowanych adresach $MAC$.
 
-\subsection{Okablowanie}
-\paragraph{}
-
-
-\begin{itemize}
-  \item Połączenie między dwoma budnykami firmy będzię zrealizowane za pomocą światłowodu 10 Gb/s
-
-  \item Ze względu na fakt, iż główny ruch w sieci odbywa się między użytkownikiem, a serwerem, gdzie przechowywany jest kod i aplikacje testowe, połączenia pionowe powinny zapewniać większą przepustowość, niż połączenia  poziome. Ten typ połączeń wykonany zostanie za pomocą okablowania typu 1000Base-T Gigabit Ethernet, skrętka ekranowana kategori 6.
-
-  \item Okablowanie poziomie zostanie zrealizowane w technologi 100Base-T Fast Ethernet, skrętka foliowana UTP kategori 6. Decydujemy się na ten typ okablowania, ponieważ pojedynczy użytkownicy sieci, nie będą potrzebowali większej przepustowości niż oferowana przez ten typ połączenia
-
-\end{itemize}
-
-\subsection{VLAN}
-\paragraph{}
-Biorąc pod uwagę specyfike działania firmy i dynamiczne przydzielanie zadań poszczególnym pracownikom, najlepszym rozwiązaniem będzie odseparowanie logicznej struktury sieci od struktury fizycznej za pomocą wirtualnych sieci LAN. Serwery i stacje robocze używane przez konkretną grupę korzystają z tej samej sieci VLAN. Pozwoli to na współpracę wielu osób w ramach jednej grupy niezależnie od ich położenia. Wirtualne sieci LAN znacznie ułatwiają przenoszenie stacji roboczych między podsieciami oraz dodawanie nowych stacji roboczych do instniejących już sieci. Usprawniają też nadzorowanie ruchu w sieci, a także poprawiają bezpieczeństwo.
-
-\subsection{VPN}
-\paragraph{}
-Ze względu na możliwość pracy zdalnej, pracownicy muszą mieć dostęp do serwerów znajdujących się w siedzibie firmy. Mając na uwadze bezpieczeństwo danych sieć firmowa musi udostępniać usługę VPN. Daje to możliwość monitoringu i logowania dostępu do zasobów w bezpieczny sposób, niezależnie od fizycznej lokalizacji pracownika.
-
-\subsection{Minimalna wymagana przepustowość}
-\paragraph{}
-Szacując ruch sieciowy w firmie należy rozdzielić ruch wewnątrz sieci lokalnej oraz ruch do sieci zewnętrznej (Internet). W przypadku analizy wymaganej przepustowości na zewnątrz sieci trzeba uwzględnić wymagania, które stawia wykorzystywane oprogramowanie.
-
-Analizując profil oferowanych usług przez firmę, wykorzystywane oprogramowanie oraz specyfike branży
-
-\begin{center}
-    \begin{tabular}{|c|c|c|}
-    \hline
-       & Download [Mb/s]                & Upload [MB/s] \\ \hline
-       Komunikator internetowy          & 0,1   & 0,1   \\ \hline
-       Telekonferencje                  & 0,1   & 0,1   \\ \hline
-       Wideokonferencje                 & 2     & 0,5   \\ \hline
-       Program pocztowy                 & 1     & 0,5   \\ \hline
-       Zdalny pulpit (TeamViewer, RD)   & 5     & 5     \\ \hline
-       System kontroli wersji           & 1     & 0,5   \\ \hline
-       Przeglądanie internetu           & 1     & 0,5   \\ \hline
-   \end{tabular}
-\end{center}
 
