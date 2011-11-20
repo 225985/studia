@@ -112,7 +112,6 @@ gdzie :
 \section{Testy}
 \paragraph{}
 Testy algorytmu symulowanego wyżarzania przeprowadzone zostały dla trzech zestawów testów o róznym rozmiarze porblemu $n$, każdy składający się ze 125 instancji. Parametry podstawowe jak $T_{min}$ i $T_{max}$ w przypadku każdego testu były takie same. Zmieniany natomiast był parametr $T_{d}$.
-\\TODO poprawic
 \paragraph{}
 Jako wyniki testów przedstawiamy średni czas liczenia wszystkich instancji dla danego rozmiaru problemu - $\bar{t}$, a także średni błąd wzgledny  rozwiązań dla każdej instancji - $\bar{x}$. Według wzoru : \\
 \begin{equation}
@@ -226,6 +225,20 @@ Parametry niezmienne :
 \end{figure}
 \newpage
 \section{Wnioski}
+\paragraph{}
+Analizując wyniki testów łatwo zauważyć, że rozmiar instancji ma znaczny wpływ na czas działania algorytmu. Pomimo tej samej liczby iteracji (dla ustalonego $T_d$ i zmiennego $n$) samego algorymu dużo czasu zajmuje obliczanie funkcji celu, która jest liniowo zależna od rozmiaru instancji. Na czas algorytmu ma również wpływ parametr $T_{d}$ określający jak szybko zmienia sie temperatura. Ilość iteracji algorytmu (zależna od parametru $T_d$, stałe $n$) ma również wpływ na jakość wyników. Im parametr $T_d$ jest większy, tym wynik dokładniejszy. Niestety zwiększa to ilość samych iteracji dla danego problemu : \\
+\begin{center}
+    \begin{tabular}{|c|c|}
+      \hline
+       $T_{d}$ & Ilość iteracji \\ \hline
+       0,99 & 917 \\ \hline
+       0,999 & 9206 \\ \hline
+       0,9999 & 92099  \\ \hline
+  \end{tabular}
+\end{center}
+Jak widać na wykresie dla $T_d$ = 0.99 i $n$ = 100 algorytm uzyskał średnią wzglądną róznicą od optymalnego wyniku na poziomie 500\%. Analizując poszczegąlne instancje błąd wzglądny wahal się od 10 do nawet 2500\%.
+\paragraph{}
+Algorytm symulowanego wyżarznia pozwala na znacznie szybsze wyznaczenie dokładnego lub zbliżonego do dokładnego rozwiazania niz przeglad zupełny. Wiąże się to jednak z koniecznością dobrania odpowiednich parametrów, co nie jest zadaniem łatwym. Wmiarę poprawy wyników poprzez dobierane parametry, wzrasta czas wykonania algorytmu. W celu obliczenia problemu, musimy odpowiedzieć sobie na pytanie, jak dokładne rozwiązanie nas interesuje i ile czasu możemy na nie poświęcić.  
 \end{document}
 
 
