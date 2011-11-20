@@ -38,12 +38,16 @@
 \maketitle
   \section{Cel laboratorium}
   \paragraph{}
+  Celem laboratorium było zapoznanie się z urządzeniem BM525 służącym do zarządzania pasmem i jakością połączeń oraz filtrowania ruchu w sieci.
+
 
   \section{Zadania}
 
+
   \subsection{Zadanie 1}
   \paragraph{}
-  Po podłączeniu wszystkich urządzeń i wejściu się przez przeglądarkę pod adres \textbf{192.168.1.1} ukazało się okno logowania. Domyślna nazwa użytkownika to \textbf{???}, a hasło \textbf{???}.
+  Manager pasma BM252 został podłączony kablem prostym do przełącznika oraz do sieci WAN. Następnie do tego samego przełącznika zostały podłączone dwa komputery za pomocą kabli prastych.
+  Po podłączeniu wszystkich urządzeń i wejściu przez przeglądarkę na jednym z komputerów pod adres \textbf{192.168.1.1} ukazało się okno logowania. Domyślna nazwa użytkownika to \textbf{admin}, a hasło \textbf{admin}.
   W celu ustawienia połączenia z internetem należało wybrać opcję \textbf{Dynamic IP Address (Cable Modem User)}.
 
   \begin{figure}[h!]
@@ -54,6 +58,7 @@
 
 
   \subsection{Zadanie 2}
+  Menu konfiguracyjnym urządzenia nie różni się znacznie od menu domowych routerów.
 
 
   \subsection{Zadanie 3}
@@ -64,6 +69,8 @@
       \includegraphics[width=\textwidth]{2.PNG}
     \end{center}
   \end{figure}
+
+  Polisa umożliwiła dostep do internetu z obu komputerów.
 
 
 
@@ -83,12 +90,11 @@
   \begin{figure}[h!]
     \begin{center}
       \includegraphics[width=\textwidth]{3_5.PNG}
-      \caption{}
     \end{center}
   \end{figure}
 
 
-
+  \newpage
   \subsection{Zadanie 6}
   \paragraph{}
   Reguły ograniczające pasmo.
@@ -113,7 +119,9 @@
     \end{center}
   \end{figure}
 
+  Jak widać na wynikach testu pasmo zostało ograniczone do 100 Kb/s.
 
+  \newpage
 
   \subsection{Zadanie 7}
   \paragraph{}
@@ -125,13 +133,14 @@
   \end{figure}
 
   \paragraph{}
-  Przetestowanie reguły blokującej pobieranie plików \textbf{.exe}.
+  Przetestowanie reguły blokującej pobieranie plików o rozszerzeniu \textbf{.exe}.
   \begin{figure}[h!]
     \begin{center}
       \includegraphics[width=\textwidth]{pobieranie_exe.PNG}
     \end{center}
   \end{figure}
 
+  Jak widać manager pasma zablokował możliwość pobierania plików \textbf{.exe}.
 
 
   \subsection{Zadanie 8}
@@ -142,6 +151,8 @@
       \includegraphics[width=\textwidth]{8.PNG}
     \end{center}
   \end{figure}
+
+  Po zdefiniowaniu tej reguły inny strony internetowe stały się niedostępne dla użytkownika.
 
 
   \subsection{Zadanie 9}
@@ -154,6 +165,7 @@
   \end{figure}
 
 
+  \newpage
   \subsection{Zadanie 10}
   \paragraph{}
   Czasowe blokowanie domen.
@@ -168,6 +180,7 @@
     \end{center}
   \end{figure}
 
+  \newpage
   \subsection{Zadanie 11}
   \paragraph{}
   Eksport ustawień routera do pliku.
@@ -177,7 +190,7 @@
     \end{center}
   \end{figure}
 
-
+  \newpage
   \subsection{Zadanie 12}
   \paragraph{}
   Ustawienie automatycznej synchronizacji zegara z serwerem czasu rzeczywistego.
@@ -207,5 +220,6 @@
 
   \section{Wnioski}
   \paragraph{}
+  Manager pasma BM525 posiada daje wiele możliwości zarządzania ruchem w sieci. Zapobiega on przeciążeniom oraz poprawia bezpieczeństwo. Pozwala on m.in. na przydzielenie poszczególnym urzytkownikom lub grupom urzytkowników limitu prędkości łącza, zablokowanie dostępu do określonych serwisów internetowych czy blokadę pobierania plików określonego typu. Ograniczenia mogą być też aktywowane tylko w określony przedziale czasu.
 
 \end{document}
