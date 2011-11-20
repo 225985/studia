@@ -37,6 +37,23 @@ module Db
       @task = @project.tasks.find(params[:id])
     end
 
+    def edit
+      @task = @project.tasks.find(params[:id])
+    end
+
+    def update
+      @task = @project.tasks.find(params[:id])
+      @task.update_attributes(params[:java_db_task])
+      logger.debug params[:java_db_task].inspect
+      logger.debug @task.inspect
+      if true
+        redirect_to project_task_path(@project, @task)
+      else
+        render :edit
+      end
+    end
+
+
     protected
 
       def fetch_project

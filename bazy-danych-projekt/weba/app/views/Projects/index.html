@@ -1,9 +1,0 @@
-#{extends 'main.html' /}
-
-<h2>Projects</h2>
-
-<ul>
-  #{list items:projects, as:'project'}
-  <li>${project.getId()} - ${project.getName()}</li>
-  #{/list}
-</ul>
