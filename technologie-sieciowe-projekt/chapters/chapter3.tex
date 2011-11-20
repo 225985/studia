@@ -26,7 +26,7 @@ wiele czynników, ale przede wszystkim zapewnić ciagły dostęp do zasobów, a 
 Z racji świadczonych usług dla klientów midzynarodowych niezbędne jest zapewnienie odpowiedniej przepustowości sieci do prowadzenia tele oraz videokonferencji.
 \subsection{Sieć bezprzewodowa}
 \paragraph{}
-W każdej sali konferencyjnej znajduje się punkt dostępowy sieci bezprzewodowej  oferujący jedynie dostęp do Internetu i innych komputerów w obrębie tej sali. Ma to na celu zwiększenie bezpiczeństwa i zablokowanie dostępu do sieci wewnętrznej firmy osobom postronnym. Sieć bezprzewodowa wykoanna będzie w standardzie 802.11g, będącym całkowicie zgodnym z poprzednim standardem 802.11b. Uwierzytelnienie użytkowników podłączających się do sieci odbywać się będzie za pomocą szyfrowania $WPA-PSK$.
+W każdej sali konferencyjnej znajduje się punkt dostępowy sieci bezprzewodowej  oferujący jedynie dostęp do Internetu i innych komputerów w obrębie tej sali. Ma to na celu zwiększenie bezpiczeństwa i zablokowanie dostępu do sieci wewnętrznej firmy osobom postronnym. Sieć bezprzewodowa wykoanna będzie w standardzie 802.11n, będącym całkowicie zgodnym z poprzednim standardem 802.11g. Uwierzytelnienie użytkowników podłączających się do sieci odbywać się będzie za pomocą szyfrowania $WPA-PSK$.
 \paragraph{}
 Ze względu na charakter i wymagania pracy osób zajmujacych się produkcją oprogramowania dla urządzeń mobilnych, zachodzi potrzeba utworzenia bezpicznej sieci bezprzewodowej z dostępem do sieci wewnętrznej firmy. Sieć ta o ograniczonym zasięgu, dostępna będzie dla wybranych urządzeń o zautoryzowanych adresach $MAC$.
 
@@ -49,8 +49,14 @@ W celu zapewnienia jak najlepszej jakości usług sieciowych, odpowiednich przep
 \subsection{Minimalna wymagana przepustowość}
 \paragraph{}
 Szacując ruch sieciowy w firmie należy rozdzielić ruch wewnątrz sieci lokalnej oraz ruch do sieci zewnętrznej (Internet). W przypadku analizy wymaganej przepustowości na zewnątrz sieci trzeba uwzględnić wymagania, które stawia wykorzystywane oprogramowanie.
-
-Analizując profil oferowanych usług przez firmę, wykorzystywane oprogramowanie oraz specyfike branży
+\paragraph{}
+Analizując profil oferowanych usług przez firmę, wykorzystywane oprogramowanie oraz specyfike branży, udało się nam ustalić, iż zalecaną przepustowością łącza powinna posiadać parametry :
+\begin{itemize}
+	\item Download : 30 Mbit$/$s
+	\item Upload : 20 Mbit$/$s
+\end{itemize}
+\paragraph{}
+W celu zapewnienia skalowalności sieci, w przypadku zwiekszenai zatrudnionej liczby pracowników, umowa powinna byc zawarta na czas nieokreślony. Daje to możliwość w każdej chwili zwiększenia przepustowości łącza do wymaganej, lub w przypadku redukcji kosztów na zminiejszenie.
 
 \begin{center}
     \begin{tabular}{|c|c|c|}
