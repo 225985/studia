@@ -1,10 +1,10 @@
 package pea
 
 object App {
-    val SA = new SimulatedAnnealing[TaskList, Int] with Alg {
+    val SA = (td: Double) => new SimulatedAnnealing[TaskList, Int] with Alg {
         def Tmin = 0.01
         def Tmax = 100.0
-        def Td = 0.999
+        def Td = td
 
         def F(list: TaskList) = list.cost
         def S(list: TaskList) = list.randomPermutation
@@ -40,23 +40,60 @@ object App {
     }
 
     def main(args: Array[String]){
-        if(args.length == 0) sys.exit(-1)
+        if(args.length < 2) sys.exit(-1)
         else {
             val n = args(0).toInt
-            val instances = readInstances(n).zip(readOptimal(n)).drop(120)
+            val k = args(1).toInt
+            val instances = readInstances(n).zip(readOptimal(n)).take(k)
 
-            instances.zipWithIndex.foreach { case ((tasks, optimal), inst) =>
-                println(" == Instance %s | optimal: %d == " format (inst+1, optimal))
-                (1 to 10) foreach { i =>
-                    val (time, res) = bench(SA(tasks))
-                    val diff = (res.cost - optimal) * 100.0 / optimal
-                    val c = if(diff == 0) Console.GREEN else Console.RED
-                    println("%s%2d) %-120s [%5.2f%%] | %10d%s" format (c, i, res, diff, time, Console.RESET))
+            val tds = 0.99 :: 0.999 :: 0.9999 :: Nil
+
+
+            val results = tds.map { td =>
+                print("%7s | " format td.toString)
+                val sa = SA(td)
+                val r = instances.zipWithIndex.collect { case ((tasks, optimal), inst) if optimal > 0 =>
+                    // println(" == Instance %s | optimal: %d | td: %f == " format (inst+1, optimal, td))
+
+                    val x = (1 to 10).par map { i =>
+                        val (time, res) = bench(sa(tasks))
+                        val diff = (res.cost - optimal) * 100.0 / optimal
+
+                        val c = if(diff == 0) Console.GREEN else Console.RED
+                        // println("%s%2d) %-120s [%5.2f%%] | %10d%s" format (c, i, res, diff, time, Console.RESET))
+                        print("%s.%s" format (c, Console.RESET))
+
+                        (time, diff)
+                    }
+
+
+
+                    // println()
+                    // println()
+                    x
+                }
+                println()
+
+                (td, r)
+            }
+
+
+            results.foreach { case (td, instances) =>
+                val (time, diff) = ((0.0, 0.0) /: instances){
+                    case ((t,d), it) =>
+                        val (time, diff) = ((0.0,0.0) /: it){ case ((a,b),(c,d)) => (a+c, b+d) }
+                        (t + time / it.length, d + diff / it.length)
                 }
 
-                println()
-                println()
+                // println("time: %f | diff: %f : len: %d" format (time, diff, instances.length))
+
+                val avgTime = time / instances.length
+                val avgDiff = diff / instances.length
+
+                println("td: %5f | time: %5.2f | diff: %5.2f" format (td, avgTime, avgDiff))
             }
+
+
 
             // val algs: List[(String, Alg)] =
             //     // ("bruteforce", Bruteforce) ::
