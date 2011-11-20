@@ -53,15 +53,15 @@ object App {
                 print("%7s | " format td.toString)
                 val sa = SA(td)
                 val r = instances.zipWithIndex.collect { case ((tasks, optimal), inst) if optimal > 0 =>
-                    // println(" == Instance %s | optimal: %d | td: %f == " format (inst+1, optimal, td))
+                    println(" == Instance %s | optimal: %d | td: %f == " format (inst+1, optimal, td))
 
                     val x = (1 to 10).par map { i =>
                         val (time, res) = bench(sa(tasks))
                         val diff = (res.cost - optimal) * 100.0 / optimal
 
                         val c = if(diff == 0) Console.GREEN else Console.RED
-                        // println("%s%2d) %-120s [%5.2f%%] | %10d%s" format (c, i, res, diff, time, Console.RESET))
-                        print("%s.%s" format (c, Console.RESET))
+                        println("%s%2d) %-120s [%5.2f%%] | %10d%s" format (c, i, res, diff, time, Console.RESET))
+                        // print("%s.%s" format (c, Console.RESET))
 
                         (time, diff)
                     }
@@ -89,6 +89,8 @@ object App {
 
                 val avgTime = time / instances.length
                 val avgDiff = diff / instances.length
+
+                println("ins leng " + instances.length)
 
                 println("td: %5f | time: %5.2f | diff: %5.2f" format (td, avgTime, avgDiff))
             }
