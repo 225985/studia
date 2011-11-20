@@ -1,0 +1,17 @@
+t = Tmax
+old = S_0
+best = old
+
+while t < Tmin
+	new = S(old)
+	if F(new) < F(old)
+		old = new
+	if F(new) < F(best)
+		best = new
+	end
+	else if rand() < P(old, new, t)
+		old = new
+	end
+
+	t = T(t)
+end

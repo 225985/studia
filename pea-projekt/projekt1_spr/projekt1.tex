@@ -50,19 +50,65 @@ wykonywania zadania $j$. Problem polega na znalezieniu takiej kolejności wykony
 Symulowane wyżarzanie to algorytm heurystyczny przeszukującego przestrzeń alternatywnych rozwiązań problemu w celu wyszukania rozwiązań najlepszych. Sposób działania algorytmu jest analogią do zjawiska wyżarzania w metalurgii.
 \paragraph{}
 Przebieg algorytmu :
-\begin{enumerate}
-  \item Wybranie losowego punktu startowego $\omega$ i przypisanie $T = T_{max}$
-  \item Wyznaczenie wartości $F(\omega)$
-  \item 
-\end{enumerate}	
+\lstset{ %
+    language=c++,                % choose the language of the code
+    basicstyle=\scriptsize,       % the size of the fonts that are used for the code
+    numbers=left,                   % where to put the line-numbers
+    numberstyle=\scriptsize,      % the size of the fonts that are used for the line-numbers
+    stepnumber=10,                   % the step between two line-numbers. If it's 1 each line 
+                                    % will be numbered
+    numbersep=9pt,                  % how far the line-numbers are from the code
+    % backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+    showspaces=false,               % show spaces adding particular underscores
+    showstringspaces=false,         % underline spaces within strings
+    showtabs=false,                 % show tabs within strings adding particular underscores
+    % frame=single,                 % adds a frame around the code
+    % tabsize=2,                  % sets default tabsize to 2 spaces
+    % captionpos=b,                   % sets the caption-position to bottom
+    breaklines=true,                % sets automatic line breaking
+    % breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+    % title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                    % also try caption instead of title
+    % escapeinside={\%*}{*)},         % if you want to add a comment within your code
+    % morekeywords={*,...}            % if you want to add more keywords to the set
+    }
+    \lstinputlisting{pseudokod.txt}
 \section{Implementacja}
-Jezykiem implementacji algorytmu jest $Scala$ w wersji $2.9.1$ działająca na $JVM$. \\
-TODO jakies lsitingi itp
+\paragraph{}
+Jezykiem implementacji algorytmu jest $Scala$ w wersji $2.9.1$ działająca na $JVM$. 
+\paragraph{}
+Algorytm oparty został na funkcji rekurencyjnej (rekurencja ogonowa) implementującej symulowane wyżarzanie. W celu bezpiecznego zrównoleglenia uruchamiania programy na wiele wątków i tym samym przyśpieszyć wyliczanie skorzystaliśmy z programowania funkcyjnego.
+\\ Funkcja 
+\lstset{ %
+    language=java,                % choose the language of the code
+    basicstyle=\scriptsize,       % the size of the fonts that are used for the code
+    numbers=left,                   % where to put the line-numbers
+    numberstyle=\scriptsize,      % the size of the fonts that are used for the line-numbers
+    stepnumber=10,                   % the step between two line-numbers. If it's 1 each line 
+                                    % will be numbered
+    numbersep=9pt,                  % how far the line-numbers are from the code
+    % backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+    showspaces=false,               % show spaces adding particular underscores
+    showstringspaces=false,         % underline spaces within strings
+    showtabs=false,                 % show tabs within strings adding particular underscores
+    % frame=single,                 % adds a frame around the code
+    % tabsize=2,                  % sets default tabsize to 2 spaces
+    % captionpos=b,                   % sets the caption-position to bottom
+    breaklines=true,                % sets automatic line breaking
+    % breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+    % title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                    % also try caption instead of title
+    % escapeinside={\%*}{*)},         % if you want to add a comment within your code
+    % morekeywords={*,...}            % if you want to add more keywords to the set
+    }
+    \lstinputlisting{sa.scala}
+\newpage
 \section{Testy}
 \paragraph{}
 Testy algorytmu symulowanego wyżarzania przeprowadzone zostały dla trzech zestawów testów o róznym rozmiarze porblemu $n$, każdy składający się ze 125 instancji. Parametry podstawowe jak $T_{min}$ i $T_{max}$ w przypadku każdego testu były takie same. Zmieniany natomiast był parametr $T_{d}$.
+\\TODO poprawic
 \paragraph{}
-Jako wyniki testów przedstawiamy zsumowany czas liczenia wszystkich instancji dla danego rozmiaru problemu, a także sumę błedów względnych njalepszych rozwiązań dla każdej instancji. 
+Jako wyniki testów przedstawiamy średni czas liczenia wszystkich instancji dla danego rozmiaru problemu, a także średni błąd wzgledny najlepszych rozwiązań dla każdej instancji. 
 \paragraph{}
 Parametry niezmienne : 
 \begin{itemize}
