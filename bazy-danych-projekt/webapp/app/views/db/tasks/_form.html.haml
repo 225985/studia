@@ -1,9 +1,9 @@
 = f.input :name
-= f.input :description
+= f.input :description, :as => :text
 / = f.input :user, :as => :select
-/ = f.input :deadline, :input_html => { :class => 'dateBox' }
-/ = f.input :estimatedTime
-/ = f.input :project, :as => :select
-/= f.input :kind, :as => :select
+= f.input :deadline, :input_html => { :class => 'dateBox' }
+= f.input :estimated_time
+/ = f.input :project, :as => :select, :collection => Db::Project.all.map {|p| [p.name, p.id]}
+/ = f.input :kind, :as => :select
 .actions
   = f.submit :class => "btn primary"

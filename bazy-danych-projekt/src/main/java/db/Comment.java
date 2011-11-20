@@ -2,7 +2,6 @@ package db;
 
 import java.util.*;
 
-
 public class Comment<T> extends DbObject {
 
     protected User author;

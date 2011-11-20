@@ -1,10 +1,15 @@
 package db;
 
 import java.util.*;
+import org.neodatis.odb.*;
+import org.neodatis.odb.core.query.*;
+import org.neodatis.odb.core.query.nq.SimpleNativeQuery;
 
 public class User extends DbObject {
     private String login;
     private String email;
+    private String encryptedPassword;
+
     private String firstName;
     private String lastName;
     private List<Project> projects;
@@ -40,6 +45,15 @@ public class User extends DbObject {
         this.email = email;
     }
 
+    public String getEncryptedPassword(){
+        return this.encryptedPassword;
+    }
+
+    public void setEncryptedPassword(String encryptedPassword){
+        this.encryptedPassword = encryptedPassword;
+    }
+
+
     public String getFirstName() {
         return firstName;
     }
@@ -74,5 +88,20 @@ public class User extends DbObject {
 
     public static Collection<User> all(){
         return Database.odb.getObjects(User.class);
+    }
+
+    public static User findByEmail(final String email){
+        IQuery query = new SimpleNativeQuery() {
+            public boolean match(User user){
+                return user.getEmail().equals(email);
+            }
+        };
+
+        Objects users = Database.odb.getObjects(query);
+        if(users.hasNext()){
+            return (User)users.next();
+        } else {
+            return null;
+        }
     }
 }

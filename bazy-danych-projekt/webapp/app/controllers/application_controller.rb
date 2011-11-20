@@ -4,6 +4,9 @@ class ApplicationController < ActionController::Base
   before_filter :open_db
   # after_filter :close_db
 
+  # before_filter :authenticate_user!
+
+
   protected
 
 

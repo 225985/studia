@@ -4,7 +4,7 @@ module Db
   include_package "db"
 
   # Models = [Task, Project, Milestone]
-  Models = [Project, Task]
+  Models = [Project, Task, User]
 
   Models.each do |model|
     puts model.inspect
