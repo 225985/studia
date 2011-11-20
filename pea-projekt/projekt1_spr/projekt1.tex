@@ -36,7 +36,7 @@
 \maketitle
   \section{Cel projektu}
 \paragraph{}
-Celem projketu jest zaimplementowanie i przetestowanie metaheurystycznego algorytmu symulowanego wyżarzania dla porblemu szeregowania zadań na jednym procesorze przy kryterium minimalizacji wazonej sumy opóźnień zadań.
+Celem projketu jest zaimplementowanie i przetestowanie metaheurystycznego algorytmu symulowanego wyżarzania dla problemu szeregowania zadań na jednym procesorze przy kryterium minimalizacji ważonej sumy opóźnień zadań.
   \section{Opis problemu}
 {\bf Jednoprocesorowy problem szeregowania zadań przy kryterium
 minimalizacji ważonej sumy opóźnień zadań.}
@@ -47,7 +47,7 @@ wykonywania $d_{j} > 0$. Zadanie $j$ jest spóźnione, jeżeli zakończy się wy
 wykonywania zadania $j$. Problem polega na znalezieniu takiej kolejności wykonywania zadań (permutacji) aby zminimalizować kryterium $TWT = \Sigma_{j=1}^{n} w_{j} T_{j}$.
 \section{Opis algorytmu}
 \paragraph{}
-Symulowane wyżarzanie to algorytm heurystyczny przeszukującego przestrzeń alternatywnych rozwiązań problemu w celu wyszukania rozwiązań najlepszych. Sposób działania algorytmu jest analogią do zjawiska wyżarzania w metalurgii.
+Symulowane wyżarzanie to algorytm heurystyczny przeszukująy przestrzeń alternatywnych rozwiązań problemu w celu wyszukania rozwiązań najlepszych. Sposób działania algorytmu jest analogią do zjawiska wyżarzania w metalurgii.
 \paragraph{}
 Przebieg algorytmu :
 \lstset{ %
@@ -77,8 +77,8 @@ Przebieg algorytmu :
 \paragraph{}
 Jezykiem implementacji algorytmu jest $Scala$ w wersji $2.9.1$ działająca na $JVM$. 
 \paragraph{}
-Algorytm oparty został na funkcji rekurencyjnej (rekurencja ogonowa) implementującej symulowane wyżarzanie. W celu bezpiecznego zrównoleglenia uruchamiania programy na wiele wątków i tym samym przyśpieszyć wyliczanie skorzystaliśmy z programowania funkcyjnego.
-\\ Funkcja : \\
+Algorytm oparty został na funkcji rekurencyjnej (rekurencja ogonowa) implementującej symulowane wyżarzanie. W celu bezpiecznego zrównoleglenia uruchamiania programy na wiele wątków i tym samym przyśpieszenia wyliczania skorzystaliśmy z programowania funkcyjnego.
+
 \lstset{ %
     language=java,                % choose the language of the code
     basicstyle=\scriptsize,       % the size of the fonts that are used for the code
