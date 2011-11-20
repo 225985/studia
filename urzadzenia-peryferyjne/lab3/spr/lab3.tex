@@ -76,16 +76,29 @@ W opisanym programie zastosowane zostało sterowanie półkrokowe. Aby obrócić
 
 
 \paragraph{}
-Aby obrócić silnik w drugą stroną, należy wysłać podaną sekwencję w odwrotnej kolejności
+Aby obrócić silnik w drugą stroną, należy wysłać podaną sekwencję w odwrotnej kolejności.
 
 \paragraph{}
 Sterownik pozwala na sterowanie dwoma silnikami krokowymi, pierwszym za pomocą młodszych 4 bitów wejścia, drugim za pomocą starszych 4 bitów.
+
+\paragraph{}
+Wartość pjedynczego skoku dla pierwszego silnika wynosiła 7.5$^\circ$, a dla drugiego 0.75$^\circ$.
+Na podstawie tego wyliczana była ilość kroków potrzebna do obrotu silników o zadany kąt.
+
 
 \section{Program}
 \paragraph{}
 Program wysyłający komendy do sterownika został napisane w języku C\# z wykorzystaniem biblioteki FTD2XX\_NET.
 Pozwala on na sterowanie dwoma silnikami krokowymi na 2 sposoby. Pierwszy z nich to obrót silnika o zadaną ilość kroków w lewo lub w prawo.
 Drugim sposobem sterowania jest obrót o zadany kąt, również w lewo lub w prawo.
+
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=\textwidth]{screen.png}
+    \caption{Okno programu}
+  \end{center}
+\end{figure}
+
 
 \section{Wnioski}
 \paragraph{}
