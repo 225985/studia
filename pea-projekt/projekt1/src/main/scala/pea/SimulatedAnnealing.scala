@@ -1,6 +1,6 @@
 package pea
 
-abstract class SimulatedAnnealing[T, R : Ordering]{
+abstract class SimulatedAnnealing[A, R : Ordering]{
     import scala.Ordering.Implicits._
 
     def Tmin: Double
@@ -9,13 +9,13 @@ abstract class SimulatedAnnealing[T, R : Ordering]{
 
     def T(t: Double) = t * Td
 
-    def F(x: T): R  // cost function
-    def S(x: T): T  // new state generator
+    def F(x: A): R  // cost function
+    def S(x: A): A  // new state generator
 
-    def P(a: T, b: T, t: Double): Double // lim (t -> 0) = 0 !!!
+    def P(a: A, b: A, t: Double): Double // lim (t -> 0) = 0 !!!
 
-    def apply(s0: T) = {
-        def inner(bestState: T, oldState: T, t: Double): T = {
+    def apply(s0: A) = {
+        def inner(bestState: A, oldState: A, t: Double): A = {
             if(t < Tmin) oldState
             else {
                 val newState = S(oldState)
