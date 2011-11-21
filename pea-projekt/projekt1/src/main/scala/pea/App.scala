@@ -66,10 +66,6 @@ object App {
                         (time, diff)
                     }
 
-
-
-                    // println()
-                    // println()
                     x
                 }
                 println()
@@ -85,34 +81,11 @@ object App {
                         (t + time / it.length, d + diff / it.length)
                 }
 
-                // println("time: %f | diff: %f : len: %d" format (time, diff, instances.length))
-
                 val avgTime = time / instances.length
                 val avgDiff = diff / instances.length
 
-                println("ins leng " + instances.length)
-
                 println("td: %5f | time: %5.2f | diff: %5.2f" format (td, avgTime, avgDiff))
             }
-
-
-
-            // val algs: List[(String, Alg)] =
-            //     // ("bruteforce", Bruteforce) ::
-            //     // ("elimination", Elimination) ::
-            //     ("simulated annealing", SA) ::
-            //     Nil
-
-            // (1 to 4) foreach { i =>
-
-                // algs.foreach {
-                //     case (name, alg) =>
-                //         val (time, res) = bench(alg(tasks))
-                //         // println("---")
-                //         println("%-20s | %-30s | %5d" format (name, res, time))
-                // }
-
-            // }
         }
     }
 
