@@ -36,7 +36,7 @@
 \maketitle
   \section{Cel projektu}
 \paragraph{}
-Celem projketu jest zaimplementowanie i przetestowanie metaheurystycznego algorytmu symulowanego wyżarzania dla problemu szeregowania zadań na jednym procesorze przy kryterium minimalizacji ważonej sumy opóźnień zadań.
+Celem projektu jest zaimplementowanie i przetestowanie metaheurystycznego algorytmu symulowanego wyżarzania dla problemu szeregowania zadań na jednym procesorze przy kryterium minimalizacji ważonej sumy opóźnień zadań.
   \section{Opis problemu}
 {\bf Jednoprocesorowy problem szeregowania zadań przy kryterium
 minimalizacji ważonej sumy opóźnień zadań.}
@@ -73,6 +73,14 @@ Przebieg algorytmu :
     % morekeywords={*,...}            % if you want to add more keywords to the set
     }
     \lstinputlisting{pseudokod.txt}
+\paragraph{}
+gdzie :
+\begin{itemize}
+  \item $S$ - funkcja generujaca nowy losowy stan na postawie podanego
+  \item $F$ - funkcja celu/kosztu
+  \item $P$ - prawdopodobieństwo przejścia do stanu o wyższym koszcie
+  \item $T$ - funkcja czasu
+\end{itemize}
 \section{Implementacja}
 \paragraph{}
 Jezykiem implementacji algorytmu jest $Scala$ w wersji $2.9.1$ działająca na $JVM$. 
@@ -102,23 +110,18 @@ Algorytm oparty został na funkcji rekurencyjnej (rekurencja ogonowa) implementu
     % morekeywords={*,...}            % if you want to add more keywords to the set
     }
     \lstinputlisting{sa.scala}
-\paragraph{}
-gdzie :
-\begin{itemize}
-  \item $S$ - funkcja generujaca nowy losowy stan na postawie podanego
-  \item $F$ - funkcja celu/kosztu
-\end{itemize}
+
 \newpage
 \section{Testy}
 \paragraph{}
-Testy algorytmu symulowanego wyżarzania przeprowadzone zostały dla trzech zestawów testów o róznym rozmiarze porblemu $n$, każdy składający się ze 125 instancji. Parametry podstawowe jak $T_{min}$ i $T_{max}$ w przypadku każdego testu były takie same. Zmieniany natomiast był parametr $T_{d}$.
+Testy algorytmu symulowanego wyżarzania przeprowadzone zostały dla trzech zestawów testów o różnym rozmiarze porblemu $n$, każdy składający się ze 125 instancji. Parametry podstawowe jak $T_{min}$ i $T_{max}$ w przypadku każdego testu były takie same. Zmieniany natomiast był parametr $T_{d}$.
 \paragraph{}
 Jako wyniki testów przedstawiamy średni czas liczenia wszystkich instancji dla danego rozmiaru problemu - $\bar{t}$, a także średni błąd wzgledny  rozwiązań dla każdej instancji - $\bar{x}$. Według wzoru : \\
 \begin{equation}
-	\bar{t} = \frac{\Sigma_{j=0}^{n}\frac{\Sigma_{i=1}^{k}t_{i}}{k}}{n}
+	\bar{t} = \frac{\Sigma_{j=1}^{n}\frac{\Sigma_{i=1}^{k}t_{i}}{k}}{n}
 \end{equation}
 \begin{equation}
-	\bar{x} = \frac{\Sigma_{j=0}^{n}\frac{\Sigma_{i=1}^{k}x_{i}}{k}}{n}
+	\bar{x} = \frac{\Sigma_{j=1}^{n}\frac{\Sigma_{i=1}^{k}x_{i}}{k}}{n}
 \end{equation}
 gdzie : \\
 \begin{itemize}
@@ -238,7 +241,7 @@ Analizując wyniki testów łatwo zauważyć, że rozmiar instancji ma znaczny w
 \end{center}
 Jak widać na wykresie dla $T_d$ = 0.99 i $n$ = 100 algorytm uzyskał średnią wzglądną róznicą od optymalnego wyniku na poziomie 500\%. Analizując poszczegąlne instancje błąd wzglądny wahal się od 10 do nawet 2500\%.
 \paragraph{}
-Algorytm symulowanego wyżarznia pozwala na znacznie szybsze wyznaczenie dokładnego lub zbliżonego do dokładnego rozwiazania niz przeglad zupełny. Wiąże się to jednak z koniecznością dobrania odpowiednich parametrów, co nie jest zadaniem łatwym. Wmiarę poprawy wyników poprzez dobierane parametry, wzrasta czas wykonania algorytmu. W celu obliczenia problemu, musimy odpowiedzieć sobie na pytanie, jak dokładne rozwiązanie nas interesuje i ile czasu możemy na nie poświęcić.  
+Algorytm symulowanego wyżarznia pozwala na znacznie szybsze wyznaczenie dokładnego lub zbliżonego do dokładnego rozwiązania niz przegląd zupełny. Wiąże się to jednak z koniecznością dobrania odpowiednich parametrów, co nie jest zadaniem łatwym. W miarę poprawy wyników poprzez dobierane parametry, wzrasta czas wykonania algorytmu. W celu obliczenia problemu, musimy odpowiedzieć sobie na pytanie, jak dokładne rozwiązanie nas interesuje i ile czasu możemy na nie poświęcić.  
 \end{document}
 
 
