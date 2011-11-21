@@ -1,6 +1,6 @@
-t = Tmax
-old = S_0
-best = old
+t = Tmax        // poczatkowa temperatura
+old = S_0       // poprzednie rozwiazanie
+best = old      // najlepsze znalezione rozwiazanie
 
 while t < Tmin
 	new = S(old)
