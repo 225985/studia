@@ -23,7 +23,7 @@ wiele czynników, ale przede wszystkim zapewnić ciagły dostęp do zasobów, a 
 
 \subsection{Tele i wideokonference}
 \paragraph{}
-Z racji świadczonych usług dla klientów międzynarodowych niezbędne jest zapewnienie odpowiedniej przepustowości sieci do prowadzenia tele oraz videokonferencji. Zalecana przez producenta oprogramowania (Skype) minimalna przepustowość łącza pozwalająca na prowadzenie telekonferencji wynosi 30/30kbps, jednak w przypadku większej ilości osób rozmawiających jednocześnie wymagane jest szybsze łącze, ok. 200/100kbps. Wideokonferencje wymagają znacznie szybszego połączenia. Minimalna prędkość podana przez producenta to 128/128kbps, jednak podobnie jak w przypadku telekonferencji większa ilość osób uczestniczących w wideokonferencji zwiększa wymagania łącza internetowego do ok 4/1mbps.
+Z racji świadczonych usług dla klientów międzynarodowych niezbędne jest zapewnienie odpowiedniej przepustowości sieci do prowadzenia tele oraz videokonferencji. Zalecana przez producenta oprogramowania (Skype) minimalna przepustowość łącza pozwalająca na prowadzenie telekonferencji wynosi 30/30 kb/s, jednak w przypadku większej ilości osób rozmawiających jednocześnie wymagane jest szybsze łącze, ok. 200/100 kb/s. Wideokonferencje wymagają znacznie szybszego połączenia. Minimalna prędkość podana przez producenta to 128/128 kb/s, jednak podobnie jak w przypadku telekonferencji większa ilość osób uczestniczących w wideokonferencji zwiększa wymagania łącza internetowego do ok 4/1 Mb/s.
 \subsection{Sieć bezprzewodowa}
 \paragraph{}
 W każdej sali konferencyjnej znajduje się punkt dostępowy sieci bezprzewodowej  oferujący jedynie dostęp do Internetu i innych komputerów w obrębie tej sali. Ma to na celu zwiększenie bezpiczeństwa i zablokowanie dostępu do sieci wewnętrznej firmy osobom postronnym. Sieć bezprzewodowa wykoanna będzie w standardzie 802.11n, będącym całkowicie zgodnym z poprzednim standardem 802.11g. Uwierzytelnienie użytkowników podłączających się do sieci odbywać się będzie za pomocą szyfrowania $WPA-PSK$.
@@ -50,21 +50,24 @@ W celu zapewnienia jak najlepszej jakości usług sieciowych, odpowiednich przep
 \paragraph{}
 Szacując ruch sieciowy w firmie należy rozdzielić ruch wewnątrz sieci lokalnej oraz ruch do sieci zewnętrznej (Internet). W przypadku analizy wymaganej przepustowości na zewnątrz sieci trzeba uwzględnić wymagania, które stawia wykorzystywane oprogramowanie.
 \paragraph{}
-Analizując profil oferowanych usług przez firmę, wykorzystywane oprogramowanie oraz specyfike branży, udało się nam ustalić, iż zalecaną przepustowością łącza powinna posiadać parametry :
+Analizując profil oferowanych usług przez firmę, wykorzystywane oprogramowanie oraz specyfike branży zalecane łącze internetowe powinno posiadać następujące parametry :
 \begin{itemize}
-	\item Download : 30 Mbit$/$s
-	\item Upload : 20 Mbit$/$s
+	\item Download : 40 Mb/s
+	\item Upload : 30 Mb/s
 \end{itemize}
 \paragraph{}
 W celu zapewnienia skalowalności sieci, w przypadku zwiekszenai zatrudnionej liczby pracowników, umowa powinna byc zawarta na czas nieokreślony. Daje to możliwość w każdej chwili zwiększenia przepustowości łącza do wymaganej, lub w przypadku redukcji kosztów na zminiejszenie.
 
+\paragraph{}
+Poniższa tabela prezentuje maksymalne chwilowe obciążenie sieci przez jednego użytkownika. Z uwagi na fakt, iż wykorzystanie łącza przez jednego klienta zmienia się w ciągu dnia i sporadycznie dochodzi do wartości zaprezentowanych w tabeli podane wyżej parametry łącza internetowego spełniają wymagania firmy.
+
 \begin{center}
     \begin{tabular}{|c|c|c|}
     \hline
-       & Download [Mb/s]                & Upload [MB/s] \\ \hline
+       & Download [Mb/s]                & Upload [Mb/s] \\ \hline
        Komunikator internetowy          & 0,1   & 0,1   \\ \hline
-       Telekonferencje                  & 0,1   & 0,1   \\ \hline
-       Wideokonferencje                 & 2     & 0,5   \\ \hline
+       Telekonferencje                  & 0,2   & 0,1   \\ \hline
+       Wideokonferencje                 & 4     & 1   \\ \hline
        Program pocztowy                 & 1     & 0,5   \\ \hline
        Zdalny pulpit (TeamViewer, RD)   & 5     & 5     \\ \hline
        System kontroli wersji           & 1     & 0,5   \\ \hline
@@ -77,7 +80,7 @@ W celu zapewnienia skalowalności sieci, w przypadku zwiekszenai zatrudnionej li
 
 
 \begin{itemize}
-  \item Połączenie między dwoma budnykami firmy będzię zrealizowane za pomocą światłowodu 10 Gb/s
+  \item Zważając na fakt, iż dwie siedziby firmy znajdują się w pewnej odległości od siebie, a niezbędny jest stały i szybki dostep do serwerów znajdujących się w jednym z budynków połączenie między dwoma budnykami firmy będzię zrealizowane za pomocą światłowodu 10 Gb/s
 
   \item Ze względu na fakt, iż główny ruch w sieci odbywa się między użytkownikiem, a serwerem, gdzie przechowywany jest kod i aplikacje testowe, połączenia pionowe powinny zapewniać większą przepustowość, niż połączenia  poziome. Ten typ połączeń wykonany zostanie za pomocą okablowania typu 1000Base-T Gigabit Ethernet, skrętka ekranowana kategori 6.
 
