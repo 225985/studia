@@ -49,17 +49,18 @@ W celu zapewnienia jak najlepszej jakości usług sieciowych, odpowiednich przep
 \subsection{Minimalna wymagana przepustowość}
 \paragraph{}
 Szacując ruch sieciowy w firmie należy rozdzielić ruch wewnątrz sieci lokalnej oraz ruch do sieci zewnętrznej (Internet). W przypadku analizy wymaganej przepustowości na zewnątrz sieci trzeba uwzględnić wymagania, które stawia wykorzystywane oprogramowanie.
-\paragraph{}
-Analizując profil oferowanych usług przez firmę, wykorzystywane oprogramowanie oraz specyfike branży zalecane łącze internetowe powinno posiadać następujące parametry :
-\begin{itemize}
-	\item Download : 40 Mb/s
-	\item Upload : 30 Mb/s
-\end{itemize}
-\paragraph{}
-W celu zapewnienia skalowalności sieci, w przypadku zwiekszenai zatrudnionej liczby pracowników, umowa powinna byc zawarta na czas nieokreślony. Daje to możliwość w każdej chwili zwiększenia przepustowości łącza do wymaganej, lub w przypadku redukcji kosztów na zminiejszenie.
 
 \paragraph{}
-Poniższa tabela prezentuje maksymalne chwilowe obciążenie sieci przez jednego użytkownika. Z uwagi na fakt, iż wykorzystanie łącza przez jednego klienta zmienia się w ciągu dnia i sporadycznie dochodzi do wartości zaprezentowanych w tabeli podane wyżej parametry łącza internetowego spełniają wymagania firmy.
+Szacowany dzienny przepływ danych w sieci wewnętrznej dla jednego pracownika wynosi ok. 200 Mb. 
+Biorąc pod uwage fakt, iż serwerownia mieści się w budynku pierwszym, a w budynku drugim będzie pracować ok. 75 osób, można przyjąć założenie, że dzienny transfer pomiędzy budynkami wyniesie 15 Gb. 
+Ruch sieciowy nie jest stały w ciągu dnia, ze względu na sytuacje losowe wymagające wysokiej przepustowości sieci (np. reinstalacja systemu, aktualizacja oprogramowania, tworzenie kopii zapasowych, pobieranie nowego oprogramowania). 
+Z tego względu budynki powinny zostać połączone światłowodem.
+
+\paragraph{}
+Poniższa tabela przedstawia zalecane przez producenta oprogramowania parametry przepsutowości łącza dla pojedynczego użytkownika. 
+W najgorszym hipotetycznym przypadku potrzebuje on przepustowości rzędu 11/7 Mb/s.
+Takie zapotrzebowanie na łącze jest jednak bradzo mało prawdopodobne.
+Mimo tego, należy wziąc pod uwagę możliwość prowadzenia kilku wideokonferencji w tym samym czasie bez znacznego ograniczania dostępu do Internetu reszcie pracowników.
 
 \begin{center}
     \begin{tabular}{|c|c|c|}
@@ -67,13 +68,27 @@ Poniższa tabela prezentuje maksymalne chwilowe obciążenie sieci przez jednego
        & Download [Mb/s]                & Upload [Mb/s] \\ \hline
        Komunikator internetowy          & 0,1   & 0,1   \\ \hline
        Telekonferencje                  & 0,2   & 0,1   \\ \hline
-       Wideokonferencje                 & 4     & 1   \\ \hline
+       Wideokonferencje                 & 4     & 1     \\ \hline
        Program pocztowy                 & 1     & 0,5   \\ \hline
        Zdalny pulpit (TeamViewer, RD)   & 5     & 5     \\ \hline
-       System kontroli wersji           & 1     & 0,5   \\ \hline
        Przeglądanie internetu           & 1     & 0,5   \\ \hline
+       \textbf{SUMA}					& \textbf{11,3}  & \textbf{7,2}	\\ \hline
    \end{tabular}
 \end{center}
+
+\paragraph{}
+Podsumowując wymagania dotyczące przepsutowości sieci zalecane łącze internetowe powinno posiadać następujące parametry :
+\begin{itemize}
+	\item Download : 20 Mb/s
+	\item Upload : 10 Mb/s
+\end{itemize}
+
+\paragraph{}
+W celu zapewnienia ciągłości połączenia z siecią Internet zalecane jest wydzierżawienie łącza zapasowego o przepustowości 10/5 Mb/s.
+
+\paragraph{}
+W celu zapewnienia skalowalności sieci, w przypadku zwiekszenai zatrudnionej liczby pracowników, umowa powinna byc zawarta na czas nieokreślony. Daje to możliwość w każdej chwili zwiększenia przepustowości łącza do wymaganej, lub w przypadku redukcji kosztów na zminiejszenie.
+
 
 \subsection{Okablowanie}
 \paragraph{}

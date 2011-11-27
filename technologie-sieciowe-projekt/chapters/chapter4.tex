@@ -1,16 +1,23 @@
 \section{Założenia projektowe}
 \paragraph{}
+Projekt zakłada stworzenie sieci dla firmy zatrudniającej 180 pracowników, mającej siedzibę w dwóch budynkach oddalonych od siebie o ok. 50 m. Sieć będzie nowoczesna i łatwa do rozbudowy w przyszłości.
+
+\paragraph{}
+W każdym budynku będą znajdować się dwa przełączniki warsty trzeciej połączone funkcją EtherChannel w celu równomiernego rozłożenia obciązenia sieci. Aby zapewnić ciągłość dostępu do Internetu wykonane zostaną dwa przyłącza - głowne oraz zapasowe. W celu obsługi podłączenia z Internetem wykorzystane zostną dwa routery (po jednym na pzyłącze) wspierające protokół $VRRP$ zapewniający niezawodność połączenia.
+
+\paragraph{}
+Bużet przeznaczony na inwestycję wynosi 150,000 PLN.
+
+\paragraph{}
 Główne założenia projektowe :
 \begin{enumerate}
-	\item Wykorzytane technologie z rodziny Ethernet
-	\item Okablowanie szkieletowe za pomocą technologii GigbitEthernet, poziome - FastEthernet, połączenie między budynkami - światłowód.
-	\item Wykorzystanie technologii VLAN w celu ograniczenia kolizji  w sieci, ułatwienia prac członkom zespołów programistycznych, zwiększenia bezpieczeństwa sieci
-	\item Zapewnienie odpowiedniej konfiguracji sieci bezprzewodowej i kontroli dostępu.
-	\item W celu zapewnienia niezawodności połącenia z internetem, dzierżawa dwóch łączy od niezaleznych operatorów.
+	\item Okablowanie szkieletowe za pomocą technologii 1000Base-T Gigabit Ethernet, poziome - 100Base-T Fast Ethernet, połączenie między budynkami - światłowód.
+	\item Wykorzystanie technologii VLAN w celu ograniczenia kolizji  w sieci, ułatwienia prac członkom zespołów programistycznych, zwiększenia bezpieczeństwa sieci. 7 sieci VLAN, ok. 25 pracowników w każdej.
+	\item Zapewnienie odpowiedniej konfiguracji sieci bezprzewodowej i kontroli dostępu - sieć zabezpieczona hasłem z szyfrowaniem WPA-PSK, z ograniczonym dostępem do zasobów wewnętrznych firmy.
+	\item W celu zapewnienia niezawodności połącenia z internetem, dzierżawa dwóch łączy od niezaleznych operatorów TODO.
 	\item Umożliwienie bezpiecznej i bezproblemowej pracy zdalnej za pomocą Remote Desktop. W tym celu wykorzystana zostanie technologia VPN.
-	\item Bezproblemowe korzystanie z usług w sieci wewnętrznej : upload i download kodu, testowanie aplikacji, dostęp do bazy danych
-	\item Odpowiednia priorytetyzacja łącza : tele i widekonferencje - wysoki priorytet, przeglądanie stron www - niski
-	\item Estetyka wykonania instalacji, ukrycie kabli w podwieszanym suficie, korytkach, podłodze
-	\item Zapenienie maksymalnego bezpieczeństwa sieci : ochrona przed atakami z zewnątrz, a także odporność na fizyczne uszkodzenia
-	\item Użycie wyspecyfikowanych zabezpieczeń dla użytkowników zewnętrznych korzystających z internetu w sieci.
+	\item Bezproblemowe korzystanie z usług w sieci wewnętrznej : upload i download kodu, testowanie aplikacji, dostęp do bazy danych.
+	\item Odpowiednia priorytetyzacja łącza : tele i widekonferencje - wysoki priorytet, przeglądanie stron www - niski - zastosowanie menadżera pasma.
+	\item Estetyka wykonania instalacji - ukrycie kabli w podwieszanym suficie i podłodze lub w korytkach.
+	\item Zapenienie maksymalnego bezpieczeństwa sieci : ochrona przed atakami z zewnątrz, a także odporność na fizyczne uszkodzenia - ograniczenie dostępu do sieci, zastosowanie oprogramowania antywirusowego NOD32, automatyczna aktualizacja oprogramowania (łaty bezpieczeństwa), zastosowanie plastikowych osłon przewodów.
 \end{enumerate}
