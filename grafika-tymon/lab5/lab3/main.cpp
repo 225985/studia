@@ -4,7 +4,7 @@
 #include <GLUT/glut.h>
 #include <OpenGL/OpenGL.h>
 
-#define N 20
+#define N 100
 #define M_POINTS 1
 #define M_MESH   2
 #define M_FILLED 3
@@ -19,12 +19,17 @@ typedef float p3[3];
 
 float tab[N][N][3];
 float color[N][N][3];
+float normal[N][N][3];
+float light_pos[2][4] = {
+    {0.0, 0.0, 0.0, 0.0},
+    {0.0, 0.0, 0.0, 0.0}
+};
 bool spin = false;
 
-int model = M_MESH;
+int model = M_FILLED;
 static GLfloat theta[] = {0.0, 0.0, 0.0};
-static GLfloat beta[] = {0.0, 0.0, 0.0};
-static GLfloat r=10.0;
+static GLfloat beta[2][3] = {{7, 0.0, 0.0}, {-3.5, 0.0, 0.0}};
+static GLfloat r=0.01;
 static GLfloat pix2angle;
 static GLfloat status = 0;
 static int x_pos_old = 0;
@@ -56,14 +61,14 @@ int main (int argc, char ** argv){
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(600, 600);
-    glutCreateWindow("Rzutowanie perspektywiczne");
+    glutCreateWindow("Laboratorium nr 5");
     
     glutDisplayFunc(draw);
     glutReshapeFunc(reshape);
     glutKeyboardFunc(keys);
     glutMouseFunc(mouse);
     glutMotionFunc(motion);
-    //glutIdleFunc(spinEgg);
+    glutIdleFunc(spinEgg);
     
     //fillRandomColors();
     init();
@@ -122,18 +127,18 @@ void fillRandomColors(){
 }
 
 void spinEgg(){
-//    if(spin){
-//        theta[0] += 0.05;
-//        if(theta[0] > 360.0) theta[0] -= 360.0;
-//        
-//        theta[1] += 0.15;
-//        if(theta[1] > 360.0) theta[1] -= 360.0;
-//        
-//        theta[2] += 0.05;
-//        if(theta[2] > 360.0) theta[2] -= 360.0;
-//        
-//        glutPostRedisplay();
-//    }
+    if(spin){
+        theta[0] += 0.05;
+        if(theta[0] > 360.0) theta[0] -= 360.0;
+        
+        theta[1] += 0.15;
+        if(theta[1] > 360.0) theta[1] -= 360.0;
+        
+        theta[2] += 0.05;
+        if(theta[2] > 360.0) theta[2] -= 360.0;
+        
+        glutPostRedisplay();
+    }
 }
 
 void calc(){
@@ -146,9 +151,34 @@ void calc(){
 			tab[i][j][0] = (-90*pow(u, 5.0) + 225*pow(u, 4.0) - 270*pow(u, 3.0) + 180*pow(u, 2.0) - 45*u) * cos(3.14 * v) ;
 			tab[i][j][1] =  160*pow(u, 4.0) - 320*pow(u, 3.0) + 160*pow(u, 2.0) - 5.0;
 			tab[i][j][2] = (-90*pow(u, 5.0) + 225*pow(u, 4.0) - 270*pow(u, 3.0) + 180*pow(u, 2.0) - 45*u) * sin(3.14 * v);
-		}
+            
+            GLfloat xu = (-450*pow(u,4) + 900*pow(u,3) - 810*pow(u,2) + 360*u - 45)*cos(3.14 * v);
+            GLfloat yu = 640*pow(u,3) - 960*pow(u,2) + 320*u;
+            GLfloat zu = (-450*pow(u,4) + 900*pow(u,3) - 810*pow(u,2) + 360*u - 45)*sin(3.14 * v);
+            
+            GLfloat xv = 3.14 * (90*pow(u,5) - 225*pow(u,4) + 270*pow(u,3) - 180*pow(u,2) + 45*u)*sin(3.14 * v);
+            GLfloat yv = 0;
+            GLfloat zv = -3.14 * (90*pow(u,5) - 225*pow(u,4) + 270*pow(u,3) - 180*pow(u,2) + 45*u)*cos(3.14 * v);
+            
+            normal[i][j][0] = yu*zv - zu*yv;
+            normal[i][j][1] = zu*xv - xu*zv;
+            normal[i][j][2] = xu*yv - yu*xv;
+            
+            GLfloat len = sqrt(pow(normal[i][j][0],2) + pow(normal[i][j][1],2) + pow(normal[i][j][2],2));	
+            normal[i][j][0] /= len;
+            normal[i][j][1] /= len;
+            normal[i][j][2] /= len;
+            
+            if(i >= N/2) {
+                normal[i][j][0] *= -1;
+                normal[i][j][1] *= -1;
+                normal[i][j][2] *= -1;
+            }
+        }
         
 	}
+    
+
 }
 
 void egg(){
@@ -193,21 +223,27 @@ void egg(){
             for(int i=0; i<N/2; i++){
                 for(int j=0; j<N-1; j++){
                     glColor3fv(color[i][j]);
+                    glNormal3fv(normal[i][j]);
                     glVertex3fv(tab[i][j]);
                     
                     glColor3fv(color[i+1][j]);
+                    glNormal3fv(normal[i+1][j]);
                     glVertex3fv(tab[i+1][j]);
                     
                     glColor3fv(color[i][j+1]);
+                    glNormal3fv(normal[i][j+1]);
                     glVertex3fv(tab[i][j+1]);
                     
                     glColor3fv(color[i][j+1]);
+                    glNormal3fv(normal[i][j+1]);
                     glVertex3fv(tab[i][j+1]);
                     
                     glColor3fv(color[i+1][j+1]);
+                    glNormal3fv(normal[i+1][j+1]);
                     glVertex3fv(tab[i+1][j+1]);
                     
                     glColor3fv(color[i+1][j]);
+                    glNormal3fv(normal[i+1][j]);
                     glVertex3fv(tab[i+1][j]);
                 }
             }
@@ -215,21 +251,27 @@ void egg(){
             for(int i=N-1; i>N/2; i--){
                 for(int j=0; j<N-1; j++){
                     glColor3fv(color[i][j]);
+                    glNormal3fv(normal[i][j]);
                     glVertex3fv(tab[i][j]);
                     
                     glColor3fv(color[i-1][j]);
+                    glNormal3fv(normal[i-1][j]);
                     glVertex3fv(tab[i-1][j]);
                     
                     glColor3fv(color[i][j+1]);
+                    glNormal3fv(normal[i][j+1]);
                     glVertex3fv(tab[i][j+1]);
                     
                     glColor3fv(color[i][j+1]);
+                    glNormal3fv(normal[i][j+1]);
                     glVertex3fv(tab[i][j+1]);
                     
                     glColor3fv(color[i-1][j+1]);
+                    glNormal3fv(normal[i-1][j+1]);
                     glVertex3fv(tab[i-1][j+1]);
                     
                     glColor3fv(color[i-1][j]);
+                    glNormal3fv(normal[i-1][j]);
                     glVertex3fv(tab[i-1][j]);
                 }
             }
@@ -242,6 +284,53 @@ void egg(){
 
 void init(){
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    
+    GLfloat mat_ambient[]  = {1.0, 1.0, 1.0, 1.0};        
+    GLfloat mat_diffuse[]  = {0.8, 0.8, 0.8, 1.0};    
+    GLfloat mat_specular[] = {0.8, 0.8, 0.8, 1.0};    
+    GLfloat mat_shininess  = {50.0};
+      
+    GLfloat light0_ambient[] = {0.0, 0.0, 0.0, 1.0};
+    GLfloat light0_diffuse[] = {1.0, 0.5, 0.2, 1.0};        
+    GLfloat light0_specular[]= {1.0, 0.5, 0.2, 1.0};
+
+    GLfloat light1_ambient[] = {0.0, 0.0, 0.0, 1.0};
+    GLfloat light1_diffuse[] = {1.0, 1.0, 0.0, 1.0};        
+    GLfloat light1_specular[]= {1.0, 1.0, 0.0, 1.0};
+
+    GLfloat att_constant  = {1.0};
+    GLfloat att_linear    = {0.05}; 
+    GLfloat att_quadratic  = {0.001};
+    
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+    glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
+    glMaterialf(GL_FRONT, GL_SHININESS, mat_shininess);
+    
+    glLightfv(GL_LIGHT0, GL_AMBIENT, light0_ambient);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, light0_diffuse);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, light0_specular);
+    glLightfv(GL_LIGHT0, GL_POSITION, light_pos[0]);
+    
+    glLightfv(GL_LIGHT1, GL_AMBIENT, light1_ambient);
+    glLightfv(GL_LIGHT1, GL_DIFFUSE, light1_diffuse);
+    glLightfv(GL_LIGHT1, GL_SPECULAR, light1_specular);
+    glLightfv(GL_LIGHT1, GL_POSITION, light_pos[1]);
+    
+    glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, att_constant);
+    glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, att_linear);
+    glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, att_quadratic);
+    
+    glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, att_constant);
+    glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, att_linear);
+    glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, att_quadratic);
+    
+    glShadeModel(GL_SMOOTH); // właczenie łagodnego cieniowania
+    glEnable(GL_LIGHTING);   // właczenie systemu oświetlenia sceny 
+    glEnable(GL_LIGHT0);     // włączenie źródła o numerze 0
+    glEnable(GL_LIGHT1);     // włączenie źródła o numerze 1
+    glEnable(GL_DEPTH_TEST); // włączenie mechanizmu z-bufora 
+
 }
 
 void mouse(int btn, int state, int x, int y){
@@ -345,41 +434,48 @@ void draw(){
         }
     } else {
         if(status == 1){
-            beta[0] += delta_x/40.0;
-            beta[1] += delta_y/40.0;
+            beta[0][0] += delta_x/40.0;
+            beta[0][1] += delta_y/40.0;
         } else if(status == 2){
-            r += delta_zoom/10.0;
+            beta[1][0] += delta_x/40.0;
+            beta[1][1] += delta_y/40.0;
         }
-                
-        if(beta[1] >= M_PI) beta[1] -= 2*M_PI;
-        else if(beta[1] <= -M_PI) beta[1] += 2*M_PI;
-    
-        if(beta[1] > M_PI/2 || beta[1] < -M_PI/2) yp = -1;
-        else yp = 1;
         
-        viewer[0] = r*cos(beta[0])*cos(beta[1]);
-        viewer[1] = r*sin(beta[1]);
-        viewer[2] = r*sin(beta[0])*cos(beta[1]);
+        for(int b=0; b<2; b++){
+            if(beta[b][1] >= M_PI) beta[b][1] -= 2*M_PI;
+            else if(beta[b][1] <= -M_PI) beta[b][1] += 2*M_PI;
+            
+            if(beta[b][1] > M_PI/2 || beta[b][1] < -M_PI/2) yp = -1;
+            else yp = 1;
+            
+            light_pos[b][0] = r*cos(beta[b][0])*cos(beta[b][1]);
+            light_pos[b][1] = r*sin(beta[b][1]);
+            light_pos[b][2] = r*sin(beta[b][0])*cos(beta[b][1]);
+            cout << "b=" << b << " => " << beta[b][0] << "," << beta[b][1] << "," << beta[b][2] << endl;
+
+        }
         
-        cout << beta[0] << " : " << beta[1] << endl;
-        cout << viewer[0] << " : " << viewer[1] << " : " << viewer[2] << endl;
+        glLightfv(GL_LIGHT0, GL_POSITION, light_pos[0]);
+        glLightfv(GL_LIGHT1, GL_POSITION, light_pos[1]);
+
     }
     
-    gluLookAt(viewer[0], viewer[1], viewer[2], 0.0, 0.0, 0.0, 0.0, yp, 0.0);
+    gluLookAt(viewer[0], viewer[1], viewer[2], 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
     axes();
     
-    if(zad1){
+    //if(zad1){
         glRotatef(theta[0], 1.0, 0.0, 0.0);
         glRotatef(theta[1], 0.0, 1.0, 0.0);
         glRotatef(theta[2], 0.0, 0.0, 1.0);
-    }
+    //}
     
     glColor3f(1.0, 1.0, 1.0);
     
     if(!zad1){
         egg();
         //glutWireTeapot(3.0);
+        //glutSolidTeapot(3.0);
     } else {
         egg();
         //glutWireTeapot(3.0);
