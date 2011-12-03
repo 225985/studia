@@ -1,5 +1,8 @@
 %h2= @project.name
 
+.owner= @project.owner.email
+.description= @project.description
+
 = link_to "Edit", edit_project_path(@task), :class => "btn"
 = link_to "Delete", project_path(@task), :method => :delete, :class => "btn danger"
 

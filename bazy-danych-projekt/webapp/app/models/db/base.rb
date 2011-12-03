@@ -6,7 +6,8 @@ module Db
     "float"           => lambda {|s| s.to_f },
     "db.Milestone"    => lambda {|s| Db::Milestone.find(s.to_i) },
     "db.Project"      => lambda {|s| Db::Project.find(s.to_i) },
-    "db.Task"         => lambda {|s| Db::Task.find(s.to_i) }
+    "db.Task"         => lambda {|s| Db::Task.find(s.to_i) },
+    "db.User"         => lambda {|s| Db::User.find(s.to_i) }
   }
 
 

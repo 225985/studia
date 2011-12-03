@@ -19,6 +19,7 @@ public class Project extends DbObject {
     public Project(){
         super();
         tasks = new ArrayList<Task>();
+        comments = new ArrayList<Comment<Project>>();
     }
 
     public Project(int id){
@@ -55,6 +56,7 @@ public class Project extends DbObject {
     }
 
     public void setOwner(User owner) {
+        owner.addProject(this);
         this.owner = owner;
     }
 
@@ -94,8 +96,8 @@ public class Project extends DbObject {
         return comments;
     }
 
-    public void setComments(List<Comment<Project>> comments) {
-        this.comments = comments;
+    public void addComment(Comment<Project> comment) {
+        this.comments.add(comment);
     }
 
     public List<Role> getRoles() {
