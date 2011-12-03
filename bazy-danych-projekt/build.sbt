@@ -14,7 +14,7 @@ test in assembly := {}
 
 assembleArtifact in packageScala := false
 
-// resolvers += "Db4o repository" at "http://source.db4o.com/maven"
+resolvers += "Media vks" at "http://media.verknowsys.com/maven2-repository/"
 
 libraryDependencies ++= Seq("org.neodatis" % "neodatis-odb" % "1.9.24.679")
 
