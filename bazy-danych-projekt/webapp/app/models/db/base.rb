@@ -10,7 +10,9 @@ module Db
     "db.User"         => lambda {|s| Db::User.find(s.to_i) }
   }
 
-
+  def self.cast(x)
+    Db::CAST[x]
+  end
 
   module Base
     extend ActiveSupport::Concern
@@ -30,7 +32,7 @@ module Db
             # Rails.logger.ap self.java_class.declared_method_smart("set#{k.to_s.camelcase}")
             # Rails.logger.ap self.java_class.declared_method_smart("set#{k.to_s.camelcase}").argument_types.first.name
             if v.is_a?(String) && m = (self.java_class.declared_method_smart("set#{k.to_s.camelcase}") rescue nil)
-              if c = Db::CAST[m.argument_types.first.name]
+              if c = Db.cast(m.argument_types.first.name)
                 v = c.call(v)
               end
             end
