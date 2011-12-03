@@ -47,16 +47,21 @@ public class Alg {
         }
     }
 	
-	public void printResult(){
+	public String printResult(){
+		String result = "";
 		for(int i=0; i<n; i++)
 		{
-			System.out.print(i+1 + " : ");
+			result += i+1;
+			result += " : ";
 			for( Integer p : processors.get(i))
 			{
-				System.out.print(p.toString() + ", ");
+				result += tasks[p.intValue()-1]; 
+				result += ", ";
 			}
-			System.out.println();
+			result += "\n";
 		}
+		
+		return result;
 	}
     
     public void runAlt(){
