@@ -3,6 +3,7 @@
 / = f.input :user, :as => :select
 = f.input :deadline, :input_html => { :class => 'dateBox' }
 = f.input :estimated_time
+= f.input :milestone, :as => :select, :collection => @project.milestones.map {|p| [p.name, p.id]}, :include_blank => true, :selected => params[:milestone_id]
 / = f.input :project, :as => :select, :collection => Db::Project.all.map {|p| [p.name, p.id]}
 / = f.input :kind, :as => :select
 .actions

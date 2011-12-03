@@ -4,5 +4,13 @@
 
 %h2= @task.name
 
+- if @task.milestone
+  %h4
+    Milestone:
+    = link_to @task.milestone.name, project_milestone_path(@project, @task.milestone)
+%h4
+  Project:
+  = link_to @task.project.name, project_path(@task.project)
+
 = link_to "Edit", edit_project_task_path(@project, @task), :class => "btn"
 = link_to "Delete", project_task_path(@project, @task), :method => :delete, :class => "btn danger"

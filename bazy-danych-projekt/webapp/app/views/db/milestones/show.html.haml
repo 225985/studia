@@ -1,5 +1,8 @@
 %h2= @milestone.name
 
+for project
+= link_to @project.name, project_path(@project)
+
 .deadline
   Deadline:
   = l(Date.parse(@milestone.deadline.to_s), :format => :long)
@@ -16,4 +19,4 @@ Tasks
     %li= link_to task.name, project_task_path(@project, task.id)
 
 
-= link_to "Add task", new_project_task_path(@project, :task => {:milestone_id => @milestone.id}), :class => "btn success"
+= link_to "Add task", new_project_task_path(@project, :milestone_id => @milestone.id), :class => "btn success"

@@ -16,6 +16,7 @@ public class Task extends DbObject {
     protected List<Attachment<Task>> attachments;
     protected int estimatedTime;
     protected Project project;
+    protected Milestone milestone;
 
     public Project getProject() {
         return project;
@@ -23,6 +24,30 @@ public class Task extends DbObject {
 
     public void setProject(Project project) {
         this.project = project;
+        this.project.addTask(this);
+    }
+
+    public Milestone getMilestone(){
+        return this.milestone;
+    }
+
+    public Boolean hasMilestone(){
+        return (this.milestone != null);
+    }
+
+    public void setMilestone(Milestone milestone){
+        if(this.milestone != milestone){
+            if(this.milestone != null){
+                this.milestone.removeTask(this);
+                this.milestone.save();
+            }
+            this.milestone = milestone;
+            this.save();
+            if(this.milestone != null){
+                this.milestone.addTask(this);
+                this.milestone.save();
+            }
+        }
     }
 
     public Task(){

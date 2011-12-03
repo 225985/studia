@@ -24,16 +24,16 @@ module Db
       def load(attrs = {})
         attrs.each do |k,v|
           if self.respond_to?(:"#{k}=")
-            Rails.logger.ap v
-            Rails.logger.ap self.java_class.declared_method_smart("set#{k.to_s.camelcase}")
-            Rails.logger.ap self.java_class.declared_method_smart("set#{k.to_s.camelcase}").argument_types.first.name
+            # Rails.logger.ap v
+            # Rails.logger.ap self.java_class.declared_method_smart("set#{k.to_s.camelcase}")
+            # Rails.logger.ap self.java_class.declared_method_smart("set#{k.to_s.camelcase}").argument_types.first.name
             if v.is_a?(String) && m = (self.java_class.declared_method_smart("set#{k.to_s.camelcase}") rescue nil)
               if c = CAST[m.argument_types.first.name]
                 v = c.call(v)
               end
             end
 
-            Rails.logger.ap v
+            # Rails.logger.ap v
 
             self.send(:"#{k}=", v)
           end

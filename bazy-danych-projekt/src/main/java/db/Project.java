@@ -31,9 +31,15 @@ public class Project extends DbObject {
     public Task createTask(Task task){
         task.save(); // fucking important!!!
         task.setProject(this);
-        this.tasks.add(task);
-        this.save();
+        this.addTask(task);
         return task;
+    }
+
+    public void addTask(Task task){
+        if(!this.tasks.contains(task)){
+            this.tasks.add(task);
+            this.save();
+        }
     }
 
     public Milestone createMilestone(Milestone milestone){

@@ -12,7 +12,7 @@
 %h3 Milestones
 %ul
   - @project.milestones.each do |milestone|
-    %li= link_to milestone.name, project_miestone_path(@project, milestone.id)
+    %li= link_to milestone.name, project_milestone_path(@project, milestone.id)
 
 = link_to "Add milestone", new_project_milestone_path(@project), :class => "btn success"
 
