@@ -5,6 +5,7 @@ module Db
 
     def new
       @milestone = @project.milestones.new
+      @milestone.deadline ||= Time.now
     end
 
     def create

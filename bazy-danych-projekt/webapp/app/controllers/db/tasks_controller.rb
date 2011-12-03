@@ -11,6 +11,7 @@ module Db
 
     def new
       @task = @project.tasks.new
+      @task.deadline ||= Time.now
       # @task.milestone = Db::Milestone.find(params[:milestone_id]) if params[:milestone_id]
     end
 
