@@ -9,10 +9,10 @@ class NaiveAlgo {
     private int [] machines = null;
     
     NaiveAlgo(int n, int m,  int [] tab){
-        this.n = n;
-        this.m = m;
-        this.tab = tab;
-        machines = new int[this.m];
+        this.n = n; // count of tasks
+        this.m = m; // count of machines
+        this.tab = tab; // tasks
+        machines = new int[this.m]; //cost on each machine
     }
     
     NaiveAlgo(){
