@@ -1,17 +1,17 @@
 module Db
-  CAST = {
-    "java.util.Date"  => lambda {|s| Date.parse(s).to_time rescue nil },
-    "int"             => lambda {|s| s.to_i },
-    "double"          => lambda {|s| s.to_f },
-    "float"           => lambda {|s| s.to_f },
-    "db.Milestone"    => lambda {|s| s.blank? ? nil : Db::Milestone.find(s.to_i) },
-    "db.Project"      => lambda {|s| Db::Project.find(s.to_i) },
-    "db.Task"         => lambda {|s| Db::Task.find(s.to_i) },
-    "db.User"         => lambda {|s| Db::User.find(s.to_i) }
-  }
+  # CAST =
 
   def self.cast(x)
-    CAST[x]
+    {
+      "java.util.Date"  => lambda {|s| Date.parse(s).to_time rescue nil },
+      "int"             => lambda {|s| s.to_i },
+      "double"          => lambda {|s| s.to_f },
+      "float"           => lambda {|s| s.to_f },
+      "db.Milestone"    => lambda {|s| s.blank? ? nil : Db::Milestone.find(s.to_i) },
+      "db.Project"      => lambda {|s| Db::Project.find(s.to_i) },
+      "db.Task"         => lambda {|s| Db::Task.find(s.to_i) },
+      "db.User"         => lambda {|s| Db::User.find(s.to_i) }
+    }[x]
   end
 
   module Base
