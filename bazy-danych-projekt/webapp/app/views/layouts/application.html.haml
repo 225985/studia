@@ -10,6 +10,10 @@
       #container { width: 800px; padding: 20px; }
 %body
   #container
+    - if signed_in?
+      Hello #{current_user.email}
+      = link_to "Logout", destroy_db_user_session_path
+
     .notice= notice
     .alert= alert
     = yield

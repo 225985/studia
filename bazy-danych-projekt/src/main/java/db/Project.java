@@ -19,6 +19,7 @@ public class Project extends DbObject {
     public Project(){
         super();
         tasks = new ArrayList<Task>();
+        milestones = new ArrayList<Milestone>();
         comments = new ArrayList<Comment<Project>>();
     }
 
@@ -33,6 +34,14 @@ public class Project extends DbObject {
         this.tasks.add(task);
         this.save();
         return task;
+    }
+
+    public Milestone createMilestone(Milestone milestone){
+        milestone.save(); // fucking important!!!
+        milestone.setProject(this);
+        this.milestones.add(milestone);
+        this.save();
+        return milestone;
     }
 
     public String getName() {

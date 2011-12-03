@@ -7,6 +7,11 @@ class Java::Db::Project
   def tasks
     ::ListProxy.new(self, :tasks, :project, Db::Task)
   end
+
+  def milestones
+    ::ListProxy.new(self, :milestones, :project, Db::Milestone)
+  end
+
   #
   # def milestones
   #   ::ListProxy.new(self, :milestones, :project, Db::Milestone)

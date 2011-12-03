@@ -14,9 +14,6 @@ module Db
     end
 
     def create
-      Rails.logger.debug Db::Project.all.to_a.inspect
-      Rails.logger.debug Db::Task.all.to_a.inspect
-
       @task = Db::Task.new(params[:java_db_task])
       @project.create_task @task
 

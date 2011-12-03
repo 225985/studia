@@ -4,11 +4,12 @@ module Db
   include_package "db"
 
   # Models = [Task, Project, Milestone]
-  Models = [Project, Task, User]
+  Models = [Project, Task, User, Milestone]
 
   Models.each do |model|
     puts model.inspect
   end
+
 end
 
 Dir[File.join(Rails.root, "app", "models", "db", "*.rb")].each {|f| require f }

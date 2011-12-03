@@ -1,5 +1,12 @@
 %h2= @milestone.name
 
+.deadline
+  Deadline:
+  = l(Date.parse(@milestone.deadline.to_s), :format => :long)
+
+.description
+  = @milestone.description
+
 = link_to "Edit", edit_project_milestone_path(@project, @milestone), :class => "btn"
 = link_to "Delete", project_milestone_path(@project, @milestone), :method => :delete, :class => "btn danger"
 

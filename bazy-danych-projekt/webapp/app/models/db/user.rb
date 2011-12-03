@@ -24,6 +24,7 @@ module Devise
 end
 
 class Java::Db::User
+
   include ActiveModel::Validations
   include ActiveModel::Conversion
   extend ActiveModel::Naming
