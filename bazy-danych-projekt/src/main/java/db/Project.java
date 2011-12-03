@@ -127,6 +127,14 @@ public class Project extends DbObject {
         return tasks;
     }
 
+    public List<Task> getTasksWithoutMilestone(){
+        List<Task> dupa = new ArrayList<Task>(this.tasks);
+        for(Task t : this.tasks){
+            if(t.hasMilestone()) dupa.remove(t);
+        }
+        return dupa;
+    }
+
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
     }

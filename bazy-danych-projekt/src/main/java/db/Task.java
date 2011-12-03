@@ -24,7 +24,7 @@ public class Task extends DbObject {
 
     public void setProject(Project project) {
         this.project = project;
-        this.project.addTask(this);
+        // this.project.addTask(this);
     }
 
     public Milestone getMilestone(){
