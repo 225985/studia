@@ -11,7 +11,7 @@ module Db
   }
 
   def self.cast(x)
-    Db::CAST[x]
+    CAST[x]
   end
 
   module Base
