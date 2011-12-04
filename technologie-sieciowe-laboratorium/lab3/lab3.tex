@@ -40,9 +40,7 @@
   \paragraph{}
   Celem ćwiczenia było opanowanie umijętności konfiguracji routingu statycznego oraz protokołu RIP w sieci LAN podzielonej na kilka domen rozgłoszeniowych.
 
-  \section{Zestawienie sieci}
-
-  \subsection{Adresacja}
+  \section{Adresacja}
 
   \begin{center}
     \begin{tabular}{|c|c|c|c|}
@@ -57,64 +55,11 @@
     \end{tabular}
   \end{center}
 
-  \subsection{Podłączenie oraz konfiguracja routerów i stacji roboczych}
+  \section{Podłączenie oraz konfiguracja routerów i stacji roboczych}
   \paragraph{}
   Routery R1 i R2 zostały podłączone kablami prostymi do przełączników. Stacje robocze połączone zostały z odpowiednimi przełącznikami również za pomoca kabli prostych. Połączenie między routerami zostało zestawione za pomocą kabla typu serial.
 
-  \subsubsection{Router R1}
-
-
-  \begin{verbatim}
-  # ustawienie nazwy routera
-  hostname TymonTobolski
-
-  # konfiguracja interfejsu FastEthernet0/0
-  int f0/0
-  ip address 10.0.193.1 255.255.255.0
-  no shutdown
-
-  # konfiguracja interfejsu Serial0/2/0
-  int s0/2/0
-  ip address 10.0.194.65 255.255.255.252
-  no shutdown
-
-
-  # sprawdzenie konfiguracji
-  show ip int brief
-
-  Interface       IP-Address  OK? Method  Status                  Protocol
-  FastEthernet0/0 10.0.193.1  YES manual  up                      up
-  FastEthernet0/1 unassigned  YES unset   administratively  down  down
-  Serial0/2/0     10.0.194.65 YES manual  up                      up
-  Serial0/2/1     unassigned  YES unset   administratively  down  down
-  \end{verbatim}
-
-  \subsubsection{Router R2}
-
-  \begin{verbatim}
-  # ustawienie nazwy routera
-  hostname JacekWieczorek
-
-  # konfiguracja interfejsu FastEthernet0/0
-  int f0/0
-  ip address 10.0.192.1 255.255.255.0
-  no shutdown
-
-  # konfiguracja interfejsu Serial0/2/0
-  int s0/2/0
-  ip address 10.0.194.66 255.255.255.252
-  no shutdown
-
-
-  # sprawdzenie konfiguracji
-  show ip int brief
-
-  Interface       IP-Address  OK? Method  Status                  Protocol
-  FastEthernet0/0 10.0.192.1  YES manual  up                      up
-  FastEthernet0/1 unassigned  YES unset   administratively  down  down
-  Serial0/2/0     10.0.194.66 YES manual  up                      up
-  Serial0/2/1     unassigned  YES unset   administratively  down  down
-  \end{verbatim}
+  \section{Konfiguracja}
 
   \subsubsection{Stacja robocza podsieci A}
   \begin{center}
@@ -143,6 +88,88 @@
     \end{tabular}
   \end{center}
 
+  \subsubsection{Router R1}
+
+  \begin{verbatim}
+  # ustawienie nazwy routera
+  hostname TymonTobolski
+
+  # konfiguracja interfejsu FastEthernet0/0
+  int f0/0
+  ip address 10.0.193.1 255.255.255.0
+  no shutdown
+
+  # konfiguracja interfejsu Serial0/2/0
+  int s0/2/0
+  ip address 10.0.194.65 255.255.255.252
+  no shutdown
+
+
+  # sprawdzenie konfiguracji
+  show ip int brief
+
+  Interface       IP-Address  OK? Method  Status                  Protocol
+  FastEthernet0/0 10.0.193.1  YES manual  up                      up
+  FastEthernet0/1 unassigned  YES unset   administratively  down  down
+  Serial0/2/0     10.0.194.65 YES manual  up                      up
+  Serial0/2/1     unassigned  YES unset   administratively  down  down
+
+
+  # tabele routingu
+  show ip route
+
+  Gateway of last resort is 10.0.195.0 to network 0.0.0.0
+
+      10.0.0.0/8 is variably subnetted, 4 subnets, 2 masks
+  C     10.0.194.64/30 is directly connected. Serial0/2/0
+  C     10.0.195.0/24 is directly connected, Loopback0
+  C     10.0.192.0/24 is directly connected, Serial0/2/0
+  C     10.0.193.0/24 is directly connected, FastEthernet0/0
+  S*  0.0.0.0/0 [1/0] via 10.0.195.0
+ \end{verbatim}
+
+  \subsubsection{Router R2}
+
+  \begin{verbatim}
+  # ustawienie nazwy routera
+  hostname JacekWieczorek
+
+  # konfiguracja interfejsu FastEthernet0/0
+  int f0/0
+  ip address 10.0.192.1 255.255.255.0
+  no shutdown
+
+  # konfiguracja interfejsu Serial0/2/0
+  int s0/2/0
+  ip address 10.0.194.66 255.255.255.252
+  no shutdown
+
+
+  # sprawdzenie konfiguracji
+  show ip int brief
+
+  Interface       IP-Address  OK? Method  Status                  Protocol
+  FastEthernet0/0 10.0.192.1  YES manual  up                      up
+  FastEthernet0/1 unassigned  YES unset   administratively  down  down
+  Serial0/2/0     10.0.194.66 YES manual  up                      up
+  Serial0/2/1     unassigned  YES unset   administratively  down  down
+
+
+  # tabele routingu
+  show ip route
+
+  Gateway of last resort is 10.0.195.0 to network 0.0.0.0
+
+      10.0.0.0/8 is variably subnetted, 4 subnets, 2 masks
+  C     10.0.194.64/30 is directly connected. Serial0/2/0
+  C     10.0.195.0/24 is directly connected, Loopback0
+  C     10.0.193.0/24 is directly connected, Serial0/2/0
+  C     10.0.192.0/24 is directly connected, FastEthernet0/0
+  S*  0.0.0.0/0 [1/0] via 10.0.195.0
+  \end{verbatim}
+
+
+
   \subsection{Weryfikacja łączności}
   \paragraph{}
   Poprawność podłącznia i konfiguracji urządzeń została przeprowadzona za pomocą polecenia \textbf{ping} między następującymi hostami.
@@ -162,37 +189,6 @@
       \hline
     \end{tabular}
   \end{center}
-
-  \subsection{Tabele routingu}
-
-  \subsubsection{Router R1}
-  \begin{verbatim}
-    show ip route
-
-    Gateway of last resort is 10.0.195.0 to network 0.0.0.0
-
-        10.0.0.0/8 is variably subnetted, 4 subnets, 2 masks
-    C     10.0.194.64/30 is directly connected. Serial0/2/0
-    C     10.0.195.0/24 is directly connected, Loopback0
-    C     10.0.192.0/24 is directly connected, Serial0/2/0
-    C     10.0.193.0/24 is directly connected, FastEthernet0/0
-    S*  0.0.0.0/0 [1/0] via 10.0.195.0
-  \end{verbatim}
-
-  \subsubsection{Router R2}
-  \begin{verbatim}
-    show ip route
-
-    Gateway of last resort is 10.0.195.0 to network 0.0.0.0
-
-        10.0.0.0/8 is variably subnetted, 4 subnets, 2 masks
-    C     10.0.194.64/30 is directly connected. Serial0/2/0
-    C     10.0.195.0/24 is directly connected, Loopback0
-    C     10.0.193.0/24 is directly connected, Serial0/2/0
-    C     10.0.192.0/24 is directly connected, FastEthernet0/0
-    S*  0.0.0.0/0 [1/0] via 10.0.195.0
-  \end{verbatim}
-
 
 
 \end{document}
