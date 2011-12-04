@@ -104,6 +104,10 @@
   ip address 10.0.194.65 255.255.255.252
   no shutdown
 
+  # konfiguracja routingu statycznego
+  ip route 0.0.0.0 0.0.0.0 10.0.195.0
+  ip route 10.0.192.0 255.255.255.0 serial0/2/0
+
 
   # sprawdzenie konfiguracji
   show ip int brief
@@ -143,6 +147,10 @@
   int s0/2/0
   ip address 10.0.194.66 255.255.255.252
   no shutdown
+
+  # konfiguracja routingu statycznego
+  ip route 0.0.0.0 0.0.0.0 10.0.195.0
+  ip route 10.0.193.0 255.255.255.0 serial0/2/0
 
 
   # sprawdzenie konfiguracji
