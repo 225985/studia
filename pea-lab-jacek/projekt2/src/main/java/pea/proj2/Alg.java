@@ -2,38 +2,12 @@ package pea.proj2;
 
 import java.util.*;
 
-class Node {
-    public Node parent;
-    public int[] coords;
-    public int task;
-    public int processor;
-
-    public Node(int[] c, int t, Node p, int pr){
-        this.coords = c;
-        this.task = t;
-        this.parent = p;
-        this.processor = pr;
-    }
-    
-    public Node(int[] c, int t){
-        this(c, t, null, -1);
-    }
-    
-    public String toString(){
-        return "("+task+", ["+Util.join(coords)+"])";
-    }
-}
-
 public class Alg {
     int n;
     int c;
     int[] tasks;
     Vector<List<Integer>> processors;
-    
-    Node root;
-    
-    List<Node> leafs = new ArrayList<Node>();
-    
+     
 	// n - proccessors
 	// c - max
 	
@@ -63,72 +37,7 @@ public class Alg {
 		
 		return result;
 	}
-    
-    public void runAlt(){
-       //  System.out.println("[ALT] Number of processors = " + n + ", Cmax = " + c);
-        
-        int[] coords = new int[n];
-        for(int i=0; i<n; i++) coords[i] = 0;
-        
-       // System.out.println("[ALT] tasks.length = " + tasks.length);
-        
-        root = new Node(coords, 0);
-        branch(root);
-        
-        
-        Node node = minimalMaximumTimeNode(leafs);
-      //  System.out.println("[ALT] minimal.maximum.time = " + node);
-        
-        
-        
-        while(node.processor != -1){
-            processors.elementAt(node.processor).add(node.task);
-            node = node.parent;
-        }
-        
-        printProcessors();
-    }
-    
-    public Node minimalMaximumTimeNode(List<Node> list){
-     //   System.out.println("[ALT] list.size = " + list.size());
-        int size = list.size();
-        Node minValue = list.get(0);
-        int minIndex = maxMachineIndex(minValue.coords);
-        
-        for(int i=1; i<size; i++){
-            Node node = list.get(i);
-            int[] crds = node.coords;
-            int max = maxMachineIndex(crds);
-            if(crds[max] < minValue.coords[minIndex]){
-                minValue = node;
-                minIndex = max;
-            }
-        }
-        
-        return minValue;
-    }
-    
-    
-    protected void branch(Node node){
-        // System.out.println("[ALT] Processing node: " + node);
-        if(node.task == tasks.length){
-            leafs.add(node);
-        } else {
-            for(int i=0; i<n; i++){
-                int[] newcrds = new int[n];
-                System.arraycopy(node.coords, 0, newcrds, 0, n);
-                newcrds[i] += tasks[node.task];
-                if(newcrds[i] < c){
-                    branch(new Node(newcrds, node.task+1, node, i));
-                }
-            }
-        }
-    }
-    
-    
-    
-    
-    
+       
     public int run(){
        // System.out.println("Number of processors = " + n + ", Cmax = " + c);
         int[] tab = new int[(int)Math.pow(c,n)];
