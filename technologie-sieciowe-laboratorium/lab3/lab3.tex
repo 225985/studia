@@ -165,7 +165,7 @@
 
   \subsection{Tabele routingu}
 
-  \subsubsection{Router R2}
+  \subsubsection{Router R1}
   \begin{verbatim}
     show ip route
 
@@ -176,6 +176,20 @@
     C     10.0.195.0/24 is directly connected, Loopback0
     C     10.0.192.0/24 is directly connected, Serial0/2/0
     C     10.0.193.0/24 is directly connected, FastEthernet0/0
+    S*  0.0.0.0/0 [1/0] via 10.0.195.0
+  \end{verbatim}
+
+  \subsubsection{Router R2}
+  \begin{verbatim}
+    show ip route
+
+    Gateway of last resort is 10.0.195.0 to network 0.0.0.0
+
+        10.0.0.0/8 is variably subnetted, 4 subnets, 2 masks
+    C     10.0.194.64/30 is directly connected. Serial0/2/0
+    C     10.0.195.0/24 is directly connected, Loopback0
+    C     10.0.193.0/24 is directly connected, Serial0/2/0
+    C     10.0.192.0/24 is directly connected, FastEthernet0/0
     S*  0.0.0.0/0 [1/0] via 10.0.195.0
   \end{verbatim}
 
