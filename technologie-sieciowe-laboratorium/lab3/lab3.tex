@@ -59,7 +59,7 @@
 
   \subsection{Podłączenie oraz konfiguracja routerów i stacji roboczych}
   \paragraph{}
-  Routery R1 i R2 zostały podłączone kablami prostymi do przełączników. Stacje robocze połączone zostały z odpowiednimi przełącznikami również za pomoca kabli prostych. Połączenie między routerami zostało zestawione za pomocą ???.
+  Routery R1 i R2 zostały podłączone kablami prostymi do przełączników. Stacje robocze połączone zostały z odpowiednimi przełącznikami również za pomoca kabli prostych. Połączenie między routerami zostało zestawione za pomocą kabla typu serial.
 
   \subsubsection{Router R1}
 
@@ -162,6 +162,23 @@
       \hline
     \end{tabular}
   \end{center}
+
+  \subsection{Tabele routingu}
+
+  \subsubsection{Router R2}
+  \begin{verbatim}
+    show ip route
+
+    Gateway of last resort is 10.0.195.0 to network 0.0.0.0
+
+        10.0.0.0/8 is variably subnetted, 4 subnets, 2 masks
+    C     10.0.194.64/30 is directly connected. Serial0/2/0
+    C     10.0.195.0/24 is directly connected, Loopback0
+    C     10.0.192.0/24 is directly connected, Serial0/2/0
+    C     10.0.193.0/24 is directly connected, FastEthernet0/0
+    S*  0.0.0.0/0 [1/0] via 10.0.195.0
+  \end{verbatim}
+
 
 
 \end{document}
