@@ -1,5 +1,6 @@
 \documentclass[wide,a4paper,titlepage,12pt] {article}
 \usepackage{polski}
+\usepackage{float}
 \usepackage[utf8]{inputenc}
 \usepackage{listings}
 \usepackage{slashbox}
@@ -42,6 +43,7 @@
 
   \section{Adresacja}
 
+\begin{table}[h]
   \begin{center}
     \begin{tabular}{|c|c|c|c|}
       \hline
@@ -54,14 +56,17 @@
       \hline
     \end{tabular}
   \end{center}
+  \caption{Adresacja}
+\end{table}
 
   \section{Podłączenie oraz konfiguracja routerów i stacji roboczych}
   \paragraph{}
-  Routery R1 i R2 zostały podłączone kablami prostymi do przełączników. Stacje robocze połączone zostały z odpowiednimi przełącznikami również za pomoca kabli prostych. Połączenie między routerami zostało zestawione za pomocą kabla typu serial.
+  Routery R1 i R2 zostały podłączone kablami prostymi do przełączników. Stacje robocze połączone zostały z odpowiednimi przełącznikami również za pomoca kabli prostych. Połączenie między routerami zostało zestawione za pomocą kabla typu serial. Konfiguracja routerów odbyła się poprzez kabel konsolowy (rollover).
 
   \section{Konfiguracja}
 
-  \subsubsection{Stacja robocza podsieci A}
+  \subsection{Stacja robocza podsieci A}
+\begin{table}[H]
   \begin{center}
     \begin{tabular}{|c|c|}
       \hline
@@ -73,9 +78,11 @@
       \hline
     \end{tabular}
   \end{center}
+  \caption{Konfiguracja stacji roboczej podsieci C}
+\end{table}
 
-
-  \subsubsection{Stacja robocza podsieci C}
+  \subsection{Stacja robocza podsieci C}
+\begin{table}[H]
   \begin{center}
     \begin{tabular}{|c|c|}
       \hline
@@ -87,8 +94,10 @@
       \hline
     \end{tabular}
   \end{center}
+  \caption{Konfiguracja stacji roboczej podsieci C}
+\end{table}
 
-  \subsubsection{Router R1}
+  \subsection{Router R1}
 
   \begin{verbatim}
   # ustawienie nazwy routera
@@ -132,7 +141,7 @@
   S*  0.0.0.0/0 [1/0] via 10.0.195.0
  \end{verbatim}
 
-  \subsubsection{Router R2}
+  \subsection{Router R2}
 
   \begin{verbatim}
   # ustawienie nazwy routera
@@ -180,8 +189,9 @@
 
   \subsection{Weryfikacja łączności}
   \paragraph{}
-  Poprawność podłącznia i konfiguracji urządzeń została przeprowadzona za pomocą polecenia \textbf{ping} między następującymi hostami.
+  Poprawność podłącznia i konfiguracji urządzeń została przeprowadzona za pomocą polecenia \textbf{ping} między następującymi hostami. Poniższa tabela przedstawia wyniki weryfikacji.
 
+\begin{table}[h]
   \begin{center}
     \begin{tabular}{|c|c||c|c||c|}
       \hline
@@ -193,18 +203,60 @@
       Stacja robocza p. A       & 10.0.193.2    & Router R2             & 10.0.192.1  & Połączno \\
       Router R2                 & 10.0.192.1    & Stacja robocza p. A   & 10.0.193.2  & Połączno \\
 
+      Stacja robocza p. C       & 10.0.192.2    & Router R1             & 10.0.193.1  & Połączno \\
+      Router R1                 & 10.0.193.1    & Stacja robocza p. C   & 10.0.192.2  & Połączno \\
 
-      Stacja robocza p. B       & 10.0.192.2    & Router R1             & 10.0.193.1  & Połączno \\
-      Router R1                 & 10.0.193.1    & Stacja robocza p. B   & 10.0.192.2  & Połączno \\
+      Stacja robocza p. C       & 10.0.192.2    & Router R2             & 10.0.192.1  & Połączno \\
+      Router R2                 & 10.0.192.1    & Stacja robocza p. C   & 10.0.192.2  & Połączno \\
 
-      Stacja robocza p. B       & 10.0.192.2    & Router R2             & 10.0.192.1  & Połączno \\
-      Router R2                 & 10.0.192.1    & Stacja robocza p. B   & 10.0.192.2  & Połączno \\
+      Stacja robocza p. A       & 10.0.193.2    & Stacja robocza p. C   & 10.0.192.2  & Połączno \\
+      Stacja robocza p. C       & 10.0.192.2    & Stacja robocza p. A   & 10.0.193.2  & Połączno \\
 
-      Router R1 & 10.0.194.65   & Router R2   & 10.0.195.66   & Połączno \\
-      Router R2 & 10.0.194.66   & Router R1   & 10.0.194.65   & Połączno \\
+      Router R1                 & 10.0.194.65   & Router R2             & 10.0.195.66 & Połączno \\
+      Router R2                 & 10.0.194.66   & Router R1             & 10.0.194.65 & Połączno \\
       \hline
     \end{tabular}
   \end{center}
+  \caption{Wyniki weryfikacji połączenia między urządzeniami}
+\end{table}
 
+  \paragraph{}
+  Routery komunikują się bez problemów zarówno ze sobą, jak i ze stacjami roboczymi w obu podsieciach. Również stacje robocze mają możliwość połącznie do siebie nawzajem.
+
+  \section{Konfiguracja RIP}
+  \paragraph{}
+  Poniżej znajduje się konfiguracja protokołu RIP.
+
+  \subsection{Router R1}
+  \begin{verbatim}
+    router rip            # uruchomienie procesu rip
+    version 2
+    network 10.0.193.0    # dodatnie sieci
+    network 10.0.194.64   # dodatnie sieci
+    netowrk 10.0.195.0    # dodatnie sieci
+    no auto-summary
+    redistribute static   # rozgłaszanie tras statycznych
+  \end{verbatim}
+
+  \subsection{Router R2}
+  \begin{verbatim}
+    router rip            # uruchomienie procesu rip
+    version 2
+    network 10.0.192.0    # dodatnie sieci
+    network 10.0.194.64   # dodatnie sieci
+    no auto-summary
+    redistribute static   # rozgłaszanie tras statycznych
+  \end{verbatim}
+
+
+  \section{Wnioski}
+  \paragraph{}
+  Routery Cisco pozwalają zarówno na dynamiczną jak i statyczną konfigurację routingu. Konfiguracja statyczna zapewnia szybszy routing jednak wymaga większego nakładu pracy od administratora oraz jest podatna na awarie.
+
+  \paragraph{}
+  Po skonfigurowanie routerów jak i stacji roboczych wykonane zostało sprawdzenie połączeń między urządzeniami - wszystkie połączenia okazały się być poprawne.
+
+  \paragraph{}
+  Ze względu na brak czasu nie udało się przeprowadzić weryfikacji ustawień protokołu RIP.
 
 \end{document}
