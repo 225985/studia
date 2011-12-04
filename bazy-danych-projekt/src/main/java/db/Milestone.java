@@ -83,6 +83,14 @@ public class Milestone extends DbObject {
         this.tasks = tasks;
     }
 
+    public void addTask(Task task){
+        this.tasks.add(task);
+    }
+
+    public void removeTask(Task task){
+        this.tasks.remove(task);
+    }
+
 
     public static Collection<Milestone> all(){
         return Database.odb.getObjects(Milestone.class);

@@ -19,6 +19,8 @@ public class Project extends DbObject {
     public Project(){
         super();
         tasks = new ArrayList<Task>();
+        milestones = new ArrayList<Milestone>();
+        comments = new ArrayList<Comment<Project>>();
     }
 
     public Project(int id){
@@ -29,9 +31,23 @@ public class Project extends DbObject {
     public Task createTask(Task task){
         task.save(); // fucking important!!!
         task.setProject(this);
-        this.tasks.add(task);
-        this.save();
+        this.addTask(task);
         return task;
+    }
+
+    public void addTask(Task task){
+        if(!this.tasks.contains(task)){
+            this.tasks.add(task);
+            this.save();
+        }
+    }
+
+    public Milestone createMilestone(Milestone milestone){
+        milestone.save(); // fucking important!!!
+        milestone.setProject(this);
+        this.milestones.add(milestone);
+        this.save();
+        return milestone;
     }
 
     public String getName() {
@@ -55,6 +71,7 @@ public class Project extends DbObject {
     }
 
     public void setOwner(User owner) {
+        owner.addProject(this);
         this.owner = owner;
     }
 
@@ -94,8 +111,8 @@ public class Project extends DbObject {
         return comments;
     }
 
-    public void setComments(List<Comment<Project>> comments) {
-        this.comments = comments;
+    public void addComment(Comment<Project> comment) {
+        this.comments.add(comment);
     }
 
     public List<Role> getRoles() {
@@ -108,6 +125,14 @@ public class Project extends DbObject {
 
     public List<Task> getTasks() {
         return tasks;
+    }
+
+    public List<Task> getTasksWithoutMilestone(){
+        List<Task> dupa = new ArrayList<Task>(this.tasks);
+        for(Task t : this.tasks){
+            if(t.hasMilestone()) dupa.remove(t);
+        }
+        return dupa;
     }
 
     public void setTasks(List<Task> tasks) {

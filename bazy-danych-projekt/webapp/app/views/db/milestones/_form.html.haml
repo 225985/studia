@@ -1,6 +1,6 @@
 = f.input :name
-= f.input :description
-= f.input :deadline, input_html => { :class => 'dateBox' }
-= f.input :project, :as => :select
+= f.input :description, :as => :text
+= f.input :deadline, :input_html => { :class => 'dateBox' }
+/ = f.input :project, :as => :select
 .actions
   = f.submit :class => "btn primary"

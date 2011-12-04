@@ -85,10 +85,15 @@ public class User extends DbObject {
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
     }
-
+	
+	public void addProject(Project project) {
+		this.projects.add(project);
+	}
+	
     public static Collection<User> all(){
         return Database.odb.getObjects(User.class);
     }
+    
 
     public static User findByEmail(final String email){
         IQuery query = new SimpleNativeQuery() {

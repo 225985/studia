@@ -8,45 +8,47 @@
 \contentsline {paragraph}{}{2}
 \contentsline {paragraph}{}{2}
 \contentsline {subsubsection}{\numberline {2.1.1}Budynek 1}{2}
+\contentsline {paragraph}{}{2}
 \contentsline {subsubsection}{\numberline {2.1.2}Budynek 2}{3}
 \contentsline {paragraph}{}{3}
 \contentsline {paragraph}{}{3}
 \contentsline {paragraph}{}{3}
-\contentsline {paragraph}{}{6}
-\contentsline {subsection}{\numberline {2.2}Wyposa\IeC {\.z}enie}{7}
-\contentsline {paragraph}{}{7}
-\contentsline {paragraph}{}{7}
-\contentsline {paragraph}{}{7}
-\contentsline {paragraph}{}{7}
-\contentsline {paragraph}{}{7}
-\contentsline {section}{\numberline {3}Analiza potrzeb u\IeC {\.z}ytkownika}{8}
-\contentsline {paragraph}{}{8}
-\contentsline {subsection}{\numberline {3.1}G\IeC {\l }\IeC {\'o}wne wymagania jakie stawiane s\IeC {\k a} wobec tworzonej sieci}{8}
-\contentsline {subsection}{\numberline {3.2}Bezpiecze\IeC {\'n}stwo sieci}{8}
-\contentsline {subsection}{\numberline {3.3}Tele i wideokonference}{9}
-\contentsline {paragraph}{}{9}
-\contentsline {subsection}{\numberline {3.4}Sie\IeC {\'c} bezprzewodowa}{9}
-\contentsline {paragraph}{}{9}
-\contentsline {paragraph}{}{9}
-\contentsline {subsection}{\numberline {3.5}Program antywirusowy}{9}
-\contentsline {paragraph}{}{9}
-\contentsline {subsection}{\numberline {3.6}VLAN}{9}
-\contentsline {paragraph}{}{9}
-\contentsline {subsection}{\numberline {3.7}VPN}{10}
-\contentsline {paragraph}{}{10}
-\contentsline {subsection}{\numberline {3.8}Jako\IeC {\'s}\IeC {\'c} us\IeC {\l }ug sieciowych}{10}
-\contentsline {paragraph}{}{10}
-\contentsline {subsection}{\numberline {3.9}Minimalna wymagana przepustowo\IeC {\'s}\IeC {\'c}}{10}
-\contentsline {paragraph}{}{10}
-\contentsline {paragraph}{}{10}
+\contentsline {paragraph}{}{3}
 \contentsline {paragraph}{}{11}
-\contentsline {paragraph}{}{11}
-\contentsline {paragraph}{}{11}
-\contentsline {paragraph}{}{11}
-\contentsline {subsection}{\numberline {3.10}Okablowanie}{11}
-\contentsline {paragraph}{}{11}
-\contentsline {section}{\numberline {4}Za\IeC {\l }o\IeC {\.z}enia projektowe}{12}
+\contentsline {subsection}{\numberline {2.2}Wyposa\IeC {\.z}enie}{12}
 \contentsline {paragraph}{}{12}
 \contentsline {paragraph}{}{12}
 \contentsline {paragraph}{}{12}
 \contentsline {paragraph}{}{12}
+\contentsline {paragraph}{}{12}
+\contentsline {section}{\numberline {3}Analiza potrzeb u\IeC {\.z}ytkownika}{13}
+\contentsline {paragraph}{}{13}
+\contentsline {subsection}{\numberline {3.1}G\IeC {\l }\IeC {\'o}wne wymagania jakie stawiane s\IeC {\k a} wobec tworzonej sieci}{13}
+\contentsline {subsection}{\numberline {3.2}Bezpiecze\IeC {\'n}stwo sieci}{13}
+\contentsline {subsection}{\numberline {3.3}Tele i wideokonference}{14}
+\contentsline {paragraph}{}{14}
+\contentsline {subsection}{\numberline {3.4}Sie\IeC {\'c} bezprzewodowa}{14}
+\contentsline {paragraph}{}{14}
+\contentsline {paragraph}{}{14}
+\contentsline {subsection}{\numberline {3.5}Program antywirusowy}{14}
+\contentsline {paragraph}{}{14}
+\contentsline {subsection}{\numberline {3.6}VLAN}{14}
+\contentsline {paragraph}{}{14}
+\contentsline {subsection}{\numberline {3.7}VPN}{15}
+\contentsline {paragraph}{}{15}
+\contentsline {subsection}{\numberline {3.8}Jako\IeC {\'s}\IeC {\'c} us\IeC {\l }ug sieciowych}{15}
+\contentsline {paragraph}{}{15}
+\contentsline {subsection}{\numberline {3.9}Minimalna wymagana przepustowo\IeC {\'s}\IeC {\'c}}{15}
+\contentsline {paragraph}{}{15}
+\contentsline {paragraph}{}{15}
+\contentsline {paragraph}{}{16}
+\contentsline {paragraph}{}{16}
+\contentsline {paragraph}{}{16}
+\contentsline {paragraph}{}{16}
+\contentsline {subsection}{\numberline {3.10}Okablowanie}{16}
+\contentsline {paragraph}{}{16}
+\contentsline {section}{\numberline {4}Za\IeC {\l }o\IeC {\.z}enia projektowe}{17}
+\contentsline {paragraph}{}{17}
+\contentsline {paragraph}{}{17}
+\contentsline {paragraph}{}{17}
+\contentsline {paragraph}{}{17}

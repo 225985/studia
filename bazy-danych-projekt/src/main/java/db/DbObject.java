@@ -37,7 +37,11 @@ public class DbObject {
     public static DbObject find(int id){
         IQuery query = new CriteriaQuery(DbObject.class, Where.equal("id", id));
         query.setPolymorphic(true);
-        return (DbObject)Database.odb.getObjects(query).getFirst();
+        try {
+            return (DbObject)Database.odb.getObjects(query).getFirst();
+        } catch (Exception ex) {
+            return null;
+        }
     }
 }
 

@@ -11,12 +11,11 @@ module Db
 
     def new
       @task = @project.tasks.new
+      @task.deadline ||= Time.now
+      # @task.milestone = Db::Milestone.find(params[:milestone_id]) if params[:milestone_id]
     end
 
     def create
-      Rails.logger.debug Db::Project.all.to_a.inspect
-      Rails.logger.debug Db::Task.all.to_a.inspect
-
       @task = Db::Task.new(params[:java_db_task])
       @project.create_task @task
 
@@ -44,8 +43,8 @@ module Db
     def update
       @task = @project.tasks.find(params[:id])
       @task.update_attributes(params[:java_db_task])
-      logger.debug params[:java_db_task].inspect
-      logger.debug @task.inspect
+      # logger.debug params[:java_db_task].inspect
+      # logger.debug @task.inspect
       if true
         redirect_to project_task_path(@project, @task)
       else

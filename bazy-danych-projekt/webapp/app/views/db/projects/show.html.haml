@@ -1,16 +1,25 @@
 %h2= @project.name
 
+.owner
+  Owner:
+  = @project.owner.email
+.description= @project.description
+
 = link_to "Edit", edit_project_path(@task), :class => "btn"
 = link_to "Delete", project_path(@task), :method => :delete, :class => "btn danger"
 
-= debug @project
-= debug @project.get_tasks.to_a
 
-= debug Db::Task.all.to_a.map {|e| e.project }
+%h3 Milestones
+%ul
+  - @project.milestones.each do |milestone|
+    %li= link_to milestone.name, project_milestone_path(@project, milestone.id)
+
+= link_to "Add milestone", new_project_milestone_path(@project), :class => "btn success"
+
 
 %h3 Tasks
 %ul
-  - @project.tasks.each do |task|
+  - @project.tasks_without_milestone.each do |task|
     %li= link_to task.name, project_task_path(@project, task.id)
 
 
