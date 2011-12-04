@@ -1,0 +1,167 @@
+\documentclass[wide,a4paper,titlepage,12pt] {article}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{slashbox}
+\usepackage[table]{xcolor}
+\usepackage{graphicx,pdflscape}
+\usepackage{placeins}
+
+
+\title{Technologie sieciowe 2}
+\author{Tymon Tobolski (181037)\\ Jacek Wieczorek (181043)}
+
+% Title page layout (fold)
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{titlepage}
+  \begin{center}
+    \vspace*{3cm}
+    \LARGE \@title \par
+    \vspace{2cm}
+    \textit{\small Autor:}\par
+    \normalsize \@author\par \normalsize
+    \vspace{3cm}
+    \textit{\small Prowadzący:}\par
+    Dr inż. Arkadiusz Grzybowski\par
+    \vspace{2cm}
+    Wydział Elektroniki\\ III rok\\ Pn TN 11.15 - 13.00\par
+    \vspace{4cm}
+    \small \@date
+  \end{center}
+\end{titlepage}
+}
+\makeatother
+
+
+\begin{document}
+\maketitle
+  \section{Cel laboratorium}
+  \paragraph{}
+  Celem ćwiczenia było opanowanie umijętności konfiguracji routingu statycznego oraz protokołu RIP w sieci LAN podzielonej na kilka domen rozgłoszeniowych.
+
+  \section{Zestawienie sieci}
+
+  \subsection{Adresacja}
+
+  \begin{center}
+    \begin{tabular}{|c|c|c|c|}
+      \hline
+      Podsieć & Ilość hostów & Adres sieci & Maska \\
+      \hline
+      A & 254 & 10.0.193.0  & 255.255.255.0 \\
+      B & 62  & 10.0.194.0  & 255.255.255.128 \\
+      C & 254 & 10.0.192.0  & 255.255.255.0 \\
+      D & 2   & 10.0.194.64 & 255.255.255.252 \\
+      \hline
+    \end{tabular}
+  \end{center}
+
+  \subsection{Podłączenie oraz konfiguracja routerów i stacji roboczych}
+  \paragraph{}
+  Routery R1 i R2 zostały podłączone kablami prostymi do przełączników. Stacje robocze połączone zostały z odpowiednimi przełącznikami również za pomoca kabli prostych. Połączenie między routerami zostało zestawione za pomocą ???.
+
+  \subsubsection{Router R1}
+
+
+  \begin{verbatim}
+  # ustawienie nazwy routera
+  hostname TymonTobolski
+
+  # konfiguracja interfejsu FastEthernet0/0
+  int f0/0
+  ip address 10.0.193.1 255.255.255.0
+  no shutdown
+
+  # konfiguracja interfejsu Serial0/2/0
+  int s0/2/0
+  ip address 10.0.194.65 255.255.255.252
+  no shutdown
+
+
+  # sprawdzenie konfiguracji
+  show ip int brief
+
+  Interface       IP-Address  OK? Method  Status                  Protocol
+  FastEthernet0/0 10.0.193.1  YES manual  up                      up
+  FastEthernet0/1 unassigned  YES unset   administratively  down  down
+  Serial0/2/0     10.0.194.65 YES manual  up                      up
+  Serial0/2/1     unassigned  YES unset   administratively  down  down
+  \end{verbatim}
+
+  \subsubsection{Router R2}
+
+  \begin{verbatim}
+  # ustawienie nazwy routera
+  hostname JacekWieczorek
+
+  # konfiguracja interfejsu FastEthernet0/0
+  int f0/0
+  ip address 10.0.192.1 255.255.255.0
+  no shutdown
+
+  # konfiguracja interfejsu Serial0/2/0
+  int s0/2/0
+  ip address 10.0.194.66 255.255.255.252
+  no shutdown
+
+
+  # sprawdzenie konfiguracji
+  show ip int brief
+
+  Interface       IP-Address  OK? Method  Status                  Protocol
+  FastEthernet0/0 10.0.192.1  YES manual  up                      up
+  FastEthernet0/1 unassigned  YES unset   administratively  down  down
+  Serial0/2/0     10.0.194.66 YES manual  up                      up
+  Serial0/2/1     unassigned  YES unset   administratively  down  down
+  \end{verbatim}
+
+  \subsubsection{Stacja robocza podsieci A}
+  \begin{center}
+    \begin{tabular}{|c|c|}
+      \hline
+      Adres IP & 10.0.193.2 \\
+      \hline
+      Maska podsieci & 255.255.255.0 \\
+      \hline
+      Brama domyślna & 10.0.193.1 \\
+      \hline
+    \end{tabular}
+  \end{center}
+
+
+  \subsubsection{Stacja robocza podsieci C}
+  \begin{center}
+    \begin{tabular}{|c|c|}
+      \hline
+      Adres IP & 10.0.192.2 \\
+      \hline
+      Maska podsieci & 255.255.255.0 \\
+      \hline
+      Brama domyślna & 10.0.192.1 \\
+      \hline
+    \end{tabular}
+  \end{center}
+
+  \subsection{Weryfikacja łączności}
+  \paragraph{}
+  Poprawność podłącznia i konfiguracji urządzeń została przeprowadzona za pomocą polecenia \textbf{ping} między następującymi hostami.
+
+  \begin{center}
+    \begin{tabular}{|c|c||c|c||c|}
+      \hline
+      Host początkowy & Adres IP & Host docelowy & Adres IP & Wynik \\
+      \hline
+      Stacja robocza p. A & 10.0.193.2 & Router R1 & 10.0.193.1 & Połączno \\
+      Router R1 & 10.0.193.1 & Stacja robocza p. A & 10.0.193.2 & Połączno \\
+      Stacja robocza p. A & 10.0.193.2 & Router R1 & 10.0.193.1 & Połączno \\
+      Router R1 & 10.0.193.1 & Stacja robocza p. A & 10.0.193.2 & Połączno \\
+
+      Router R1 & 10.0.194.65 & Router R2 & 10.0.195.66 & Połączno \\
+      Router R2 & 10.0.195.66 & Router R1 & 10.0.194.65 & Połączno \\
+      \hline
+    \end{tabular}
+  \end{center}
+
+
+\end{document}
