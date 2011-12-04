@@ -40,9 +40,90 @@
 
 \section{Cel laboratorium}
 \paragraph{}
+Celem laboratorium było zapoznanie się z zasadą działania drukarek atramentowych, a także ich obsługi (zmiana czcionki, rozmiaru, koloru, stylu) za pomocą komend języka $PCL$.
+
+\section{Nawiązanie połączenia z drukarką}
+\paragraph{}
+W celu połączenia się z drukarką atramentową za pomocą portu $LTP$ skorzystaliśmy z bilbioteki $fstream$ dostępnej w języku $cpp$. \\\\
+Kod programu : 
+\lstset{ %
+    language=c++,                % choose the language of the code
+    basicstyle=\scriptsize,       % the size of the fonts that are used for the code
+    numbers=left,                   % where to put the line-numbers
+    numberstyle=\scriptsize,      % the size of the fonts that are used for the line-numbers
+    stepnumber=10,                   % the step between two line-numbers. If it's 1 each line 
+                                    % will be numbered
+    numbersep=9pt,                  % how far the line-numbers are from the code
+    % backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+    showspaces=false,               % show spaces adding particular underscores
+    showstringspaces=false,         % underline spaces within strings
+    showtabs=false,                 % show tabs within strings adding particular underscores
+    % frame=single,                 % adds a frame around the code
+    % tabsize=2,                  % sets default tabsize to 2 spaces
+    % captionpos=b,                   % sets the caption-position to bottom
+    breaklines=true,                % sets automatic line breaking
+    % breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+    % title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                    % also try caption instead of title
+    % escapeinside={\%*}{*)},         % if you want to add a comment within your code
+    % morekeywords={*,...}            % if you want to add more keywords to the set
+    }
+    \lstinputlisting{p1.cpp}
+
+\section{Komendy języka $PCL$}
+\paragraph{}
+Język $PCL$ jest zbiorem komend escpowych opracowanym przez firmę \textit{Hewlett-Packard} jako protokół drukowania, który stał się pewnego rodzaju standardem.
+\paragraph{}
+Każda komenda języka $PCL$ zaczyna się od znaku $ESC$. Przed rozpoczęciem i po zakończeniu wysyłania komend formatujących tekst należy wysłać sekwencję resetującą drukarkę $ESC+E$
+\subsection{Zmiana stylu czcionki}
+\paragraph{}
+Zmiana stylu czcionki ( kursywa, pogrubienie, podkreślenie, podwójne podkreślenie) odbywa się za pomocą następujących komend :
+\begin{itemize}
+	\item kursywa - $(s1S$ ,  wyłączenie - $(s0S$  
+	\item pogrubienie - $(s3B$, wyłączenie - $(s0B$
+	\item podkreślenie - $\&d0D$, wyłączenie - $\&d@$
+	\item podwójne podkreślenie - $\&d2D$, wyłączenie - $\&d@$
+\end{itemize} 
+
+\subsection{Zmiana typu czcionki}
+\paragraph{}
+Język $PCL$ pozwala na wybór czcionek spośród zapisanych w pamięci drukarki, a także na wgrywanie i definiowanie własnych fontów. Pozwala również na tworzenie bardiej skomplikowanych kombinacji pozwalających na określeniu stylu czcionki, odstepów między znakami, rozmiarowi czcionki i jej typowie za pomocą jednej komendy np. $(s1p4101T$, która ustawia czcionkę \textit{GC Times New Roman} o rozmiarze \textit{12p} 
+
+\subsection{Zmiana koloru czcionki}
+\paragraph{}
+By zmeinić kolor czcionki należy najpierw za pomocą komendy $*r3U$, ustawić wybór palety kolorów $RGB$. Następnie komendą $*vis$ wybieramy odpowiedni kolor z palety 8 podstawowych kolorów ($i$ - numer od 0 - 7).
+
+\section{Program}
+\paragraph{}
+Program drukuje różne kombinacje komend escapowych pozwalających formatować tekst w dowolny sposób. Rezultat programu został zamieszczony w sprawozdaniu jako wynik laboratorium.
+\lstset{ %
+    language=c++,                % choose the language of the code
+    basicstyle=\scriptsize,       % the size of the fonts that are used for the code
+    numbers=left,                   % where to put the line-numbers
+    numberstyle=\scriptsize,      % the size of the fonts that are used for the line-numbers
+    stepnumber=10,                   % the step between two line-numbers. If it's 1 each line 
+                                    % will be numbered
+    numbersep=9pt,                  % how far the line-numbers are from the code
+    % backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+    showspaces=false,               % show spaces adding particular underscores
+    showstringspaces=false,         % underline spaces within strings
+    showtabs=false,                 % show tabs within strings adding particular underscores
+    % frame=single,                 % adds a frame around the code
+    % tabsize=2,                  % sets default tabsize to 2 spaces
+    % captionpos=b,                   % sets the caption-position to bottom
+    breaklines=true,                % sets automatic line breaking
+    % breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+    % title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                    % also try caption instead of title
+    % escapeinside={\%*}{*)},         % if you want to add a comment within your code
+    % morekeywords={*,...}            % if you want to add more keywords to the set
+    }
+    \lstinputlisting{p2.cpp}
+
 
 \section{Wnioski}
 \paragraph{}
+Obsługa drukarki za pomocą komend języka $PCL$ nie jest rzeczą trudną i skomplikowaną. Wymaga od użytkownika znajomości podstawowych zasad wykonywania poleceń i umiejętności wyszukiwania potrzebnych komend w dokumentacji.
 
 
 
