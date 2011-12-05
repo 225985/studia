@@ -4,6 +4,11 @@
 
 %h2= @task.name
 
+- if @task.assignee
+  %h4
+    Assignee:
+    = link_to @task.assignee.name, user_path(@task.assignee)
+
 - if @task.milestone
   %h4
     Milestone:

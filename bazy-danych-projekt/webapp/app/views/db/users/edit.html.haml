@@ -1,0 +1,4 @@
+%h3 Edit user
+
+= simple_form_for @user, :url => user_path(@user) do |f|
+  = render :partial => "form", :locals => {:f => f}

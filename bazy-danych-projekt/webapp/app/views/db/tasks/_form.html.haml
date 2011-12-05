@@ -3,8 +3,11 @@
 / = f.input :user, :as => :select
 = f.input :deadline, :input_html => { :class => 'dateBox' }
 = f.input :estimated_time
-= f.input :milestone, :as => :select, :collection => @project.milestones.map {|p| [p.name, p.id]}, :include_blank => true, :selected => params[:milestone_id]
+= f.input :milestone, :as => :select, :collection => @project.milestones.map {|p| [p.name, p.id]}, :include_blank => true, :selected => params[:milestone_id] || @task.milestone.try(:id)
 / = f.input :project, :as => :select, :collection => Db::Project.all.map {|p| [p.name, p.id]}
 / = f.input :kind, :as => :select
+= f.input :kind, :as => :select, :collection => Db::TaskKind.values.to_a.map {|e| e.to_s.humanize }, :selected => @task.kind.to_s.humanize
+= f.input :status, :as => :select, :collection => Db::TaskStatus.values.to_a.map {|e| e.to_s.humanize }, :selected => @task.status.to_s.humanize
+= f.input :assignee, :as => :select, :collection => Db::User.all.map {|u| [u.name, u.id]}, :selected => @task.assignee.try(:id)
 .actions
   = f.submit :class => "btn primary"
