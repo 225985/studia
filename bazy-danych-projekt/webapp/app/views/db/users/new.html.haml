@@ -1,0 +1,4 @@
+%h2 Add new user
+
+= simple_form_for @user, :url => users_path do |f|
+  = render :partial => "form", :locals => {:f => f}

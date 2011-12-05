@@ -22,6 +22,10 @@ public class User extends DbObject {
         super();
         this.tasks = new ArrayList<Task>();
         this.projects = new ArrayList<Project>();
+        this.firstName = "";
+        this.lastName = "";
+        this.login = "";
+        this.email = "";
     }
 
     public User(int id){
@@ -70,6 +74,10 @@ public class User extends DbObject {
         this.lastName = lastName;
     }
 
+    public String getName(){
+        return getFirstName() + " " + getLastName();
+    }
+
     public List<Project> getProjects() {
         return projects;
     }
@@ -85,15 +93,23 @@ public class User extends DbObject {
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
     }
-	
+
+    public void addTask(Task task){
+        this.tasks.add(task);
+    }
+
+    public void removeTask(Task task){
+        this.tasks.remove(task);
+    }
+
 	public void addProject(Project project) {
 		this.projects.add(project);
 	}
-	
+
     public static Collection<User> all(){
         return Database.odb.getObjects(User.class);
     }
-    
+
 
     public static User findByEmail(final String email){
         IQuery query = new SimpleNativeQuery() {

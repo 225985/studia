@@ -18,6 +18,17 @@ public class Task extends DbObject {
     protected Project project;
     protected Milestone milestone;
 
+    public Task(){
+        super();
+        this.status = TaskStatus.NEW;
+        this.kind = TaskKind.FEATURE;
+    }
+
+    public Task(int id){
+        this();
+        this.id = id;
+    }
+
     public Project getProject() {
         return project;
     }
@@ -48,15 +59,6 @@ public class Task extends DbObject {
                 this.milestone.save();
             }
         }
-    }
-
-    public Task(){
-        super();
-    }
-
-    public Task(int id){
-        this();
-        this.id = id;
     }
 
     public TaskStatus getStatus() {
@@ -104,8 +106,21 @@ public class Task extends DbObject {
     }
 
     public void setAssignee(User assignee) {
-        this.assignee = assignee;
+        if(this.assignee != assignee){
+            if(this.assignee != null){
+                this.assignee.removeTask(this);
+                this.assignee.save();
+            }
+            this.assignee = assignee;
+            this.save();
+            if(this.assignee != null){
+                this.assignee.addTask(this);
+                this.assignee.save();
+            }
+        }
     }
+
+
 
     public Date getDeadline() {
         return deadline;
