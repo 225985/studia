@@ -28,8 +28,8 @@ class ApplicationController < ActionController::Base
 
 
     if Db::User.all.count == 0
-      Db::User.create(:email => "test1@test.com", :password => "password", :password_confirmation => "password")
-      Db::User.create(:email => "test2@test.com", :password => "password", :password_confirmation => "password")
+      Db::User.create(:email => "test1@test.com", :first_name => "Test1", :last_name => "Testowy", :password => "password", :password_confirmation => "password")
+      Db::User.create(:email => "test2@test.com", :first_name => "Test2", :last_name => "Testowy", :password => "password", :password_confirmation => "password")
     end
   end
 

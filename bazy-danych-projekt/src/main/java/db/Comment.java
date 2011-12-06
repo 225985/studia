@@ -12,7 +12,8 @@ public class Comment<T> extends DbObject {
 
     public Comment(){
         super();
-        attachments = new ArrayList<Attachment<Comment<T>>>();
+        this.attachments = new ArrayList<Attachment<Comment<T>>>();
+        this.createdAt = new java.util.Date();
     }
 
     public Comment(int id){
@@ -26,6 +27,7 @@ public class Comment<T> extends DbObject {
 
     public void setAuthor(User author) {
         this.author = author;
+        this.author.addComment(this);
     }
 
     public Date getCreatedAt() {

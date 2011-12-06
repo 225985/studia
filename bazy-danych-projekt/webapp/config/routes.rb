@@ -5,7 +5,9 @@ Webapp::Application.routes.draw do
     resources :users
     resources :projects do
       resources :milestones
-      resources :tasks
+      resources :tasks do
+        resource :comments
+      end
     end
   end
 

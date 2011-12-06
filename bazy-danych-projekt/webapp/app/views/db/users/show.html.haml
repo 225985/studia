@@ -5,3 +5,14 @@
 
 %h3 Tasks
 = render "shared/tasks", :locals => {:tasks => @user.tasks, :show_milestone => true, :show_assignee => false }
+
+%h3 Comments
+%ul
+  - @user.comments.each do |comment|
+    %li
+      %code= comment.content.truncate(20)
+      on
+      - case comment.parent
+      - when Db::Task
+        = link_to comment.parent.name, project_task_path(comment.parent.project, comment.parent)
+

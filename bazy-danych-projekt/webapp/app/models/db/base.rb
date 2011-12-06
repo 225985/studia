@@ -11,6 +11,7 @@ module Db
       "db.Project"      => lambda {|s| Db::Project.find(s.to_i) },
       "db.Task"         => lambda {|s| Db::Task.find(s.to_i) },
       "db.User"         => lambda {|s| Db::User.find(s.to_i) },
+      "db.Comment"      => lambda {|s| Db::Comment.find(s.to_i) },
       "db.TaskStatus"   => lambda {|s| Db::TaskStatus.value_of(s.upcase.gsub(" ", "_")) },
       "db.TaskKind"     => lambda {|s| Db::TaskKind.value_of(s.upcase.gsub(" ", "_")) }
     }[x]
