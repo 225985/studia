@@ -15,4 +15,8 @@
       - case comment.parent
       - when Db::Task
         = link_to comment.parent.name, project_task_path(comment.parent.project, comment.parent)
+      - when Db::Milestone
+        = link_to comment.parent.name, project_milestone_path(comment.parent.project, comment.parent)
+      - when Db::Project
+        = link_to comment.parent.name, project_path(comment.parent)
 
