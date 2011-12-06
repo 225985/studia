@@ -20,6 +20,7 @@ module Db
 
     def show
       @milestone = Db::Milestone.find(params[:id])
+	  @new_comment = Db::Comment.new
     end
 
     def edit

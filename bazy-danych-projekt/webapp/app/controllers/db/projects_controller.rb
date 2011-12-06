@@ -3,6 +3,11 @@ module Db
     inherit_resources
 
     before_filter :authenticate_user!
+	
+	def show
+		@project = Db::Project.find(params[:id])
+		@new_comment = Db::Comment.new
+	end
 
 
     def create

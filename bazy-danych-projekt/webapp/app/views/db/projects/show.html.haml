@@ -21,3 +21,18 @@
 = render "shared/tasks", :locals => {:tasks => @project.tasks_without_milestone, :show_assignee => true}
 
 = link_to "Add task", new_project_task_path(@project), :class => "btn success"
+
+%h3 Comments
+%div
+  - @project.comments.each do |comment|
+    %div
+      %div
+        by
+        = link_to comment.author.name, user_path(comment.author)
+      %div= simple_format comment.content
+
+%h3 New comment
+= simple_form_for @new_comment, :url => project_comments_path(@project) do |f|
+  = render "shared/new_comment", :f => f
+
+

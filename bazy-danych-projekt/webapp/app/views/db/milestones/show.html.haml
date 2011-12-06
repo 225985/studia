@@ -18,3 +18,16 @@ for project
 
 
 = link_to "Add task", new_project_task_path(@project, :milestone_id => @milestone.id), :class => "btn success"
+
+%h3 Comments
+%div
+  - @milestone.comments.each do |comment|
+    %div
+      %div
+        by
+        = link_to comment.author.name, user_path(comment.author)
+      %div= simple_format comment.content
+
+%h3 New comment
+= simple_form_for @new_comment, :url => project_milestone_comments_path(@milestone.project, @milestone) do |f|
+  = render "shared/new_comment", :f => f
