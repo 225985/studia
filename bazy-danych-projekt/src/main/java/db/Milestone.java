@@ -21,6 +21,7 @@ public class Milestone extends DbObject {
         super();
         this.tasks = new ArrayList<Task>();
         this.comments = new ArrayList<Comment<Milestone>>();
+        this.attachments = new ArrayList<Attachment<Milestone>>();
     }
 
     public Milestone(int id){
@@ -102,6 +103,18 @@ public class Milestone extends DbObject {
         comment.parent = this;
         this.save();
         comment.save();
+    }
+
+
+    public List<Attachment<Milestone>> getAttachments(){
+        return this.attachments;
+    }
+
+    public void addAttachment(Attachment<Milestone> attachment){
+        this.attachments.add(attachment);
+        attachment.parent = this;
+        this.save();
+        attachment.save();
     }
 
 

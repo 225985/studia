@@ -3,12 +3,12 @@ module Db
     inherit_resources
 
     before_filter :authenticate_user!
-	
-	def show
-		@project = Db::Project.find(params[:id])
-		@new_comment = Db::Comment.new
-	end
 
+    def show
+      @project = Db::Project.find(params[:id])
+      @new_comment = Db::Comment.new
+      @new_attachment = Db::Attachment.new
+    end
 
     def create
       @project = Db::Project.new(params[:java_db_project])

@@ -169,6 +169,18 @@ public class Task extends DbObject {
     }
 
 
+    public List<Attachment<Task>> getAttachments(){
+        return this.attachments;
+    }
+
+    public void addAttachment(Attachment<Task> attachment){
+        this.attachments.add(attachment);
+        attachment.parent = this;
+        this.save();
+        attachment.save();
+    }
+
+
     public static Collection<Task> all(){
         return Database.odb.getObjects(Task.class);
     }

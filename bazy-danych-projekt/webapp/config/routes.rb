@@ -6,11 +6,14 @@ Webapp::Application.routes.draw do
     resources :projects do
       resources :milestones do
         resource :comments
+        resource :attachments
       end
       resources :tasks do
         resource :comments
+        resource :attachments
       end
       resource :comments
+      resource :attachments
     end
   end
 

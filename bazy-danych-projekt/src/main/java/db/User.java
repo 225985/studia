@@ -15,6 +15,7 @@ public class User extends DbObject {
     private List<Project> projects;
     private List<Task> tasks;
     private List<Comment<?>> comments;
+    private List<Attachment<?>> attachments;
     private List<Role> roles;
 
 
@@ -23,6 +24,7 @@ public class User extends DbObject {
         this.tasks = new ArrayList<Task>();
         this.projects = new ArrayList<Project>();
         this.comments = new ArrayList<Comment<?>>();
+        this.attachments = new ArrayList<Attachment<?>>();
         this.firstName = "";
         this.lastName = "";
         this.login = "";
@@ -109,6 +111,10 @@ public class User extends DbObject {
 
 	public void addComment(Comment<?> comment){
 	    this.comments.add(comment);
+	}
+
+	public void addAttachment(Attachment<?> comment){
+	    this.attachments.add(comment);
 	}
 
 	public List<Comment<?>> getComments(){

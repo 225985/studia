@@ -4,3 +4,4 @@ db/dev.neodatis
 log/*.log
 tmp/
 .sass-cache/
+public/uploads/

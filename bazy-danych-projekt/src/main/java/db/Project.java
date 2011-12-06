@@ -18,9 +18,10 @@ public class Project extends DbObject {
 
     public Project(){
         super();
-        tasks = new ArrayList<Task>();
-        milestones = new ArrayList<Milestone>();
-        comments = new ArrayList<Comment<Project>>();
+        this.tasks = new ArrayList<Task>();
+        this.milestones = new ArrayList<Milestone>();
+        this.comments = new ArrayList<Comment<Project>>();
+        this.attachments = new ArrayList<Attachment<Project>>();
     }
 
     public Project(int id){
@@ -99,12 +100,15 @@ public class Project extends DbObject {
         this.milestones = milestones;
     }
 
-    public List<Attachment<Project>> getAttachments() {
-        return attachments;
+    public List<Attachment<Project>> getAttachments(){
+        return this.attachments;
     }
 
-    public void setAttachments(List<Attachment<Project>> attachments) {
-        this.attachments = attachments;
+    public void addAttachment(Attachment<Project> attachment){
+        this.attachments.add(attachment);
+        attachment.parent = this;
+        this.save();
+        attachment.save();
     }
 
     public List<Comment<Project>> getComments() {

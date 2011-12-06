@@ -4,7 +4,7 @@
   Owner :
   = link_to @project.owner.name, user_path(@project.owner)
 .description
-  Description : 
+  Description :
   = @project.description
 
 %br
@@ -51,4 +51,17 @@
 = simple_form_for @new_comment, :url => project_comments_path(@project) do |f|
   = render "shared/new_comment", :f => f
 
+
+%h3 Attachments
+%div
+  - @project.attachments.each do |attachment|
+    %div
+      %div= link_to attachment.get_file, attachment.file_url
+      %div
+        by
+        = link_to attachment.author.name, user_path(attachment.author)
+
+%h3 New attachment
+= simple_form_for @new_attachment, :url => project_attachments_path(@project) do |f|
+  = render "shared/new_attachment", :f => f
 

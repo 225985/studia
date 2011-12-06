@@ -31,3 +31,17 @@ for project
 %h3 New comment
 = simple_form_for @new_comment, :url => project_milestone_comments_path(@milestone.project, @milestone) do |f|
   = render "shared/new_comment", :f => f
+
+
+%h3 Attachments
+%div
+  - @milestone.attachments.each do |attachment|
+    %div
+      %div= link_to attachment.get_file, attachment.file_url
+      %div
+        by
+        = link_to attachment.author.name, user_path(attachment.author)
+
+%h3 New attachment
+= simple_form_for @new_attachment, :url => project_milestone_attachments_path(@milestone.project, @milestone) do |f|
+  = render "shared/new_attachment", :f => f
