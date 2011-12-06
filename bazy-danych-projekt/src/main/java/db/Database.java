@@ -41,7 +41,6 @@ public class Database {
         query.setPolymorphic(true);
         Collection<DbObject> results = odb.getObjects(query);
         for(DbObject obj : results){
-            System.out.println("DbObject " + obj + " ==> " + obj.getId());
             if(obj.getId() > maxId) maxId = obj.getId();
         }
 

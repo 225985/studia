@@ -113,6 +113,9 @@ public class Project extends DbObject {
 
     public void addComment(Comment<Project> comment) {
         this.comments.add(comment);
+        comment.parent = this;
+        this.save();
+        comment.save();
     }
 
     public List<Role> getRoles() {
