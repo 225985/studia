@@ -2,6 +2,8 @@ module Db
   class TasksController < ApplicationController
     before_filter :fetch_project
     # belongs_to :project, :parent_class => Db::Project
+    before_filter :ensure_user_can_edit_task, :only => [:new, :create, :edit, :update, :destroy]
+
 
     # inherit_resources
 
@@ -59,6 +61,10 @@ module Db
 
       def fetch_project
         @project = Project.find(params[:project_id])
+      end
+
+      def ensure_user_can_edit_task
+        redirect_to root_path if current_user.can_edit_task
       end
   end
 end

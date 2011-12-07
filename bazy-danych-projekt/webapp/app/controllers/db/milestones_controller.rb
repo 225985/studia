@@ -2,6 +2,8 @@ module Db
   class MilestonesController < ApplicationController
     before_filter :fetch_project
 
+    before_filter :ensure_user_can_edit_milestone, :only => [:new, :create, :edit, :update, :destroy]
+
 
     def new
       @milestone = @project.milestones.new
@@ -41,6 +43,10 @@ module Db
 
       def fetch_project
         @project = Project.find(params[:project_id])
+      end
+
+      def ensure_user_can_edit_milestone
+        redirect_to root_path if current_user.can_edit_milestone
       end
 
   end

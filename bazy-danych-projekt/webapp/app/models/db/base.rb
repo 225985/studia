@@ -13,7 +13,8 @@ module Db
       "db.User"         => lambda {|s| Db::User.find(s.to_i) },
       "db.Comment"      => lambda {|s| Db::Comment.find(s.to_i) },
       "db.TaskStatus"   => lambda {|s| Db::TaskStatus.value_of(s.upcase.gsub(" ", "_")) },
-      "db.TaskKind"     => lambda {|s| Db::TaskKind.value_of(s.upcase.gsub(" ", "_")) }
+      "db.TaskKind"     => lambda {|s| Db::TaskKind.value_of(s.upcase.gsub(" ", "_")) },
+      "db.RoleType"     => lambda {|s| Db::RoleType.value_of(s.upcase.gsub(" ", "_")) }
     }[x]
   end
 

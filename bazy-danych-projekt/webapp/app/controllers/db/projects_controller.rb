@@ -3,6 +3,7 @@ module Db
     inherit_resources
 
     before_filter :authenticate_user!
+    before_filter :ensure_user_can_edit_project, :only => [:new, :create, :edit, :update, :destroy]
 
     def show
       @project = Db::Project.find(params[:id])
@@ -18,6 +19,12 @@ module Db
       else
         render :new
       end
+    end
+
+    protected
+
+    def ensure_user_can_edit_project
+      redirect_to root_path if current_user.can_edit_project
     end
   end
 end

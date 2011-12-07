@@ -16,7 +16,8 @@ public class User extends DbObject {
     private List<Task> tasks;
     private List<Comment<?>> comments;
     private List<Attachment<?>> attachments;
-    private List<Role> roles;
+    // private List<Role> roles;
+    private RoleType role;
 
 
     public User(){
@@ -29,6 +30,7 @@ public class User extends DbObject {
         this.lastName = "";
         this.login = "";
         this.email = "";
+        this.role = RoleType.NORMAL;
     }
 
     public User(int id){
@@ -58,6 +60,14 @@ public class User extends DbObject {
 
     public void setEncryptedPassword(String encryptedPassword){
         this.encryptedPassword = encryptedPassword;
+    }
+
+    public void setRole(RoleType role){
+        this.role = role;
+    }
+
+    public RoleType getRole(){
+        return this.role;
     }
 
 
@@ -139,5 +149,24 @@ public class User extends DbObject {
         } else {
             return null;
         }
+    }
+
+
+
+
+    public boolean canEditProject(){
+        return this.role == RoleType.ADMIN || this.role == RoleType.MANAGER;
+    }
+
+    public boolean canEditMilestone(){
+        return this.canEditProject();
+    }
+
+    public boolean canEditTask(){
+        return true;
+    }
+
+    public boolean canEditUser(){
+        return this.role == RoleType.ADMIN;
     }
 }

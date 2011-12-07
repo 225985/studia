@@ -7,7 +7,7 @@ public class Role extends DbObject {
 
     protected Project project;
     protected User user;
-    protected RoleType role;
+    protected RoleType type;
 
     public Role(){
         super();
@@ -34,12 +34,12 @@ public class Role extends DbObject {
         this.user = user;
     }
 
-    public RoleType getRole() {
-        return role;
+    public RoleType getType() {
+        return type;
     }
 
-    public void setRole(RoleType role) {
-        this.role = role;
+    public void setRole(RoleType type) {
+        this.type = type;
     }
 
     public static Collection<Role> all(){
