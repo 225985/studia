@@ -11,6 +11,7 @@
 
 $(function() {
 		$( ".dateBox" ).datepicker();
-	});
+    $( ".tabs").tabs(); // dodane, ale kurwa to laduje z jquery-ui
+});
 
 
