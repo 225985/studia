@@ -46,7 +46,7 @@ module Db
       end
 
       def ensure_user_can_edit_milestone
-        redirect_to root_path if current_user.can_edit_milestone
+        redirect_to root_path unless current_user.can_edit_milestone
       end
 
   end

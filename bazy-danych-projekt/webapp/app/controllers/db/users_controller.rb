@@ -27,7 +27,7 @@ module Db
     protected
 
       def ensure_user_can_edit_users
-        redirect_to root_path if current_user.can_edit_user
+        redirect_to root_path unless current_user.can_edit_user
       end
   end
 end
