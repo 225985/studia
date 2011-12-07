@@ -22,9 +22,9 @@
       .description
         Description :
         = @project.description
-
-      = link_to "Edit", edit_project_path(@task), :class => "btn"
-      = link_to "Delete", project_path(@task), :method => :delete, :class => "btn danger"
+      - if current_user.can_edit_project
+        = link_to "Edit", edit_project_path(@task), :class => "btn"
+        = link_to "Delete", project_path(@task), :method => :delete, :class => "btn danger"
 
     .tab-pane#milestone
       %h3 Milestones
@@ -40,14 +40,14 @@
               %td= link_to milestone.name, project_milestone_path(@project, milestone.id)
               %td= milestone.description
               %td= l(Date.parse(milestone.deadline.to_s), :format => :long)
-
-      = link_to "Add milestone", new_project_milestone_path(@project), :class => "btn success"
+      - if current_user.can_edit_milestone
+        = link_to "Add milestone", new_project_milestone_path(@project), :class => "btn success"
 
     #task.tab-pane
       %h3 Tasks
       = render "shared/tasks", :locals => {:tasks => @project.tasks_without_milestone, :show_assignee => true}
-
-      = link_to "Add task", new_project_task_path(@project), :class => "btn success"
+      - if current_user.can_edit_task
+        = link_to "Add task", new_project_task_path(@project), :class => "btn success"
 
     #comment.tab-pane
       %h3 Comments

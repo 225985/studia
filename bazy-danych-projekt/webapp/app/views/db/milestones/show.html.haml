@@ -22,15 +22,15 @@
       .description
         Description :
         = @milestone.description
-
-      = link_to "Edit", edit_project_milestone_path(@project, @milestone), :class => "btn"
-      = link_to "Delete", project_milestone_path(@project, @milestone), :method => :delete, :class => "btn danger"
+      - if current_user.can_edit_milestone
+        = link_to "Edit", edit_project_milestone_path(@project, @milestone), :class => "btn"
+        = link_to "Delete", project_milestone_path(@project, @milestone), :method => :delete, :class => "btn danger"
     #task.tab-pane
       %h3 Tasks
       = render "shared/tasks", :locals => {:tasks => @milestone.tasks, :show_milestone => false, :show_assignee => true}
 
-
-      = link_to "Add task", new_project_task_path(@project, :milestone_id => @milestone.id), :class => "btn success"
+      - if current_user.can_edit_task
+        = link_to "Add task", new_project_task_path(@project, :milestone_id => @milestone.id), :class => "btn success"
     #comment.tab-pane
       %h3 Comments
       %div

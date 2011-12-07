@@ -22,18 +22,18 @@
       %h4
         Project:
         = link_to @task.project.name, project_path(@task.project)
-
-      = link_to "Edit", edit_project_task_path(@project, @task), :class => "btn"
-      = link_to "Delete", project_task_path(@project, @task), :method => :delete, :class => "btn danger"
+      - if current_user.can_edit_task
+        = link_to "Edit", edit_project_task_path(@project, @task), :class => "btn"
+        = link_to "Delete", project_task_path(@project, @task), :method => :delete, :class => "btn danger"
     #comment.tab-pane
       %h3 Comments
       %div
         - @task.comments.each do |comment|
           %div
             %div
-              by
+              Author : 
               = link_to comment.author.name, user_path(comment.author)
-            %div= simple_format comment.content
+            %div= simple_format comment.content 
 
       %h3 New comment
       = simple_form_for @new_comment, :url => project_task_comments_path(@task.project, @task) do |f|

@@ -12,5 +12,5 @@
         %td= link_to user.name, user_path(user)
         %td= user.projects.size
         %td= user.tasks.size
-
-= link_to "Add new user", new_user_path, :class => "btn success"
+- if current_user.can_edit_user
+  = link_to "Add new user", new_user_path, :class => "btn success"
