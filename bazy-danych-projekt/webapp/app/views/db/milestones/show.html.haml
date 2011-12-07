@@ -1,47 +1,60 @@
 %h2= @milestone.name
+.table-width
+  %ul{:class => "tabs", :"data-tabs" => "tabs"}
+    %li{:class => "active"} 
+      %a{:href => "#info"}Info
+    %li
+      %a{:href => "#task"}Task
+    %li
+      %a{:href => "#comment"}Comment
+    %li
+      %a{:href => "#attachment"}Attachment
 
-for project
-= link_to @project.name, project_path(@project)
+  .tab-content
+    .active#info
+      for project
+      = link_to @project.name, project_path(@project)
 
-.deadline
-  Deadline:
-  = l(Date.parse(@milestone.deadline.to_s), :format => :long)
+      .deadline
+        Deadline :
+        = l(Date.parse(@milestone.deadline.to_s), :format => :long)
 
-.description
-  = @milestone.description
+      .description
+        Description :
+        = @milestone.description
 
-= link_to "Edit", edit_project_milestone_path(@project, @milestone), :class => "btn"
-= link_to "Delete", project_milestone_path(@project, @milestone), :method => :delete, :class => "btn danger"
+      = link_to "Edit", edit_project_milestone_path(@project, @milestone), :class => "btn"
+      = link_to "Delete", project_milestone_path(@project, @milestone), :method => :delete, :class => "btn danger"
+    #task.tab-pane
+      %h3 Tasks
+      = render "shared/tasks", :locals => {:tasks => @milestone.tasks, :show_milestone => false, :show_assignee => true}
 
-%h3 Tasks
-= render "shared/tasks", :locals => {:tasks => @milestone.tasks, :show_milestone => false, :show_assignee => true}
 
-
-= link_to "Add task", new_project_task_path(@project, :milestone_id => @milestone.id), :class => "btn success"
-
-%h3 Comments
-%div
-  - @milestone.comments.each do |comment|
-    %div
+      = link_to "Add task", new_project_task_path(@project, :milestone_id => @milestone.id), :class => "btn success"
+    #comment.tab-pane
+      %h3 Comments
       %div
-        by
-        = link_to comment.author.name, user_path(comment.author)
-      %div= simple_format comment.content
+        - @milestone.comments.each do |comment|
+          %div
+            %div
+              by
+              = link_to comment.author.name, user_path(comment.author)
+            %div= simple_format comment.content
 
-%h3 New comment
-= simple_form_for @new_comment, :url => project_milestone_comments_path(@milestone.project, @milestone) do |f|
-  = render "shared/new_comment", :f => f
+      %h3 New comment
+      = simple_form_for @new_comment, :url => project_milestone_comments_path(@milestone.project, @milestone) do |f|
+        = render "shared/new_comment", :f => f
 
-
-%h3 Attachments
-%div
-  - @milestone.attachments.each do |attachment|
-    %div
-      %div= link_to attachment.get_file, attachment.file_url
+    #attachment.tab-pane
+      %h3 Attachments
       %div
-        by
-        = link_to attachment.author.name, user_path(attachment.author)
+        - @milestone.attachments.each do |attachment|
+          %div
+            %div= link_to attachment.get_file, attachment.file_url
+            %div
+              by
+              = link_to attachment.author.name, user_path(attachment.author)
 
-%h3 New attachment
-= simple_form_for @new_attachment, :url => project_milestone_attachments_path(@milestone.project, @milestone) do |f|
-  = render "shared/new_attachment", :f => f
+      %h3 New attachment
+      = simple_form_for @new_attachment, :url => project_milestone_attachments_path(@milestone.project, @milestone) do |f|
+        = render "shared/new_attachment", :f => f
