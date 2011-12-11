@@ -39,7 +39,7 @@ public class Alg {
 	}
        
     public int run(){
-       // System.out.println("Number of processors = " + n + ", Cmax = " + c);
+       System.out.println("Number of processors = " + n + ", Cmax = " + c + " math pow " + (int)Math.pow(c,n));
         int[] tab = new int[(int)Math.pow(c,n)];
         tab[0] = 0;
         for(int i=1; i<tab.length; i++) tab[i] = -1;
@@ -67,7 +67,7 @@ public class Alg {
         
         int[] lastCrds = minimalMaximumTime(findLastTask(tab));
         
-       // System.out.println("minimal.maximum.time = " + Util.join(lastCrds));
+       System.out.println("minimal.maximum.time = " + Util.join(lastCrds));
         
         for(int k=tasks.length; k>0; k--){
             for(int j=0; j<n; j++){

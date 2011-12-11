@@ -6,13 +6,13 @@ class App {
        
         System.out.println("=== Array ===");
         long time1 = System.currentTimeMillis();
-        int [] tab = new int[]{2,3,6,3,5,7,4,6,4};
-		for(int i=0; i<9; i++)
+        int [] tab = new int[]{1,2,3,4,5};
+		for(int i=0; i<5; i++)
 			System.out.print(tab[i] + " , ");
 		System.out.println();
-		Alg a = new Alg(3, 70, tab);
-		a.run();
-		a.printResult();
+		Alg a = new Alg(2, 8, tab);
+		System.out.println(a.run());
+		System.out.println(a.printResult());
         
     }
 }
