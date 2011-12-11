@@ -8,6 +8,7 @@ public class Attachment<T> extends DbObject {
 
       protected User author;
       protected Date createdAt;
+      protected String file;
       //protected File content;
       protected T parent;
 
@@ -26,6 +27,7 @@ public class Attachment<T> extends DbObject {
 
     public void setAuthor(User author) {
         this.author = author;
+        this.author.addAttachment(this);
     }
 
     public Date getCreatedAt() {
@@ -42,6 +44,14 @@ public class Attachment<T> extends DbObject {
 
     public void setParent(T parent) {
         this.parent = parent;
+    }
+
+    public void setFile(String file){
+        this.file = file;
+    }
+
+    public String getFile(){
+        return this.file;
     }
 
     public static Collection<Attachment> all(){

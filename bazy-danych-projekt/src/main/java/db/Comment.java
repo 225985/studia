@@ -8,11 +8,12 @@ public class Comment<T> extends DbObject {
     protected Date createdAt;
     protected String content;
     protected T parent;
-    protected List<Attachment<Comment<T>>> attachments;
+    // protected List<Attachment<Comment<T>>> attachments;
 
     public Comment(){
         super();
-        attachments = new ArrayList<Attachment<Comment<T>>>();
+        // this.attachments = new ArrayList<Attachment<Comment<T>>>();
+        this.createdAt = new java.util.Date();
     }
 
     public Comment(int id){
@@ -26,6 +27,7 @@ public class Comment<T> extends DbObject {
 
     public void setAuthor(User author) {
         this.author = author;
+        this.author.addComment(this);
     }
 
     public Date getCreatedAt() {
@@ -52,13 +54,13 @@ public class Comment<T> extends DbObject {
         this.parent = parent;
     }
 
-    public List<Attachment<Comment<T>>> getAttachments() {
-        return attachments;
-    }
-
-    public void setAttachments(List<Attachment<Comment<T>>> attachments) {
-        this.attachments = attachments;
-    }
+    // public List<Attachment<Comment<T>>> getAttachments() {
+    //     return attachments;
+    // }
+    //
+    // public void setAttachments(List<Attachment<Comment<T>>> attachments) {
+    //     this.attachments = attachments;
+    // }
 
     public static Collection<Comment> all(){
         return Database.odb.getObjects(Comment.class);

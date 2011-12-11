@@ -22,6 +22,9 @@ public class Task extends DbObject {
         super();
         this.status = TaskStatus.NEW;
         this.kind = TaskKind.FEATURE;
+        this.timeEntries = new ArrayList<TimeEntry>();
+        this.comments = new ArrayList<Comment<Task>>();
+        this.attachments = new ArrayList<Attachment<Task>>();
     }
 
     public Task(int id){
@@ -152,6 +155,29 @@ public class Task extends DbObject {
 
     public void setEstimatedTime(int estimatedTime) {
         this.estimatedTime = estimatedTime;
+    }
+
+    public List<Comment<Task>> getComments(){
+        return this.comments;
+    }
+
+    public void addComment(Comment<Task> comment){
+        this.comments.add(comment);
+        comment.parent = this;
+        this.save();
+        comment.save();
+    }
+
+
+    public List<Attachment<Task>> getAttachments(){
+        return this.attachments;
+    }
+
+    public void addAttachment(Attachment<Task> attachment){
+        this.attachments.add(attachment);
+        attachment.parent = this;
+        this.save();
+        attachment.save();
     }
 
 

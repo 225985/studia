@@ -14,22 +14,27 @@ public class User extends DbObject {
     private String lastName;
     private List<Project> projects;
     private List<Task> tasks;
-    private List<Comment<User>> comments;
-    private List<Role> roles;
+    private List<Comment<?>> comments;
+    private List<Attachment<?>> attachments;
+    // private List<Role> roles;
+    private RoleType role;
 
 
     public User(){
         super();
         this.tasks = new ArrayList<Task>();
         this.projects = new ArrayList<Project>();
+        this.comments = new ArrayList<Comment<?>>();
+        this.attachments = new ArrayList<Attachment<?>>();
         this.firstName = "";
         this.lastName = "";
         this.login = "";
         this.email = "";
+        this.role = RoleType.NORMAL;
     }
 
     public User(int id){
-        super();
+        this();
         this.id = id;
     }
 
@@ -55,6 +60,14 @@ public class User extends DbObject {
 
     public void setEncryptedPassword(String encryptedPassword){
         this.encryptedPassword = encryptedPassword;
+    }
+
+    public void setRole(RoleType role){
+        this.role = role;
+    }
+
+    public RoleType getRole(){
+        return this.role;
     }
 
 
@@ -106,6 +119,18 @@ public class User extends DbObject {
 		this.projects.add(project);
 	}
 
+	public void addComment(Comment<?> comment){
+	    this.comments.add(comment);
+	}
+
+	public void addAttachment(Attachment<?> comment){
+	    this.attachments.add(comment);
+	}
+
+	public List<Comment<?>> getComments(){
+	    return this.comments;
+	}
+
     public static Collection<User> all(){
         return Database.odb.getObjects(User.class);
     }
@@ -124,5 +149,24 @@ public class User extends DbObject {
         } else {
             return null;
         }
+    }
+
+
+
+
+    public boolean canEditProject(){
+        return this.role == RoleType.ADMIN || this.role == RoleType.MANAGER;
+    }
+
+    public boolean canEditMilestone(){
+        return this.canEditProject();
+    }
+
+    public boolean canEditTask(){
+        return true;
+    }
+
+    public boolean canEditUser(){
+        return this.role == RoleType.ADMIN;
     }
 }

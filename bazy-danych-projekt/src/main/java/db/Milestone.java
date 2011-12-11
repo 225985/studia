@@ -20,6 +20,8 @@ public class Milestone extends DbObject {
     public Milestone(){
         super();
         this.tasks = new ArrayList<Task>();
+        this.comments = new ArrayList<Comment<Milestone>>();
+        this.attachments = new ArrayList<Attachment<Milestone>>();
     }
 
     public Milestone(int id){
@@ -89,6 +91,30 @@ public class Milestone extends DbObject {
 
     public void removeTask(Task task){
         this.tasks.remove(task);
+    }
+
+
+    public List<Comment<Milestone>> getComments(){
+        return this.comments;
+    }
+
+    public void addComment(Comment<Milestone> comment){
+        this.comments.add(comment);
+        comment.parent = this;
+        this.save();
+        comment.save();
+    }
+
+
+    public List<Attachment<Milestone>> getAttachments(){
+        return this.attachments;
+    }
+
+    public void addAttachment(Attachment<Milestone> attachment){
+        this.attachments.add(attachment);
+        attachment.parent = this;
+        this.save();
+        attachment.save();
     }
 
 

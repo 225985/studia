@@ -1,8 +1,16 @@
 %h2 Listing projects
 
-%ul
-  - @projects.each do |project|
-    %li= link_to project.name, project_path(project.id)
+.table-width
+  %table
+    %tr
+      %th Name
+      %th Owner
+      %th Description
 
-
-= link_to "Create new project", new_project_path, :class => "btn success"
+    - @projects.each do |project|
+      %tr
+        %td= link_to project.name, project_path(project.id)
+        %td= link_to project.owner.name, user_path(project.owner)
+        %td= project.description
+- if current_user.can_edit_project
+  = link_to "Create new project", new_project_path, :class => "btn success"

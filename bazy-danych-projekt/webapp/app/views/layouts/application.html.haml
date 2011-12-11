@@ -3,8 +3,10 @@
   %head
     %title Webapp
     = stylesheet_link_tag "http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css"
+    = stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" 
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
+    = javascript_include_tag "http://twitter.github.com/bootstrap/1.4.0/bootstrap-tabs.js"
     = csrf_meta_tags
     :css
       #container { width: 800px; padding: 20px; }
@@ -46,6 +48,10 @@
 
       tr.success .txt {
         text-decoration: line-through;
+      }
+
+      .table-width {
+        width : 820px;
       }
 
 

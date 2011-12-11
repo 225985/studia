@@ -4,8 +4,16 @@ Webapp::Application.routes.draw do
 
     resources :users
     resources :projects do
-      resources :milestones
-      resources :tasks
+      resources :milestones do
+        resource :comments
+        resource :attachments
+      end
+      resources :tasks do
+        resource :comments
+        resource :attachments
+      end
+      resource :comments
+      resource :attachments
     end
   end
 

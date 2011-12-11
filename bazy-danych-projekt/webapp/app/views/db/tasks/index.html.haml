@@ -5,5 +5,5 @@
   - @tasks.each do |task|
     %li= link_to task.name, project_task_path(@project, task.id)
 
-
-= link_to "Add task", new_project_task_path(@project), :class => "btn success"
+- if current_user.can_edit_task
+  = link_to "Add task", new_project_task_path(@project), :class => "btn success"
