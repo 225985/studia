@@ -4,6 +4,10 @@ Webapp::Application.routes.draw do
 
     resources :users
     resources :projects do
+      member do
+        post :add_user
+        post :remove_user
+      end
       resources :milestones do
         resource :comments
         resource :attachments

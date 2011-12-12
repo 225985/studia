@@ -14,6 +14,7 @@ public class Project extends DbObject {
     protected List<Attachment<Project>> attachments;
     protected List<Comment<Project>> comments;
     protected List<Role> roles;
+    protected List<User> users;
 
 
     public Project(){
@@ -22,6 +23,7 @@ public class Project extends DbObject {
         this.milestones = new ArrayList<Milestone>();
         this.comments = new ArrayList<Comment<Project>>();
         this.attachments = new ArrayList<Attachment<Project>>();
+        this.users = new ArrayList<User>();
     }
 
     public Project(int id){
@@ -140,11 +142,29 @@ public class Project extends DbObject {
     }
 
     public List<Task> getTasksWithoutMilestone(){
-        List<Task> dupa = new ArrayList<Task>(this.tasks);
+        List<Task> l = new ArrayList<Task>(this.tasks);
         for(Task t : this.tasks){
-            if(t.hasMilestone()) dupa.remove(t);
+            if(t.hasMilestone()) l.remove(t);
         }
-        return dupa;
+        return l;
+    }
+
+    public void addUser(User user){
+        this.users.add(user);
+    }
+
+    public void removeUser(User user){
+        this.users.remove(user);
+    }
+
+    public List<User> getUsers(){
+        return this.users;
+    }
+
+    public List<User> getAllUsers(){
+        List<User> l = new ArrayList<User>(this.users);
+        l.add(this.owner);
+        return l;
     }
 
     public static Collection<Project> all(){
