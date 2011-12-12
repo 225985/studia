@@ -1,0 +1,25 @@
+.table-width
+%table
+  %tr
+    %th #
+    %th Kind
+    %th Name
+    %th Status
+    - if locals[:show_assignee]
+      %th Assignee
+    - if locals[:show_milestone]
+      %th Milestone
+    %th Deadline
+  - locals[:tasks].each do |task|
+    %tr.task{:class => task_status_class(task)}
+      %td.txt= link_to task.id, project_task_path(task.project, task.id)
+      %td
+        %span.label{:class => task_kind_class(task)}= task.kind.to_s.humanize
+      %td.txt= link_to task.name, project_task_path(task.project, task.id)
+      %td
+        %span.label{:class => task_status_class(task)}= task.status.to_s.humanize
+      - if locals[:show_assignee]
+        %td.txt= task.assignee ? link_to(task.assignee.name, user_path(task.assignee)) : "-"
+      - if locals[:show_milestone]
+        %td.txt= task.milestone ? link_to(task.milestone.name, project_milestone_path(task.milestone.project, task.milestone)) : "-"
+      %td= l(Date.parse(task.deadline.to_s), :format => :long)

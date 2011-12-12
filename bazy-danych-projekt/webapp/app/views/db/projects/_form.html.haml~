@@ -1,0 +1,5 @@
+= f.input :name
+= f.input :description, :as => :text
+/ = f.input :owner, :as => :select, :collection => Db::User.all.map {|u| [u.email, u.id]}
+.actions
+  = f.submit :class => "btn primary"

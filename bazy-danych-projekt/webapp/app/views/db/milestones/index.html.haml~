@@ -1,0 +1,10 @@
+%h2 Listing milestones in project
+= @project.name
+
+%ul
+  - @milestones.each do |mileston|
+    %li= link_to mileston.name, project_milestone_path(@project, mileston.id)
+
+
+= link_to "Create new milestone", new_project_milestone_path(@project), :class => "btn success"
+
