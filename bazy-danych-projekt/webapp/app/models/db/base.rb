@@ -3,7 +3,7 @@ module Db
 
   def self.cast(x)
     {
-      "java.util.Date"  => lambda {|s| Date.parse(s).to_time rescue nil },
+      "java.util.Date"  => lambda {|s| DateTime.parse(s).to_time rescue nil },
       "int"             => lambda {|s| s.to_i },
       "double"          => lambda {|s| s.to_f },
       "float"           => lambda {|s| s.to_f },
