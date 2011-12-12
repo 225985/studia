@@ -29,16 +29,22 @@
         = link_to "Delete", project_task_path(@project, @task), :method => :delete, :class => "btn danger"
     #time.tab-pane
       %h3 Time Entries
-      %div
-        - @task.timeEntries.each do |time|
-          %div
-            %div
-              Author : 
-              = link_to time.user.name, user_path(time.user) 
-            %hr
+      .table-width
+        %table
+          %tr
+            %th User
+            %th Start Time
+            %th End Time
+            %th Total time
+          - @task.timeEntries.each do |time|
+            %tr
+              %td= link_to time.user.name, user_path(time.user) 
+              %td= time.start_time
+              %td= time.end_time
+              %td= time.end_time 
       %h3 New time entry
-      = simple_form_for @new_timeentry, :url => project_task_time_entries_path(@task) do |f|
-        = render "shared/new_comment", :f => f  
+      = simple_form_for @new_timeentry, :url => project_task_time_entries_path(@task.project, @task) do |f|
+        = render "time_entry", :f => f  
     #comment.tab-pane
       %h3 Comments
       %div

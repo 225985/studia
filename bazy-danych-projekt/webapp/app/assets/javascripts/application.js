@@ -10,7 +10,10 @@
 //= require_tree .
 
 $(function() {
-		$( ".dateBox" ).datepicker();
+		$( ".dateBox" ).datepicker({
+      duration: '',
+			showTime: true,
+			constrainInput: false});
     $( ".tabs").tabs(); // dodane, ale kurwa to laduje z jquery-ui
 });
 
