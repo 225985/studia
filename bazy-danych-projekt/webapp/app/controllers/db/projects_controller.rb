@@ -7,11 +7,32 @@ module Db
 
     def show
       @project = Db::Project.find(params[:id])
-      @new_comment = Db::Comment.new
-      @new_attachment = Db::Attachment.new
 
-      @assigned_users = @project.all_users.to_a
-      @not_assigned_users = Db::User.all.to_a - @assigned_users
+      respond_to do |format|
+        format.html do
+          @new_comment = Db::Comment.new
+          @new_attachment = Db::Attachment.new
+
+          @assigned_users = @project.all_users.to_a
+          @not_assigned_users = Db::User.all.to_a - @assigned_users
+        end
+
+        format.js do
+          render :json => @project.tasks.map {|e| e.time_entries }.group_by {|te| te.user }.map do |user, entries|
+            {
+              "name" => user.name,
+              "desc" => "",
+              "values" => entries.map {|e|
+                {
+                  "from" => e.start_time,
+                  "to" => e.end_time,
+                  "desc" => e.task.name
+                }
+              }
+            }
+          end
+        end
+      end
     end
 
     def create

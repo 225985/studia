@@ -14,6 +14,8 @@
       %a{:href => "#attachment"}Attachment
     %li
       %a{:href => "#users"} Users
+    %li
+      %a{:href => "#gantt"} Gantt
 
   .tab-content
     .active#info
@@ -97,4 +99,6 @@
             = link_to user.name, user_path(user)
             = link_to "+", add_user_project_path(@project, :user_id => user.id), :class => "btn success", :method => :post
 
+    #gantt.tab-pane
+      .gantt
 
