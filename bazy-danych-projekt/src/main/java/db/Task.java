@@ -196,7 +196,9 @@ public class Task extends DbObject {
 
     public void addTimeEntry(TimeEntry entry){
         timeEntries.add(entry);
-        this.save();    
+        this.save();
+        entry.setTask(this);
+        entry.save();  
     }
 
 }
