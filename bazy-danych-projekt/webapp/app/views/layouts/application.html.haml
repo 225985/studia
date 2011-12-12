@@ -3,11 +3,11 @@
   %head
     %title Webapp
     = stylesheet_link_tag "http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css"
-    = stylesheet_link_tag "http://puna.net.nz/client/css/redmond/jquery-ui-1.7.2.custom.css" 
+    = stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" 
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
     = javascript_include_tag "http://twitter.github.com/bootstrap/1.4.0/bootstrap-tabs.js"
-    = javascript_include_tag "http://puna.net.nz/client/timepicker/js/timepicker.mod.js"
+    = javascript_include_tag "http://trentrichardson.com/examples/timepicker/js/jquery-ui-timepicker-addon.js"
     = csrf_meta_tags
     :css
       #container { width: 800px; padding: 20px; }
@@ -54,6 +54,12 @@
       .table-width {
         width : 820px;
       }
+      .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+      .ui-timepicker-div dl { text-align: left; }
+      .ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+      .ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+      .ui-timepicker-div td { font-size: 90%; }
+      .ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
 
 
 %body
