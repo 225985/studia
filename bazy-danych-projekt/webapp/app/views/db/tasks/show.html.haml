@@ -1,8 +1,10 @@
 %h2= @task.name
 .table-width
-  %ul{:class => "tabs", :"data-tabs" => "tabs"}
+  %ul{:class => "tabs", :"data-tabs" => "tabs"}    
     %li{:class => "active"} 
       %a{:href => "#info"}Info
+    %li
+      %a{:href => "#time"}Time Entries
     %li
       %a{:href => "#comment"}Comment
     %li
@@ -25,6 +27,18 @@
       - if current_user.can_edit_task
         = link_to "Edit", edit_project_task_path(@project, @task), :class => "btn"
         = link_to "Delete", project_task_path(@project, @task), :method => :delete, :class => "btn danger"
+    #time.tab-pane
+      %h3 Time Entries
+      %div
+        - @task.timeEntries.each do |time|
+          %div
+            %div
+              Author : 
+              = link_to time.user.name, user_path(time.user) 
+            %hr
+      %h3 New time entry
+      = simple_form_for @new_timeentry, :url => project_task_time_entries_path(@task) do |f|
+        = render "shared/new_comment", :f => f  
     #comment.tab-pane
       %h3 Comments
       %div

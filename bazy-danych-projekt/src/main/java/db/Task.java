@@ -184,4 +184,10 @@ public class Task extends DbObject {
     public static Collection<Task> all(){
         return Database.odb.getObjects(Task.class);
     }
+
+    public void addTimeEntry(TimeEntry entry){
+        timeEntries.add(entry);
+        this.save();    
+    }
+
 }

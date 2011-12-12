@@ -11,6 +11,7 @@ Webapp::Application.routes.draw do
       resources :tasks do
         resource :comments
         resource :attachments
+        resource :time_entries
       end
       resource :comments
       resource :attachments

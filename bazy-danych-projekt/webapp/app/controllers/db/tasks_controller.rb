@@ -38,6 +38,7 @@ module Db
       @task = @project.tasks.find(params[:id])
       @new_comment = Db::Comment.new
       @new_attachment = Db::Attachment.new
+      @new_timeentry = Db::TimeEntry.new
     end
 
     def edit
