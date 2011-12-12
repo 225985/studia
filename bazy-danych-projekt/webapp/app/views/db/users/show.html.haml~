@@ -1,0 +1,22 @@
+%h2= @user.name
+- if current_user.can_edit_user
+  = link_to "Edit", edit_user_path(@user), :class => "btn"
+  = link_to "Delete", user_path(@user), :remote => true, :method => :delete, :class => "btn danger"
+
+%h3 Tasks
+= render "shared/tasks", :locals => {:tasks => @user.tasks, :show_milestone => true, :show_assignee => false }
+
+%h3 Comments
+%ul
+  - @user.comments.each do |comment|
+    %li
+      %code= comment.content.truncate(20)
+      on
+      - case comment.parent
+      - when Db::Task
+        = link_to comment.parent.name, project_task_path(comment.parent.project, comment.parent)
+      - when Db::Milestone
+        = link_to comment.parent.name, project_milestone_path(comment.parent.project, comment.parent)
+      - when Db::Project
+        = link_to comment.parent.name, project_path(comment.parent)
+

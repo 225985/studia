@@ -38,6 +38,7 @@ module Db
       @task = @project.tasks.find(params[:id])
       @new_comment = Db::Comment.new
       @new_attachment = Db::Attachment.new
+      @new_timeentry = Db::TimeEntry.new
     end
 
     def edit
@@ -54,6 +55,12 @@ module Db
       else
         render :edit
       end
+    end
+
+    def destroy
+      @task = @project.tasks.find(params[:id])
+      @task.destroy if @task
+      redirect_to project_path(@project)
     end
 
 

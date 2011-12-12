@@ -180,8 +180,25 @@ public class Task extends DbObject {
         attachment.save();
     }
 
+    @Override
+    public boolean destroy(){
+        if(this.project != null) this.project.removeTask(this);
+        if(this.milestone != null) this.milestone.removeTask(this);
+        if(this.assignee != null) this.assignee.removeTask(this);
+        Database.delete(this);
+        return true;
+    }
+
 
     public static Collection<Task> all(){
         return Database.odb.getObjects(Task.class);
     }
+
+    public void addTimeEntry(TimeEntry entry){
+        timeEntries.add(entry);
+        this.save();
+        entry.setTask(this);
+        entry.save();  
+    }
+
 }

@@ -2,9 +2,9 @@
 
 .table-width
   %ul{:class => "tabs", :"data-tabs" => "tabs"}
-    %li{:class => "active"} 
+    %li{:class => "active"}
       %a{:href => "#info"}Info
-    %li 
+    %li
       %a{:href => "#milestone"}Milestone
     %li
       %a{:href => "#task"}Task
@@ -12,6 +12,10 @@
       %a{:href => "#comment"}Comment
     %li
       %a{:href => "#attachment"}Attachment
+    %li
+      %a{:href => "#users"} Users
+    %li
+      %a{:href => "#gantt"} Gantt
 
   .tab-content
     .active#info
@@ -76,4 +80,25 @@
       %h3 New attachment
       = simple_form_for @new_attachment, :url => project_attachments_path(@project) do |f|
         = render "shared/new_attachment", :f => f
+
+    #users.tab-pane
+      %h3 Users assigned to this project
+      %ul
+        - @assigned_users.each do |user|
+          %li
+            = link_to user.name, user_path(user)
+            - if user == @project.owner
+              (owner)
+            - else
+              = link_to "-", remove_user_project_path(@project, :user_id => user.id), :class => "btn danger", :method => :post
+
+      %h3 Users not assigned to this project
+      %ul
+        - @not_assigned_users.each do |user|
+          %li
+            = link_to user.name, user_path(user)
+            = link_to "+", add_user_project_path(@project, :user_id => user.id), :class => "btn success", :method => :post
+
+    #gantt.tab-pane
+      .gantt
 

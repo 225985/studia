@@ -4,6 +4,10 @@ Webapp::Application.routes.draw do
 
     resources :users
     resources :projects do
+      member do
+        post :add_user
+        post :remove_user
+      end
       resources :milestones do
         resource :comments
         resource :attachments
@@ -11,6 +15,7 @@ Webapp::Application.routes.draw do
       resources :tasks do
         resource :comments
         resource :attachments
+        resource :time_entries
       end
       resource :comments
       resource :attachments

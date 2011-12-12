@@ -1,0 +1,8 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.dateBox').datepicker();	
+	});
+</script>
+
+= simple_form_for @project, :url => projects_path do |f|
+  = render :partial => "form", :locals => {:f => f}

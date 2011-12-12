@@ -5,12 +5,14 @@
     %tr
       %th Name
       %th Owner
+      %th Users
       %th Description
 
     - @projects.each do |project|
       %tr
         %td= link_to project.name, project_path(project.id)
         %td= link_to project.owner.name, user_path(project.owner)
+        %td= project.users.map {|u| link_to u.name, user_path(u) }.join(", ").html_safe
         %td= project.description
 - if current_user.can_edit_project
   = link_to "Create new project", new_project_path, :class => "btn success"

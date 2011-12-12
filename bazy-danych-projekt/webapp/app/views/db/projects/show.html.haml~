@@ -1,0 +1,79 @@
+%h2= @project.name
+
+.table-width
+  %ul{:class => "tabs", :"data-tabs" => "tabs"}
+    %li{:class => "active"} 
+      %a{:href => "#info"}Info
+    %li 
+      %a{:href => "#milestone"}Milestone
+    %li
+      %a{:href => "#task"}Task
+    %li
+      %a{:href => "#comment"}Comment
+    %li
+      %a{:href => "#attachment"}Attachment
+
+  .tab-content
+    .active#info
+      %h3 Info
+      .owner
+        Owner :
+        = link_to @project.owner.name, user_path(@project.owner)
+      .description
+        Description :
+        = @project.description
+      - if current_user.can_edit_project
+        = link_to "Edit", edit_project_path(@task), :class => "btn"
+        = link_to "Delete", project_path(@task), :method => :delete, :class => "btn danger"
+
+    .tab-pane#milestone
+      %h3 Milestones
+      .table-width
+        %table
+          %tr
+            %th Name
+            %th Description
+            %th Deadline
+
+          - @project.milestones.each do |milestone|
+            %tr
+              %td= link_to milestone.name, project_milestone_path(@project, milestone.id)
+              %td= milestone.description
+              %td= l(Date.parse(milestone.deadline.to_s), :format => :long)
+      - if current_user.can_edit_milestone
+        = link_to "Add milestone", new_project_milestone_path(@project), :class => "btn success"
+
+    #task.tab-pane
+      %h3 Tasks
+      = render "shared/tasks", :locals => {:tasks => @project.tasks_without_milestone, :show_assignee => true}
+
+      = link_to "Add task", new_project_task_path(@project), :class => "btn success"
+
+    #comment.tab-pane
+      %h3 Comments
+      %div
+        - @project.comments.each do |comment|
+          %div
+            %div
+              by
+              = link_to comment.author.name, user_path(comment.author)
+            %div= simple_format comment.content
+
+      %h3 New comment
+      = simple_form_for @new_comment, :url => project_comments_path(@project) do |f|
+        = render "shared/new_comment", :f => f
+
+    #attachment.tab-pane
+      %h3 Attachments
+      %div
+        - @project.attachments.each do |attachment|
+          %div
+            %div= link_to attachment.get_file, attachment.file_url
+            %div
+              by
+              = link_to attachment.author.name, user_path(attachment.author)
+
+      %h3 New attachment
+      = simple_form_for @new_attachment, :url => project_attachments_path(@project) do |f|
+        = render "shared/new_attachment", :f => f
+

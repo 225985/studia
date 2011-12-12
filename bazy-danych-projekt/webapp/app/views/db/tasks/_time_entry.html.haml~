@@ -1,0 +1,5 @@
+%fieldset
+  = f.input :start_time.to_java, :input_html => { :class => 'dateBox' }
+  = f.input :end_time.to_java, :input_html => { :class => 'dateBox' }
+.actions
+  = f.submit :class => "btn primary"

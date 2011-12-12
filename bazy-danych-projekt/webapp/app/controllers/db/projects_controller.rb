@@ -7,8 +7,35 @@ module Db
 
     def show
       @project = Db::Project.find(params[:id])
-      @new_comment = Db::Comment.new
-      @new_attachment = Db::Attachment.new
+
+      respond_to do |format|
+        format.html do
+          @new_comment = Db::Comment.new
+          @new_attachment = Db::Attachment.new
+
+          @assigned_users = @project.all_users.to_a
+          @not_assigned_users = Db::User.all.to_a - @assigned_users
+        end
+
+        format.js do
+          # ap @project.tasks.map {|e| e.time_entries.to_a }.flatten.group_by {|te| te.user }
+          json = @project.tasks.map {|e| e.time_entries.to_a }.flatten.group_by {|te| te.user }.map do |user, entries|
+            {
+              :name => user.name,
+              :desc => "",
+              :values => entries.map {|e|
+                {
+                  :from => "/Date(#{e.start_time.get_time})/",
+                  :to => "/Date(#{e.end_time.get_time})/",
+                  :desc => e.task.try(:name)
+                }
+              }
+            }
+          end
+
+          render :json => json
+        end
+      end
     end
 
     def create
@@ -19,6 +46,26 @@ module Db
       else
         render :new
       end
+    end
+
+    def add_user
+      @project = Db::Project.find(params[:id])
+      @user = Db::User.find(params[:user_id])
+      @project.addUser(@user)
+      @user.addProject(@project)
+      @project.save
+      @user.save
+      redirect_to project_path(@project, :anchor => "users")
+    end
+
+    def remove_user
+      @project = Db::Project.find(params[:id])
+      @user = Db::User.find(params[:user_id])
+      @project.removeUser(@user)
+      @user.removeProject(@project)
+      @project.save
+      @user.save
+      redirect_to project_path(@project, :anchor => "users")
     end
 
     protected

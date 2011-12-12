@@ -5,7 +5,7 @@ import java.util.*;
 public class TimeEntry extends DbObject {
 
     protected Date startTime;
-    protected Date endtime;
+    protected Date endTime;
     protected User user;
     protected Task task;
 
@@ -26,12 +26,12 @@ public class TimeEntry extends DbObject {
         this.startTime = startTime;
     }
 
-    public Date getEndtime() {
-        return endtime;
+    public Date getEndTime() {
+        return endTime;
     }
 
-    public void setEndtime(Date endtime) {
-        this.endtime = endtime;
+    public void setEndTime(Date endtime) {
+        this.endTime = endtime;
     }
 
     public User getUser() {

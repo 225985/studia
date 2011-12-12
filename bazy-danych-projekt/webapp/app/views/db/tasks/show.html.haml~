@@ -1,0 +1,75 @@
+%h2= @task.name
+.table-width
+  %ul{:class => "tabs", :"data-tabs" => "tabs"}    
+    %li{:class => "active"} 
+      %a{:href => "#info"}Info
+    %li
+      %a{:href => "#time"}Time Entries
+    %li
+      %a{:href => "#comment"}Comment
+    %li
+      %a{:href => "#attachment"}Attachment
+
+  .tab-content
+    .active#info
+      - if @task.assignee
+        %h4
+          Assignee:
+          = link_to @task.assignee.name, user_path(@task.assignee)
+
+      - if @task.milestone
+        %h4
+          Milestone:
+          = link_to @task.milestone.name, project_milestone_path(@project, @task.milestone)
+      %h4
+        Project:
+        = link_to @task.project.name, project_path(@task.project)
+      - if current_user.can_edit_task
+        = link_to "Edit", edit_project_task_path(@project, @task), :class => "btn"
+        = link_to "Delete", project_task_path(@project, @task), :method => :delete, :class => "btn danger"
+    #time.tab-pane
+      %h3 Time Entries
+      .table-width
+        %table
+          %tr
+            %th User
+            %th Start Time
+            %th End Time
+            %th Total time
+          - @task.timeEntries.each do |time|
+            %tr
+              %td= link_to time.user.name, user_path(time.user) 
+              %td= time.start_time
+              %td= time.end_time
+              %td=  distance_of_time_in_words( DateTime.parse(time.end_time.to_s), DateTime.parse(time.start_time.to_s)) 
+      %h3 New time entry
+      = simple_form_for @new_timeentry, :url => project_task_time_entries_path(@task.project, @task) do |f|
+        = render "time_entry", :f => f  
+    #comment.tab-pane
+      %h3 Comments
+      %div
+        - @task.comments.each do |comment|
+          %div
+            %div
+              Author : 
+              = link_to comment.author.name, user_path(comment.author)
+            %div= simple_format comment.content 
+
+      %h3 New comment
+      = simple_form_for @new_comment, :url => project_task_comments_path(@task.project, @task) do |f|
+        = render "shared/new_comment", :f => f
+
+
+    #attachment.tab-pane
+      %h3 Attachments
+      %div
+        - @task.attachments.each do |attachment|
+          %div
+            %div= link_to attachment.get_file, attachment.file_url
+            %div
+              by
+              = link_to attachment.author.name, user_path(attachment.author)
+
+      %h3 New attachment
+      = simple_form_for @new_attachment, :url => project_task_attachments_path(@task.project, @task) do |f|
+        = render "shared/new_attachment", :f => f
