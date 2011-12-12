@@ -41,7 +41,7 @@
               %td= link_to time.user.name, user_path(time.user) 
               %td= time.start_time
               %td= time.end_time
-              %td= time.end_time - time.start_time
+              %td= time.end_time 
       %h3 New time entry
       = simple_form_for @new_timeentry, :url => project_task_time_entries_path(@task.project, @task) do |f|
         = render "time_entry", :f => f  
