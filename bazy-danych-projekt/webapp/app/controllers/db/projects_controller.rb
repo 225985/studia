@@ -9,6 +9,9 @@ module Db
       @project = Db::Project.find(params[:id])
       @new_comment = Db::Comment.new
       @new_attachment = Db::Attachment.new
+
+      @assigned_users = @project.all_users.to_a
+      @not_assigned_users = Db::User.all.to_a - @assigned_users
     end
 
     def create
@@ -19,6 +22,26 @@ module Db
       else
         render :new
       end
+    end
+
+    def add_user
+      @project = Db::Project.find(params[:id])
+      @user = Db::User.find(params[:user_id])
+      @project.addUser(@user)
+      @user.addProject(@project)
+      @project.save
+      @user.save
+      redirect_to project_path(@project, :anchor => "users")
+    end
+
+    def remove_user
+      @project = Db::Project.find(params[:id])
+      @user = Db::User.find(params[:user_id])
+      @project.removeUser(@user)
+      @user.removeProject(@project)
+      @project.save
+      @user.save
+      redirect_to project_path(@project, :anchor => "users")
     end
 
     protected

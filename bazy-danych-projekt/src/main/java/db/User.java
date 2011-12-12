@@ -95,6 +95,11 @@ public class User extends DbObject {
         return projects;
     }
 
+    public Collection<Project> getAcessibleProjects(){
+        if(this.role == RoleType.ADMIN) return Project.all();
+        else return this.projects;
+    }
+
     public void setProjects(List<Project> projects) {
         this.projects = projects;
     }
@@ -119,6 +124,10 @@ public class User extends DbObject {
 		this.projects.add(project);
 	}
 
+	public void removeProject(Project project){
+	    this.projects.remove(project);
+	}
+
 	public void addComment(Comment<?> comment){
 	    this.comments.add(comment);
 	}
@@ -134,6 +143,8 @@ public class User extends DbObject {
     public static Collection<User> all(){
         return Database.odb.getObjects(User.class);
     }
+
+
 
 
     public static User findByEmail(final String email){

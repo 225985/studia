@@ -12,6 +12,8 @@
 $(function() {
 		$( ".dateBox" ).datepicker();
     $( ".tabs").tabs(); // dodane, ale kurwa to laduje z jquery-ui
+    var c = document.location.href.split("#", 2)
+    if(c[1]) $("a[href=#" + c[1] + "]").click();
 });
 
 
