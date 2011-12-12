@@ -1,6 +1,2 @@
-= debug @task
-= debug @task.persisted?
-= debug @project
-
 = simple_form_for @task, :url => project_tasks_path(@project) do |f|
   = render :partial => "form", :locals => {:f => f}
