@@ -1,7 +1,7 @@
 = f.input :name
 = f.input :description, :as => :text
 / = f.input :user, :as => :select
-= f.input :deadline, :input_html => { :class => 'dateBox' }
+= f.input :deadline, :input_html => { :class => 'dateBox', :value => DateTime.parse(@task.deadline.to_s).strftime("%m/%d/%Y %H:%M") }
 = f.input :estimated_time
 = f.input :milestone, :as => :select, :collection => @project.milestones.map {|p| [p.name, p.id]}, :include_blank => true, :selected => params[:milestone_id] || @task.milestone.try(:id)
 / = f.input :project, :as => :select, :collection => Db::Project.all.map {|p| [p.name, p.id]}

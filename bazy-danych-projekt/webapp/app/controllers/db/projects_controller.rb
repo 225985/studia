@@ -18,19 +18,22 @@ module Db
         end
 
         format.js do
-          render :json => @project.tasks.map {|e| e.time_entries }.group_by {|te| te.user }.map do |user, entries|
+          # ap @project.tasks.map {|e| e.time_entries.to_a }.flatten.group_by {|te| te.user }
+          json = @project.tasks.map {|e| e.time_entries.to_a }.flatten.group_by {|te| te.user }.map do |user, entries|
             {
-              "name" => user.name,
-              "desc" => "",
-              "values" => entries.map {|e|
+              :name => user.name,
+              :desc => "",
+              :values => entries.map {|e|
                 {
-                  "from" => e.start_time,
-                  "to" => e.end_time,
-                  "desc" => e.task.name
+                  :from => "/Date(#{e.start_time.get_time})/",
+                  :to => "/Date(#{e.end_time.get_time})/",
+                  :desc => e.task.try(:name)
                 }
               }
             }
           end
+
+          render :json => json
         end
       end
     end
