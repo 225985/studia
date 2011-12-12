@@ -39,6 +39,12 @@ module Db
       end
     end
 
+    def destroy
+      @milestone = Db::Milestone.find(params[:id])
+      @milestone.destroy if @milestone
+      redirect_to project_path(@project)
+    end
+
     protected
 
       def fetch_project

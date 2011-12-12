@@ -56,6 +56,12 @@ module Db
       end
     end
 
+    def destroy
+      @task = @project.tasks.find(params[:id])
+      @task.destroy if @task
+      redirect_to project_path(@project)
+    end
+
 
     protected
 

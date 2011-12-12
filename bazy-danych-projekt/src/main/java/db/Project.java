@@ -36,6 +36,11 @@ public class Project extends DbObject {
         return task;
     }
 
+    public void removeTask(Task task){
+        this.tasks.remove(task);
+        this.save();
+    }
+
     public void addTask(Task task){
         if(!this.tasks.contains(task)){
             this.tasks.add(task);
@@ -140,10 +145,6 @@ public class Project extends DbObject {
             if(t.hasMilestone()) dupa.remove(t);
         }
         return dupa;
-    }
-
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
     }
 
     public static Collection<Project> all(){
