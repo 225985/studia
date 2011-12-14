@@ -10,7 +10,7 @@ object Algorithms {
         def F(tasks: TaskList) = tasks.cost
         def S(tasks: TaskList) = TaskList(randomPermutation(tasks.list))
         def P(a: TaskList, b: TaskList, t: Double) = math.pow(math.E, -( F(b) - F(a) ) / t)
-        
+
         def randomPermutation[A](a: Array[A]) = {
             val rand = new scala.util.Random
             val i1 = rand.nextInt(a.length)
@@ -24,18 +24,23 @@ object Algorithms {
             b
         }
     }
-    
+
     // Tabu Search implementation + parameters
-    val TS = (n: Int) => new TabuSearch[TaskList, Int] with Alg with Common {
+    val TS = (n: Int) => new TabuSearch[TaskList, (Int, Int), Int] with Alg with Common {
         def N = n
+        def Tsize = 7
         def F(tasks: TaskList) = tasks.cost
-        def S(tasks: TaskList) = (0 until tasks.list.length).combinations(2).map { idx => TaskList(tasks.list.swapped(idx(0), idx(1))) }
+        def S(tasks: TaskList) = (0 until tasks.list.length).combinations(2).map { idx =>
+          (TaskList(tasks.list.swapped(idx(0), idx(1))), (idx(0), idx(1)))
+        }
+
+        def P(tasks: TaskList, tabu: (Int, Int)) = tasks.list.indexOf(tabu._1) < tasks.list.indexOf(tabu._2)
     }
 }
 
 object App {
     import Algorithms._
-    
+
 
     def readInstances(n: Int) = {
         def splitted[A](n: Int, list: List[A]): List[List[A]] = list match {
