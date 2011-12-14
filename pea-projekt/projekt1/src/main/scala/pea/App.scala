@@ -1,15 +1,41 @@
 package pea
 
-object App {
+object Algorithms {
+    // Simulated Annealing implementation + parameters
     val SA = (td: Double) => new SimulatedAnnealing[TaskList, Int] with Alg {
         def Tmin = 0.01
         def Tmax = 100.0
         def Td = td
 
-        def F(list: TaskList) = list.cost
-        def S(list: TaskList) = list.randomPermutation
+        def F(tasks: TaskList) = tasks.cost
+        def S(tasks: TaskList) = TaskList(randomPermutation(tasks.list))
         def P(a: TaskList, b: TaskList, t: Double) = math.pow(math.E, -( F(b) - F(a) ) / t)
+        
+        def randomPermutation[A](a: Array[A]) = {
+            val rand = new scala.util.Random
+            val i1 = rand.nextInt(a.length)
+            var i2 = rand.nextInt(a.length)
+            while(i1 == i2){ i2 = rand.nextInt(a.length) }
+
+            val b = a.clone
+            val tmp = b(i1)
+            b(i1) = b(i2)
+            b(i2) = tmp
+            b
+        }
     }
+    
+    // Tabu Search implementation + parameters
+    val TS = (n: Int) => new TabuSearch[TaskList, Int] with Alg with Common {
+        def N = n
+        def F(tasks: TaskList) = tasks.cost
+        def S(tasks: TaskList) = (0 until tasks.list.length).combinations(2).map { idx => TaskList(tasks.list.swapped(idx(0), idx(1))) }
+    }
+}
+
+object App {
+    import Algorithms._
+    
 
     def readInstances(n: Int) = {
         def splitted[A](n: Int, list: List[A]): List[List[A]] = list match {

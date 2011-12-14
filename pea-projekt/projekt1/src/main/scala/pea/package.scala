@@ -14,20 +14,6 @@ package object pea {
         }._2
 
         override def toString = "%s : %d" format (list.map(_.toString).mkString("[", ",", "]"), cost)
-
-        def randomPermutation = {
-            val rand = new scala.util.Random
-            val i1 = rand.nextInt(list.length)
-            var i2 = rand.nextInt(list.length)
-            while(i1 == i2){ i2 = rand.nextInt(list.length) }
-
-            val arr = list.clone
-            val tmp = arr(i1)
-            arr(i1) = arr(i2)
-            arr(i2) = tmp
-
-            TaskList(arr)
-        }
     }
 
     trait Common {
