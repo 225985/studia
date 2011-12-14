@@ -12,8 +12,8 @@ abstract class TabuSearch[A, R : Ordering]{
         def inner(oldState: A, n: Int): A = {
             if(n <= 0) oldState
             else {
-                val (bestState, cost) = S(oldState).map { s => (s, F(s)) }.minBy(_._2)
-                if(cost < F(oldState)) inner(bestState, n-1)
+                val bestState = S(oldState).minBy(F)
+                if(F(bestState) < F(oldState)) inner(bestState, n-1)
                 else inner(oldState, n-1)
             }
         }
