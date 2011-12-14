@@ -34,7 +34,11 @@ object Algorithms {
           (TaskList(tasks.list.swapped(idx(0), idx(1))), (idx(0), idx(1)))
         }
 
-        def P(tasks: TaskList, tabu: (Int, Int)) = tasks.list.indexOf(tabu._1) < tasks.list.indexOf(tabu._2)
+        def P(tasks: TaskList, tabu: (Int, Int)) = {
+          // println("P of " + tasks.list.toList + " and " + tabu._1 + " : " + tabu._2)
+          // println("compare: " + (tasks.list.toList.indexWhere(e => e.index == tabu._1), tasks.list.indexWhere(e => e.index == tabu._2)))
+          tasks.list.toList.indexWhere(e => e.index == tabu._1) < tasks.list.toList.indexWhere(e => e.index == tabu._2)
+        }
     }
 }
 
@@ -77,16 +81,19 @@ object App {
             val k = args(1).toInt
             val instances = readInstances(n).zip(readOptimal(n)).take(k)
 
-            val tds = 0.99 :: 0.999 :: 0.9999 :: Nil
+            // val tds = 0.99 :: 0.999 :: 0.9999 :: Nil
+            val tds = 10 :: 100 :: Nil//200 :: Nil
 
 
             val results = tds.map { td =>
                 print("%7s | " format td.toString)
-                val sa = SA(td)
-                val r = instances.zipWithIndex.collect { case ((tasks, optimal), inst) if optimal > 0 =>
-                    println(" == Instance %s | optimal: %d | td: %f == " format (inst+1, optimal, td))
+                // val sa = SA(td)
+                val sa = TS(td)
 
-                    val x = (1 to 10).par map { i =>
+                val r = instances.zipWithIndex.collect { case ((tasks, optimal), inst) if optimal > 0 =>
+                    println(" == Instance %s | optimal: %d | td: %d == " format (inst+1, optimal, td))
+
+                    val x = (1 to 1)/*.par*/ map { i =>
                         val (time, res) = bench(sa(tasks))
                         val diff = (res.cost - optimal) * 100.0 / optimal
 
@@ -115,7 +122,7 @@ object App {
                 val avgTime = time / instances.length
                 val avgDiff = diff / instances.length
 
-                println("td: %5f | time: %5.2f | diff: %5.2f" format (td, avgTime, avgDiff))
+                println("td: %5f | time: %5.2f | diff: %5.2f" format (td.toFloat, avgTime, avgDiff))
             }
         }
     }

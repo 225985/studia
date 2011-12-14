@@ -25,13 +25,14 @@ package object pea {
         implicit def taskListOrdering = new Ordering[TaskList]{
             def compare(x: TaskList, y: TaskList): Int = x.cost compare y.cost
         }
-        
+
         implicit def arraySwap[T](arr: Array[T]) = new {
             def swapped(i: Int, j: Int) = {
-                val tmp = arr(i)
-                arr(i) = arr(j)
-                arr(j) = tmp
-                arr
+                val cpy = arr.clone
+                val tmp = cpy(i)
+                cpy(i) = cpy(j)
+                cpy(j) = tmp
+                cpy
             }
         }
 
