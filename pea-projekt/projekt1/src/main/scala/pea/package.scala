@@ -5,7 +5,7 @@ package object pea {
         override def toString = index.toString
     }
 
-    case class TaskList(list: List[Task]){
+    case class TaskList(list: Array[Task]){
         lazy val cost = ((0,0) /: list){
             case ((time, cost), task) =>
                 val newTime = time + task.p
@@ -21,12 +21,12 @@ package object pea {
             var i2 = rand.nextInt(list.length)
             while(i1 == i2){ i2 = rand.nextInt(list.length) }
 
-            val arr = list.toArray
+            val arr = list.clone
             val tmp = arr(i1)
             arr(i1) = arr(i2)
             arr(i2) = tmp
 
-            TaskList(arr.toList)
+            TaskList(arr)
         }
     }
 
@@ -39,5 +39,15 @@ package object pea {
         implicit def taskListOrdering = new Ordering[TaskList]{
             def compare(x: TaskList, y: TaskList): Int = x.cost compare y.cost
         }
+        
+        implicit def arraySwap[T](arr: Array[T]) = new {
+            def swapped(i: Int, j: Int) = {
+                val tmp = arr(i)
+                arr(i) = arr(j)
+                arr(j) = tmp
+                arr
+            }
+        }
+
     }
 }

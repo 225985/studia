@@ -26,9 +26,9 @@ object App {
 
         splitted(3*n, nums).map { group =>
             val parts = splitted(n, group)
-            TaskList(parts(0).zip(parts(1)).zip(parts(2)).zipWithIndex map {
+            TaskList(parts(0).zip(parts(1)).zip(parts(2)).zipWithIndex.map {
                 case (((x,y), z), i) => Task(i, x, z, y)
-            })
+            }.toArray)
         }
     }
 
