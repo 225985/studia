@@ -9,15 +9,16 @@ abstract class TabuSearch[A, R : Ordering]{
     def S(x: A): TraversableOnce[A]  // new states generator
 
     def apply(s0: A) = {
-        def inner(oldState: A, n: Int): A = {
-            if(n <= 0) oldState
+        def inner(bestState: A, oldState: A, n: Int): A = {
+            if(n <= 0) bestState
             else {
-                val bestState = S(oldState).minBy(F)
-                if(F(bestState) < F(oldState)) inner(bestState, n-1)
-                else inner(oldState, n-1)
+                val newState = S(oldState).minBy(F)
+
+                if(F(newState) < F(bestState)) inner(newState, newState, n-1)
+                else inner(bestState, newState, n-1)
             }
         }
 
-        inner(s0, N)
+        inner(s0, s0, N)
     }
 }
