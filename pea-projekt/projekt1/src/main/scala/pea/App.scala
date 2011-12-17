@@ -1,17 +1,17 @@
 package pea
 
 object Algorithms {
-    def randomPermutation[A](a: Array[A]) = {
+    def randomPermutation(a: List[Task]) = {
         val rand = new scala.util.Random
         val i1 = rand.nextInt(a.length)
         var i2 = rand.nextInt(a.length)
         while(i1 == i2){ i2 = rand.nextInt(a.length) }
 
-        val b = a.clone
+        val b = a.toArray
         val tmp = b(i1)
         b(i1) = b(i2)
         b(i2) = tmp
-        b
+        b.toList
     }
 
     // Simulated Annealing implementation + parameters
@@ -67,7 +67,7 @@ object App {
             val parts = splitted(n, group)
             TaskList(parts(0).zip(parts(1)).zip(parts(2)).zipWithIndex.map {
                 case (((x,y), z), i) => Task(i, x, z, y)
-            }.toArray)
+            })
         }
     }
 
@@ -85,8 +85,8 @@ object App {
             val k = args(1).toInt
             val instances = readInstances(n).zip(readOptimal(n)).take(k)
 
-            val algs =  TS(10) ::
-                        TS(100) ::
+            val algs =  TS(1) ::
+                        // TS(100) ::
                         // TS(200) ::
                         // SA(0.99) ::
                         // SA(0.999) ::

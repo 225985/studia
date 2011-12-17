@@ -5,7 +5,7 @@ package object pea {
         override def toString = index.toString
     }
 
-    case class TaskList(list: Array[Task]){
+    case class TaskList(list: List[Task]){
         lazy val cost = ((0,0) /: list){
             case ((time, cost), task) =>
                 val newTime = time + task.p
@@ -14,8 +14,6 @@ package object pea {
         }._2
 
         override def toString = "%s : %d" format (list.map(_.toString).mkString("[", ",", "]"), cost)
-
-        def dup = TaskList(list.clone)
     }
 
     trait Common {
@@ -28,13 +26,13 @@ package object pea {
             def compare(x: TaskList, y: TaskList): Int = x.cost compare y.cost
         }
 
-        implicit def arraySwap[T](arr: Array[T]) = new {
+        implicit def arraySwap(list: List[Task]) = new {
             def swapped(i: Int, j: Int) = {
-                val cpy = arr.clone
+                val cpy = list.toArray
                 val tmp = cpy(i)
                 cpy(i) = cpy(j)
                 cpy(j) = tmp
-                cpy
+                cpy.toList
             }
         }
 

@@ -21,9 +21,9 @@ abstract class TabuSearch[A, T, R : Ordering] extends Function1[A, A] {
         def inner(bestState: A, oldState: A, n: Int): A = {
             if(n <= 0) bestState
             else {
-                println(n + " : " + S(oldState).toList)
                 val newStates = S(oldState).toList.filterNot { m => P(m) } map { m => (NS(oldState, m), m) }
                 val (newState, newTabu) = newStates.minBy { e => F(e._1) }
+                println(n + " : " + newState)
 
                 tabu enqueue newTabu
                 if(tabu.length > Tsize) tabu.dequeue
