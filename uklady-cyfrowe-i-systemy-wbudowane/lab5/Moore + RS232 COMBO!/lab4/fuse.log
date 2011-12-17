@@ -1,0 +1,38 @@
+Running: E:\programs_installed\xilinx\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe -intstyle ise -incremental -o D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab5/Moore + RS232 COMBO!/lab4/lab4_isim_beh.exe -prj D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab5/Moore + RS232 COMBO!/lab4/lab4_beh.prj work.lab4 
+ISim O.61xd (signature 0x1cce1bb2)
+Number of CPUs detected in this system: 2
+Turning on mult-threading, number of parallel sub-compilation jobs: 4 
+Determining compilation order of HDL files
+Parsing VHDL file "D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab5/Moore + RS232 COMBO!/lab4/lab4.vhf" into library work
+Starting static elaboration
+WARNING:HDLCompiler:89 - "D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab5/Moore + RS232 COMBO!/lab4/lab4.vhf" Line 387: <rs232_rx> remains a black-box since it has no binding entity.
+WARNING:HDLCompiler:89 - "D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab5/Moore + RS232 COMBO!/lab4/lab4.vhf" Line 432: <display4x7s> remains a black-box since it has no binding entity.
+Completed static elaboration
+WARNING:Simulator:648 - "D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab5/Moore + RS232 COMBO!/lab4/lab4.vhf" Line 387. Instance rs232_rx is unbound
+WARNING:Simulator:648 - "D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab5/Moore + RS232 COMBO!/lab4/lab4.vhf" Line 432. Instance display4x7s is unbound
+Compiling package standard
+Compiling package std_logic_1164
+Compiling package numeric_std
+Compiling package vcomponents
+Compiling architecture and4_v of entity AND4 [and4_default]
+Compiling architecture and2_v of entity AND2 [and2_default]
+Compiling architecture behavioral of entity AND8_MXILINX_lab4 [and8_mxilinx_lab4_default]
+Compiling architecture fdce_v of entity FDCE [\FDCE('0')\]
+Compiling architecture and3b2_v of entity AND3B2 [and3b2_default]
+Compiling architecture and3b1_v of entity AND3B1 [and3b1_default]
+Compiling architecture or2_v of entity OR2 [or2_default]
+Compiling architecture and4b2_v of entity AND4B2 [and4b2_default]
+Compiling architecture and2b1_v of entity AND2B1 [and2b1_default]
+Compiling architecture or4_v of entity OR4 [or4_default]
+Compiling architecture xor2_v of entity XOR2 [xor2_default]
+Compiling architecture and3_v of entity AND3 [and3_default]
+Compiling architecture inv_v of entity INV [inv_default]
+Compiling architecture buf_v of entity BUF [buf_default]
+Compiling architecture vcc_v of entity VCC [vcc_default]
+Compiling architecture behavioral of entity lab4
+Time Resolution for simulation is 1ps.
+Waiting for 16 sub-compilation(s) to finish...
+Compiled 35 VHDL Units
+Built simulation executable D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab5/Moore + RS232 COMBO!/lab4/lab4_isim_beh.exe
+Fuse Memory Usage: 34352 KB
+Fuse CPU Usage: 842 ms

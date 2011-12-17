@@ -1,0 +1,8 @@
+AR main behavioral D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab6/lab6/main.vhf sub00/vhpl05 1321191927
+EN counter_muser_main NULL D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab6/lab6/main.vhf sub00/vhpl02 1321191924
+EN main NULL D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab6/lab6/main.vhf sub00/vhpl04 1321191926
+AR decoder behavioral D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab6/lab6/decoder.vhf sub00/vhpl07 1321191929
+EN decoder_muser_main NULL D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab6/lab6/main.vhf sub00/vhpl00 1321191922
+AR decoder_muser_main behavioral D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab6/lab6/main.vhf sub00/vhpl01 1321191923
+EN decoder NULL D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab6/lab6/decoder.vhf sub00/vhpl06 1321191928
+AR counter_muser_main behavioral D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab6/lab6/main.vhf sub00/vhpl03 1321191925

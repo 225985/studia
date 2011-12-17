@@ -1,0 +1,32 @@
+V3 23
+FL D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab6/lab6/decoder.vhf 2011/11/13.14:45:11 O.61xd
+EN work/decoder 1321191928 \
+      FL D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab6/lab6/decoder.vhf \
+      PB ieee/std_logic_1164 1308643377 PB ieee/NUMERIC_STD 1308643378 LB UNISIM \
+      PH unisim/VCOMPONENTS 1308643377
+AR work/decoder/BEHAVIORAL 1321191929 \
+      FL D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab6/lab6/decoder.vhf \
+      EN work/decoder 1321191928 CP AND3 CP AND3B3 CP AND3B2 CP AND3B1
+FL D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab6/lab6/main.vhf 2011/11/13.14:45:11 O.61xd
+EN work/decoder_MUSER_main 1321191922 \
+      FL D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab6/lab6/main.vhf \
+      PB ieee/std_logic_1164 1308643377 PB ieee/NUMERIC_STD 1308643378 LB UNISIM \
+      PH unisim/VCOMPONENTS 1308643377
+AR work/decoder_MUSER_main/BEHAVIORAL 1321191923 \
+      FL D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab6/lab6/main.vhf \
+      EN work/decoder_MUSER_main 1321191922 CP AND3 CP AND3B3 CP AND3B2 CP AND3B1
+EN work/counter_MUSER_main 1321191924 \
+      FL D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab6/lab6/main.vhf \
+      PB ieee/std_logic_1164 1308643377 PB ieee/NUMERIC_STD 1308643378 LB UNISIM \
+      PH unisim/VCOMPONENTS 1308643377
+AR work/counter_MUSER_main/BEHAVIORAL 1321191925 \
+      FL D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab6/lab6/main.vhf \
+      EN work/counter_MUSER_main 1321191924 CP GND CP FDCE CP INV CP XOR2 CP OR3 \
+      CP AND2B1 CP AND3B1
+EN work/main 1321191926 \
+      FL D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab6/lab6/main.vhf \
+      PB ieee/std_logic_1164 1308643377 PB ieee/NUMERIC_STD 1308643378 LB UNISIM \
+      PH unisim/VCOMPONENTS 1308643377
+AR work/main/BEHAVIORAL 1321191927 \
+      FL D:/politechnika/semestr5/semestr-v/uklady-cyfrowe-i-systemy-wbudowane/lab6/lab6/main.vhf \
+      EN work/main 1321191926 CP counter_MUSER_main CP decoder_MUSER_main CP OR3
