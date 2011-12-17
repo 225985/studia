@@ -3,7 +3,7 @@
   %head
     %title Webapp
     = stylesheet_link_tag "http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css"
-    = stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" 
+    = stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css"
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
     = javascript_include_tag "http://twitter.github.com/bootstrap/1.4.0/bootstrap-tabs.js"
@@ -67,7 +67,7 @@
     .fill
       .container
         %ul.nav
-          %li= link_to "PMS ( :P )", root_path, :class => "brand"
+          %li= link_to "PMS", root_path, :class => "brand"
           %li= link_to "Projects", projects_path
           %li= link_to "Users", users_path
         .pull-right.header-text

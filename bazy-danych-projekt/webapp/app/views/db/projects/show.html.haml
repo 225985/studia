@@ -99,6 +99,6 @@
             = link_to user.name, user_path(user)
             = link_to "+", add_user_project_path(@project, :user_id => user.id), :class => "btn success", :method => :post
 
-    #gantt.tab-pane
+    #gantt.tab-pane{:style => "min-height: 180px"}
       .gantt
 

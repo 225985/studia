@@ -95,7 +95,7 @@ public class User extends DbObject {
         return projects;
     }
 
-    public Collection<Project> getAcessibleProjects(){
+    public Collection<Project> getAccessibleProjects(){
         if(this.role == RoleType.ADMIN) return Project.all();
         else return this.projects;
     }

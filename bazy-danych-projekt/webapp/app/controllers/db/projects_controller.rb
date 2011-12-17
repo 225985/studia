@@ -5,6 +5,10 @@ module Db
     before_filter :authenticate_user!
     before_filter :ensure_user_can_edit_project, :only => [:new, :create, :edit, :update, :destroy]
 
+    def index
+      @projects = current_user.accessible_projects
+    end
+
     def show
       @project = Db::Project.find(params[:id])
 
@@ -18,20 +22,23 @@ module Db
         end
 
         format.js do
-          # ap @project.tasks.map {|e| e.time_entries.to_a }.flatten.group_by {|te| te.user }
           json = @project.tasks.map {|e| e.time_entries.to_a }.flatten.group_by {|te| te.user }.map do |user, entries|
-            {
-              :name => user.name,
-              :desc => "",
-              :values => entries.map {|e|
-                {
-                  :from => "/Date(#{e.start_time.get_time})/",
-                  :to => "/Date(#{e.end_time.get_time})/",
-                  :desc => e.task.try(:name)
+            entries.group_by {|e| e.task }.map do |task, ents|
+              {
+                :name => user.name,
+                :desc => task.try(:name),
+                :values => ents.map {|e|
+                  {
+                    :from => "/Date(#{e.start_time.get_time})/",
+                    :to => "/Date(#{e.end_time.get_time})/",
+                    :desc => "#{user.name} - #{task.try(:name)}"
+                  }
                 }
               }
-            }
-          end
+            end
+
+
+          end.flatten
 
           render :json => json
         end

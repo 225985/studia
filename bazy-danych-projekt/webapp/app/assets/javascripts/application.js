@@ -11,7 +11,7 @@
 
 $(function() {
 		$( ".dateBox" ).datetimepicker();
-    $( ".tabs").tabs(); 
+    $( ".tabs").tabs();
     var c = document.location.href.split("#", 2)
     if(c[1]) $("a[href=#" + c[1] + "]").click();
 
