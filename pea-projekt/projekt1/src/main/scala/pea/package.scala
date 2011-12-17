@@ -5,7 +5,7 @@ package object pea {
         override def toString = index.toString
     }
 
-    case class TaskList(list: List[Task]){
+    case class TaskList(list: Array[Task]){
         lazy val cost = ((0,0) /: list){
             case ((time, cost), task) =>
                 val newTime = time + task.p
@@ -26,13 +26,13 @@ package object pea {
             def compare(x: TaskList, y: TaskList): Int = x.cost compare y.cost
         }
 
-        implicit def arraySwap(list: List[Task]) = new {
+        implicit def arraySwap[T](arr: Array[T]) = new {
             def swapped(i: Int, j: Int) = {
-                val cpy = list.toArray
+                val cpy = arr.clone
                 val tmp = cpy(i)
                 cpy(i) = cpy(j)
                 cpy(j) = tmp
-                cpy.toList
+                cpy
             }
         }
 
