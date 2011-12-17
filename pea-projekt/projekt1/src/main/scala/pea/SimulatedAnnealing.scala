@@ -1,6 +1,6 @@
 package pea
 
-abstract class SimulatedAnnealing[A, R : Ordering]{
+abstract class SimulatedAnnealing[A, R : Ordering] extends Function1[A, A] {
     import scala.Ordering.Implicits._
 
     def Tmin: Double
@@ -33,4 +33,6 @@ abstract class SimulatedAnnealing[A, R : Ordering]{
 
         inner(s0, s0, Tmax)
     }
+
+    override def toString = "SA(%f)" format Td
 }

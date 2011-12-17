@@ -1,8 +1,21 @@
 package pea
 
 object Algorithms {
+    def randomPermutation[A](a: Array[A]) = {
+        val rand = new scala.util.Random
+        val i1 = rand.nextInt(a.length)
+        var i2 = rand.nextInt(a.length)
+        while(i1 == i2){ i2 = rand.nextInt(a.length) }
+
+        val b = a.clone
+        val tmp = b(i1)
+        b(i1) = b(i2)
+        b(i2) = tmp
+        b
+    }
+
     // Simulated Annealing implementation + parameters
-    val SA = (td: Double) => new SimulatedAnnealing[TaskList, Int] with Alg {
+    val SA = (td: Double) => new SimulatedAnnealing[TaskList, Int] {
         def Tmin = 0.01
         def Tmax = 100.0
         def Td = td
@@ -10,34 +23,25 @@ object Algorithms {
         def F(tasks: TaskList) = tasks.cost
         def S(tasks: TaskList) = TaskList(randomPermutation(tasks.list))
         def P(a: TaskList, b: TaskList, t: Double) = math.pow(math.E, -( F(b) - F(a) ) / t)
-
-        def randomPermutation[A](a: Array[A]) = {
-            val rand = new scala.util.Random
-            val i1 = rand.nextInt(a.length)
-            var i2 = rand.nextInt(a.length)
-            while(i1 == i2){ i2 = rand.nextInt(a.length) }
-
-            val b = a.clone
-            val tmp = b(i1)
-            b(i1) = b(i2)
-            b(i2) = tmp
-            b
-        }
     }
 
     // Tabu Search implementation + parameters
-    val TS = (n: Int) => new TabuSearch[TaskList, (Int, Int), Int] with Alg with Common {
+    val TS = (n: Int) => new TabuSearch[TaskList, (Int, Int), Int] with Common {
         def N = n
         def Tsize = 7
         def F(tasks: TaskList) = tasks.cost
-        def S(tasks: TaskList) = (0 until tasks.list.length).combinations(2).map { idx =>
-          (TaskList(tasks.list.swapped(idx(0), idx(1))), (idx(0), idx(1)))
-        }
 
-        def P(tasks: TaskList, tabu: (Int, Int)) = {
-          // println("P of " + tasks.list.toList + " and " + tabu._1 + " : " + tabu._2)
-          // println("compare: " + (tasks.list.toList.indexWhere(e => e.index == tabu._1), tasks.list.indexWhere(e => e.index == tabu._2)))
-          tasks.list.toList.indexWhere(e => e.index == tabu._1) < tasks.list.toList.indexWhere(e => e.index == tabu._2)
+        def S(tasks: TaskList) = (0 until tasks.list.length).combinations(2).map { idx => (idx(0), idx(1)) }
+            // (TaskList(tasks.list.swapped(idx(0), idx(1))), (idx(0), idx(1)))
+        // }
+
+        def NS(tasks: TaskList, move: (Int, Int)) = TaskList(tasks.list.swapped(move._1, move._2))
+
+        // def SR(tasks: TaskList) = TaskList(randomPermutation(tasks.list))
+
+        def P(move: (Int, Int)) = {
+            tabu.exists { case (a,b) => a == move._1 || b == move._1 || a == move._2 || b == move._2 }
+            // tasks.list.toList.indexWhere(e => e.index == tabu._1) < tasks.list.toList.indexWhere(e => e.index == tabu._2)
         }
     }
 }
@@ -81,20 +85,24 @@ object App {
             val k = args(1).toInt
             val instances = readInstances(n).zip(readOptimal(n)).take(k)
 
-            // val tds = 0.99 :: 0.999 :: 0.9999 :: Nil
-            val tds = 10 :: 100 :: Nil//200 :: Nil
+            val algs =  TS(10) ::
+                        TS(100) ::
+                        // TS(200) ::
+                        // SA(0.99) ::
+                        // SA(0.999) ::
+                        // SA(0.9999) ::
+                        Nil
 
-
-            val results = tds.map { td =>
-                print("%7s | " format td.toString)
-                // val sa = SA(td)
-                val sa = TS(td)
-
+            val results = algs.map { alg =>
                 val r = instances.zipWithIndex.collect { case ((tasks, optimal), inst) if optimal > 0 =>
-                    println(" == Instance %s | optimal: %d | td: %d == " format (inst+1, optimal, td))
+                    println(" == Instance %s | optimal: %d | alg: %s == " format (inst+1, optimal, alg.toString))
 
-                    val x = (1 to 1)/*.par*/ map { i =>
-                        val (time, res) = bench(sa(tasks))
+
+                    val x = (1 to 10)/*.par*/ map { i =>
+                        val curr = tasks //.dup
+                        println(curr)
+
+                        val (time, res) = bench(alg(curr))
                         val diff = (res.cost - optimal) * 100.0 / optimal
 
                         val c = if(diff == 0) Console.GREEN else Console.RED
@@ -108,11 +116,11 @@ object App {
                 }
                 println()
 
-                (td, r)
+                (alg, r)
             }
 
 
-            results.foreach { case (td, instances) =>
+            results.foreach { case (alg, instances) =>
                 val (time, diff) = ((0.0, 0.0) /: instances){
                     case ((t,d), it) =>
                         val (time, diff) = ((0.0,0.0) /: it){ case ((a,b),(c,d)) => (a+c, b+d) }
@@ -122,7 +130,7 @@ object App {
                 val avgTime = time / instances.length
                 val avgDiff = diff / instances.length
 
-                println("td: %5f | time: %5.2f | diff: %5.2f" format (td.toFloat, avgTime, avgDiff))
+                println("alg: %-15s | time: %5.2f | diff: %5.2f" format (alg.toString, avgTime, avgDiff))
             }
         }
     }

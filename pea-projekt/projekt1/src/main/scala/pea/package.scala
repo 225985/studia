@@ -14,6 +14,8 @@ package object pea {
         }._2
 
         override def toString = "%s : %d" format (list.map(_.toString).mkString("[", ",", "]"), cost)
+
+        def dup = TaskList(list.clone)
     }
 
     trait Common {
