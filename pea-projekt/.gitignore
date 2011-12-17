@@ -5,3 +5,4 @@ projekt1/project/target
 projekt1/project/plugins/target
 *.log
 *.aux
+*.gz
