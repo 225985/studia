@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "jajko", "jajko\jajko.vcxproj", "{ED561358-04C5-4EF3-8833-E2CD8377519E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "czajnik_lab4", "czajnik_lab4\czajnik_lab4.vcxproj", "{9AFFB3FF-17BB-4C91-B056-AD61973CE219}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED561358-04C5-4EF3-8833-E2CD8377519E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{ED561358-04C5-4EF3-8833-E2CD8377519E}.Debug|Win32.Build.0 = Debug|Win32
+		{ED561358-04C5-4EF3-8833-E2CD8377519E}.Release|Win32.ActiveCfg = Release|Win32
+		{ED561358-04C5-4EF3-8833-E2CD8377519E}.Release|Win32.Build.0 = Release|Win32
+		{9AFFB3FF-17BB-4C91-B056-AD61973CE219}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9AFFB3FF-17BB-4C91-B056-AD61973CE219}.Debug|Win32.Build.0 = Debug|Win32
+		{9AFFB3FF-17BB-4C91-B056-AD61973CE219}.Release|Win32.ActiveCfg = Release|Win32
+		{9AFFB3FF-17BB-4C91-B056-AD61973CE219}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
