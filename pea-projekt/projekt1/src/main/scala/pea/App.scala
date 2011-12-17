@@ -1,17 +1,17 @@
 package pea
 
 object Algorithms {
-    def randomPermutation(a: List[Task]) = {
+    def randomPermutation[A](a: Array[A]) = {
         val rand = new scala.util.Random
         val i1 = rand.nextInt(a.length)
         var i2 = rand.nextInt(a.length)
         while(i1 == i2){ i2 = rand.nextInt(a.length) }
 
-        val b = a.toArray
+        val b = a.clone
         val tmp = b(i1)
         b(i1) = b(i2)
         b(i2) = tmp
-        b.toList
+        b
     }
 
     // Simulated Annealing implementation + parameters
@@ -37,7 +37,7 @@ object Algorithms {
 
         def NS(tasks: TaskList, move: (Int, Int)) = TaskList(tasks.list.swapped(move._1, move._2))
 
-        // def SR(tasks: TaskList) = TaskList(randomPermutation(tasks.list))
+        def SR(tasks: TaskList) = TaskList(randomPermutation(tasks.list))
 
         def P(move: (Int, Int)) = {
             tabu.exists { case (a,b) => a == move._1 || b == move._1 || a == move._2 || b == move._2 }
@@ -67,7 +67,7 @@ object App {
             val parts = splitted(n, group)
             TaskList(parts(0).zip(parts(1)).zip(parts(2)).zipWithIndex.map {
                 case (((x,y), z), i) => Task(i, x, z, y)
-            })
+            }.toArray)
         }
     }
 
@@ -85,23 +85,23 @@ object App {
             val k = args(1).toInt
             val instances = readInstances(n).zip(readOptimal(n)).take(k)
 
-            val algs =  TS(1) ::
-                        // TS(100) ::
-                        // TS(200) ::
-                        // SA(0.99) ::
-                        // SA(0.999) ::
-                        // SA(0.9999) ::
+            val algs =  (TS(10),  10) ::
+                        (TS(100), 10) ::
+                        (TS(200), 10) ::
+                        // (TS(1000), 1) ::
+                        (SA(0.99),   10) ::
+                        (SA(0.999),  10) ::
+                        (SA(0.9999), 10) ::
                         Nil
 
-            val results = algs.map { alg =>
+            val results = algs.map { case (alg, k) =>
                 val r = instances.zipWithIndex.collect { case ((tasks, optimal), inst) if optimal > 0 =>
                     println(" == Instance %s | optimal: %d | alg: %s == " format (inst+1, optimal, alg.toString))
 
+                    val curr = tasks //.dup
 
-                    val x = (1 to 10)/*.par*/ map { i =>
-                        val curr = tasks //.dup
-                        println(curr)
 
+                    val x = (1 to k)/*.par*/ map { i =>
                         val (time, res) = bench(alg(curr))
                         val diff = (res.cost - optimal) * 100.0 / optimal
 
