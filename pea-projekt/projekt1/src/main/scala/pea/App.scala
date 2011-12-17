@@ -82,7 +82,7 @@ object App {
             val instances = readInstances(n).zip(readOptimal(n)).take(k)
 
             // val tds = 0.99 :: 0.999 :: 0.9999 :: Nil
-            val tds = 10 :: 100 :: Nil//200 :: Nil
+            val tds = 10 :: 100 :: 1000 :: Nil
 
 
             val results = tds.map { td =>
