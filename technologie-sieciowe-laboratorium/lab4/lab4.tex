@@ -93,7 +93,7 @@
   \begin{figure}[htbp]
     \begin{center}
       \includegraphics[width=\textwidth]{img/t4.PNG}
-      \caption{Wynik polecenia $show\ vlan$}
+      \caption{Wynik polecenia $show\ vlan$ na przełączniku S1}
     \end{center}
   \end{figure}
 
@@ -151,6 +151,110 @@
     \caption{Pula portów VLAN}
   \end{table}
 
+  \begin{figure}[htbp]
+    \begin{center}
+      \includegraphics[width=\textwidth]{img/t6.PNG}
+      \caption{Wynik polecenia $show\ vlan$ na przełączniku S1}
+    \end{center}
+  \end{figure}
+
+  \paragraph{}
+  TODO - analiza co sie zmienilo w komendzie show vlan
+
+
+  \subsection{Weryfikacja połączenia}
+  \paragraph{}
+  TODO - napisac ze pingi przeszly
+
+  \subsection{Konfiguracja dodatkowego przełącznika}
+  \paragraph{}
+  Drugi przełącznik (\textbf{S2}) został skonfigurowany analogicznie jak pierwszy, według puli portów z Tabeli 1.
+
+  \begin{figure}[htbp]
+    \begin{center}
+      \includegraphics[width=\textwidth]{img/t8.PNG}
+      \caption{Wynik polecenia $show\ vlan$ na przełączniku S2}
+    \end{center}
+  \end{figure}
+
+  TODO - cos jeszcze
+
+  \subsection{Konfiguracja łącza trunkowego pomiędzy dwoma przełącznikami}
+  \paragraph{}
+  TODO - bullshit jakis tutaj - podlaczono itp
+
+
+  \paragraph{}
+  TODO - weryfikacja polaczenia - tu w jednym dzialalo w drugim nie
+
+  \paragraph{}
+  TODO - konfiguracja trunka
+
+  \begin{verbatim}
+    S1(config)#interface fa0/24
+    S1(config-if)#switchport mode trunk
+  \end{verbatim}
+
+  \begin{verbatim}
+    S2(config)#interface fa0/24
+    S2(config-if)#switchport mode trunk
+  \end{verbatim}
+
+  \paragraph{}
+  TODO - weryfikacja polaczenia
+
+  \paragraph{}
+  TODO - opis tego co ponizej jest (roznice miedzy 0/1 a 0/24)
+
+  \begin{figure}[htbp]
+    \begin{center}
+      \includegraphics[width=\textwidth]{img/t9.PNG}
+      \caption{Wynik polecenia $show\ vlan$ na przełączniku S1 po konfiguracji połączenia trunk}
+    \end{center}
+  \end{figure}
+
+  \begin{figure}[htbp]
+    \begin{center}
+      \includegraphics[width=\textwidth]{img/t10.PNG}
+      \caption{Wynik polecenia $show\ int\ fa\ 0/1\ switchport$ na przełączniku S1 po konfiguracji połączenia trunk}
+    \end{center}
+  \end{figure}
+
+  \begin{figure}[htbp]
+    \begin{center}
+      \includegraphics[width=\textwidth]{img/t11.PNG}
+      \caption{Wynik polecenia $show\ int\ fa\ 0/24\ switchport$ na przełączniku S1 po konfiguracji połączenia trunk}
+    \end{center}
+  \end{figure}
+
+
+  \subsection{Konfiguracja z trzema przełącznikami}
+  \paragraph{}
+  TODO - podlaczony
+  - dodanie vlanow
+  - konfiguracja trunkow na 0/23 i 0/24
+
+  \begin{verbatim}
+    Switch(config)#interface fa0/23
+    Switch(config-if)#switchport mode trunk
+
+    Switch(config)#interface fa0/24
+    Switch(config-if)#switchport mode trunk
+  \end{verbatim}
+
+  \paragraph{}
+  TODO - weryfikacja
+
+  \subsection{Analiza i konfiguracja protokołu STP}
+  \paragraph{}
+  TODO - zostaly podlaczone
+
+  \begin{figure}[htbp]
+    \begin{center}
+      \includegraphics[width=\textwidth]{img/t13.PNG}
+      \caption{Wynik polecenia $show\ spanning-tree$ na przełączniku S1}
+    \end{center}
+  \end{figure}
 
 
 \end{document}
