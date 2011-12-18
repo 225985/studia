@@ -87,8 +87,6 @@ val TS = (n: Int) => new TabuSearch[TaskList, (Int, Int), Int] with Common {
     def F(tasks: TaskList) = tasks.cost
 
     def S(tasks: TaskList) = (0 until tasks.list.length).combinations(2).map { idx => (idx(0), idx(1)) }
-        // (TaskList(tasks.list.swapped(idx(0), idx(1))), (idx(0), idx(1)))
-    // }
 
     def NS(tasks: TaskList, move: (Int, Int)) = TaskList(tasks.list.swapped(move._1, move._2))
 
@@ -96,7 +94,6 @@ val TS = (n: Int) => new TabuSearch[TaskList, (Int, Int), Int] with Common {
 
     def P(move: (Int, Int)) = {
         tabu.exists { case (a,b) => a == move._1 || b == move._1 || a == move._2 || b == move._2 }
-        // tasks.list.toList.indexWhere(e => e.index == tabu._1) < tasks.list.toList.indexWhere(e => e.index == tabu._2)
     }
 }
 
