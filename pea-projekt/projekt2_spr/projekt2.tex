@@ -34,19 +34,87 @@
 
 \begin{document}
 \maketitle
-  \section{Cel projektu}
+
+\section{Cel projektu}
 \paragraph{}
-Celem projektu jest zaimplementowanie i przetestowanie metaheurystycznego algorytmu tabu search dla problemu szeregowania zadań na jednym procesorze przy kryterium minimalizacji ważonej sumy opóźnień zadań.
-  \section{Opis problemu}
+  Celem projektu jest zaimplementowanie i przetestowanie metaheurystycznego algorytmu tabu search dla problemu szeregowania zadań na jednym procesorze przy kryterium minimalizacji ważonej sumy opóźnień zadań.
+
+\section{Opis problemu}
 {\bf Jednoprocesorowy problem szeregowania zadań przy kryterium
 minimalizacji ważonej sumy opóźnień zadań.}
+
 \paragraph{}
 Danych jest $n$ zadań (o numerach od 1 do $n$), które mają być wykonane bez przerwań przez pojedynczy procesor, mogący wykonywać co najwyżej jedno zadanie jednocześnie.
 Każde zadanie j jest dostępne do wykonania w chwili zero, do wykonania wymaga $p_{j} > 0$ jednostek czasu oraz ma określoną wagę (priorytet) $w_{j} > 0$ i oczekiwany termin zakończenia
 wykonywania $d_{j} > 0$. Zadanie $j$ jest spóźnione, jeżeli zakończy się wykonywać po swoim terminie $d_{j}$, a miarą tego opóźnienia jest wielkość $T_{j} = max(0, C_{j} - d_{j} )$, gdzie $C_{j}$ jest terminem zakończenia
 wykonywania zadania $j$. Problem polega na znalezieniu takiej kolejności wykonywania zadań (permutacji) aby zminimalizować kryterium $TWT = \Sigma_{j=1}^{n} w_{j} T_{j}$.
+
 \section{Opis algorytmu}
 \paragraph{}
+Algorytm \textit{Tabu Search} wykorzystywany jest do otrzymywania wyników optymalnych, lub niewiele różniących się od optymalnych dla problemów optymalizacyjnych.
+Idę algorytmu jest przeszukiwanie przestrzeni możliwych rozwiązań, stworzonej za pomoca sekwencji ruchów, zawierających ruchy niedozwolone (\textit{tabu}). W celu uniknięcia zakleszczenia w lokalnym minimum, algorytm korzysta z informacji o sprawdzonych juz rozwiązaniach dzięki liście tabu, która zwykle zawiera od 7 - 10 elementów.
+
+\paragraph{}
+Przebieg algorytmu :
+\lstset{ %
+    language=java,                % choose the language of the code
+    basicstyle=\scriptsize,       % the size of the fonts that are used for the code
+    numbers=left,                   % where to put the line-numbers
+    numberstyle=\scriptsize,      % the size of the fonts that are used for the line-numbers
+    stepnumber=10,                   % the step between two line-numbers. If it's 1 each line 
+                                    % will be numbered
+    numbersep=9pt,                  % how far the line-numbers are from the code
+    % backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+    showspaces=false,               % show spaces adding particular underscores
+    showstringspaces=false,         % underline spaces within strings
+    showtabs=false,                 % show tabs within strings adding particular underscores
+    % frame=single,                 % adds a frame around the code
+    % tabsize=2,                  % sets default tabsize to 2 spaces
+    % captionpos=b,                   % sets the caption-position to bottom
+    breaklines=true,                % sets automatic line breaking
+    % breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+    % title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                    % also try caption instead of title
+    % escapeinside={\%*}{*)},         % if you want to add a comment within your code
+    % morekeywords={*,...}            % if you want to add more keywords to the set
+    }
+    \lstinputlisting{kod/pseudokod.txt}
+
+\section{Implementacja}
+\paragraph{}
+Jezykiem implementacji algorytmu jest $Scala$ w wersji $2.9.1$ działająca na $JVM$. 
+\paragraph{}
+\lstset{ %
+    language=java,                % choose the language of the code
+    basicstyle=\scriptsize,       % the size of the fonts that are used for the code
+    numbers=left,                   % where to put the line-numbers
+    numberstyle=\scriptsize,      % the size of the fonts that are used for the line-numbers
+    stepnumber=10,                   % the step between two line-numbers. If it's 1 each line 
+                                    % will be numbered
+    numbersep=9pt,                  % how far the line-numbers are from the code
+    % backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+    showspaces=false,               % show spaces adding particular underscores
+    showstringspaces=false,         % underline spaces within strings
+    showtabs=false,                 % show tabs within strings adding particular underscores
+    % frame=single,                 % adds a frame around the code
+    % tabsize=2,                  % sets default tabsize to 2 spaces
+    % captionpos=b,                   % sets the caption-position to bottom
+    breaklines=true,                % sets automatic line breaking
+    % breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+    % title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                    % also try caption instead of title
+    % escapeinside={\%*}{*)},         % if you want to add a comment within your code
+    % morekeywords={*,...}            % if you want to add more keywords to the set
+    }
+    \lstinputlisting{kod/ts.scala}
+  
+\section{Testy}
+\paragraph{}
+TODO
+
+\section{Wnioski}
+\paragraph{}
+TODO
 
 \end{document}
 
