@@ -314,7 +314,14 @@
   \end{figure}
 
   \paragraph{}
-  Komenda \texttt{show spanning-tree} pokazuje skonfigurowane sieci VLAN. Dla każdej sieci VLAN przedstawiona jest lista portów przypisanych do danej sieci, priorytet. TODO
+  
+  Protokół Spanning-Tree jest protokołem wykorzystywantm w urządzenaich drugiej wartstwymodelu \textit{ISO$/$OSI}. 
+  Został stworzony dla zwiększenia niezawodności ruchu sieciowego. Protokół ten tworzy graf bez pętli i ustala zapasowe łącza.
+  Na szczycie grafu znajduje się korzeń (root). W momencie jak STP wykryje problem, rekonfiguruje sięć, uaktywniając łącza zapasowe.
+  
+  \paragraph{}
+  Komenda \texttt{show spanning-tree} pokazuje skonfigurowane sieci VLAN. 
+  Dla każdej sieci VLAN przedstawiona jest lista portów przypisanych do danej sieci, priorytet, adres węzła, mosty.
 
 
   \section{Wnioski}
