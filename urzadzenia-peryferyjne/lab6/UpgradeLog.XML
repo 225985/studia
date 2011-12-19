@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="Skaner">
+</Property><Property Name="Solution File" Value="D:\politechnika\semestr5\semestr-v\urzadzenia-peryferyjne\lab6\Skaner.sln">
+</Property><Property Name="User Options File" Value="D:\politechnika\semestr5\semestr-v\urzadzenia-peryferyjne\lab6\Skaner.suo">
+</Property><Property Name="Date" Value="19 grudnia 2011">
+</Property><Property Name="Time" Value="17:38">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="Skaner.sln" Description="File successfully backed up as D:\politechnika\semestr5\semestr-v\urzadzenia-peryferyjne\lab6\Backup\Skaner.sln">
+</Event><Event ErrorLevel="0" Project="" Source="Skaner.suo" Description="File successfully backed up as D:\politechnika\semestr5\semestr-v\urzadzenia-peryferyjne\lab6\Backup\Skaner.suo">
+</Event><Event ErrorLevel="0" Project="Skaner" Source="Skaner\Skaner.csproj" Description="Project file successfully backed up as D:\politechnika\semestr5\semestr-v\urzadzenia-peryferyjne\lab6\Backup\Skaner\Skaner.csproj">
+</Event><Event ErrorLevel="0" Project="Skaner" Source="Skaner\Form1.cs" Description="File successfully backed up as D:\politechnika\semestr5\semestr-v\urzadzenia-peryferyjne\lab6\Backup\Skaner\Form1.cs">
+</Event><Event ErrorLevel="0" Project="Skaner" Source="Skaner\Form1.Designer.cs" Description="File successfully backed up as D:\politechnika\semestr5\semestr-v\urzadzenia-peryferyjne\lab6\Backup\Skaner\Form1.Designer.cs">
+</Event><Event ErrorLevel="0" Project="Skaner" Source="Skaner\Program.cs" Description="File successfully backed up as D:\politechnika\semestr5\semestr-v\urzadzenia-peryferyjne\lab6\Backup\Skaner\Program.cs">
+</Event><Event ErrorLevel="0" Project="Skaner" Source="Skaner\Properties\AssemblyInfo.cs" Description="File successfully backed up as D:\politechnika\semestr5\semestr-v\urzadzenia-peryferyjne\lab6\Backup\Skaner\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="Skaner" Source="Skaner\Properties\Resources.Designer.cs" Description="File successfully backed up as D:\politechnika\semestr5\semestr-v\urzadzenia-peryferyjne\lab6\Backup\Skaner\Properties\Resources.Designer.cs">
+</Event><Event ErrorLevel="0" Project="Skaner" Source="Skaner\Properties\Settings.Designer.cs" Description="File successfully backed up as D:\politechnika\semestr5\semestr-v\urzadzenia-peryferyjne\lab6\Backup\Skaner\Properties\Settings.Designer.cs">
+</Event><Event ErrorLevel="0" Project="Skaner" Source="Skaner\Properties\Settings.settings" Description="File successfully backed up as D:\politechnika\semestr5\semestr-v\urzadzenia-peryferyjne\lab6\Backup\Skaner\Properties\Settings.settings">
+</Event><Event ErrorLevel="0" Project="Skaner" Source="Skaner\Form1.resx" Description="File successfully backed up as D:\politechnika\semestr5\semestr-v\urzadzenia-peryferyjne\lab6\Backup\Skaner\Form1.resx">
+</Event><Event ErrorLevel="0" Project="Skaner" Source="Skaner\Properties\Resources.resx" Description="File successfully backed up as D:\politechnika\semestr5\semestr-v\urzadzenia-peryferyjne\lab6\Backup\Skaner\Properties\Resources.resx">
+</Event><Event ErrorLevel="0" Project="Skaner" Source="Skaner\Skaner.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Skaner" Source="Skaner\Skaner.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="Skaner.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="Skaner.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Skaner" Source="Skaner\Skaner.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>
