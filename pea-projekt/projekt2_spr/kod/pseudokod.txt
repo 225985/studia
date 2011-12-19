@@ -3,7 +3,7 @@ best = old 	// najlepsze znalezione rozwiazanie
 tabu = [] 	// pusta lista
 k = 0		// zmienna dywersyfikacji
 
-while n > 0 // n - ilość iteracji
+while n > 0 // n - ilosc iteracji
 	if k > k_max
 		k = 0
 		old = SR(old) 
@@ -26,6 +26,9 @@ while n > 0 // n - ilość iteracji
 
 		if F(new) < F(best)
 			best = new
+			k = 0
+		else
+			k = k + 1
 		end
 
 		old = new

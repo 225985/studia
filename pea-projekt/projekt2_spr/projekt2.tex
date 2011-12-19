@@ -52,8 +52,9 @@ wykonywania zadania $j$. Problem polega na znalezieniu takiej kolejności wykony
 \section{Opis algorytmu}
 \paragraph{}
 Algorytm \textit{Tabu Search} wykorzystywany jest do otrzymywania wyników optymalnych, lub niewiele różniących się od optymalnych dla problemów optymalizacyjnych.
-Idę algorytmu jest przeszukiwanie przestrzeni możliwych rozwiązań, stworzonej za pomoca sekwencji ruchów, zawierających ruchy niedozwolone (\textit{tabu}). W celu uniknięcia zakleszczenia w lokalnym minimum, algorytm korzysta z informacji o sprawdzonych juz rozwiązaniach dzięki liście tabu, która zwykle zawiera od 7 - 10 elementów.
+Idę algorytmu jest przeszukiwanie przestrzeni możliwych rozwiązań, stworzonej za pomoca sekwencji ruchów, zawierających ruchy niedozwolone (\textit{tabu}). W celu uniknięcia zakleszczenia w lokalnym minimum, algorytm dokonuje dywersyfikacji poprzez sprawdzenie, czy w ciągu ostatnich $k$ operacji wystąpiło lepsze rozwiązanie niż dotychczasowe minimum. W przeciwnym wypadku losujemy nowe rozwiązanie.
 
+\newpage
 \paragraph{}
 Przebieg algorytmu :
 \lstset{ %
