@@ -26,9 +26,10 @@ object Algorithms {
     }
 
     // Tabu Search implementation + parameters
-    val TS = (n: Int) => new TabuSearch[TaskList, (Int, Int), Int] with Common {
+    val TS = (n: Int, k: Int, t: Int) => new TabuSearch[TaskList, (Int, Int), Int] with Common {
         def N = n
-        def Tsize = 7
+        def Kmax = k
+        def Tsize = t
         def F(tasks: TaskList) = tasks.cost
 
         def S(tasks: TaskList) = (0 until tasks.list.length).combinations(2).map { idx => (idx(0), idx(1)) }
@@ -85,18 +86,49 @@ object App {
             val k = args(1).toInt
             val instances = readInstances(n).zip(readOptimal(n)).take(k)
 
-            val algs =  (TS(10),  10) ::
-                        (TS(100), 10) ::
-                        (TS(200), 10) ::
+            val algs =  (TS(10, 4, 7),  10) ::
+                        (TS(10, 5, 7),  10) ::
+                        (TS(10, 6, 7),  10) ::
+                        (TS(10, 7, 7),  10) ::
+                        (TS(10, 4, 8),  10) ::
+                        (TS(10, 5, 8),  10) ::
+                        (TS(10, 6, 8),  10) ::
+                        (TS(10, 7, 8),  10) ::
+                        (TS(10, 4, 9),  10) ::
+                        (TS(10, 5, 9),  10) ::
+                        (TS(10, 6, 9),  10) ::
+                        (TS(10, 7, 9),  10) ::
+                        (TS(10, 4, 10),  10) ::
+                        (TS(10, 5, 10),  10) ::
+                        (TS(10, 6, 10),  10) ::
+                        (TS(10, 7, 10),  10) ::
+                        (TS(100, 4, 7),  10) ::
+                        (TS(100, 5, 7),  10) ::
+                        (TS(100, 6, 7),  10) ::
+                        (TS(100, 7, 7),  10) ::
+                        (TS(100, 4, 8),  10) ::
+                        (TS(100, 5, 8),  10) ::
+                        (TS(100, 6, 8),  10) ::
+                        (TS(100, 7, 8),  10) ::
+                        (TS(100, 4, 9),  10) ::
+                        (TS(100, 5, 9),  10) ::
+                        (TS(100, 6, 9),  10) ::
+                        (TS(100, 7, 9),  10) ::
+                        (TS(100, 4, 10),  10) ::
+                        (TS(100, 5, 10),  10) ::
+                        (TS(100, 6, 10),  10) ::
+                        (TS(100, 7, 10),  10) ::
+                        // (TS(100), 10) ::
+                        // (TS(200), 10) ::
                         // (TS(1000), 1) ::
-                        (SA(0.99),   10) ::
-                        (SA(0.999),  10) ::
-                        (SA(0.9999), 10) ::
+                        // (SA(0.99),   10) ::
+                        // (SA(0.999),  10) ::
+                        // (SA(0.9999), 10) ::
                         Nil
 
             val results = algs.map { case (alg, k) =>
                 val r = instances.zipWithIndex.collect { case ((tasks, optimal), inst) if optimal > 0 =>
-                    println(" == Instance %s | optimal: %d | alg: %s == " format (inst+1, optimal, alg.toString))
+                    print(" == Instance %s | optimal: %d | alg: %s == " format (inst+1, optimal, alg.toString))
 
                     val curr = tasks //.dup
 
@@ -106,11 +138,12 @@ object App {
                         val diff = (res.cost - optimal) * 100.0 / optimal
 
                         val c = if(diff == 0) Console.GREEN else Console.RED
-                        println("%s%2d) %-120s [%5.2f%%] | %10d%s" format (c, i, res, diff, time, Console.RESET))
-                        // print("%s.%s" format (c, Console.RESET))
+                        // println("%s%2d) %-120s [%5.2f%%] | %10d%s" format (c, i, res, diff, time, Console.RESET))
+                        print("%s.%s" format (c, Console.RESET))
 
                         (time, diff)
                     }
+                    println()
 
                     x
                 }

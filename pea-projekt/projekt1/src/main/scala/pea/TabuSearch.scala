@@ -5,6 +5,7 @@ abstract class TabuSearch[A, T, R : Ordering] extends Function1[A, A] {
 
     def N: Int
     def Tsize: Int
+    def Kmax: Int
 
     def F(x: A): R  // cost function
     def S(x: A): TraversableOnce[T]  // new moves generator
@@ -20,7 +21,7 @@ abstract class TabuSearch[A, T, R : Ordering] extends Function1[A, A] {
         def inner(bestState: A, oldState: A, n: Int, k: Int): A = {
             if(n <= 0) {
                 bestState
-            } else if(k >= 5) {
+            } else if(k >= Kmax) {
                 inner(bestState, SR(oldState), n, 0)
             } else {
                 val newStates = S(oldState).toList.filterNot { m => P(m) } map { m => (NS(oldState, m), m) }
@@ -50,5 +51,5 @@ abstract class TabuSearch[A, T, R : Ordering] extends Function1[A, A] {
         inner(s0, s0, N, 0)
     }
 
-    override def toString = "TS(%d)" format N
+    override def toString = "TS(n=%d, k=%d, t=%d)" format (N, Kmax, Tsize)
 }
