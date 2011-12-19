@@ -1,1 +1,35 @@
-TODO
+old = S_0 	// stan poczatkowy
+best = old 	// najlepsze znalezione rozwiazanie
+tabu = [] 	// pusta lista
+k = 0		// zmienna dywersyfikacji
+
+while n > 0 // n - ilość iteracji
+	if k > k_max
+		k = 0
+		old = SR(old) 
+	else
+		possibleMoves = S(old)
+		candidates = []
+		foreach move in possibleMoves
+			if not P(move)
+				newPossibleState = NS(old, move)
+				candidates <- newPossibleState
+			end  
+		end
+		
+		new, move = LocateBestCandidate(candidates)
+		tabu <- move
+
+		if tabu.length > t_size
+			removeFirst(tabu)
+		end
+
+		if F(new) < F(best)
+			best = new
+		end
+
+		old = new
+		n = n - 1
+	end
+end
+
