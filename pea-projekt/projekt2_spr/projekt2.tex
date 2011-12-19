@@ -62,7 +62,7 @@ Przebieg algorytmu :
     basicstyle=\scriptsize,       % the size of the fonts that are used for the code
     numbers=left,                   % where to put the line-numbers
     numberstyle=\scriptsize,      % the size of the fonts that are used for the line-numbers
-    stepnumber=10,                   % the step between two line-numbers. If it's 1 each line 
+    stepnumber=10,                   % the step between two line-numbers. If it's 1 each line
                                     % will be numbered
     numbersep=9pt,                  % how far the line-numbers are from the code
     % backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
@@ -83,14 +83,14 @@ Przebieg algorytmu :
 
 \section{Implementacja}
 \paragraph{}
-Jezykiem implementacji algorytmu jest $Scala$ w wersji $2.9.1$ działająca na $JVM$. 
+Jezykiem implementacji algorytmu jest $Scala$ w wersji $2.9.1$ działająca na $JVM$.
 \paragraph{}
 \lstset{ %
     language=java,                % choose the language of the code
     basicstyle=\scriptsize,       % the size of the fonts that are used for the code
     numbers=left,                   % where to put the line-numbers
     numberstyle=\scriptsize,      % the size of the fonts that are used for the line-numbers
-    stepnumber=10,                   % the step between two line-numbers. If it's 1 each line 
+    stepnumber=10,                   % the step between two line-numbers. If it's 1 each line
                                     % will be numbered
     numbersep=9pt,                  % how far the line-numbers are from the code
     % backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
@@ -108,7 +108,7 @@ Jezykiem implementacji algorytmu jest $Scala$ w wersji $2.9.1$ działająca na $
     % morekeywords={*,...}            % if you want to add more keywords to the set
     }
     \lstinputlisting{kod/ts.scala}
-  
+
 \section{Testy}
 \paragraph{}
 Test algorytmu tabu search przeprowadzony został dla trzech zestawów testów o różnym rozmiarze, każdy składający się ze 125 instancji. 
@@ -126,7 +126,7 @@ gdzie : \\
   \item $n$ - ilość instancji danego problemu
 \end{itemize}
 \paragraph{}
-Parametry niezmienne : 
+Parametry niezmienne :
 \begin{itemize}
   \item $T_{min} = 0.01$
   \item $T_{max} = 100$
@@ -168,6 +168,48 @@ Parametry niezmienne :
             100 &422,22 & 11,11\\ \hline
             200& 836,04  &7,26\\ \hline
   \end{tabular}
+\end{center}
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|}
+\hline
+n & k & t & time & dif \\
+\hline
+10 & 4 & 7 & 32.40 & 38.84 \\
+\bf{10} & \bf{5} & \bf{7} & \bf{22.68} & \bf{38.84} \\
+10 & 6 & 7 & 23.21 & 38.84 \\
+10 & 7 & 7 & 23.02 & 38.84 \\
+10 & 4 & 8 & 22.29 & 46.47 \\
+10 & 5 & 8 & 22.56 & 46.47 \\
+10 & 6 & 8 & 22.07 & 46.47 \\
+10 & 7 & 8 & 22.21 & 46.47 \\
+10 & 4 & 9 & 22.15 & 47.23 \\
+10 & 5 & 9 & 22.00 & 47.23 \\
+10 & 6 & 9 & 21.83 & 47.23 \\
+10 & 7 & 9 & 21.88 & 47.23 \\
+10 & 4 & 10 & 21.79 & 47.23 \\
+10 & 5 & 10 & 21.53 & 47.23 \\
+10 & 6 & 10 & 21.68 & 47.23 \\
+10 & 7 & 10 & 21.48 & 47.23 \\
+\hline
+100 & 4 & 7 & 197.91 &  5.48 \\
+\bf{100} & \bf{5} & \bf{7} & \bf{197.09} &  \bf{3.37} \\
+100 & 6 & 7 & 197.72 &  6.17 \\
+100 & 7 & 7 & 197.88 &  6.52 \\
+100 & 4 & 8 & 192.55 &  4.50 \\
+100 & 5 & 8 & 191.70 &  4.06 \\
+100 & 6 & 8 & 191.43 &  4.43 \\
+100 & 7 & 8 & 190.61 &  6.84 \\
+100 & 4 & 9 & 186.19 &  5.27 \\
+100 & 5 & 9 & 186.65 &  5.67 \\
+100 & 6 & 9 & 186.17 &  3.93 \\
+100 & 7 & 9 & 185.71 &  7.22 \\
+100 & 4 & 10 & 181.78 &  4.20 \\
+100 & 5 & 10 & 181.64 &  4.65 \\
+100 & 6 & 10 & 181.43 &  4.97 \\
+100 & 7 & 10 & 181.47 &  6.14 \\
+\hline
+    \end{tabular}
 \end{center}
 
 \begin{figure}[htbp]
