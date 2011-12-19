@@ -52,7 +52,7 @@ wykonywania zadania $j$. Problem polega na znalezieniu takiej kolejności wykony
 \section{Opis algorytmu}
 \paragraph{}
 Algorytm \textit{Tabu Search} wykorzystywany jest do otrzymywania wyników optymalnych, lub niewiele różniących się od optymalnych dla problemów optymalizacyjnych.
-Idę algorytmu jest przeszukiwanie przestrzeni możliwych rozwiązań, stworzonej za pomoca sekwencji ruchów, zawierających ruchy niedozwolone (\textit{tabu}). W celu uniknięcia zakleszczenia w lokalnym minimum, algorytm dokonuje dywersyfikacji poprzez sprawdzenie, czy w ciągu ostatnich $k$ operacji wystąpiło lepsze rozwiązanie niż dotychczasowe minimum. W przeciwnym wypadku losujemy nowe rozwiązanie.
+Idę algorytmu jest przeszukiwanie przestrzeni możliwych rozwiązań, stworzonej za pomoca sekwencji ruchów swap (zamiana miejscami dwóch elementów), zawierających ruchy niedozwolone (\textit{tabu}). W celu uniknięcia zakleszczenia w lokalnym minimum, algorytm dokonuje dywersyfikacji poprzez sprawdzenie, czy w ciągu ostatnich $k$ operacji wystąpiło lepsze rozwiązanie niż dotychczasowe minimum. W przeciwnym wypadku losujemy nowe rozwiązanie.
 
 \newpage
 \paragraph{}
@@ -108,68 +108,29 @@ Jezykiem implementacji algorytmu jest $Scala$ w wersji $2.9.1$ działająca na $
     % morekeywords={*,...}            % if you want to add more keywords to the set
     }
     \lstinputlisting{kod/ts.scala}
-
+\newpage
 \section{Testy}
 \paragraph{}
-Test algorytmu tabu search przeprowadzony został dla trzech zestawów testów o różnym rozmiarze, każdy składający się ze 125 instancji. 
+Test algorytmu tabu search przeprowadzony został dla trzech zestawów testów o różnej ilośći zadań, każdy składający się ze 125 instancji. 
+
 \paragraph{}
 Jako wyniki testów przedstawiamy średni czas liczenia wszystkich instancji dla danego rozmiaru problemu - $\bar{t}$, a także średni błąd wzgledny  rozwiązań dla każdej instancji - $\bar{x}$. Według wzoru : \\
 \begin{equation}
-    \bar{t} = \frac{\Sigma_{j=1}^{n}\frac{\Sigma_{i=1}^{k}t_{i}}{k}}{n}
+    \bar{t} = \frac{\Sigma_{j=1}^{m}\frac{\Sigma_{i=1}^{z}t_{i}}{z}}{m}
 \end{equation}
 \begin{equation}
-    \bar{x} = \frac{\Sigma_{j=1}^{n}\frac{\Sigma_{i=1}^{k}x_{i}}{k}}{n}
+    \bar{x} = \frac{\Sigma_{j=1}^{m}\frac{\Sigma_{i=1}^{z}x_{i}}{z}}{m}
 \end{equation}
 gdzie : \\
 \begin{itemize}
-  \item $k$ - ilość rozwiązań w instancji
-  \item $n$ - ilość instancji danego problemu
+  \item $z$ - ilość rozwiązań w instancji
+  \item $m$ - ilość instancji danego problemu
 \end{itemize}
 \paragraph{}
-Parametry niezmienne :
-\begin{itemize}
-  \item $T_{min} = 0.01$
-  \item $T_{max} = 100$
-\end{itemize}
+Ze względu na złożoność obliczeniową algorytmu testy zostały podzielone na dwa etapy.
+Pierwsza część testów obejmowała ustalenie najlepszych parametrów $k$ i $t_{size}$ dla niewielkiej liczby instancji problemu.
 \newpage
-\subsection{Pełny przebieg dla parametrów $k=5$ i $t_{size} = 7$}
-\subsubsection{n = 40}
-\begin{center}
-    \begin{tabular}{|c|c|c|}
-      \hline
-       $T_{d}$ & Time & Difference \\ \hline
-        10  &24,01&   106,56\\ \hline
-        100 &195,63 & 10,97\\ \hline
-        200 &386,48 & 5,88\\ \hline
-    \end{tabular}
-\end{center}
-
-\begin{figure}[htbp]
-  \begin{center}
-         \includegraphics[scale = 0.7]{charts/time40.PNG}
-         \caption{Czas rozwiązywania w zależności od parametru $T_d$}
-  \end{center}
-\end{figure}
-
-\begin{figure}[htbp]
-  \begin{center}
-         \includegraphics[scale=0.8]{charts/diff40.PNG}
-         \caption{Błąd względny rozwiązywania w zależności od parametru $T_d$}
-  \end{center}
-\end{figure}
-
-\newpage
-\subsubsection{n = 50}
-\begin{center}
-    \begin{tabular}{|c|c|c|}
-      \hline
-       $T_{d}$ & Time & Difference \\ \hline
-       10 & 51,38 &  326,49 \\ \hline
-            100 &422,22 & 11,11\\ \hline
-            200& 836,04  &7,26\\ \hline
-  \end{tabular}
-\end{center}
-
+\subsection{Testowanie parametrów $k$ i $t_{size}$}
 \begin{center}
     \begin{tabular}{|c|c|c|c|c|}
 \hline
@@ -211,6 +172,47 @@ n & k & t & time & dif \\
 \hline
     \end{tabular}
 \end{center}
+\paragraph{}
+Z otrzymanych wyników wywnioskowaliśmy, iż najlepszą parą parametrów $k$ i $t_{size}$ są wartości 5 i 7.
+\subsection{Pełny przebieg dla parametrów $k=5$ i $t_{size} = 7$}
+\subsubsection{n = 40}
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+      \hline
+       $T_{d}$ & Time & Difference \\ \hline
+        10  &24,01&   106,56\\ \hline
+        100 &195,63 & 10,97\\ \hline
+        200 &386,48 & 5,88\\ \hline
+    \end{tabular}
+\end{center}
+
+\begin{figure}[htbp]
+  \begin{center}
+         \includegraphics[scale = 0.7]{charts/time40.PNG}
+         \caption{Czas rozwiązywania w zależności od parametru $T_d$}
+  \end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{center}
+         \includegraphics[scale=0.8]{charts/diff40.PNG}
+         \caption{Błąd względny rozwiązywania w zależności od parametru $T_d$}
+  \end{center}
+\end{figure}
+
+\newpage
+\subsubsection{n = 50}
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+      \hline
+       $T_{d}$ & Time & Difference \\ \hline
+       10 & 51,38 &  326,49 \\ \hline
+            100 &422,22 & 11,11\\ \hline
+            200& 836,04  &7,26\\ \hline
+  \end{tabular}
+\end{center}
+
+
 
 \begin{figure}[htbp]
   \begin{center}
@@ -268,9 +270,13 @@ n & k & t & time & dif \\
   \end{center}
 \end{figure}
 
+\newpage
 \section{Wnioski}
 \paragraph{}
-TODO
+Po przeprowadzeniu analizy wyników testów, jednoznacznie widać, że rozmiar instancji ma znaczący wpływ na czas działania algorytmu. Znaczną część czasu wykonywania algorytmu zajmuje obliczanie funkcji kosztu, której czas jest zależny od rozmiaru instancji. Głównym parametrem, od którego zależna jest dokładność wyniku, a co za tym idzie czas dochodzenia do rozwiązania jest parametr $n$, określający ilość iteracji. Ważnymi parametrami są również $k$ - zmienna dywersyfikacji oraz $t_{size}$ - rozmiar listy tabu. Odpowiednio dobrane parametry wraz z czynnikiem losowym minimalizują podatność algorytmu na zapętlenie w lokalnym minimum.
+
+\paragraph{} % (fold)
+Algorytm tabu search pozwala na znalezienie przybliżonego rozwiązania problemu $sNPh$. Wiąże się to jednak z koniecznością dobrania odpowiednich parametrów, co nie jest zadaniem łatwym. W miarę poprawy wyników poprzez dobierane parametry, wzrasta czas wykonania algorytmu. W celu obliczenia problemu, musimy odpowiedzieć sobie na pytanie, jak dokładne rozwiązanie nas interesuje i ile czasu możemy na nie poświęcić. 
 
 \end{document}
 
