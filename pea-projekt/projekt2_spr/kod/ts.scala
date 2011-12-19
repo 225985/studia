@@ -4,6 +4,7 @@ abstract class TabuSearch[A, T, R : Ordering] extends Function1[A, A] {
 
     def N: Int
     def Tsize: Int
+    def Kmax: Int
 
     def F(x: A): R  // cost function
     def S(x: A): TraversableOnce[T]  // new moves generator
@@ -19,7 +20,7 @@ abstract class TabuSearch[A, T, R : Ordering] extends Function1[A, A] {
         def inner(bestState: A, oldState: A, n: Int, k: Int): A = {
             if(n <= 0) {
                 bestState
-            } else if(k >= 5) {
+            } else if(k >= Kmax) {
                 inner(bestState, SR(oldState), n, 0)
             } else {
                 val newStates = S(oldState).toList.filterNot { m => P(m) } map { m => (NS(oldState, m), m) }
@@ -44,8 +45,6 @@ case class Task(index: Int, p: Int, d: Int, w: Int){
     override def toString = index.toString
 }
 
-
-
 // Klasa reprezentujaca uporzadkowanie zadan
 case class TaskList(list: Array[Task]){
     lazy val cost = ((0,0) /: list){
@@ -54,16 +53,9 @@ case class TaskList(list: Array[Task]){
             val newCost = cost + math.max(0, (newTime - task.d)) * task.w
             (newTime, newCost)
     }._2
-
-    override def toString = "%s : %d" format (list.map(_.toString).mkString("[", ",", "]"), cost)
 }
 
 trait Common {
-    def selections[A](list: List[A]): List[(A, List[A])] = list match {
-        case Nil => Nil
-        case x :: xs => (x, xs) :: (for((y, ys) <- selections(xs)) yield (y, x :: ys))
-    }
-
     implicit def taskListOrdering = new Ordering[TaskList]{
         def compare(x: TaskList, y: TaskList): Int = x.cost compare y.cost
     }
@@ -77,13 +69,13 @@ trait Common {
             cpy
         }
     }
-
 }
 
 // Implementacja algorytmu Tabu Search
-val TS = (n: Int) => new TabuSearch[TaskList, (Int, Int), Int] with Common {
+val TS = (n: Int, k: Int, t: Int) => new TabuSearch[TaskList, (Int, Int), Int] with Common {
     def N = n
-    def Tsize = 7
+    def Kmax = k
+    def Tsize = t
     def F(tasks: TaskList) = tasks.cost
 
     def S(tasks: TaskList) = (0 until tasks.list.length).combinations(2).map { idx => (idx(0), idx(1)) }
