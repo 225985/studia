@@ -1,0 +1,66 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\lab\Desktop\lab\lab7
+T_opt
+Z1 VL32ER7d_[;CnQW]B7_ddl2
+Z2 04 12 8 work counter1test behavior 1
+Z3 =1-00221510468b-4ed39f85-211-f18
+Z4 o-quiet -auto_acc_if_foreign -work work +acc
+Z5 n@_opt
+Z6 OE;O;6.6e;45
+Z7 dC:\Users\lab\Desktop\lab\lab7
+Ecounter1
+Z8 w1322491252
+Z9 DPx22 C:\modeltech_6.6e\ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
+31
+R7
+Z10 8counter1.vhd
+Z11 Fcounter1.vhd
+l0
+L32
+Z12 VhCZL<R;DLm@@di>L9:ZU_3
+Z13 OE;C;6.6e;45
+Z14 o-explicit -93
+Z15 tExplicit 1
+Z16 !s100 1Vh3C2K:EkiHhBdETQLFU1
+Afsm
+R9
+Z17 DEx34 C:\Users\lab\Desktop\lab\lab7\work 8 counter1 0 22 hCZL<R;DLm@@di>L9:ZU_3
+31
+Z18 Mx1 22 C:\modeltech_6.6e\ieee 14 std_logic_1164
+l44
+L41
+Z19 VnoegNF=af]]_jledLRN6;0
+R13
+R14
+R15
+Z20 !s100 PY4W6I[Ri[CF8de6namU`3
+Ecounter1test
+Z21 w1322489722
+R9
+31
+R7
+Z22 8counter1test.vhd
+Z23 Fcounter1test.vhd
+l0
+L35
+Z24 V;7OejTP`>[PJl@YOoFjBb1
+R13
+R14
+R15
+Z25 !s100 LdWa133;`TbRoFdB>2Lf91
+Abehavior
+R17
+R9
+DEx34 C:\Users\lab\Desktop\lab\lab7\work 12 counter1test 0 22 ;7OejTP`>[PJl@YOoFjBb1
+31
+R18
+l67
+L38
+Z26 Ve<bEbWEn=U>LnVG_SXVK91
+R13
+R14
+R15
+Z27 !s100 R2JT[Fm`jRKQbo2gJZKI]0
