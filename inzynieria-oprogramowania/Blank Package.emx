@@ -5750,14 +5750,14 @@
       <region xmi:id="_sLzVACpuEeGZUJ-Xj9nJbA" name="Region1">
         <subvertex xmi:type="uml:Pseudostate" xmi:id="_wRn64CpuEeGZUJ-Xj9nJbA"/>
         <subvertex xmi:type="uml:State" xmi:id="_yDeTACpuEeGZUJ-Xj9nJbA" name="Nowe spotkanie - oczekiwanie na wprowadzenie terminu spotkania"/>
-        <subvertex xmi:type="uml:State" xmi:id="_9fDlgCpuEeGZUJ-Xj9nJbA" name="oczekiwanie na dodanie nowej osoby"/>
+        <subvertex xmi:type="uml:State" xmi:id="_9fDlgCpuEeGZUJ-Xj9nJbA" name="oczekiwanie na dodanie CZ lub klienta"/>
         <subvertex xmi:type="uml:State" xmi:id="_NfjNoCpvEeGZUJ-Xj9nJbA" name="Oczekiwanie na akceptacje terminu spotkania"/>
         <subvertex xmi:type="uml:State" xmi:id="_qjjvYCpvEeGZUJ-Xj9nJbA" name="zaakceptowano termin spotkania"/>
         <subvertex xmi:type="uml:State" xmi:id="_2DhLkCpvEeGZUJ-Xj9nJbA" name="oczekiwanie na wprowadzenie terminu"/>
         <subvertex xmi:type="uml:FinalState" xmi:id="_X6fGACpwEeGZUJ-Xj9nJbA"/>
         <transition xmi:id="_yDxN8CpuEeGZUJ-Xj9nJbA" source="_wRn64CpuEeGZUJ-Xj9nJbA" target="_yDeTACpuEeGZUJ-Xj9nJbA"/>
         <transition xmi:id="_9fcnECpuEeGZUJ-Xj9nJbA" name="dodanie terminu spotkania" source="_yDeTACpuEeGZUJ-Xj9nJbA" target="_9fDlgCpuEeGZUJ-Xj9nJbA"/>
-        <transition xmi:id="_D0rq0CpvEeGZUJ-Xj9nJbA" name="przypisanie osoby" source="_9fDlgCpuEeGZUJ-Xj9nJbA" target="_9fDlgCpuEeGZUJ-Xj9nJbA"/>
+        <transition xmi:id="_D0rq0CpvEeGZUJ-Xj9nJbA" name="przypisanie CZ lub klienta" source="_9fDlgCpuEeGZUJ-Xj9nJbA" target="_9fDlgCpuEeGZUJ-Xj9nJbA"/>
         <transition xmi:id="_Nf2voCpvEeGZUJ-Xj9nJbA" name="zatwierdzenei listy osob" source="_9fDlgCpuEeGZUJ-Xj9nJbA" target="_2DhLkCpvEeGZUJ-Xj9nJbA"/>
         <transition xmi:id="_qj1cMCpvEeGZUJ-Xj9nJbA" name="zatwierdzenie terminu spotkania" source="_NfjNoCpvEeGZUJ-Xj9nJbA" target="_qjjvYCpvEeGZUJ-Xj9nJbA"/>
         <transition xmi:id="_GFcXECpwEeGZUJ-Xj9nJbA" name="wprowadzenie terminu spotkania" source="_2DhLkCpvEeGZUJ-Xj9nJbA" target="_NfjNoCpvEeGZUJ-Xj9nJbA"/>
