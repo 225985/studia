@@ -1,0 +1,107 @@
+\documentclass[wide,a4paper,titlepage,12pt] {article}
+\usepackage{polski}
+\usepackage[UTF8]{inputenc}
+\usepackage{listings}
+\usepackage{slashbox}
+\usepackage[table]{xcolor}
+\usepackage{graphicx,pdflscape}
+\usepackage{placeins}
+
+
+\title{Grafika komputerowa}
+\author{Jacek Wieczorek (181043)}
+
+
+% Title page layout (fold)
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{titlepage}
+  \begin{center}
+    \vspace*{3cm}
+    \LARGE \@title \par
+    \vspace{2cm}
+    \textit{\small Autor:}\par
+    \normalsize \@author\par \normalsize
+    \vspace{3cm}
+    \textit{\small Prowadzący:}\par
+    Dr inż. Tomasz Kapłon \par
+    \vspace{2cm}
+    Wydział Elektroniki\\ III rok\\ Pn TP 08.15 - 11.00\par
+    \vspace{4cm}
+    \small \@date
+  \end{center}
+\end{titlepage}
+}
+\makeatother
+% Title page layout (end)
+
+% \putcode{source}{language}
+\newcommand{\putcode}[2] {
+ \lstset{ 
+    language=#2,                % choose the language of the code
+    basicstyle=\scriptsize,       % the size of the fonts that are used for the code
+    numbers=left,                   % where to put the line-numbers
+    numberstyle=\scriptsize,      % the size of the fonts that are used for the line-numbers
+    stepnumber=10,                   % the step between two line-numbers. If it's 1 each line 
+    numbersep=9pt,                  % how far the line-numbers are from the code
+    showspaces=false,               % show spaces adding particular underscores
+    showstringspaces=false,         % underline spaces within strings
+    showtabs=false,                 % show tabs within strings adding particular underscores
+    }
+    \lstinputlisting{#1}
+}
+% \putpicture{source}{caption}{size}{label}
+\newcommand{\putpicture}[4] {
+    \begin{figure}[htbp]
+        \begin{center}
+            \includegraphics[width=#3]{#1}
+            \caption{#2}
+            \label{#4}
+        \end{center}
+    \end{figure}
+}
+
+
+\begin{document}
+\maketitle
+
+\section{Cel laboratorium}
+\paragraph{}
+Celem ćwiczenia było poznanie podstawowych technik teksturowania powierzchni z wykorzystaniem \textit{OpenGL} i \textit{GLUT}.
+
+\section{Współne funkcje programu dla każdego z zadań}
+\subsection{Wczytanie tekstury}
+\putcode{code/dupa.cpp}{c++}
+\subsection{Sterowanie za pomocą myszki}
+
+\section{Zadanie 1}
+\paragraph{} 
+Pierwsze zadanie polegało na narysowaniu trójkąta i wypełnbienu go dowolnie wybraną teksturą zapisaną w pliku o \textit{TGA}.
+\subsection{Przykładowy obraz}
+\putpicture{img/img1.PNG}{Tekstura nałożona na trójkąt}{\textwidth}{}
+
+\section{Zadanie 2}
+\paragraph{} % (fold)
+Celem drugie zadania było zbudowanie i teksturowanie jednostronne ostrosłupa o kwadratowej podstawie.
+\subsection{Przykładowe obrazy}
+\putpicture{img/img2_0.PNG}{Tekstura nałożona na piramidę}{\textwidth}{}
+\putpicture{img/img2_1.PNG}{Tekstura nałożona na podstawę piramidy}{\textwidth}{}
+\putpicture{img/img2_2.PNG}{Tekstura nałożona na jeden z boków piramidy}{\textwidth}{}
+
+
+\section{Zadanie 3}
+\paragraph{} 
+Ostatnie zadanie polegało na nałożeniu na jajko wykorzystywane podczas poprzednich laboratorów tekstur.
+\subsection{Przykładowy obraz}
+\putpicture{img/img3_0.PNG}{Tekstura nałożona na jajko}{\textwidth}{}
+\putpicture{img/img3_1.PNG}{Tekstura nałożona na jajko}{\textwidth}{}
+\putpicture{img/img3_2.PNG}{Tekstura nałożona na jajko}{\textwidth}{}
+\putpicture{img/img3_2.PNG}{Tekstura nałożona na pomniejszone jajko}{\textwidth}{}
+
+\section{Wnioski}
+\paragraph{}
+
+
+
+\end{document}
+
