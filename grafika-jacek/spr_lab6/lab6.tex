@@ -6,64 +6,13 @@
 \usepackage[table]{xcolor}
 \usepackage{graphicx,pdflscape}
 \usepackage{placeins}
+\usepackage{reportshelper}
 
 
-\title{Grafika komputerowa}
-\author{Jacek Wieczorek (181043)}
-
-
-% Title page layout (fold)
-\makeatletter
-\renewcommand{\maketitle}{
-\begin{titlepage}
-  \begin{center}
-    \vspace*{3cm}
-    \LARGE \@title \par
-    \vspace{2cm}
-    \textit{\small Autor:}\par
-    \normalsize \@author\par \normalsize
-    \vspace{3cm}
-    \textit{\small Prowadzący:}\par
-    Dr inż. Tomasz Kapłon \par
-    \vspace{2cm}
-    Wydział Elektroniki\\ III rok\\ Pn TP 08.15 - 11.00\par
-    \vspace{4cm}
-    \small \@date
-  \end{center}
-\end{titlepage}
-}
-\makeatother
-% Title page layout (end)
-
-% \putcode{source}{language}
-\newcommand{\putcode}[2] {
- \lstset{ 
-    language=#2,                % choose the language of the code
-    basicstyle=\scriptsize,       % the size of the fonts that are used for the code
-    numbers=left,                   % where to put the line-numbers
-    numberstyle=\scriptsize,      % the size of the fonts that are used for the line-numbers
-    stepnumber=10,                   % the step between two line-numbers. If it's 1 each line 
-    numbersep=9pt,                  % how far the line-numbers are from the code
-    showspaces=false,               % show spaces adding particular underscores
-    showstringspaces=false,         % underline spaces within strings
-    showtabs=false,                 % show tabs within strings adding particular underscores
-    }
-    \lstinputlisting{#1}
-}
-% \putpicture{source}{caption}{size}{label}
-\newcommand{\putpicture}[4] {
-    \begin{figure}[htbp]
-        \begin{center}
-            \includegraphics[width=#3]{#1}
-            \caption{#2}
-            \label{#4}
-        \end{center}
-    \end{figure}
-}
 
 
 \begin{document}
-\maketitle
+\maketitle{Grafika Komputerowa}{Jacek Wieczorek}{Dr inż. Tomasz Kapłon}{Wydział Elektroniki}{III rok}{Pn TP 8.15 - 11.00}
 
 \section{Cel laboratorium}
 \paragraph{}
@@ -71,35 +20,56 @@ Celem ćwiczenia było poznanie podstawowych technik teksturowania powierzchni z
 
 \section{Współne funkcje programu dla każdego z zadań}
 \subsection{Wczytanie tekstury}
-\putcode{code/dupa.cpp}{c++}
+\putcode{code/p1.cpp}{c++}
 \subsection{Sterowanie za pomocą myszki}
+\putcode{code/p2.cpp}{c++}
+\subsection{Funkcja \textit{MyInit}}
+\putcode{code/p3.cpp}{c++}
 
+\newpage
 \section{Zadanie 1}
 \paragraph{} 
 Pierwsze zadanie polegało na narysowaniu trójkąta i wypełnbienu go dowolnie wybraną teksturą zapisaną w pliku o \textit{TGA}.
+\subsection{Kod programu}
+\putcode{code/trojkat.cpp}{c++}
 \subsection{Przykładowy obraz}
-\putpicture{img/img1.PNG}{Tekstura nałożona na trójkąt}{\textwidth}{}
+\putpicturescale{img/img1.PNG}{Tekstura nałożona na trójkąt}{0.8}{}
 
+
+\newpage
 \section{Zadanie 2}
 \paragraph{} % (fold)
 Celem drugie zadania było zbudowanie i teksturowanie jednostronne ostrosłupa o kwadratowej podstawie.
+\paragraph{}
+By umozliwić sprawdzenie jednostronnego teksturowania piramidy, zaimplementowana została mozliwość wybierania za pomoca klawiatury, która ściana piramidy ma być wyświetlana.
+\subsection{Kod programu}
+\subsubsection{Sterowanie klawiaturą}
+\putcode{code/piramida_1.cpp}{c++}
+\subsubsection{Rysowanie piramidy}
+\putcode{code/piramida_2.cpp}{c++}
+\newpage
 \subsection{Przykładowe obrazy}
-\putpicture{img/img2_0.PNG}{Tekstura nałożona na piramidę}{\textwidth}{}
-\putpicture{img/img2_1.PNG}{Tekstura nałożona na podstawę piramidy}{\textwidth}{}
-\putpicture{img/img2_2.PNG}{Tekstura nałożona na jeden z boków piramidy}{\textwidth}{}
+\putpicturescale{img/img2_0.PNG}{Tekstura nałożona na piramidę}{0.45}{}
+\putpicturescale{img/img2_1.PNG}{Tekstura nałożona na podstawę piramidy}{0.45}{}
+\putpicturescale{img/img2_2.PNG}{Tekstura nałożona na jeden z boków piramidy}{0.45}{}
 
 
+\newpage
 \section{Zadanie 3}
 \paragraph{} 
-Ostatnie zadanie polegało na nałożeniu na jajko wykorzystywane podczas poprzednich laboratorów tekstur.
+Ostatnie zadanie polegało na nałożeniu na jajko wykorzystywane podczas poprzednich laboratoriów tekstur.
+\subsection{Kod programu}
+\putcode{code/jajko_1.cpp}{c++}
+\newpage
 \subsection{Przykładowy obraz}
-\putpicture{img/img3_0.PNG}{Tekstura nałożona na jajko}{\textwidth}{}
-\putpicture{img/img3_1.PNG}{Tekstura nałożona na jajko}{\textwidth}{}
-\putpicture{img/img3_2.PNG}{Tekstura nałożona na jajko}{\textwidth}{}
-\putpicture{img/img3_2.PNG}{Tekstura nałożona na pomniejszone jajko}{\textwidth}{}
+\putpicturescale{img/img3_0.PNG}{Tekstura nałożona na jajko}{0.45}{}
+\putpicturescale{img/img3_1.PNG}{Tekstura nałożona na jajko}{0.45}{}
 
+
+\newpage
 \section{Wnioski}
 \paragraph{}
+Tesksturowanie obiektów z wykorzystaniem biblioteki \textit{OpenGL} z rozszerzeniem \textit{GLUT} nie jest trudnym zadaniem. Po zapoznaniu sie z listą parametrów i możliwości jakie daje nam wyżej wymieneiona biblioteka, możemy w praktycznie dowolny sposób nakładać tekstury na obiekty, definiować czy mają być jednostronne czy dwustronne, ładowac dowolne obrazy.
 
 
 

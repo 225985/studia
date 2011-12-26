@@ -1,0 +1,53 @@
+\ProvidesPackage{reportshelper}
+
+% \putcode{source}{language}
+\newcommand{\putcode}[2] {
+ \lstset{ 
+    language=#2,                % choose the language of the code
+    basicstyle=\scriptsize,       % the size of the fonts that are used for the code
+    numbers=left,                   % where to put the line-numbers
+    numberstyle=\scriptsize,      % the size of the fonts that are used for the line-numbers
+    stepnumber=10,                   % the step between two line-numbers. If it's 1 each line 
+    numbersep=9pt,                  % how far the line-numbers are from the code
+    showspaces=false,               % show spaces adding particular underscores
+    showstringspaces=false,         % underline spaces within strings
+    showtabs=false,                 % show tabs within strings adding particular underscores
+    }
+    \lstinputlisting{#1}
+}
+% \putpicture{source}{caption}{size}{label}
+\newcommand{\putpicture}[4] {
+    \begin{figure}[htbp]
+        \begin{center}
+            \includegraphics[width=#3]{#1}
+            \caption{#2}
+            \label{#4}
+        \end{center}
+    \end{figure}
+}
+
+
+% Title page layout (fold)
+
+
+\makeatletter
+\renewcommand{\maketitle}[6]{
+\begin{titlepage}
+  \begin{center}
+    \vspace*{3cm}
+    \LARGE #1 \par
+    \vspace{2cm}
+    \textit{\small Autor:}\par
+    \normalsize #2\par \normalsize
+    \vspace{3cm}
+    \textit{\small Prowadzący:}\par
+    #3 \par
+    \vspace{2cm}
+    #4\\ #5\\ #6\par
+    \vspace{4cm}
+    \small \@date
+  \end{center}
+\end{titlepage}
+}
+\makeatother
+% Title page layout (end)
