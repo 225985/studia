@@ -76,9 +76,10 @@ int Trace(float *p, float *v, int k)
         Normal(con);
         Reflect(v);
         Phong(v, con);
-        color[0] += inters_c[0];
-        color[1] += inters_c[1];
-        color[2] += inters_c[2];
+        for(int i=0; i<3; i++)
+		{
+			color[i] += inters_c[i];;
+		}
         Trace (inter, ref, k+1);
     }
     else // nothing
@@ -105,41 +106,40 @@ void Phong(float * v, int which)
 
 	for(int i=0; i<sourceCount; i++)
 	{
-		light_vec[0] = light_position[i][0] - inter[0]; // wektor wskazujący kierunek źródła
-		light_vec[1] = light_position[i][1] - inter[1];
-		light_vec[2] = light_position[i][2] - inter[2];
+		
+		for(int j=0; j<3; j++)
+		{
+			light_vec[j] = light_position[i][j] - inter[j];
+		}
 
 		Normalization(light_vec);    // normalizacja wektora kierunku świecenia źródła           
-
 		n_dot_l = dotProduct(light_vec, normalVector);
-                               
-		reflection_vector[0] = 2*(n_dot_l)*normalVector[0] - light_vec[0];
-		reflection_vector[1] = 2*(n_dot_l)*normalVector[1] - light_vec[1];
-		reflection_vector[2] = 2*(n_dot_l)*normalVector[2] - light_vec[2];
-
-		// obliczenie wektora opisującego kierunek światła odbitego od punktu na powierzchni sfery
-
+		for(int j=0; j<3; j++)
+		{
+			reflection_vector[j] = 2*(n_dot_l)*normalVector[j] - light_vec[j];
+		}
+		
 		Normalization(reflection_vector); // normalizacja wektora kierunku światła odbitego
-
 		v_dot_r = dotProduct(reflection_vector, viewer_v);
 
 		if(v_dot_r < 0)                  // obserwator nie widzi oświetlanego punktu
 			v_dot_r = 0;
 
-		// sprawdzenie czy punkt na powierzchni sfery jest oświetlany przez źródło
-
-		if (n_dot_l > 0)    // punkt jest oœwietlany,
-        {                   // oœwietlenie wyliczane jest ze wzorów dla modelu Phonga
+		if (n_dot_l > 0)   
+		{
 			float x = sqrt((light_position[i][0] - inter[0])*(light_position[i][0] - inter[0]) +(light_position[i][1] - inter[1])*(light_position[i][1] - inter[1]) + (light_position[i][2] - inter[2])*(light_position[i][2] - inter[2]));
-            inters_c[0] += (1.0/(1.0 + 0.01*x + 0.001*x*x))*(sphere_diffuse[which][0]*light_diffuse[i][0]*n_dot_l + sphere_specular[which][0]*light_specular[i][0]*pow(double(v_dot_r), (double)sphere_specularhininess[which])) +  sphere_ambient[which][0]*light_ambient[i][0];
-			inters_c[1] += (1.0/(1.0 + 0.01*x + 0.001*x*x))*(sphere_diffuse[which][1]*light_diffuse[i][1]*n_dot_l + sphere_specular[which][1]*light_specular[i][1]*pow(double(v_dot_r), (double)sphere_specularhininess[which]))  + sphere_ambient[which][1]*light_ambient[i][1];
-			inters_c[2] += (1.0/(1.0 + 0.01*x + 0.001*x*x))*(sphere_diffuse[which][2]*light_diffuse[i][2]*n_dot_l + sphere_specular[which][2]*light_specular[i][2]*pow(double(v_dot_r), (double)sphere_specularhininess[which])) + sphere_ambient[which][2]*light_ambient[i][2];
-        }
-        // punkt nie jest oœwietlany   
-        // uwzglêdniane jest tylko œwiat³o rozproszone
-        inters_c[0] += sphere_ambient[which][0]*global_a[0];
-        inters_c[1] += sphere_ambient[which][1]*global_a[1];
-        inters_c[2] += sphere_ambient[which][2]*global_a[2];
+            for(int j=0; j<3; j++)
+			{
+				inters_c[j] += (1.0/(1.0 + 0.01*x + 0.001*x*x))*(sphere_diffuse[which][j]*light_diffuse[i][j]*n_dot_l + sphere_specular[which][j]*light_specular[i][j]*pow(double(v_dot_r), (double)sphere_specularhininess[which])) +  sphere_ambient[which][j]*light_ambient[i][j];
+			}
+		}
+		else
+		{
+			for(int j=0; j<3; j++)
+			{
+				inters_c[j] += sphere_ambient[which][j]*global_a[j];
+			}
+		}
 	}
 }
 
@@ -206,7 +206,7 @@ void Display(void)
 				if (color[i] == 0.0) 
 					color[i] = background[i];	
 
-				if (color[i] > 1)            // składowa czerwona R               
+				if (color[i] > 1)                         
 					pixel[0][0][i] = 255;
 				else
 					pixel[0][0][i] = color[i]*255;
