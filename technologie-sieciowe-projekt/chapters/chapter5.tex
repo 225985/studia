@@ -11,13 +11,13 @@ Ze względu na charakterystykę działania firmy i potrzeby odbiorcy, sieć podz
 Na każdym piętrze dostepna będzie drukarka sieciowa, posiadająca adres z puli odpowedniego \textit{VLanu}.
 
 \paragraph{}
-W celu zapewnienia płynnego ruchu sieciowego na każdym piętrze znajdować sie będzie switch warstwy 2, podpiety do dwóch przełączników warstwy trzeciej znajdujących się an parterze każdego z budynków. Pomiędzy przełącznikami warstwy trzeciej skonfigurowane zostanie EtherChanel, pozwalający na \textbf{TODO}. 
+W celu zapewnienia płynnego ruchu sieciowego na każdym piętrze znajdować sie będzie switch warstwy 2, podpiety do dwóch przełączników warstwy trzeciej znajdujących się an parterze każdego z budynków. Pomiędzy przełącznikami warstwy trzeciej skonfigurowane zostanie funkcja EtherChanel, pozwalający na połączeniu kilku ethernetowych łączy fizycznych w jedno logiczne. Dzięki temu, przełączniki mogą równomiernie rozkładać obciążenie na łączu, zapewnieniają wysokowydajnościowe połączenie pomiędzy urządzeniami sieciowymi.
 
 \paragraph{} 
 Przełączniki warstwy trzeciej połączone ze sobą zostaną dwunstożyowym światłowodem w połączeniu każy z każdym, by zapewnić niezawodność połącenia i zminimalizować ryzyko braku połączenia do internetu lub serwerowni \textit{B2} w wyniku awarii switch'a.
 
 \paragraph{}
-Dwa routery znjadujące się w \textit{B1} odpowiedzialne będą za zapewnienie niezawodnego połączenia z internetem. Pomiędzy ruoterami zastosowany zosatnie protokół \textbf{TODO} by \textbf{TODO}
+Dwa routery znjadujące się w \textit{B1} odpowiedzialne będą za zapewnienie niezawodnego połączenia z internetem. Pomiędzy ruoterami zastosowany zosatnie protokół VRRP, pozwalający na stworzenie klastra dostepowego, określanego jako wirtualny router.   
 
 \paragraph{}
 Oznaczenia :
@@ -50,7 +50,13 @@ W celu zapewnienia odpowiedniej puli adresów, zapewniajacej możliwość skalow
 \paragraph{}
 Poniżej przedstawiono pule adresowe dla poszczególnych \textit{VLanów} :
 \begin{itemize}
-	\item TODO
+	\item VLan WiFi : 10.1.1.0 - 10.1.1.255, Maska : 255.255.255.0
+	\item VLan ZarzadIAdministracja : 10.1.2.0 - 10.1.2.255, Maska : 255.255.255.0
+	\item VLan Team1 10.1.3.0 - 10.1.3.255, Maska : 255.255.255.0 
+	\item VLan Team2 10.1.4.0 - 10.1.4.255, Maska : 255.255.255.0 
+	\item VLan Team3 10.1.5.0 - 10.1.5.255, Maska : 255.255.255.0
+	\item VLan Team4 10.1.6.0 - 10.1.6.255, Maska : 255.255.255.0  
+	\item VLan Team5(Testerzy) 10.1.7.0 - 10.1.7.255, Maska : 255.255.255.0 
 \end{itemize}
 
 

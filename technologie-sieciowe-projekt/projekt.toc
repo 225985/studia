@@ -61,15 +61,15 @@
 \contentsline {paragraph}{}{19}
 \contentsline {paragraph}{}{19}
 \contentsline {paragraph}{}{19}
-\contentsline {paragraph}{}{19}
-\contentsline {subsection}{\numberline {5.2}Konfiguracja adresacji \textit {IP}}{24}
-\contentsline {paragraph}{}{24}
-\contentsline {paragraph}{}{24}
-\contentsline {subsection}{\numberline {5.3}Projekt fizyczny}{24}
-\contentsline {paragraph}{}{24}
-\contentsline {subsection}{\numberline {5.4}Pod\IeC {\l }\IeC {\k a}czenie do internetu}{24}
-\contentsline {paragraph}{}{24}
-\contentsline {subsection}{\numberline {5.5}Bezpiecze\IeC {\'n}stwo}{24}
-\contentsline {paragraph}{}{24}
-\contentsline {subsection}{\numberline {5.6}Kosztorys}{24}
-\contentsline {paragraph}{}{24}
+\contentsline {paragraph}{}{20}
+\contentsline {subsection}{\numberline {5.2}Konfiguracja adresacji \textit {IP}}{25}
+\contentsline {paragraph}{}{25}
+\contentsline {paragraph}{}{25}
+\contentsline {subsection}{\numberline {5.3}Projekt fizyczny}{25}
+\contentsline {paragraph}{}{25}
+\contentsline {subsection}{\numberline {5.4}Pod\IeC {\l }\IeC {\k a}czenie do internetu}{25}
+\contentsline {paragraph}{}{25}
+\contentsline {subsection}{\numberline {5.5}Bezpiecze\IeC {\'n}stwo}{25}
+\contentsline {paragraph}{}{25}
+\contentsline {subsection}{\numberline {5.6}Kosztorys}{25}
+\contentsline {paragraph}{}{25}
