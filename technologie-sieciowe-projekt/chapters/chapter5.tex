@@ -5,16 +5,16 @@ Kolejnym etapem naszego projektu jest projekt logiczny sieci. Na Rysunku \textbf
 
 \subsection{Projekt logiczny sieci}
 \paragraph{}
-Ze względu na charakterystykę działania firmy i potrzeby odbiorcy, sieć podzielona została na na \textit{VLany}, odpowiadające odpowiednio każdemu zespołowi programistów. Pozwoli to na łatwe dołączanie osób do różnych teamó'w (np. testerów orpogramowania), bez konieczności fizycznego przenoszenia komputea do pomieszczenia danego pomieszczenia.
+Ze względu na charakterystykę działania firmy i potrzeby odbiorcy, sieć podzielona została na sieci \textit{VLany}, odpowiadające każdemu zespołowi programistów. Pozwoli to na łatwe dołączanie osób do różnych zespołów (np. testerów oprogramowania), bez konieczności fizycznego przenoszenia komputea do pomieszczenia danego zespołu.
 
 \paragraph{}
 Na każdym piętrze dostepna będzie drukarka sieciowa, posiadająca adres z puli odpowedniego \textit{VLanu}.
 
 \paragraph{}
-W celu zapewnienia płynnego ruchu sieciowego na każdym piętrze znajdować sie będzie switch warstwy 2, podpiety do dwóch przełączników warstwy trzeciej znajdujących się an parterze każdego z budynków. Pomiędzy przełącznikami warstwy trzeciej skonfigurowane zostanie funkcja EtherChanel, pozwalający na połączeniu kilku ethernetowych łączy fizycznych w jedno logiczne. Dzięki temu, przełączniki mogą równomiernie rozkładać obciążenie na łączu, zapewnieniają wysokowydajnościowe połączenie pomiędzy urządzeniami sieciowymi.
+W celu zapewnienia płynnego ruchu sieciowego na każdym piętrze znajdować sie będzie switch warstwy 2, podpiety do dwóch przełączników warstwy trzeciej znajdujących się an parterze każdego z budynków. Pomiędzy przełącznikami warstwy trzeciej skonfigurowane zostanie funkcja EtherChannel, pozwalający na połączeniu kilku ethernetowych łączy fizycznych w jedno logiczne. Dzięki temu, przełączniki mogą równomiernie rozkładać obciążenie na łączu, zapewnieniają wysokowydajnościowe połączenie pomiędzy urządzeniami sieciowymi.
 
 \paragraph{} 
-Przełączniki warstwy trzeciej połączone ze sobą zostaną dwunstożyowym światłowodem w połączeniu każy z każdym, by zapewnić niezawodność połącenia i zminimalizować ryzyko braku połączenia do internetu lub serwerowni \textit{B2} w wyniku awarii switch'a.
+Przełączniki warstwy trzeciej połączone ze sobą zostaną dwunstożyłowym światłowodem w połączeniu każdy z każdym, by zapewnić niezawodność połączenia i zminimalizować ryzyko braku połączenia do internetu lub serwerowni \textit{B2} w wyniku awarii switch'a.
 
 \paragraph{}
 Dwa routery znjadujące się w \textit{B1} odpowiedzialne będą za zapewnienie niezawodnego połączenia z internetem. Pomiędzy ruoterami zastosowany zosatnie protokół VRRP, pozwalający na stworzenie klastra dostepowego, określanego jako wirtualny router. Przyśieszy to ruch sieciowy, oraz zwiększy bezpieczeństwo i niezawodność połączenia z internetem.  
