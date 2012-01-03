@@ -17,7 +17,7 @@ W celu zapewnienia płynnego ruchu sieciowego na każdym piętrze znajdować sie
 Przełączniki warstwy trzeciej połączone ze sobą zostaną dwunstożyłowym światłowodem w połączeniu każdy z każdym, by zapewnić niezawodność połączenia i zminimalizować ryzyko braku połączenia do internetu lub serwerowni \textit{B2} w wyniku awarii switch'a.
 
 \paragraph{}
-Dwa routery znjadujące się w \textit{B1} odpowiedzialne będą za zapewnienie niezawodnego połączenia z internetem. Pomiędzy ruoterami zastosowany zosatnie protokół VRRP, pozwalający na stworzenie klastra dostepowego, określanego jako wirtualny router. Przyśieszy to ruch sieciowy, oraz zwiększy bezpieczeństwo i niezawodność połączenia z internetem.  
+Dwa routery znjadujące się w \textit{B1} odpowiedzialne będą za zapewnienie niezawodnego połączenia z internetem. Pomiędzy ruoterami zastosowany zosatnie protokół VRRP, pozwalający na stworzenie klastra dostępowego, określanego jako wirtualny router. Przyśieszy to ruch sieciowy, oraz zwiększy bezpieczeństwo i niezawodność połączenia z internetem.  
 
 \paragraph{}
 Oznaczenia :
@@ -63,6 +63,7 @@ Poniżej przedstawiono pule adresowe dla poszczególnych \textit{VLanów} :
 	\item VLan Team3 10.1.5.0 - 10.1.5.255, Maska : 255.255.255.0
 	\item VLan Team4 10.1.6.0 - 10.1.6.255, Maska : 255.255.255.0  
 	\item VLan Team5(Testerzy) 10.1.7.0 - 10.1.7.255, Maska : 255.255.255.0 
+	\item VLan UrzadzeniaMobilne 10.1.8.0 - 10.1.8.255, Maska : 255.255.255.0 
 \end{itemize}
 
 
@@ -80,7 +81,7 @@ Projekt sieci powinien przewidywać zabezpieczenie jej przed następującymi czy
 \begin{itemize}
 	\item Ataki z zewnątrz :
 	\begin{itemize}
-		\item podsłuchanie ramek typu bradcast
+		\item Podsłuchanie ramek typu bradcast
 		\item Ataki DoS
 		\item Ataki MAC flooding
 		\item Vlan leaking
@@ -95,8 +96,18 @@ Projekt sieci powinien przewidywać zabezpieczenie jej przed następującymi czy
 \end{itemize}
 
 \paragraph{}
-TODO
+By ochronić stacje robocze przed wirusami, zalecane przez nas jest komercyjne oprogramowanie \textit{NOD32}, posiadające odpowiednie wersje zarówno pod system Windows jak i Linux. W skład pakietu wchodza również aplikacje SpyWare i RootKit. \textit{NOD32} umożliwia również blokowanie niebezpiecznych aplikacji i witryn internetowych.
 
-\subsection{Kosztorys}
+\paragraph{}
+Projektowaną sięć należy zabezpieczyć przed czynnikami fizycznymi jak uszkodzenia kabli, przegrzanie serwerów (ewentualne pożary). W celu uniknięcia mechanicznych uszkodzeń okablowania (czynnik ludzki, gryzonie), przewody prowadzone są w korytkach nasciennych, listwach przypodłogowych, używane są gniazda RJ-45 podtynkowe. W serwerowni, gdzie przez ciągłą pracę serwerów, temperatura otoczenia może gwałtownie wzrosnąć, zalecane jest założenie klimatyzacji oraz umieszczenie gaśnicy proszkowej, odpowiedniej do gaszenia pożarów w instalacjach elektrycznych. Takie gaśnice powinny się również znaleźć na każdym piętrze budynków zgodnie z wymogami BHP.
+
+\paragraph{}
+Ze względu na charakterystykę oferowanych usług przez firmę zabezpieczenie kodu przechowywanego na serwerach systemu kontroli wersji, a także danych przechowywanych w bazie danych jest jednym z najważniejszych czynników. Obowiązkowe jest tworzenie kopii zapasowych codziennie w nocy, by nie obciążać zbytnio ruchu sieciowego. By chronić dane przed atakami z zewnątrz dostęp do nich zagwarantowany zsoatnie tylko iwyłącznie z sieci zewnętrznej.
+
+\paragraph{}
+Access Pointy, gawarantujące dostęp do internetu uzytkownikom z zewnątrz (np. klientą), zawierać się będą w jednej sieci VLan, nie mającej dostepu do zasobów wewnętrznych.
+
+\subsection{}
+\{Kosztorys}
 \paragraph{}
 TODO
