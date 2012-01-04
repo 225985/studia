@@ -52,18 +52,19 @@ Podział na Vlany :
 \newpage
 \subsection{Konfiguracja adresacji \textit{IP}}
 \paragraph{}
-W celu zapewnienia odpowiedniej puli adresów, zapewniajacej możliwość skalowalności i robudowy sieci zdecydowaliśmy się na pulę adresów prywatnych klasy A, zaczynając od adresu sieci \textit{10.1.1.0}.
+W celu zapewnienia odpowiedniej puli adresów, zapewniajacej możliwość skalowalności i robudowy sieci (np o nowe switche na poszczególnych pietrach) zdecydowaliśmy się na pulę adresów prywatnych klasy A, zaczynając od adresu sieci \textit{10.1.1.0}.
 \paragraph{}
 Poniżej przedstawiono pule adresowe dla poszczególnych \textit{VLanów} :
 \begin{itemize}
-	\item VLan WiFi : 10.1.1.0 - 10.1.1.255, Maska : 255.255.255.0
-	\item VLan ZarzadIAdministracja : 10.1.2.0 - 10.1.2.255, Maska : 255.255.255.0
-	\item VLan Team1 10.1.3.0 - 10.1.3.255, Maska : 255.255.255.0 
-	\item VLan Team2 10.1.4.0 - 10.1.4.255, Maska : 255.255.255.0 
-	\item VLan Team3 10.1.5.0 - 10.1.5.255, Maska : 255.255.255.0
-	\item VLan Team4 10.1.6.0 - 10.1.6.255, Maska : 255.255.255.0  
-	\item VLan Team5(Testerzy) 10.1.7.0 - 10.1.7.255, Maska : 255.255.255.0 
-	\item VLan UrzadzeniaMobilne 10.1.8.0 - 10.1.8.255, Maska : 255.255.255.0 
+	\item VLan WiFi : 10.1.1.0 - 10.1.1.255, Adres sieci : 10.1.1.0, Broadcast : 10.1.1.255, Maska : 255.255.255.0
+	\item VLan ZarzadIAdministracja : 10.1.2.0 - 10.1.2.255, Adres sieci : 10.1.2.0, Broadcast : 10.1.2.255, Maska : 255.255.255.0
+	\item VLan Team1 10.1.3.0 - 10.1.3.255, Adres sieci : 10.1.3.0, Broadcast : 10.1.3.255, Maska : 255.255.255.0 
+	\item VLan Team2 10.1.4.0 - 10.1.4.255, Adres sieci : 10.1.4.0, Broadcast : 10.1.4.255, Maska : 255.255.255.0 
+	\item VLan Team3 10.1.5.0 - 10.1.5.255, Adres sieci : 10.1.5.0, Broadcast : 10.1.5.255, Maska : 255.255.255.0
+	\item VLan Team4 10.1.6.0 - 10.1.6.255, Adres sieci : 10.1.6.0, Broadcast : 10.1.6.255, Maska : 255.255.255.0  
+	\item VLan Team5(Testerzy) 10.1.7.0 - 10.1.7.255, Adres sieci : 10.1.7.0, Broadcast : 10.1.7.255, Maska : 255.255.255.0 
+	\item VLan UrzadzeniaMobilne 10.1.8.0 - 10.1.8.255, Adres sieci : 10.1.8.0, Broadcast : 10.1.8.255, Maska : 255.255.255.0
+	\item VLan Serwerownia 10.1.9.0 - 10.1.9.255, Adres sieci : 10.1.9.0, Broadcast : 10.1.9.255, Maska : 255.255.255.0  
 \end{itemize}
 
 
@@ -79,7 +80,7 @@ Poniższe tabele prezentują sposób w jaki zostały przyporządkowane gniazda d
 
 \subsection{Podłączenie do internetu}
 \paragraph{}
-Jednym z najważniejszych punktów projektu sieci jest połączenie z internetem. Zapewnienie wydajnego łacza o wymaganej przepustowości stanowi priorytet przy wyborze dostawcy usług internetowych. W tym celu można wybrać ofertę dzierżawienia łącza od dwóch firm : Korbank i Atman. Pierwsza z nich zapewnia możliwość negocjacji warunków umowy i udostpnienia łącza o indywidualnych parametrach. Druga natomiast oferuje wydajne łącza symetryczne, z możliwością podpisania umowy SLA, czyli zagwarantowania niezawodności połączenia.
+Jednym z najważniejszych punktów projektu sieci jest połączenie z internetem. Zapewnienie wydajnego łacza o wymaganej przepustowości stanowi priorytet przy wyborze dostawcy usług internetowych. W tym celu można wybrać ofertę dzierżawienia łącza od dwóch firm : UPC (główne) i Netia (zapasowe). Obie firmy oferuja symetryczne lub niesymetryczne łącza dedykowane dla firm, pomoc techniczną oraz brak ograniczeń w ilości pobieranych i wysyłanych danych. Pula adresów stałych, sposób podłączenia internetu oraz parametry łącza są sprawą indywidualną, negocjowaną z usługodawcą.
 
 \subsection{Bezpieczeństwo}
 \paragraph{}
@@ -87,7 +88,7 @@ Projekt sieci powinien przewidywać zabezpieczenie jej przed następującymi czy
 \begin{itemize}
 	\item Ataki z zewnątrz :
 	\begin{itemize}
-		\item Podsłuchanie ramek typu bradcast
+		\item Podsłuchanie ramek typu Broadcast
 		\item Ataki DoS
 		\item Ataki MAC flooding
 		\item Vlan leaking
@@ -102,6 +103,9 @@ Projekt sieci powinien przewidywać zabezpieczenie jej przed następującymi czy
 \end{itemize}
 
 \paragraph{}
+Podstawową ochronę przeciw atakom z zewnątrz ma pełnić urządzenie UTM NETASQ U70, będące sprzętowym firewall'em. Poza zaporą ogniową  urządzenie oferuje również ochronę IPS, a także filtry antyspamowe i anty wirusowe, monitoring sieci, blokowanie adresów URL oraz autoryzację połączenia. Razem z zabezpieczeniami na routerach oraz możliwością zdefinowania QoS, pełnić będą rolę limiterów sieciowych, zabezpieczających przed ściąganiem szkodliwego oprogramowania, nielegalnych plików oraz pozwolą na ustawienie priorytetu ruchu w sieci.
+
+\paragraph{}
 By ochronić stacje robocze przed wirusami, zalecane przez nas jest komercyjne oprogramowanie \textit{NOD32}, posiadające odpowiednie wersje zarówno pod system Windows jak i Linux. W skład pakietu wchodza również aplikacje SpyWare i RootKit. \textit{NOD32} umożliwia również blokowanie niebezpiecznych aplikacji i witryn internetowych.
 
 \paragraph{}
@@ -112,6 +116,9 @@ Ze względu na charakterystykę oferowanych usług przez firmę zabezpieczenie k
 
 \paragraph{}
 Access Pointy, gawarantujące dostęp do internetu uzytkownikom z zewnątrz (np. klientom), zawierać się będą w jednej sieci VLan, nie mającej dostepu do zasobów wewnętrznych.
+
+\paragraph{}
+Urządzenia mobilne, korzystające z połączenia z internetem przez WiFi, zgrupowane będą w osobny VLan, a ich autoryzacja odbywac sie będzie po adresach MAC.
 
 \subsection{Kosztorys}
 \paragraph{}
