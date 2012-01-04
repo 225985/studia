@@ -5,19 +5,19 @@ Kolejnym etapem naszego projektu jest projekt logiczny sieci. Na Rysunku 1 przed
 
 \subsection{Projekt logiczny sieci}
 \paragraph{}
-Ze względu na charakterystykę działania firmy i potrzeby odbiorcy, sieć podzielona została na sieci \textit{VLany}, odpowiadające każdemu zespołowi programistów. Pozwoli to na łatwe dołączanie osób do różnych zespołów (np. testerów oprogramowania), bez konieczności fizycznego przenoszenia komputea do pomieszczenia danego zespołu.
+Ze względu na charakterystykę działania firmy i potrzeby odbiorcy, sieć podzielona została na sieci \textit{VLany}, odpowiadające każdemu zespołowi programistów. Pozwoli to na łatwe dołączanie osób do różnych zespołów (np. testerów oprogramowania), bez konieczności fizycznego przenoszenia komputera do pomieszczenia danego zespołu.
 
 \paragraph{}
-Na każdym piętrze dostepna będzie drukarka sieciowa, posiadająca adres z puli odpowedniego \textit{VLanu}.
+Na każdym piętrze dostępna będzie drukarka sieciowa, posiadająca adres z puli odpowedniego \textit{VLanu}.
 
 \paragraph{}
-W celu zapewnienia płynnego ruchu sieciowego na każdym piętrze znajdować sie będzie switch warstwy 2, podpiety do dwóch przełączników warstwy trzeciej znajdujących się an parterze każdego z budynków. Pomiędzy przełącznikami warstwy trzeciej skonfigurowane zostanie funkcja EtherChannel, pozwalający na połączeniu kilku ethernetowych łączy fizycznych w jedno logiczne. Dzięki temu, przełączniki mogą równomiernie rozkładać obciążenie na łączu, zapewnieniają wysokowydajnościowe połączenie pomiędzy urządzeniami sieciowymi.
+W celu zapewnienia płynnego ruchu sieciowego na każdym piętrze znajdować sie będzie switch warstwy 2, podpiety do dwóch przełączników warstwy trzeciej znajdujących się na parterze każdego z budynków. Pomiędzy przełącznikami warstwy trzeciej skonfigurowane zostanie funkcja EtherChannel, pozwalający na połączeniu kilku ethernetowych łączy fizycznych w jedno logiczne. Dzięki temu, przełączniki mogą równomiernie rozkładać obciążenie na łączu, zapewnieniają wysokowydajnościowe połączenie pomiędzy urządzeniami sieciowymi.
 
 \paragraph{}
 Przełączniki warstwy trzeciej połączone ze sobą zostaną światłowodem w połączeniu każdy z każdym, by zapewnić niezawodność połączenia i zminimalizować ryzyko braku połączenia do internetu lub serwerowni \textit{B2} w wyniku awarii switch'a.
 
 \paragraph{}
-Dwa routery znjadujące się w \textit{B1} odpowiedzialne będą za zapewnienie niezawodnego połączenia z internetem. Pomiędzy ruoterami zastosowany zosatnie protokół VRRP, pozwalający na stworzenie klastra dostępowego, określanego jako wirtualny router. Przyśieszy to ruch sieciowy, oraz zwiększy bezpieczeństwo i niezawodność połączenia z internetem.
+Dwa routery znjadujące się w \textit{B1} odpowiedzialne będą za zapewnienie niezawodnego połączenia z internetem. Pomiędzy routerami zastosowany zosatnie protokół VRRP, pozwalający na stworzenie klastra dostępowego, określanego jako wirtualny router. Przyśieszy to ruch sieciowy, oraz zwiększy bezpieczeństwo i niezawodność połączenia z internetem.
 
 \newpage
 \paragraph{}
@@ -86,7 +86,7 @@ Poniżej przedstawiono pule adresowe dla poszczególnych \textit{VLanów} :
 \subsubsection{Projekt okablowania}
 \begin{figure}[H]
   \begin{center}
-    \includegraphics[width=\textwidth]{img/s/legenda.pdf}
+    \includegraphics[scale=1.0]{img/s/legenda.pdf}
     \caption{Schemat okablowania - legenda}
   \end{center}
 \end{figure}
@@ -157,9 +157,9 @@ Na piętrach 1-3 budynku B1 oraz 1,2 budynku B2 umieszczone zostały identyczne 
 \end{figure}
 
 \paragraph{}
-W serwerowni mieszczącej się na parterze budynku B1 została umieszczona szafa stojąca (15U).
+W serwerowni mieszczącej się na parterze budynku B1 została umieszczona szafa stojąca (18U).
 Zawiera ona przełączniki: B1S0 - podłączony do serwerów oraz B1S1 wraz z dwoma 24-portowymi patch panelami, który łączy z siecią komputery z parteru.
-Ponadto w szafie znajdują się przełączniki warsty trzeciej, routery wraz z firewallami, serwery, a także awaryjny zasilcz..
+Ponadto w szafie znajdują się przełączniki warsty trzeciej, routery wraz z firewallami, serwery, a także awaryjny zasilcz.
 
 
 \begin{figure}[H]
@@ -182,7 +182,7 @@ Na parterze budynku B2 znajduje się większa szafa niż na piętrach, wynika to
 
 \subsubsection{Tabela połączeń}
 \paragraph{}
-Poniższe tabele prezentują sposób w jaki zostały przyporządkowane gniazda do kolejnych portów przełącznika warstwy drugiej dla poszczególnych pięter w budynkach.
+Poniższe tabele prezentują sposób w jaki zostały przyporządkowane gniazda do kolejnych portów przełącznika warstwy drugiej dla poszczególnych pięter w budynkach (odległość podawana jest w metrach).
 \input{chapters/chapter5_tables.tex}
 
 \subsection{Podłączenie do internetu}
@@ -193,13 +193,7 @@ Jednym z najważniejszych punktów projektu sieci jest połączenie z internetem
 \paragraph{}
 Projekt sieci powinien przewidywać zabezpieczenie jej przed następującymi czynnikami:
 \begin{itemize}
-	\item Ataki z zewnątrz :
-	\begin{itemize}
-		\item Podsłuchanie ramek typu Broadcast
-		\item Ataki DoS
-		\item Ataki MAC flooding
-		\item Vlan leaking
-	\end{itemize}
+	\item Ataki z zewnątrz 
 	\item Utrata danych
 	\item Wirusy
 	\item Czynniki fizyczne
@@ -210,7 +204,7 @@ Projekt sieci powinien przewidywać zabezpieczenie jej przed następującymi czy
 \end{itemize}
 
 \paragraph{}
-Podstawową ochronę przeciw atakom z zewnątrz ma pełnić urządzenie UTM NETASQ U70, będące sprzętowym firewall'em. Poza zaporą ogniową  urządzenie oferuje również ochronę IPS, a także filtry antyspamowe i anty wirusowe, monitoring sieci, blokowanie adresów URL oraz autoryzację połączenia. Razem z zabezpieczeniami na routerach oraz możliwością zdefinowania QoS, pełnić będą rolę limiterów sieciowych, zabezpieczających przed ściąganiem szkodliwego oprogramowania, nielegalnych plików oraz pozwolą na ustawienie priorytetu ruchu w sieci.
+Podstawową ochronę przeciw atakom z zewnątrz ma pełnić urządzenie UTM NETASQ U70, będące sprzętowym firewall'em. Poza zaporą ogniową  urządzenie oferuje również ochronę IPS, a także filtry antyspamowe i antywirusowe, monitoring sieci, blokowanie adresów URL oraz autoryzację połączenia. Razem z zabezpieczeniami na routerach oraz możliwością zdefinowania QoS, pełnić będą rolę limiterów sieciowych, zabezpieczających przed ściąganiem szkodliwego oprogramowania, nielegalnych plików oraz pozwolą na ustawienie priorytetu ruchu w sieci.
 
 \paragraph{}
 By ochronić stacje robocze przed wirusami, zalecane przez nas jest komercyjne oprogramowanie \textit{NOD32}, posiadające odpowiednie wersje zarówno pod system Windows jak i Linux. W skład pakietu wchodza również aplikacje SpyWare i RootKit. \textit{NOD32} umożliwia również blokowanie niebezpiecznych aplikacji i witryn internetowych.
@@ -219,30 +213,18 @@ By ochronić stacje robocze przed wirusami, zalecane przez nas jest komercyjne o
 Projektowaną sięć należy zabezpieczyć przed czynnikami fizycznymi jak uszkodzenia kabli, przegrzanie serwerów (ewentualne pożary). W celu uniknięcia mechanicznych uszkodzeń okablowania (czynnik ludzki, gryzonie), przewody prowadzone są w korytkach nasciennych, listwach przypodłogowych, używane są gniazda RJ-45 podtynkowe. W serwerowni, gdzie przez ciągłą pracę serwerów, temperatura otoczenia może gwałtownie wzrosnąć, zalecane jest założenie klimatyzacji oraz umieszczenie gaśnicy proszkowej, odpowiedniej do gaszenia pożarów w instalacjach elektrycznych. Takie gaśnice powinny się również znaleźć na każdym piętrze budynków zgodnie z wymogami BHP.
 
 \paragraph{}
-Ze względu na charakterystykę oferowanych usług przez firmę zabezpieczenie kodu przechowywanego na serwerach systemu kontroli wersji, a także danych przechowywanych w bazie danych jest jednym z najważniejszych czynników. Obowiązkowe jest tworzenie kopii zapasowych codziennie w nocy, by nie obciążać zbytnio ruchu sieciowego. By chronić dane przed atakami z zewnątrz dostęp do nich zagwarantowany zsoatnie tylko iwyłącznie z sieci zewnętrznej.
+Ze względu na charakterystykę oferowanych usług przez firmę zabezpieczenie kodu przechowywanego na serwerach systemu kontroli wersji, a także danych przechowywanych w bazie danych jest jednym z najważniejszych czynników. Obowiązkowe jest tworzenie kopii zapasowych codziennie w nocy, by nie obciążać zbytnio ruchu sieciowego. By chronić dane przed atakami z zewnątrz dostęp do nich zagwarantowany zsoatnie tylko iwyłącznie z sieci wewnętrznej.
 
 \paragraph{}
-Access Pointy, gawarantujące dostęp do internetu uzytkownikom z zewnątrz (np. klientom), zawierać się będą w jednej sieci VLan, nie mającej dostepu do zasobów wewnętrznych.
+Access Pointy, gawarantujące dostęp do internetu uzytkownikom z zewnątrz (np. klientom), zawierać się będą w jednej sieci VLan, nie mającej dostepu do zasobów wewnętrznych. Zabezpieczone zostaną kluczem WPA2-PSK.
 
 \paragraph{}
 Urządzenia mobilne, korzystające z połączenia z internetem przez WiFi, zgrupowane będą w osobny VLan, a ich autoryzacja odbywac sie będzie po adresach MAC.
 
 \subsection{Kosztorys}
 \paragraph{}
-\begin{center}
-    \begin{tabular}{|c|c|c|c|c|}
-    \hline
-    Urządzenie &	Ilość&	Cena jednostki	& Koszt \\ \hline
-Cisco Catalyst WS-C3550-12T &	4	&4000	&16000 \\ \hline
-Cisco Router 7200 VXR 7204VXR&	2	&2200	&4400\\ \hline
-Netsaq U70	&2	&7000	&14000\\ \hline
-NETGEAR WNCE2001	&8	&150	&1200\\ \hline
-Cisco Catalyst 2960-48TT-L	&8	&4875	&39000\\ \hline
-SOLAR 110 X5 	&4	&5453	&21812\\ \hline
 
-\end{tabular}
-\end{center}
-
+\subsection{Koszt okablowania, szaf, etc...}
 \begin{center}
     \begin{tabular}{|p{6cm}|c|c|c|c|}
     \hline
@@ -268,6 +250,22 @@ LISTWA-KANAŁ EKD 80X40	& 30	& 20 & 25	&750 \\ \hline
 \end{tabular}
 \end{center}
 
+\subsection{Koszt urządzeń}
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    Urządzenie &	Ilość&	Cena jednostki	& Koszt \\ \hline
+Cisco Catalyst WS-C3550-12T &	4	&4000	&16000 \\ \hline
+Cisco Router 7200 VXR 7204VXR&	2	&2200	&4400\\ \hline
+Netsaq U70	&2	&7000	&14000\\ \hline
+NETGEAR WNCE2001	&8	&150	&1200\\ \hline
+Cisco Catalyst 2960-48TT-L	&8	&4875	&39000\\ \hline
+SOLAR 110 X5 	&4	&5453	&21812\\ \hline
+
+\end{tabular}
+\end{center}
+
+\subsection{Całkowity koszt}
 \begin{center}
     \begin{tabular}{|c|c|}
     \hline

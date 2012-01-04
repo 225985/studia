@@ -18,7 +18,6 @@ wiele czynników, ale przede wszystkim zapewnić ciagły dostęp do zasobów, a 
 \begin{enumerate}
 	\item Konfiguracja Firewall
 	\item Oprogramowanie antywirusowe
-	\item Urządzenie limitujące ruch sieciowy
 \end{enumerate}
 
 \subsection{Tele i wideokonference}
@@ -26,7 +25,7 @@ wiele czynników, ale przede wszystkim zapewnić ciagły dostęp do zasobów, a 
 Z racji świadczonych usług dla klientów międzynarodowych niezbędne jest zapewnienie odpowiedniej przepustowości sieci do prowadzenia tele oraz videokonferencji. Zalecana przez producenta oprogramowania (Skype) minimalna przepustowość łącza pozwalająca na prowadzenie telekonferencji wynosi 30/30 kb/s, jednak w przypadku większej ilości osób rozmawiających jednocześnie wymagane jest szybsze łącze, ok. 200/100 kb/s. Wideokonferencje wymagają znacznie szybszego połączenia. Minimalna prędkość podana przez producenta to 128/128 kb/s, jednak podobnie jak w przypadku telekonferencji większa ilość osób uczestniczących w wideokonferencji zwiększa wymagania łącza internetowego do ok 4/1 Mb/s.
 \subsection{Sieć bezprzewodowa}
 \paragraph{}
-W każdej sali konferencyjnej znajduje się punkt dostępowy sieci bezprzewodowej  oferujący jedynie dostęp do Internetu i innych komputerów w obrębie tej sali. Ma to na celu zwiększenie bezpiczeństwa i zablokowanie dostępu do sieci wewnętrznej firmy osobom postronnym. Sieć bezprzewodowa wykoanna będzie w standardzie 802.11n, będącym całkowicie zgodnym z poprzednim standardem 802.11g. Uwierzytelnienie użytkowników podłączających się do sieci odbywać się będzie za pomocą szyfrowania $WPA-PSK$.
+W każdej sali konferencyjnej znajduje się punkt dostępowy sieci bezprzewodowej  oferujący jedynie dostęp do Internetu i innych komputerów w obrębie tej sali. Ma to na celu zwiększenie bezpiczeństwa i zablokowanie dostępu do sieci wewnętrznej firmy osobom postronnym. Sieć bezprzewodowa wykoanna będzie w standardzie 802.11n, będącym całkowicie zgodnym z poprzednim standardem 802.11g. Uwierzytelnienie użytkowników podłączających się do sieci odbywać się będzie za pomocą szyfrowania $WPA2-PSK$.
 \paragraph{}
 Ze względu na charakter i wymagania pracy osób zajmujacych się produkcją oprogramowania dla urządzeń mobilnych, zachodzi potrzeba utworzenia bezpicznej sieci bezprzewodowej z dostępem do sieci wewnętrznej firmy. Sieć ta o ograniczonym zasięgu, dostępna będzie dla wybranych urządzeń o zautoryzowanych adresach $MAC$.
 
@@ -95,7 +94,7 @@ W celu zapewnienia skalowalności sieci, w przypadku zwiekszenai zatrudnionej li
 
 
 \begin{itemize}
-  \item Zważając na fakt, iż dwie siedziby firmy znajdują się w pewnej odległości od siebie, a niezbędny jest stały i szybki dostep do serwerów znajdujących się w jednym z budynków połączenie między dwoma budnykami firmy będzię zrealizowane za pomocą światłowodu 10 Gb/s
+  \item Zważając na fakt, iż dwie siedziby firmy znajdują się w pewnej odległości od siebie, a niezbędny jest stały i szybki dostep do serwerów znajdujących się w jednym z budynków połączenie między dwoma budnykami firmy będzię zrealizowane za pomocą światłowodu 10 Gb/s (przewidywany jest wzrost ruchu sieciowego związany z wytwarzaniem coraz bardziej skomplikowanego oprogramowania i zatrudnieniem większej liczby osób)
 
   \item Ze względu na fakt, iż główny ruch w sieci odbywa się między użytkownikiem, a serwerem, gdzie przechowywany jest kod i aplikacje testowe, połączenia pionowe powinny zapewniać większą przepustowość, niż połączenia  poziome. Ten typ połączeń wykonany zostanie za pomocą okablowania typu 1000Base-T Gigabit Ethernet, skrętka ekranowana kategori 6.
 
