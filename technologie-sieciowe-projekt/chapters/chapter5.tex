@@ -51,16 +51,18 @@ Oznaczenia :
 
 \paragraph{}
 Podział na Vlany :
+\begin{itemize}
+	\item VLan WiFi - grupujący użytkowników zewnętrznych (np. klientów), niemających dostępu do zasobów wewnętrznych sieci
+	\item VLan ZarzadIAdministracja - grupujący pracowników z działu Administracyjnego, HR oraz zarząd firmy
+	\item VLan Team\{X\} - (\{X\} numer zespołu) grupujący członków danego zespołu
+	\item VLan UrzadzeniaMobilne - grupujący urządzenia mobilne, wykorzystywane przez programistów aplikacji na przenośne aparaty
+	\item VLan Serwerownia - grupujący serwery
+\end{itemize}
 
-\newpage
-\textbf{TODO legenda vlany}
-
-\newpage
-\textbf{TODO vlany}
 
 
 
-\newpage
+
 \subsection{Konfiguracja adresacji \textit{IP}}
 \paragraph{}
 W celu zapewnienia odpowiedniej puli adresów, zapewniajacej możliwość skalowalności i robudowy sieci (np o nowe switche na poszczególnych pietrach) zdecydowaliśmy się na pulę adresów prywatnych klasy A, zaczynając od adresu sieci \textit{10.1.1.0}.
