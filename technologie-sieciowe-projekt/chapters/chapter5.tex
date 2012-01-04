@@ -1,7 +1,7 @@
 \newpage
 \section{Projekt sieci}
 \paragraph{}
-Kolejnym etapem naszego projektu jest projekt logiczny sieci. Na Rysunku \textbf{TODO} przedstawiony zostało wzajemne położenie względem siebie budynków, które dla ulatwienia oznaczeń nazywać i opisu nazywać będziemy \textit{B1} i \textit{B2}. 
+Kolejnym etapem naszego projektu jest projekt logiczny sieci. Na Rysunku \textbf{TODO} przedstawiony zostało wzajemne położenie względem siebie budynków, które dla ulatwienia oznaczeń nazywać i opisu nazywać będziemy \textit{B1} i \textit{B2}.
 
 \subsection{Projekt logiczny sieci}
 \paragraph{}
@@ -13,11 +13,11 @@ Na każdym piętrze dostepna będzie drukarka sieciowa, posiadająca adres z pul
 \paragraph{}
 W celu zapewnienia płynnego ruchu sieciowego na każdym piętrze znajdować sie będzie switch warstwy 2, podpiety do dwóch przełączników warstwy trzeciej znajdujących się an parterze każdego z budynków. Pomiędzy przełącznikami warstwy trzeciej skonfigurowane zostanie funkcja EtherChannel, pozwalający na połączeniu kilku ethernetowych łączy fizycznych w jedno logiczne. Dzięki temu, przełączniki mogą równomiernie rozkładać obciążenie na łączu, zapewnieniają wysokowydajnościowe połączenie pomiędzy urządzeniami sieciowymi.
 
-\paragraph{} 
+\paragraph{}
 Przełączniki warstwy trzeciej połączone ze sobą zostaną światłowodem w połączeniu każdy z każdym, by zapewnić niezawodność połączenia i zminimalizować ryzyko braku połączenia do internetu lub serwerowni \textit{B2} w wyniku awarii switch'a.
 
 \paragraph{}
-Dwa routery znjadujące się w \textit{B1} odpowiedzialne będą za zapewnienie niezawodnego połączenia z internetem. Pomiędzy ruoterami zastosowany zosatnie protokół VRRP, pozwalający na stworzenie klastra dostępowego, określanego jako wirtualny router. Przyśieszy to ruch sieciowy, oraz zwiększy bezpieczeństwo i niezawodność połączenia z internetem.  
+Dwa routery znjadujące się w \textit{B1} odpowiedzialne będą za zapewnienie niezawodnego połączenia z internetem. Pomiędzy ruoterami zastosowany zosatnie protokół VRRP, pozwalający na stworzenie klastra dostępowego, określanego jako wirtualny router. Przyśieszy to ruch sieciowy, oraz zwiększy bezpieczeństwo i niezawodność połączenia z internetem.
 
 \newpage
 \paragraph{}
@@ -30,7 +30,7 @@ Oznaczenia :
 	\item B\{X\}P\{Y\}A\{Z\} - Access Point, gdzie \{X\} - numer budynku, \{Y\} - numer piętra, \{Z\} - numer urządzenie
 	\item B\{X\}P\{Y\}K\{Z\} - Stacja robocza, gdzie \{X\} - numer budynku, \{Y\} - numer piętra, \{Z\} - numer urządzenie
 	\item B\{X\}P\{Y\}D\{Z\} - Drukarka sieciowa, gdzie \{X\} - numer budynku, \{Y\} - numer piętra, \{Z\} - numer urządzenie
-	\item FW\{X\} - Firewall sprzętowy, gdzie \{X\} - numer urządzenia 
+	\item FW\{X\} - Firewall sprzętowy, gdzie \{X\} - numer urządzenia
 \end{itemize}
 
 \newpage
@@ -68,13 +68,13 @@ Poniżej przedstawiono pule adresowe dla poszczególnych \textit{VLanów} :
 \begin{itemize}
 	\item VLan WiFi : 10.1.1.0 - 10.1.1.255, Adres sieci : 10.1.1.0, Broadcast : 10.1.1.255, Maska : 255.255.255.0
 	\item VLan ZarzadIAdministracja : 10.1.2.0 - 10.1.2.255, Adres sieci : 10.1.2.0, Broadcast : 10.1.2.255, Maska : 255.255.255.0
-	\item VLan Team1 10.1.3.0 - 10.1.3.255, Adres sieci : 10.1.3.0, Broadcast : 10.1.3.255, Maska : 255.255.255.0 
-	\item VLan Team2 10.1.4.0 - 10.1.4.255, Adres sieci : 10.1.4.0, Broadcast : 10.1.4.255, Maska : 255.255.255.0 
+	\item VLan Team1 10.1.3.0 - 10.1.3.255, Adres sieci : 10.1.3.0, Broadcast : 10.1.3.255, Maska : 255.255.255.0
+	\item VLan Team2 10.1.4.0 - 10.1.4.255, Adres sieci : 10.1.4.0, Broadcast : 10.1.4.255, Maska : 255.255.255.0
 	\item VLan Team3 10.1.5.0 - 10.1.5.255, Adres sieci : 10.1.5.0, Broadcast : 10.1.5.255, Maska : 255.255.255.0
-	\item VLan Team4 10.1.6.0 - 10.1.6.255, Adres sieci : 10.1.6.0, Broadcast : 10.1.6.255, Maska : 255.255.255.0  
-	\item VLan Team5(Testerzy) 10.1.7.0 - 10.1.7.255, Adres sieci : 10.1.7.0, Broadcast : 10.1.7.255, Maska : 255.255.255.0 
+	\item VLan Team4 10.1.6.0 - 10.1.6.255, Adres sieci : 10.1.6.0, Broadcast : 10.1.6.255, Maska : 255.255.255.0
+	\item VLan Team5(Testerzy) 10.1.7.0 - 10.1.7.255, Adres sieci : 10.1.7.0, Broadcast : 10.1.7.255, Maska : 255.255.255.0
 	\item VLan UrzadzeniaMobilne 10.1.8.0 - 10.1.8.255, Adres sieci : 10.1.8.0, Broadcast : 10.1.8.255, Maska : 255.255.255.0
-	\item VLan Serwerownia 10.1.9.0 - 10.1.9.255, Adres sieci : 10.1.9.0, Broadcast : 10.1.9.255, Maska : 255.255.255.0  
+	\item VLan Serwerownia 10.1.9.0 - 10.1.9.255, Adres sieci : 10.1.9.0, Broadcast : 10.1.9.255, Maska : 255.255.255.0
 \end{itemize}
 
 
@@ -139,6 +139,34 @@ Na każdym piętrze obu budynków, poza parterem, znajdować się będą naście
   \begin{center}
     \includegraphics[width=\textwidth]{img/s/b2-2.pdf}
     \caption{Budynek 2 - Piętro II}
+  \end{center}
+\end{figure}
+
+
+\subsubsection{Umiejscownienie urządzeń w szafach}
+
+
+\paragraph{}
+Na piętrach 1-3 budynku B1 oraz 1,2 budynku B2 umieszczone zostały szafi wiszące, każda zawierająca przełącznik warstwy drugiej oraz dwa 24-portowe patch panele.
+
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=\textwidth]{img/s/szafa-mala.pdf}
+    \caption{Schemat szafy wiszącej}
+  \end{center}
+\end{figure}
+
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=\textwidth]{img/s/szafa-b1.pdf}
+    \caption{Schemat szafy stojącej na parterze budynku B1}
+  \end{center}
+\end{figure}
+
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=\textwidth]{img/s/szafa-b2.pdf}
+    \caption{Schemat szafy wiszącej na parterze budynku B2}
   \end{center}
 \end{figure}
 
