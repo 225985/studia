@@ -184,10 +184,37 @@ Na parterze budynku B2 znajduje się większa szafa niż na piętrach, wynika to
 \paragraph{}
 Poniższe tabele prezentują sposób w jaki zostały przyporządkowane gniazda do kolejnych portów przełącznika warstwy drugiej dla poszczególnych pięter w budynkach (odległość podawana jest w metrach).
 \input{chapters/chapter5_tables.tex}
+\subsection{Połączenie pionowe}
+\begin{center}
+    \begin{longtable}{|c|c|c|c|c|}
+    \hline
+ 	SwitchL2 & SwitchL3 & Odległość \\ \hline
+ 	B1S1 & B1RS1 & 0,5 \\ \hline
+ 	B1S1 & B1RS2 & 0,5 \\ \hline
+ 	B1S2 & B1RS1 & 3 \\ \hline
+ 	B1S2 & B1RS2 & 3 \\ \hline
+ 	B1S3 & B1RS1 & 6 \\ \hline
+ 	B1S3 & B1RS2 & 6 \\ \hline
+ 	B1S4 & B1RS1 & 9 \\ \hline
+ 	B1S4 & B1RS2 & 9 \\ \hline
+ 	B2S1 & B2RS1 & 0,5 \\ \hline
+ 	B2S1 & B2RS2 & 0,5 \\ \hline 
+	B2S2 & B2RS1 & 3 \\ \hline
+ 	B2S2 & B2RS2 & 3 \\ \hline
+ 	B2S3 & B2RS1 & 6 \\ \hline
+ 	B2S3 & B2RS2 & 6 \\ \hline
+ 	
+	\caption{SwitchL2 - SwitchL3}\\
+\end{longtable}
+\end{center}
+
 
 \subsection{Podłączenie do internetu}
 \paragraph{}
 Jednym z najważniejszych punktów projektu sieci jest połączenie z internetem. Zapewnienie wydajnego łacza o wymaganej przepustowości stanowi priorytet przy wyborze dostawcy usług internetowych. W tym celu można wybrać ofertę dzierżawienia łącza od dwóch firm : UPC (główne) i Netia (zapasowe). Obie firmy oferuja symetryczne lub niesymetryczne łącza dedykowane dla firm, pomoc techniczną oraz brak ograniczeń w ilości pobieranych i wysyłanych danych. Pula adresów stałych, sposób podłączenia internetu oraz parametry łącza są sprawą indywidualną, negocjowaną z usługodawcą.
+
+\paragraph{}
+Podłączenie routerów cisco do usługodawcy UPC będzie wymagało zainstalowania w routerze karty rozszerzeń DOCSIS, a Netii - VDSL2. 
 
 \subsection{Bezpieczeństwo}
 \paragraph{}
@@ -238,7 +265,6 @@ Patch panel 24P Intellinet UTP Cat6 1U 520959	&14	&111	&137	&1918\\ \hline
 RECESSED 1RU RACK MOUNT FOR 3550, 3560, and 3750	&4	&103	&126	&504\\ \hline
 Patch cord kat.6 UTP, CU, AWG 26/7, szary 0,5m&	370&	7,8&	9,7&	3589\\ \hline
 Zestaw montażowy do szafy 19” dla urządzenia U30/U70	&2	&101	&121	&242\\ \hline
-Cisco 7200 Rackmount Kit and Cable Management Bracket	&2	&102	&126	&252\\ \hline
 SZAFA 10 DELTA/10 9U/255 RBA-09-AS3-CAX-C1 TRITON	&1	&257	&315	&315\\ \hline
 SZAFA 19 DELTA/S 18U/600x600mm stojąca TRITON	&1	&1035	&1273	&1273 \\ \hline
 IWP-8P8C50-STP-CAT6-RJ45&	&100		&1	&100\\ \hline
@@ -246,7 +272,8 @@ ATEN CL-1000MA KVM Konsola LCD 17 + kl+touchpad	&1	&2319	&2852	&2852 \\ \hline
 ActiveJet UPS ACP 2000 RACK 19 (SINUSOIDA)+	&1	&1416	&1742	&1742 \\ \hline
 LISTWA-LE 80  (79,5X20,5MM)&15	& 21 	&26	&390 \\ \hline
 LISTWA-KANAŁ EKD 80X40	& 30	& 20 & 25	&750 \\ \hline
-
+Molex Premise Networks : 19"	&2	&	390&	780\\ \hline
+Patch cord światłowodowy	&4		&70	&280\\ \hline
 \end{tabular}
 \end{center}
 
@@ -256,11 +283,14 @@ LISTWA-KANAŁ EKD 80X40	& 30	& 20 & 25	&750 \\ \hline
     \hline
     Urządzenie &	Ilość&	Cena jednostki	& Koszt \\ \hline
 Cisco Catalyst WS-C3550-12T &	4	&4000	&16000 \\ \hline
-Cisco Router 7200 VXR 7204VXR&	2	&2200	&4400\\ \hline
+CISCO1921-ADSL2/K9	&2	&3200	&6400\\ \hline
 Netsaq U70	&2	&7000	&14000\\ \hline
 NETGEAR WNCE2001	&8	&150	&1200\\ \hline
 Cisco Catalyst 2960-48TT-L	&8	&4875	&39000\\ \hline
 SOLAR 110 X5 	&4	&5453	&21812\\ \hline
+VDSL2/ADSL/2/2+ EHWIC Annex A&	1	&2347&	2347\\ \hline
+Cisco HWIC-CABLE-E/J-2=	&1	71347	71347\\ \hline
+
 
 \end{tabular}
 \end{center}
@@ -270,8 +300,8 @@ SOLAR 110 X5 	&4	&5453	&21812\\ \hline
     \begin{tabular}{|c|c|}
     \hline
  Typ & Koszt \\ \hline
- Urządzenia & 96412 \\ \hline
- Okablowanie, etc & 27907 \\ \hline
- Suma & \textbf{124319} \\ \hline
+ Urządzenia & 102106 \\ \hline
+ Okablowanie, etc & 30446 \\ \hline
+ Suma & \textbf{132552} \\ \hline
 \end{tabular}
 \end{center}

@@ -74,25 +74,27 @@
 \contentsline {paragraph}{}{34}
 \contentsline {subsubsection}{\numberline {5.3.3}Tabela po\IeC {\l }\IeC {\k a}cze\IeC {\'n}}{34}
 \contentsline {paragraph}{}{34}
-\contentsline {subsection}{\numberline {5.4}Pod\IeC {\l }\IeC {\k a}czenie do internetu}{42}
-\contentsline {paragraph}{}{42}
-\contentsline {subsection}{\numberline {5.5}Bezpiecze\IeC {\'n}stwo}{42}
-\contentsline {paragraph}{}{42}
+\contentsline {subsection}{\numberline {5.4}Po\IeC {\l }\IeC {\k a}czenie pionowe}{42}
+\contentsline {subsection}{\numberline {5.5}Pod\IeC {\l }\IeC {\k a}czenie do internetu}{43}
 \contentsline {paragraph}{}{43}
 \contentsline {paragraph}{}{43}
+\contentsline {subsection}{\numberline {5.6}Bezpiecze\IeC {\'n}stwo}{43}
 \contentsline {paragraph}{}{43}
 \contentsline {paragraph}{}{43}
-\contentsline {paragraph}{}{43}
-\contentsline {paragraph}{}{43}
-\contentsline {subsection}{\numberline {5.6}Kosztorys}{44}
 \contentsline {paragraph}{}{44}
-\contentsline {subsection}{\numberline {5.7}Koszt okablowania, szaf, etc...}{44}
-\contentsline {subsection}{\numberline {5.8}Koszt urz\IeC {\k a}dze\IeC {\'n}}{45}
-\contentsline {subsection}{\numberline {5.9}Ca\IeC {\l }kowity koszt}{45}
-\contentsline {section}{\numberline {6}Karty katalogowe}{46}
-\contentsline {subsection}{\numberline {6.1}Prze\IeC {\l }\IeC {\k a}cznik warstwy 3}{46}
-\contentsline {subsection}{\numberline {6.2}Prze\IeC {\l }\IeC {\k a}cznik warstwy 2}{47}
-\contentsline {subsection}{\numberline {6.3}Router}{48}
-\contentsline {subsection}{\numberline {6.4}Access Point}{49}
-\contentsline {subsection}{\numberline {6.5}Firewall}{50}
-\contentsline {subsection}{\numberline {6.6}Serwer}{51}
+\contentsline {paragraph}{}{44}
+\contentsline {paragraph}{}{44}
+\contentsline {paragraph}{}{44}
+\contentsline {paragraph}{}{44}
+\contentsline {subsection}{\numberline {5.7}Kosztorys}{44}
+\contentsline {paragraph}{}{44}
+\contentsline {subsection}{\numberline {5.8}Koszt okablowania, szaf, etc...}{45}
+\contentsline {subsection}{\numberline {5.9}Koszt urz\IeC {\k a}dze\IeC {\'n}}{46}
+\contentsline {subsection}{\numberline {5.10}Ca\IeC {\l }kowity koszt}{46}
+\contentsline {section}{\numberline {6}Karty katalogowe}{47}
+\contentsline {subsection}{\numberline {6.1}Prze\IeC {\l }\IeC {\k a}cznik warstwy 3}{47}
+\contentsline {subsection}{\numberline {6.2}Prze\IeC {\l }\IeC {\k a}cznik warstwy 2}{48}
+\contentsline {subsection}{\numberline {6.3}Router}{49}
+\contentsline {subsection}{\numberline {6.4}Access Point}{50}
+\contentsline {subsection}{\numberline {6.5}Firewall}{51}
+\contentsline {subsection}{\numberline {6.6}Serwer}{52}
