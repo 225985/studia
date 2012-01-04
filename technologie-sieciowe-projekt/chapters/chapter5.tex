@@ -79,7 +79,7 @@ Poniższe tabele prezentują sposób w jaki zostały przyporządkowane gniazda d
 
 \subsection{Podłączenie do internetu}
 \paragraph{}
-Jednym z najważniejszych punktów projektu sieci jest połączenie z internetem. Zapewnienie wydajnego łacza o wymaganej przepustowości stanowi priorytet przy wyborze dostawcy usług internetowych. W tym celu można wybrać ofertę dzierżawienia łącza od dwóch firm : Korbank i Atman. Pierwsza z nich zapewnia możliwość negocjacji warunków umowy i udostpnienia łącza o indywidualnych parametrach. Druga natomiast oferuje wydajne łącza symetryczne, z możliwością podpisania umowy SLA, czyli zagwarantowania niezawodności połączenia.
+Jednym z najważniejszych punktów projektu sieci jest połączenie z internetem. Zapewnienie wydajnego łacza o wymaganej przepustowości stanowi priorytet przy wyborze dostawcy usług internetowych. W tym celu można wybrać ofertę dzierżawienia łącza od dwóch firm : UPC (główne) i Netia (zapasowe). Obie firmy oferuja symetryczne lub niesymetryczne łącza dedykowane dla firm, pomoc techniczną oraz brak ograniczeń w ilości pobieranych i wysyłanych danych. Pula adresów stałych, sposób podłączenia internetu oraz parametry łącza są sprawą indywidualną, negocjowaną z usługodawcą.
 
 \subsection{Bezpieczeństwo}
 \paragraph{}
@@ -100,6 +100,9 @@ Projekt sieci powinien przewidywać zabezpieczenie jej przed następującymi czy
 		\item Pożar
 	\end{itemize}
 \end{itemize}
+
+\paragraph{}
+Podstawową ochronę przeciw atakom z zewnątrz ma pełnić urządzenie UTM NETASQ U70, będące sprzętowym firewall'em. Poza zaporą ogniową  urządzenie oferuje również ochronę IPS, a także filtry antyspamowe i anty wirusowe, monitoring sieci, blokowanie adresów URL oraz autoryzację połączenia. Razem z zabezpieczeniami na routerach oraz możliwością zdefinowania QoS, pełnić będą rolę limiterów sieciowych, zabezpieczających przed ściąganiem szkodliwego oprogramowania, nielegalnych plików oraz pozwolą na ustawienie priorytetu ruchu w sieci.
 
 \paragraph{}
 By ochronić stacje robocze przed wirusami, zalecane przez nas jest komercyjne oprogramowanie \textit{NOD32}, posiadające odpowiednie wersje zarówno pod system Windows jak i Linux. W skład pakietu wchodza również aplikacje SpyWare i RootKit. \textit{NOD32} umożliwia również blokowanie niebezpiecznych aplikacji i witryn internetowych.

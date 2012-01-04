@@ -78,10 +78,12 @@
 \contentsline {paragraph}{}{34}
 \contentsline {paragraph}{}{34}
 \contentsline {paragraph}{}{34}
-\contentsline {subsection}{\numberline {5.6}Kosztorys}{34}
-\contentsline {paragraph}{}{34}
-\contentsline {section}{\numberline {6}Karty katalogowe}{35}
-\contentsline {subsection}{\numberline {6.1}Prze\IeC {\l }\IeC {\k a}cznik warstwy 3}{35}
-\contentsline {subsection}{\numberline {6.2}Prze\IeC {\l }\IeC {\k a}cznik warstwy 2}{36}
-\contentsline {subsection}{\numberline {6.3}Router}{36}
-\contentsline {subsection}{\numberline {6.4}Access Point}{37}
+\contentsline {paragraph}{}{35}
+\contentsline {subsection}{\numberline {5.6}Kosztorys}{35}
+\contentsline {paragraph}{}{35}
+\contentsline {section}{\numberline {6}Karty katalogowe}{36}
+\contentsline {subsection}{\numberline {6.1}Prze\IeC {\l }\IeC {\k a}cznik warstwy 3}{36}
+\contentsline {subsection}{\numberline {6.2}Prze\IeC {\l }\IeC {\k a}cznik warstwy 2}{37}
+\contentsline {subsection}{\numberline {6.3}Router}{37}
+\contentsline {subsection}{\numberline {6.4}Access Point}{38}
+\contentsline {subsection}{\numberline {6.5}Firewall}{38}
