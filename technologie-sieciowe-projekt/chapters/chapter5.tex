@@ -1,7 +1,7 @@
 \newpage
 \section{Projekt sieci}
 \paragraph{}
-Kolejnym etapem naszego projektu jest projekt logiczny sieci. Na Rysunku \textbf{TODO} przedstawiony zostało wzajemne położenie względem siebie budynków, które dla ulatwienia oznaczeń nazywać i opisu nazywać będziemy \textit{B1} i \textit{B2}.
+Kolejnym etapem naszego projektu jest projekt logiczny sieci. Na Rysunku 1 przedstawiony zostało wzajemne położenie względem siebie budynków, które dla ulatwienia oznaczeń nazywać i opisu nazywać będziemy \textit{B1} i \textit{B2}.
 
 \subsection{Projekt logiczny sieci}
 \paragraph{}
@@ -81,8 +81,7 @@ Poniżej przedstawiono pule adresowe dla poszczególnych \textit{VLanów} :
 
 \subsection{Projekt fizyczny}
 \paragraph{}
-Na każdym piętrze obu budynków, poza parterem, znajdować się będą naścienne szafy 4U, w których umieszczone zosatną przełączniki warstwy drugiej oraz po dwa patch panele każdy posiadający 24 porty.
-\paragraph{}
+
 
 \subsubsection{Projekt okablowania}
 \begin{figure}[H]
@@ -230,4 +229,51 @@ Urządzenia mobilne, korzystające z połączenia z internetem przez WiFi, zgrup
 
 \subsection{Kosztorys}
 \paragraph{}
-TODO
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    Urządzenie &	Ilość&	Cena jednostki	& Koszt \\ \hline
+Cisco Catalyst WS-C3550-12T &	4	&4000	&16000 \\ \hline
+Cisco Router 7200 VXR 7204VXR&	2	&2200	&4400\\ \hline
+Netsaq U70	&2	&7000	&14000\\ \hline
+NETGEAR WNCE2001	&8	&150	&1200\\ \hline
+Cisco Catalyst 2960-48TT-L	&8	&4875	&39000\\ \hline
+SOLAR 110 X5 	&4	&5453	&21812\\ \hline
+
+\end{tabular}
+\end{center}
+
+\begin{center}
+    \begin{tabular}{|p{6cm}|c|c|c|c|}
+    \hline
+Nazwa &	Ilość	&Cena netto	&Cena bruttokoszt	&Koszt \\ \hline
+Kabel instalacyjny UTP 4x2 kat.6	&22&	352	&433	&9526\\ \hline
+SZAFA 19 PRO-ALFA 4U ACT	&5	&150	&185	&925\\ \hline
+Gniazdo natynkowe 1xRJ 45 kat.6e kompletne biał	&260	&4,5	&5,6	&1456\\ \hline
+Patch panel 24P Intellinet UTP Cat6 1U 520959	&14	&111	&137	&1918\\ \hline
+Światłowód gotowy 50/125 4G SC/SC dł.100m.	&1&	470&	577&	577\\ \hline
+19in RackMount for Catalyst 3560,2960,ME-3400 Compact Switch	&8	&154	&187	&1496\\ \hline
+RECESSED 1RU RACK MOUNT FOR 3550, 3560, and 3750	&4	&103	&126	&504\\ \hline
+Patch cord kat.6 UTP, CU, AWG 26/7, szary 0,5m&	370&	7,8&	9,7&	3589\\ \hline
+Zestaw montażowy do szafy 19” dla urządzenia U30/U70	&2	&101	&121	&242\\ \hline
+Cisco 7200 Rackmount Kit and Cable Management Bracket	&2	&102	&126	&252\\ \hline
+SZAFA 10 DELTA/10 9U/255 RBA-09-AS3-CAX-C1 TRITON	&1	&257	&315	&315\\ \hline
+SZAFA 19 DELTA/S 18U/600x600mm stojąca TRITON	&1	&1035	&1273	&1273 \\ \hline
+IWP-8P8C50-STP-CAT6-RJ45&	&100		&1	&100\\ \hline
+ATEN CL-1000MA KVM Konsola LCD 17 + kl+touchpad	&1	&2319	&2852	&2852 \\ \hline
+ActiveJet UPS ACP 2000 RACK 19 (SINUSOIDA)+	&1	&1416	&1742	&1742 \\ \hline
+LISTWA-LE 80  (79,5X20,5MM)&15	& 21 	&26	&390 \\ \hline
+LISTWA-KANAŁ EKD 80X40	& 30	& 20 & 25	&750 \\ \hline
+
+\end{tabular}
+\end{center}
+
+\begin{center}
+    \begin{tabular}{|c|c|}
+    \hline
+ Typ & Koszt \\ \hline
+ Urządzenia & 96412 \\ \hline
+ Okablowanie, etc & 27907 \\ \hline
+ Suma & \textbf{124319} \\ \hline
+\end{tabular}
+\end{center}
