@@ -84,6 +84,6 @@
 \contentsline {section}{\numberline {6}Karty katalogowe}{41}
 \contentsline {subsection}{\numberline {6.1}Prze\IeC {\l }\IeC {\k a}cznik warstwy 3}{41}
 \contentsline {subsection}{\numberline {6.2}Prze\IeC {\l }\IeC {\k a}cznik warstwy 2}{42}
-\contentsline {subsection}{\numberline {6.3}Router}{42}
-\contentsline {subsection}{\numberline {6.4}Access Point}{43}
-\contentsline {subsection}{\numberline {6.5}Firewall}{44}
+\contentsline {subsection}{\numberline {6.3}Router}{43}
+\contentsline {subsection}{\numberline {6.4}Access Point}{44}
+\contentsline {subsection}{\numberline {6.5}Firewall}{45}
