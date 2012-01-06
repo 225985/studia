@@ -295,8 +295,8 @@ void init(){
     GLfloat light0_specular[]= {1.0, 0.5, 0.2, 1.0};
 
     GLfloat light1_ambient[] = {0.0, 0.0, 0.0, 1.0};
-    GLfloat light1_diffuse[] = {1.0, 1.0, 0.0, 1.0};        
-    GLfloat light1_specular[]= {1.0, 1.0, 0.0, 1.0};
+    GLfloat light1_diffuse[] = {0.2, 0.5, 1.0, 1.0};        
+    GLfloat light1_specular[]= {0.2, 0.5, 1.0, 1.0};
 
     GLfloat att_constant  = {1.0};
     GLfloat att_linear    = {0.05}; 
