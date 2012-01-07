@@ -6,3 +6,8 @@ lib_managed/
 src_managed/
 project/boot/
 weba/precompiled
+.DS_Store
+*.aux
+*.log
+*.gz
+
