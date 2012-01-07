@@ -10,7 +10,7 @@
 using namespace std;
 
 const int SOURCE = 100;
-const int SPHERE = 100; 
+const int SPHERE = 100;
 const int MAX_STEPS = 10000;
 
 typedef float point[3];
@@ -47,7 +47,7 @@ float sphere_specularhininess[SPHERE];
 
 float global_a[3];
 
-float starting_point[3];      // punkt, z którego wychodzi promieñ
+float starting_point[3]; // punkt, z którego wychodzi promieñ
 float starting_directions[] = {0.0, 0.0, -1.0}; // wektor opisuj¹cy kierunek promienia
 
 
@@ -65,25 +65,25 @@ GLubyte pixel[1][1][3]; // składowe koloru rysowanego piksela
 int Trace(float *p, float *v, int k)
 {
 
-	if( k > MAX_STEPS ) 
+	if( k > MAX_STEPS )
 	{
-		return 0;	
+		return 0;
 	}
-	
+
 	int con = Intersect(p, v);
-    if (con >=0 ) // is object
-    {
-        Normal(con);
-        Reflect(v);
-        Phong(v, con);
-        for(int i=0; i<3; i++)
+	if (con >=0 ) // is object
+	{
+		Normal(con);
+		Reflect(v);
+		Phong(v, con);
+		for(int i=0; i<3; i++)
 		{
 			color[i] += inters_c[i];;
 		}
-        Trace (inter, ref, k+1);
-    }
-    else // nothing
-	{            
+		Trace (inter, ref, k+1);
+	}
+	else // nothing
+	{
 		return 0;
 	}
 }
@@ -94,10 +94,10 @@ int Trace(float *p, float *v, int k)
 
 void Phong(float * v, int which)
 {
-	float light_vec[3];                    // wektor wskazujący źródeł
-	float reflection_vector[3];            // wektor kierunku odbicia światła
-	float viewer_v[3] = {-v[0], -v[1], -v[2]};   // wektor kierunku obserwacji
-	float n_dot_l, v_dot_r;                // zmienne pomocnicze
+	float light_vec[3]; // wektor wskazujący źródeł
+	float reflection_vector[3]; // wektor kierunku odbicia światła
+	float viewer_v[3] = {-v[0], -v[1], -v[2]}; // wektor kierunku obserwacji
+	float n_dot_l, v_dot_r; // zmienne pomocnicze
 
 	for(int i=0; i<3; i++)
 	{
@@ -106,31 +106,31 @@ void Phong(float * v, int which)
 
 	for(int i=0; i<sourceCount; i++)
 	{
-		
+
 		for(int j=0; j<3; j++)
 		{
 			light_vec[j] = light_position[i][j] - inter[j];
 		}
 
-		Normalization(light_vec);    // normalizacja wektora kierunku świecenia źródła           
+		Normalization(light_vec); // normalizacja wektora kierunku świecenia źródła
 		n_dot_l = dotProduct(light_vec, normalVector);
 		for(int j=0; j<3; j++)
 		{
 			reflection_vector[j] = 2*(n_dot_l)*normalVector[j] - light_vec[j];
 		}
-		
+
 		Normalization(reflection_vector); // normalizacja wektora kierunku światła odbitego
 		v_dot_r = dotProduct(reflection_vector, viewer_v);
 
-		if(v_dot_r < 0)                  // obserwator nie widzi oświetlanego punktu
+		if(v_dot_r < 0) // obserwator nie widzi oświetlanego punktu
 			v_dot_r = 0;
 
-		if (n_dot_l > 0)   
+		if (n_dot_l > 0)
 		{
 			float x = sqrt((light_position[i][0] - inter[0])*(light_position[i][0] - inter[0]) +(light_position[i][1] - inter[1])*(light_position[i][1] - inter[1]) + (light_position[i][2] - inter[2])*(light_position[i][2] - inter[2]));
-            for(int j=0; j<3; j++)
+			for(int j=0; j<3; j++)
 			{
-				inters_c[j] += (1.0/(1.0 + 0.01*x + 0.001*x*x))*(sphere_diffuse[which][j]*light_diffuse[i][j]*n_dot_l + sphere_specular[which][j]*light_specular[i][j]*pow(double(v_dot_r), (double)sphere_specularhininess[which])) +  sphere_ambient[which][j]*light_ambient[i][j];
+				inters_c[j] += (1.0/(1.0 + 0.01*x + 0.001*x*x))*(sphere_diffuse[which][j]*light_diffuse[i][j]*n_dot_l + sphere_specular[which][j]*light_specular[i][j]*pow(double(v_dot_r), (double)sphere_specularhininess[which])) + sphere_ambient[which][j]*light_ambient[i][j];
 			}
 		}
 		else
@@ -144,21 +144,21 @@ void Phong(float * v, int which)
 }
 
 
-void Normalization(point p)       
+void Normalization(point p)
 {
 	float d =0.0;
 	int i;
 
-    for(i=0; i<3; i++)
+	for(i=0; i<3; i++)
 	{
-        d+=p[i]*p[i];
+		d+=p[i]*p[i];
 	}
-  
-    d=sqrt(d);
-   
-    if(d>0.0)
+
+	d=sqrt(d);
+
+	if(d>0.0)
 	{
-        for(i=0; i<3; i++)
+		for(i=0; i<3; i++)
 		{
 			p[i]/=d;
 		}
@@ -169,83 +169,83 @@ void Normalization(point p)
 
 float dotProduct(point p1, point p2)
 {
-    return (p1[0]*p2[0]+p1[1]*p2[1]+p1[2]*p2[2]);
+	return (p1[0]*p2[0]+p1[1]*p2[1]+p1[2]*p2[2]);
 }
 
 
 void Display(void)
 {
-	int  x, y;           // pozycja rysowanego piksela "całkowitoliczbowa"
-	float x_fl, y_fl;    // pozycja rysowanego piksela "zmiennoprzecinkowa"
-	int im_size_2;       // połowa rozmiaru obrazu w pikselach
+	int x, y; // pozycja rysowanego piksela "całkowitoliczbowa"
+	float x_fl, y_fl; // pozycja rysowanego piksela "zmiennoprzecinkowa"
+	int im_size_2; // połowa rozmiaru obrazu w pikselach
 
-	im_size_2 = im_size/2;    // obliczenie połowy rozmiaru obrazu w pikselach
+	im_size_2 = im_size/2; // obliczenie połowy rozmiaru obrazu w pikselach
 	glClear(GL_COLOR_BUFFER_BIT);
-    glFlush();
-   
-    for (y = im_size_2; y > -im_size_2; y--)   
-    {
-        for (x = -im_size_2; x < im_size_2; x++)   
-        {
-			x_fl = (float)x/(im_size/viewport_size);       
-			y_fl = (float)y/(im_size/viewport_size);       
-			
-			starting_point[0] =  x_fl;           
-			starting_point[1] =  y_fl;
-			starting_point[2] =  viewport_size;
+	glFlush();
+
+	for (y = im_size_2; y > -im_size_2; y--)
+	{
+		for (x = -im_size_2; x < im_size_2; x++)
+		{
+			x_fl = (float)x/(im_size/viewport_size);
+			y_fl = (float)y/(im_size/viewport_size);
+
+			starting_point[0] = x_fl;
+			starting_point[1] = y_fl;
+			starting_point[2] = viewport_size;
 
 			for(int i=0; i<3; i++)
 			{
 				color[i] = 0.0;
 			}
-			
+
 			int p = Trace(starting_point, starting_directions, 1);
-			
+
 			for(int i=0; i<3; i++)
 			{
-				if (color[i] == 0.0) 
-					color[i] = background[i];	
+				if (color[i] == 0.0)
+					color[i] = background[i];
 
-				if (color[i] > 1)                         
+				if (color[i] > 1)
 					pixel[0][0][i] = 255;
 				else
 					pixel[0][0][i] = color[i]*255;
-			}      
+			}
 
 			glRasterPos3f(x_fl, y_fl, 0);
 			glDrawPixels(1, 1, GL_RGB, GL_UNSIGNED_BYTE, pixel);
-        }
-    }
-    glFlush();
+		}
+	}
+	glFlush();
 }
 
 int Intersect(float *vec1, float *vec2){
 	int st = -1;
 	float l = FLT_MAX, a, b, c, d, r;
-	
+
 	for(int i=0; i< sphereCount; i++)
 	{
 		a = vec2[0]*vec2[0] + vec2[1]*vec2[1] + vec2[2]*vec2[2];
-        b = 2*(vec2[0]*(vec1[0] - sphere_pos[i][0]) + vec2[1]*(vec1[1] - sphere_pos[i][1]) + vec2[2]*(vec1[2] - sphere_pos[i][2]));
-        c = vec1[0]*vec1[0] + vec1[1]*vec1[1] + vec1[2]*vec1[2] - 2*(sphere_pos[i][0]*vec1[0] + sphere_pos[i][1]*vec1[1] + sphere_pos[i][2]*vec1[2]) + sphere_pos[i][0]*sphere_pos[i][0] + sphere_pos[i][1]*sphere_pos[i][1] + sphere_pos[i][2]*sphere_pos[i][2] - sphere_radius[i]*sphere_radius[i];
-        d = b*b-4*a*c;
-        if (d >= 0 ) {
-            r = (-b - sqrt(d))/(2*a);
-            if (r > 0 && r < l) {
-                inter[0] = vec1[0] + r*vec2[0];   
-                inter[1] = vec1[1] + r*vec2[1];
-                inter[2] = vec1[2] + r*vec2[2];
-                l = sqrt((inter[0]-vec1[0])*(inter[0]-vec1[0]) + (inter[1]-vec1[1])*(inter[1]-vec1[1]) + (inter[2]-vec1[2])*(inter[2]-vec1[2]));
-                st = i;
-            }   
-        }
-	
+		b = 2*(vec2[0]*(vec1[0] - sphere_pos[i][0]) + vec2[1]*(vec1[1] - sphere_pos[i][1]) + vec2[2]*(vec1[2] - sphere_pos[i][2]));
+		c = vec1[0]*vec1[0] + vec1[1]*vec1[1] + vec1[2]*vec1[2] - 2*(sphere_pos[i][0]*vec1[0] + sphere_pos[i][1]*vec1[1] + sphere_pos[i][2]*vec1[2]) + sphere_pos[i][0]*sphere_pos[i][0] + sphere_pos[i][1]*sphere_pos[i][1] + sphere_pos[i][2]*sphere_pos[i][2] - sphere_radius[i]*sphere_radius[i];
+		d = b*b-4*a*c;
+		if (d >= 0 ) {
+			r = (-b - sqrt(d))/(2*a);
+			if (r > 0 && r < l) {
+				inter[0] = vec1[0] + r*vec2[0];
+				inter[1] = vec1[1] + r*vec2[1];
+				inter[2] = vec1[2] + r*vec2[2];
+				l = sqrt((inter[0]-vec1[0])*(inter[0]-vec1[0]) + (inter[1]-vec1[1])*(inter[1]-vec1[1]) + (inter[2]-vec1[2])*(inter[2]-vec1[2]));
+				st = i;
+			}
+		}
+
 	}
 
 	return st;
 }
 
-void Normal(int sphere)  
+void Normal(int sphere)
 {
 	//normal vector for sphere : [x - x0, y - y0, z - z0]
 	for(int i=0; i<3; i++)
@@ -257,9 +257,9 @@ void Normal(int sphere)
 
 void Reflect(float * v)
 {
-	//ref = 2 * cosx * normal vector - inv(v) => cosx = (normal * inv(v)) / (|normal| * |inv(v)|) 
+	//ref = 2 * cosx * normal vector - inv(v) => cosx = (normal * inv(v)) / (|normal| * |inv(v)|)
 	float inv[3] = {-v[0], -v[1], -v[2]};
-	float cos = dotProduct(normalVector, inv); 
+	float cos = dotProduct(normalVector, inv);
 	for(int i=0; i<3; i++)
 	{
 		ref[i] = 2 * cos * normalVector[i] - inv[i];
@@ -274,16 +274,16 @@ bool ParseFile()
 
 	if(!in)
 	{
-		return false;		
+		return false;
 	}
 
-	while(!in.eof()) 
+	while(!in.eof())
 	{
 		in >> data;
-		switch(data[0]) 
+		switch(data[0])
 		{
 		case 'd' : in >> width; in >> height; break;
-		case 'b' : 
+		case 'b' :
 			for(int i=0; i<3; i++)
 			{
 				in >> background[i];
@@ -295,7 +295,7 @@ bool ParseFile()
 			}; break;
 		case 's' :
 			switch(data[1]) {
-				case 'p' :
+			case 'p' :
 				{
 					in >> sphere_radius[sphereCount];
 					for(int i=0; i<3; i++)
@@ -303,7 +303,7 @@ bool ParseFile()
 						in >> sphere_pos[sphereCount][i];
 					}
 
-					for(int i=0; i<3; i++) 
+					for(int i=0; i<3; i++)
 					{
 						in >> sphere_specular[sphereCount][i];
 					}
@@ -321,7 +321,7 @@ bool ParseFile()
 					in >> sphere_specularhininess[sphereCount];
 					sphereCount++;
 				}; break;
-				case 'o' :
+			case 'o' :
 				{
 					for(int i=0; i<3; i++)
 					{
@@ -353,35 +353,31 @@ bool ParseFile()
 
 void Myinit(void)
 {
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(-viewport_size/2, viewport_size/2, -viewport_size/2, viewport_size/2, -viewport_size/2, viewport_size/2);
-    glMatrixMode(GL_MODELVIEW);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(-viewport_size/2, viewport_size/2, -viewport_size/2, viewport_size/2, -viewport_size/2, viewport_size/2);
+	glMatrixMode(GL_MODELVIEW);
 }
 
 
 int _tmain(int argc, _TCHAR* argv[])
-{ 
+{
 	bool st = ParseFile();
 
-	if(st) 
+	if(st)
 	{
-		glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);   
+		glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
 		glutInitWindowSize(im_size, im_size);
 		glutCreateWindow("Ray Traycing - Jacek Wieczorek 181043");
 		Myinit();
 		glutDisplayFunc(Display);
 		glutMainLoop();
-	} 
+	}
 	else
 	{
 		cout << "Error - file not found \n";
 		cin.get();
 	}
 }
-
-
-
-
 
 
