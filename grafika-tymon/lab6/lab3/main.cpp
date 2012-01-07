@@ -361,7 +361,7 @@ void init(){
     
     
     glShadeModel(GL_SMOOTH); // właczenie łagodnego cieniowania
-    glEnable(GL_LIGHTING);   // właczenie systemu oświetlenia sceny 
+//    glEnable(GL_LIGHTING);   // właczenie systemu oświetlenia sceny 
     glEnable(GL_LIGHT0);     // włączenie źródła o numerze 0
     glEnable(GL_LIGHT1);     // włączenie źródła o numerze 1
     glEnable(GL_DEPTH_TEST); // włączenie mechanizmu z-bufora     
@@ -371,7 +371,7 @@ void init(){
     GLint ImWidth, ImHeight, ImComponents;
     GLenum ImFormat;
     
-    //glEnable(GL_CULL_FACE);
+//    glEnable(GL_CULL_FACE);
    
     
     //    pBytes = LoadTGAImage("/Users/teamon/Downloads/tekstury/P4_t.tga", &ImWidth, &ImHeight, &ImComponents, &ImFormat);
