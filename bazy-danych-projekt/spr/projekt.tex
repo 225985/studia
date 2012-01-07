@@ -9,7 +9,8 @@
 \usepackage{placeins}
 \usepackage[final]{pdfpages}
 \usepackage{longtable}
-
+\usepackage{placeins}
+\usepackage{url}
 
 \title{Bazy danych 2 - projekt}
 \author{Tymon Tobolski (181037)\\ Jacek Wieczorek (181043)}
@@ -37,8 +38,58 @@
 \makeatother
 
 \begin{document}
-  \maketitle
+\maketitle
   
-  \section{Cel projektu}
+\section{Cel projektu}
+\paragraph{}
+Celem projektu jest zaprojektowanie i zimplementowanie systemu do zarządzania projektem opartego na obiektowych bazach danych.
+
+\section{Założenia projektu}
+\paragraph{}
+System do zarządzania projketami IT będzie oferował następujące funkcjonalności : możliwość dodawania użytkowników wraz ze statusami, prawa poszczególnych użytkowników, harmonogramowanie zadań, listy TODO, punkty kontrolne/kamienie milowe. Projekt oparty jest na obiektowej bazie danych Neodatis \footnote{Obiektowa baza danych Neodatis - \url{http://neodatis.org}}, zaimplementowanej w języku Java, interfejs użytkownika w Ruby on Rails \footnote{Framework sieciowy Ruby on Rails - \url{http://rubyonrails.org/}}. 
+
+\section{Opis funkcjonalności}
+  \begin{itemize}
+    \item Tworzenie projektów
+      \begin{itemize}
+        \item Definiowanie nazwy, terminów, osób odpowiedzialnych, kamieni milowych, budżetu
+      \end{itemize}
+
+    \item Dodawanie nowych zadań do wykonania
+      \begin{itemize}
+        \item Przypisanie do projekt/kaminienia milowego
+        \item Zdefiniowanie osoby odpowiedzialnej za zadanie
+        \item Estymacja i logowanie czasu i kosztu spędzonego nad zadaniem
+      \end{itemize}
+
+   \item Zarządzanie zadaniami do wykonania
+     \begin{itemize}
+       \item Edycja zadań
+       \item Dodawanie komentarzy i plików
+       \item Zmiana stanu 
+     \end{itemize}
+     
+    \item Zarządzanie uprawnieniami użytkowników
+      \begin{itemize}
+        \item Dostęp do projektów
+        \item Pozwolenie na edycje / tylko do wglądu (konto klienta)
+        \item Komentowanie zadań
+        \item Publikacja załączników
+      \end{itemize}
+
+    \item System powiadomień o terminach
+      \begin{itemize}
+        \item Powiadomienie o nadchodzących terminach zadań, kamieni milowych, całego projektu
+      \end{itemize}
+
+    \item Statystyka
+      \begin{itemize}
+        \item Przebieg czasowy zadań (czas rozpoczęcia, zakończenia)
+        \item Opóźnienia względem terminów
+        \item Bilans zysków i strat (budżet)
+      \end{itemize}
+
+  \end{itemize}
+
 
 \end{document}
