@@ -46,8 +46,8 @@ Wielomianowy schemat aproksymacji (ang. Polynomial-time approximation scheme, w 
 \paragraph{}
 Algorytm $A$ jest wielomianowym schematem aproksymacji dla problemu $\Pi$ jeśli spełnione są następujące warunki:
 \begin{itemize}
-    \item dla każdego odpowiedniego $\epsilon$ A jest algorytmem $\epsilon$-aproksymacyjnym dla $\Pi$,
-    \item dla każdego odpowiedniego $\epsilon$ złożoność czasowa $A$ jest wielomianowa ze względu na rozmiar instancji problemu podanej na wejściu $A$.
+    \item dla każdego odpowiedniego $\varepsilon$ A jest algorytmem $\varepsilon$-aproksymacyjnym dla $\Pi$,
+    \item dla każdego odpowiedniego $\varepsilon$ złożoność czasowa $A$ jest wielomianowa ze względu na rozmiar instancji problemu podanej na wejściu $A$.
 \end{itemize}
 
 \section{Opis algorytmu}
@@ -58,7 +58,7 @@ Algorytm $A$ jest wielomianowym schematem aproksymacji dla problemu $\Pi$ jeśli
   \item Krok 3 : Pozostałe $n-k$ zadań przyporządkuj za pomocą algorytmu \textit{LPT} 
 \end{itemize}
 
-\section{Złożoność obliczeniowa}
+\section{Dowód wielomianowości}
 \paragraph{}
 \begin{itemize}
   \item Sortowanie: $O(nlogn)$
@@ -82,7 +82,7 @@ Co daje nam złożoność obliczeniową algorytmu : $O(nlogn + 2^{\frac{1}{\vare
 
 \section{Testy}
 \paragraph{}
-W celu przeprowadzenia dokłądnej analizy wykonanych zostało szereg testów badających czas wykonania algorytmu i dokładność wyniku w zależności od parametru $n$ i $\varepsilon$. W przypadku badania zcasu wykonania kazdej instancji wykonano po 3 testy, a prezentowany wynik jest ich średnią arytmetyczną. W przypadku badania dokładności wyniku, wyjorzystany został program z poprzedniego laboratorium, dający dokłądne wyniki. Mimo iż program posiada graficzny interfejs użytkownika, moduł testowy wykonany został jako aplikacja konsolowa.
+W celu przeprowadzenia dokłądnej analizy wykonanych zostało szereg testów badających czas wykonania algorytmu w zależności od parametru $n$ i $\varepsilon$. W przypadku badania zcasu wykonania kazdej instancji wykonano po 3 testy, a prezentowany wynik jest ich średnią arytmetyczną. Mimo iż program posiada graficzny interfejs użytkownika, moduł testowy wykonany został jako aplikacja konsolowa.
 
 \end{document}
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 
 namespace PTAS.Repo
 {
@@ -81,9 +82,13 @@ namespace PTAS.Repo
             return p1 > p2 ? true : false;
         }
 
-        public void ptasFunction()
+        public long ptasFunction()
         {
             bool [] tmp = new bool[tasksCount];
+
+            Stopwatch counter = new Stopwatch();
+            counter.Reset();
+            counter.Start();
 
             Array.Sort(tasks);
             Array.Reverse(tasks);
@@ -112,6 +117,7 @@ namespace PTAS.Repo
                     optimal[i] = true;   
                 }
             }
+            return counter.ElapsedMilliseconds;
         }
 
         public List<int> getCpu(bool which)
