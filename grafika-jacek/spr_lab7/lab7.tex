@@ -12,22 +12,97 @@
 
 
 \begin{document}
-\maketitle{Grafika Komputerowa\\ Ray Tracing}{Jacek Wieczorek}{Dr inż. Tomasz Kapłon}{Wydział Elektroniki}{III rok}{Pn TP 8.15 - 11.00}
+\maketitle{Grafika Komputerowa - Ray Tracing}{Jacek Wieczorek 181043}{Dr inż. Tomasz Kapłon}{Wydział Elektroniki}{III rok}{Pn TP 8.15 - 11.00}
 
 \section{Cel projektu}
 \paragraph{}
-Celem projektu było zaimplementowanie rekursywnej algorytmu śledzenia promieni \textit{Ray Tracing}. 
+Celem projektu było zaimplementowanie rekursywnego algorytmu śledzenia promieni \textit{Ray Tracing}. 
 
 \section{Ray Tracing}
 \paragraph{}
-\textit{Ray Tracing} opiera się ona na analizowaniu poszczególnych promieni emitowanych przez źródło światła w kierunku od źródła światła do rzutni. Następnie wylicza się kolejne kierunki odbicia analizowanego promienia od ścian obiektów, aż do wyznaczania kierunku ostatniego odbicia promienia. Prosta wyznaczana przez ostatni kierunek odbicia analizowanego promienai przecina rzutnię, bądź nie.
+\textit{Ray Tracing} opiera się na analizowaniu poszczególnych promieni emitowanych przez źródło światła w kierunku od źródła światła do rzutni. Następnie wylicza się kolejne kierunki odbicia analizowanego promienia od ścian obiektów, aż do wyznaczania kierunku ostatniego odbicia promienia. Prosta wyznaczana przez ostatni kierunek odbicia analizowanego promienai przecina rzutnię, bądź nie.
 
 \section{Opis algorytmu}
 \paragraph{}
+Głównym elementem w metodzie rekursywnego śledzenia promieni jest funkcja \textit{Trace()}, której zadaniem jest obliczanie koloru piksela dla promienai zaczynającego się w punkcie \textbf{p} i biegnącym w kierunku wskazanym przez wektor \textbf{v}. W funkcji występuje rekurencja, a parametr \textbf{MAX\_STEPS} ma zapobiec zapętleniu się algorytmu. Ogólny schemat działania funkcji \textit{Trace()} przedstawiony zsoatał poniżej : 
+\putpicturescale{img/trace.jpg}{Schemat działania funkcji Trace}{0.65}{}
+
+\section{Implementacja}
+\subsection{Trace()}
+\paragraph{} % (fold)
+\label{par:}
+Funkcja Trace() przyjmuje 3 parametry wejściowe - punkt, wektor kierunkowy promienia, k-ta iteracja. Zwaraca następujące statusy : 
+\begin{itemize}
+	\item -1 : nie trafiono nic
+	\item $<$-1 : trafiono źródło światła
+	\item 0 : trafiono obiekt
+\end{itemize}
+% paragraph  (end)
+\putcode{code/trace.cpp}{c++}
  
+\subsection{Intercest()} % (fold)
+\paragraph{}
+Funkcja Intercest ma za zadanie wyznaczyć współrzędne punktu przecięcia promienia \textit{vec} z najbliższym obiektem sceny. Funkcja zwraca -1 gdy promień nie natrafi na żaden obiekt, w przypadku gdy promień natrafi na obiekt - jego numer, a gdy trafione zostanie źródło światła jego numer przeliczony na \textit{-2 - nr}.
+\paragraph{}
+Aby wyznaczyć punkt przecięcia promienia z obiektem, skorzystano z równań promienia zapisanych w postaci parametrycznej i powierzchni sfery zapisanych w postaci uwikłanej : 
 
+\begin{equation}
+x = r_{0x} + r_{dx}u \hspace{2cm}
+\end{equation}
+\begin{equation}
+y = r_{0y} + r_{dy}u \hspace{1cm} u > 0
+\end{equation}
+\begin{equation}
+z = r_{0z} + r_{dz}u \hspace{2cm}
+\end{equation}
 
+gdzie wektory :
 
+\begin{equation}
+[ r_{0x} \ \ r_{0y} \ \ r_{0z} ]
+\end{equation}
+\begin{equation}
+[ r_{dx} \ \ r_{dy} \ \ r_{dz} ]
+\end{equation}
+
+Równanie sfery : 
+
+\begin{equation}
+x^2 + y^2 + z^2 - r^2 = 0
+\end{equation}
+ 
+\paragraph{} % (fold)
+\label{par:}
+Jeśli podstawić równania 1,2,3 do równania 6  uzyska się równanie kwadratowe ze względu na parametr u. Liczba punktów przecięcia promienia i sfery jest taka jak liczba rozwiązań tego równania. Gdy równanie ma dwa rozwiązania jako wartość parametru u, która odpowiada bliższemu punktowi przecięcia należy wybrać wartość mniejszą. Współrzędne punktu przecięcia uzyskuje się po wstawieniu do równań parametrycznych promienia, wyliczonej z równania kwadratowego wartości parametru u dla bliższego obserwatorowi (rzutni) punktu przecięcia. W tym celu wprowadzony został dodatkowy parametr \textbf{l} pozwalający określić, czy dany obiekt jest najbliższym.
+
+% paragraph  (end)
+
+\putcode{code/intercest.cpp}{c++}
+
+\subsection{Normal()}
+Funkcja Normal() słuzy do wyliczenia wektora normalnego do powierzchni obiektu w punkcie wyznaczonym przez funckcję Intercest().
+\putcode{code/normal.cpp}{c++}
+
+\subsection{Reflect()}
+Funkcja Reflect() służy  do wyznaczenia wektora jednostkowego opisującego kierunek kolejnego śledzonego promienia. Promień ten powstaje w wyniku odbicia promienia wychodzącego z punktu p i biegnącego do punktu inter na powierzchni obiektu.
+
+\putcode{code/reflect.cpp}{c++}
+
+\subsection{Phong()}
+Funkcja Phong() służy do oświetlenia lokalnego punktu. Jest ono sumą oświetleń pochądzących od wszytskich źródeł, widocznych z analizowanego punktu. Jako parametry określające wpływ odległości przyjęto 1.0, 0.01, 0.01.
+
+\putcode{code/phong.cpp}{c++}
+
+\newpage
+\section{Przykładowe obrazy}
+
+\putpicturescale{img/img1.PNG}{Przykładowy obraz}{0.5}{}
+\putpicturescale{img/img2.PNG}{Przykładowy obraz}{0.5}{}
+\newpage
+\putpicturescale{img/img3.PNG}{Przykładowy obraz}{0.5}{}
+
+\section{Wnioski}
+Implementacja algorytmu Ray Taracing nie jest trudnym zadaniem. Jest to jedna z lepszych i łatwiejszych metod sledzenai promieni, niestety nie jest pozbawiona równiez wad. Konieczność analizowania każdego punktu ekranu powoduje, iż jest czasochłonna.  Mogą również wystąpić efekty aliasingowe oraz nie wszystkie kierunki padania światła zostają zbadane co może powodować błędy w generowaniu oświetlenia.
 
 \end{document}
 

@@ -19,7 +19,7 @@ int Trace(float *p, float *v, int step); // cross point of sphere layer and beam
 void Phong(float * v, int which); // phong model
 float dotProduct(point p1, point p2); // dot product of two vectores
 void Normalization(point p); // normalization of vectore
-int Intersect(float *vec1, float *vec2); //
+int Intersect(float *point, float *vec); //
 void Normal(int typ); //
 void Reflect(float *v); //
 bool ParseFile(); // parse file and load data
@@ -67,11 +67,17 @@ int Trace(float *p, float *v, int k)
 
 	if( k > MAX_STEPS )
 	{
-		return 0;
+		return -1;
 	}
 
 	int con = Intersect(p, v);
-	if (con >=0 ) // is object
+
+	if(con == -1)
+		return con; //nothing
+	else if(con < -1) {
+		return con;  //light source
+	}
+	else if (con >=0 ) // is object
 	{
 		Normal(con);
 		Reflect(v);
@@ -82,15 +88,79 @@ int Trace(float *p, float *v, int k)
 		}
 		Trace (inter, ref, k+1);
 	}
-	else // nothing
-	{
-		return 0;
-	}
+	
+	return 0;
 }
 
-/*************************************************************************************/
-// Funkcja oblicza oświetlenie punktu na powierzchni sfery używając modelu Phonga.
-/*************************************************************************************/
+int Intersect(float *point, float *vec){
+	int st = -1;
+	float l = FLT_MAX, a, b, c, d, r;
+
+	
+
+	for(int i=0; i< sphereCount; i++)
+	{
+		a = vec[0]*vec[0] + vec[1]*vec[1] + vec[2]*vec[2];
+		b = 2*(vec[0]*(point[0] - sphere_pos[i][0]) + vec[1]*(point[1] - sphere_pos[i][1]) + vec[2]*(point[2] - sphere_pos[i][2]));
+		c = point[0]*point[0] + point[1]*point[1] + point[2]*point[2] - 2*(sphere_pos[i][0]*point[0] + sphere_pos[i][1]*point[1] + sphere_pos[i][2]*point[2]) + sphere_pos[i][0]*sphere_pos[i][0] + sphere_pos[i][1]*sphere_pos[i][1] + sphere_pos[i][2]*sphere_pos[i][2] - sphere_radius[i]*sphere_radius[i];
+		d = b*b-4*a*c;
+		if (d >= 0 ) {
+			r = (-b - sqrt(d))/(2*a);
+			if (r > 0 && r < l) {
+				inter[0] = point[0] + r*vec[0];
+				inter[1] = point[1] + r*vec[1];
+				inter[2] = point[2] + r*vec[2];
+				l = sqrt((inter[0]-point[0])*(inter[0]-point[0]) + (inter[1]-point[1])*(inter[1]-point[1]) + (inter[2]-point[2])*(inter[2]-point[2]));
+				st = i;
+			}
+		}
+
+	}
+
+	if(st > -1) return st;
+	l = FLT_MAX;
+	for (int i = 0; i < sourceCount; i++) {
+        if ((light_position[i][0] - point[0]) / vec[0]
+                == (light_position[i][1] - point[1]) / vec[1]
+                == (light_position[i][2] - point[2]) / vec[2]) {
+            r = sqrt((light_position[i][0] - point[0]) * (light_position[i][0] - point[0])
+                    + (light_position[i][1] - point[1]) * (light_position[i][1] - point[1])
+                    + (light_position[i][2] - point[2]) * (light_position[i][2] - point[2]));
+
+            if (r < l ) {
+                inter[0] = light_position[i][0];
+                inter[1] = light_position[i][1];
+                inter[2] = light_position[i][2];
+                l = r;
+                st = -2 - i;
+            }
+        }
+    }
+
+	return st;
+}
+
+void Normal(int sphere)
+{
+	//normal vector for sphere : [x - x0, y - y0, z - z0]
+	for(int i=0; i<3; i++)
+	{
+		normalVector[i] = inter[i] - sphere_pos[sphere][i];
+	}
+	Normalization(normalVector);
+}
+
+void Reflect(float * v)
+{
+	//ref = 2 * cosx * normal vector - inv(v) => cosx = (normal * inv(v)) / (|normal| * |inv(v)|)
+	float inv[3] = {-v[0], -v[1], -v[2]};
+	float cos = dotProduct(normalVector, inv);
+	for(int i=0; i<3; i++)
+	{
+		ref[i] = 2 * cos * normalVector[i] - inv[i];
+	}
+	Normalization(ref);
+}
 
 void Phong(float * v, int which)
 {
@@ -203,8 +273,11 @@ void Display(void)
 
 			for(int i=0; i<3; i++)
 			{
-				if (color[i] == 0.0)
+				if(p == -1)
 					color[i] = background[i];
+				else if(p < -1) {
+					color[i] = background[i];
+				}
 
 				if (color[i] > 1)
 					pixel[0][0][i] = 255;
@@ -219,57 +292,13 @@ void Display(void)
 	glFlush();
 }
 
-int Intersect(float *vec1, float *vec2){
-	int st = -1;
-	float l = FLT_MAX, a, b, c, d, r;
 
-	for(int i=0; i< sphereCount; i++)
-	{
-		a = vec2[0]*vec2[0] + vec2[1]*vec2[1] + vec2[2]*vec2[2];
-		b = 2*(vec2[0]*(vec1[0] - sphere_pos[i][0]) + vec2[1]*(vec1[1] - sphere_pos[i][1]) + vec2[2]*(vec1[2] - sphere_pos[i][2]));
-		c = vec1[0]*vec1[0] + vec1[1]*vec1[1] + vec1[2]*vec1[2] - 2*(sphere_pos[i][0]*vec1[0] + sphere_pos[i][1]*vec1[1] + sphere_pos[i][2]*vec1[2]) + sphere_pos[i][0]*sphere_pos[i][0] + sphere_pos[i][1]*sphere_pos[i][1] + sphere_pos[i][2]*sphere_pos[i][2] - sphere_radius[i]*sphere_radius[i];
-		d = b*b-4*a*c;
-		if (d >= 0 ) {
-			r = (-b - sqrt(d))/(2*a);
-			if (r > 0 && r < l) {
-				inter[0] = vec1[0] + r*vec2[0];
-				inter[1] = vec1[1] + r*vec2[1];
-				inter[2] = vec1[2] + r*vec2[2];
-				l = sqrt((inter[0]-vec1[0])*(inter[0]-vec1[0]) + (inter[1]-vec1[1])*(inter[1]-vec1[1]) + (inter[2]-vec1[2])*(inter[2]-vec1[2]));
-				st = i;
-			}
-		}
 
-	}
 
-	return st;
-}
-
-void Normal(int sphere)
-{
-	//normal vector for sphere : [x - x0, y - y0, z - z0]
-	for(int i=0; i<3; i++)
-	{
-		normalVector[i] = inter[i] - sphere_pos[sphere][i];
-	}
-	Normalization(normalVector);
-}
-
-void Reflect(float * v)
-{
-	//ref = 2 * cosx * normal vector - inv(v) => cosx = (normal * inv(v)) / (|normal| * |inv(v)|)
-	float inv[3] = {-v[0], -v[1], -v[2]};
-	float cos = dotProduct(normalVector, inv);
-	for(int i=0; i<3; i++)
-	{
-		ref[i] = 2 * cos * normalVector[i] - inv[i];
-	}
-	Normalization(ref);
-}
 
 bool ParseFile()
 {
-	fstream in("f:\\scene.txt", ios :: in);
+	fstream in("scene.txt", ios :: in);
 	char data[100];
 
 	if(!in)
