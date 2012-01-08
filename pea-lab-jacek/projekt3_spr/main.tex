@@ -7,6 +7,7 @@
 \usepackage{graphicx,pdflscape}
 \usepackage{placeins}
 \usepackage{reportshelper}
+\usepackage{longtable}
 
 \title{Schemat Aproksymacyjny dla $P_{2}||C_{max}$}
 \author{Jacek Wieczorek (181043)}
@@ -84,6 +85,75 @@ Co daje nam złożoność obliczeniową algorytmu : $O(nlogn + 2^{\frac{1}{\vare
 \paragraph{}
 W celu przeprowadzenia dokłądnej analizy wykonanych zostało szereg testów badających czas wykonania algorytmu w zależności od parametru $n$ i $\varepsilon$. W przypadku badania zcasu wykonania kazdej instancji wykonano po 3 testy, a prezentowany wynik jest ich średnią arytmetyczną. Mimo iż program posiada graficzny interfejs użytkownika, moduł testowy wykonany został jako aplikacja konsolowa.
 
+\paragraph{}
+
+\begin{center}
+  \begin{longtable}{|c|c|c|}
+    \hline
+    n & $\varepsilon$ & time[ms]\\ \hline
+    100 & 0,5&  0 \\ \hline
+    100 & 0,45 & 0\\ \hline
+    100 & 0,4 & 0\\ \hline
+    100 & 0,35 & 0\\ \hline
+    100 & 0,3 & 0\\ \hline
+    100 & 0,25 & 0\\ \hline
+    100 & 0,2 & 0\\ \hline
+    100 & 0,15 & 0\\ \hline
+    100 & 0,1 & 0\\ \hline
+    100 & 0,05 & 126\\ \hline
+    5100 & 0,5 & 243,333\\ \hline
+    5100 & 0,45 & 243\\ \hline
+    5100 & 0,4 & 243\\ \hline
+    5100 & 0,35 & 242,333\\ \hline
+    5100 & 0,3 & 242\\ \hline
+    5100 & 0,25 & 242,333\\ \hline
+    5100 & 0,2 & 243\\ \hline
+    5100 & 0,15 & 242\\ \hline
+    5100 & 0,1 & 243\\ \hline
+    5100 & 0,05 & 366\\ \hline
+    10100 & 0,5 & 954,333\\ \hline
+    10100 & 0,45 & 953,333\\ \hline
+    10100 & 0,4 & 952,333\\ \hline
+    10100 & 0,35 & 952\\ \hline
+    10100 & 0,3 & 950,666\\ \hline
+    10100 & 0,25 & 950,666\\ \hline
+    10100 & 0,2 & 957,666\\ \hline
+    10100 & 0,15 & 1038,33\\ \hline
+    10100 & 0,1 & 952\\ \hline
+    10100 & 0,05 & 1080\\ \hline
+    15100 & 0,5 & 2149,66\\ \hline
+    15100 & 0,45 & 2129\\ \hline
+    15100 & 0,4 & 2128\\ \hline
+    15100 & 0,35 & 2127,33\\ \hline
+    15100 & 0,3 & 2125,33\\ \hline
+    15100 & 0,25 & 2128\\ \hline
+    15100 & 0,2 & 2129,33\\ \hline
+    15100 & 0,15 & 2128,66\\ \hline
+    15100 & 0,1 & 2328,33\\ \hline
+    15100 & 0,05 & 2253\\ \hline
+    20100 & 0,5 & 3769,66\\ \hline
+    20100 & 0,45 & 3779,33\\ \hline
+    20100 & 0,4 & 3769,66\\ \hline
+    20100 & 0,35 & 3767,33\\ \hline
+    20100 & 0,3 & 3766,33\\ \hline
+    20100 & 0,25 & 3773\\ \hline
+    20100 & 0,2 & 3774,66\\ \hline
+    20100 & 0,15 & 3780\\ \hline
+    20100 & 0,1 & 3776,33\\ \hline
+    20100 & 0,05 & 3894,33\\ \hline
+    25100 & 0,5 & 6131\\ \hline
+    25100 & 0,45 & 6044,66\\ \hline
+    25100 & 0,4 & 5898\\ \hline
+    25100 & 0,35 & 5883\\ \hline
+    25100 & 0,3 & 5900,66\\ \hline
+    25100 & 0,25 & 5879,66\\ \hline
+    25100 & 0,2 & 5877\\ \hline
+    25100 & 0,15 & 5888\\ \hline
+    25100 & 0,1 & 5886\\ \hline
+    25100 & 0,05 & 6003,66\\ \hline
+    \caption{Wynik w zależny od $\varepsilon$ i $n$}\\
+  \end{longtable}
+\end{center}
 \end{document}
 
 
