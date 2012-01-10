@@ -24,7 +24,7 @@ Celem projektu było zaimplementowanie rekursywnego algorytmu śledzenia promien
 
 \section{Opis algorytmu}
 \paragraph{}
-Głównym elementem w metodzie rekursywnego śledzenia promieni jest funkcja \textit{Trace()}, której zadaniem jest obliczanie koloru piksela dla promienai zaczynającego się w punkcie \textbf{p} i biegnącym w kierunku wskazanym przez wektor \textbf{v}. W funkcji występuje rekurencja, a parametr \textbf{MAX\_STEPS} ma zapobiec zapętleniu się algorytmu. Ogólny schemat działania funkcji \textit{Trace()} przedstawiony zsoatał poniżej : 
+Głównym elementem w metodzie rekursywnego śledzenia promieni jest funkcja \textit{Trace()}, której zadaniem jest obliczanie koloru piksela dla promienia zaczynającego się w punkcie \textbf{p} i biegnącym w kierunku wskazanym przez wektor \textbf{v}. W funkcji występuje rekurencja, a parametr \textbf{MAX\_STEPS} ma zapobiec zapętleniu się algorytmu. Ogólny schemat działania funkcji \textit{Trace()} przedstawiony zsoatał poniżej : 
 \putpicturescale{img/trace.jpg}{Schemat działania funkcji Trace}{0.65}{}
 
 \section{Implementacja}
@@ -89,7 +89,7 @@ Funkcja Reflect() służy  do wyznaczenia wektora jednostkowego opisującego kie
 \putcode{code/reflect.cpp}{c++}
 
 \subsection{Phong()}
-Funkcja Phong() służy do oświetlenia lokalnego punktu. Jest ono sumą oświetleń pochądzących od wszytskich źródeł, widocznych z analizowanego punktu. Jako parametry określające wpływ odległości przyjęto 1.0, 0.01, 0.01.
+Funkcja Phong() służy do oświetlenia lokalnego punktu. Jest ono sumą oświetleń pochądzących od wszytskich źródeł, widocznych z analizowanego punktu. Jako parametry określające wpływ odległości przyjęto 1.0, 0.01, 0.001.
 
 \putcode{code/phong.cpp}{c++}
 
@@ -102,7 +102,7 @@ Funkcja Phong() służy do oświetlenia lokalnego punktu. Jest ono sumą oświet
 \putpicturescale{img/img3.PNG}{Przykładowy obraz}{0.5}{}
 
 \section{Wnioski}
-Implementacja algorytmu Ray Taracing nie jest trudnym zadaniem. Jest to jedna z lepszych i łatwiejszych metod sledzenai promieni, niestety nie jest pozbawiona równiez wad. Konieczność analizowania każdego punktu ekranu powoduje, iż jest czasochłonna.  Mogą również wystąpić efekty aliasingowe oraz nie wszystkie kierunki padania światła zostają zbadane co może powodować błędy w generowaniu oświetlenia.
+Implementacja algorytmu Ray Taracing nie jest trudnym zadaniem. Jest to jedna z lepszych i łatwiejszych metod śledzenai promieni, niestety nie jest pozbawiona równiez wad. Konieczność analizowania każdego punktu ekranu powoduje, iż jest czasochłonna.  Mogą również wystąpić efekty aliasingowe oraz nie wszystkie kierunki padania światła zostają zbadane co może powodować błędy w generowaniu oświetlenia.
 
 \end{document}
 
