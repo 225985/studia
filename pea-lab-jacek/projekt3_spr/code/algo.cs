@@ -6,23 +6,18 @@ public void ptasFunction()
     Array.Sort(tasks);
     Array.Reverse(tasks);
 
-    if (!(eps > 1.0/3.0))
+    best = getTime(tmp, k);
+    while (getPermutation(tmp))
     {
-        best = getTime(tmp, k);
-        while (getPermutation(tmp))
+        int tmpTime = getTime(tmp, k);
+        if (best > tmpTime)
         {
-            int tmpTime = getTime(tmp, k);
-            if (best > tmpTime)
-            {
-                best = tmpTime;
-                Array.Copy(tmp, optimal, k);
-            }
+            best = tmpTime;
+            Array.Copy(tmp, optimal, k);
         }
     }
-    else
-    {
-        k = 0;
-    }
+    
+    
     for (int i = k; i < tasksCount; i++)
     {
         if (!freeCpu(i + 1))

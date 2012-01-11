@@ -15,25 +15,7 @@ namespace PTAS
             System.IO.StreamWriter file = new System.IO.StreamWriter("d:\\test.txt");
             file.WriteLine("changing eps");
             file.WriteLine("n eps time");
-            for (int i = 100; i < 30000; i += 10000)
-            {
-                int[] t = new int[i];
-                for (int k = 0; k < i; k++)
-                {
-                    t[k] = rand.Next(100);
-                }
-                for (double j = 0.01; j >= 0.01; j -= 0.05)
-                {
-                    Console.WriteLine(string.Format("roz {0} {1}", i, j));
-                    var ptas = new PTAS.Repo.Ptas(t, j);
-                    long time = 0;
-                    for (int p = 0; p < 3; p++)
-                    {
-                        time += ptas.ptasFunction();
-                    }
-                }
-            }
-
+          
             for (int i = 100; i < 30000; i += 5000)
             {
                 int[] t = new int[i];
@@ -41,7 +23,7 @@ namespace PTAS
                 {
                     t[k] = rand.Next(100);
                 }
-                for (double j = 0.01; j >= 0.01; j -= 0.05)
+                for (double j = 0.5; j >= 0.05; j -= 0.05)
                 {
                     Console.WriteLine(string.Format("{0} {1}", i, j));
                     var ptas = new PTAS.Repo.Ptas(t, j);
@@ -54,34 +36,7 @@ namespace PTAS
                 }
             }
 
-            //file.WriteLine("changing n");
-            //file.WriteLine("eps n time");
-
-            //for (double j = 0.5; j >= 0.05; j -= 0.05)
-            //{
-            //    for (int i = 100; i < 30000; i += 5000)
-            //    {
-            //        int[] t = new int[i];
-            //        for (int k = 0; k < i; k++)
-            //        {
-            //            t[k] = rand.Next(100);
-            //        }
-            //        Console.WriteLine(string.Format("{0} {1}", j, i));
-            //        var ptas = new PTAS.Repo.Ptas(t, j);
-            //        long time = 0;
-            //        for (int p = 0; p < 3; p++)
-            //        {
-            //            time += ptas.ptasFunction();
-            //        }
-            //        file.WriteLine(string.Format("{0} {1} {2}", j, i, time / 3.0));
-            //    }
-            //}
-            
-
-            file.Close();
-
-
-            
+            file.Close();            
         }
     }
 }

@@ -38,7 +38,7 @@
   \maketitle
   \section{Opis problemu}
 \paragraph{}
- Celem laboratorium jest zaimplementowanie algorytmu szeregowania $n$ zadań na $2$ równolegle działających procesorach -  $P_{2} || C_{max}$ za pomocą wilomianowego schematu aproksymacyjnego \textit{PTAS}.
+ Celem laboratorium jest zaimplementowanie algorytmu szeregowania $n$ zadań na $2$ równolegle działających procesorach -  $P_{2} || C_{max}$ za pomocą wielomianowego schematu aproksymacyjnego \textit{PTAS}.
 
 \section{PTAS}
 \paragraph{}
@@ -83,7 +83,7 @@ Co daje nam złożoność obliczeniową algorytmu : $O(nlogn + 2^{\frac{1}{\vare
 
 \section{Testy}
 \paragraph{}
-W celu przeprowadzenia dokłądnej analizy wykonanych zostało szereg testów badających czas wykonania algorytmu w zależności od parametru $n$ i $\varepsilon$. W przypadku badania zcasu wykonania kazdej instancji wykonano po 3 testy, a prezentowany wynik jest ich średnią arytmetyczną. Mimo iż program posiada graficzny interfejs użytkownika, moduł testowy wykonany został jako aplikacja konsolowa.
+W celu przeprowadzenia dokłądnej analizy wykonanych zostało szereg testów badających czas wykonania algorytmu w zależności od parametru $n$ i $\varepsilon$. W przypadku badania czasu wykonania kazdej instancji wykonano po 3 testy, a prezentowany wynik jest ich średnią arytmetyczną. Mimo iż program posiada graficzny interfejs użytkownika, moduł testowy wykonany został jako aplikacja konsolowa.
 
 \paragraph{}
 
@@ -151,9 +151,27 @@ W celu przeprowadzenia dokłądnej analizy wykonanych zostało szereg testów ba
     25100 & 0,15 & 5888\\ \hline
     25100 & 0,1 & 5886\\ \hline
     25100 & 0,05 & 6003,66\\ \hline
-    \caption{Wynik w zależny od $\varepsilon$ i $n$}\\
+    \caption{Wynik zależny od $\varepsilon$ i $n$}\\
+
+
   \end{longtable}
 \end{center}
+
+\putpicturescale{img/wyk1.PNG}{Wykres zależności czasu od $\varepsilon$}{1.0}{}
+\newpage
+\putpicturescale{img/wyk2.PNG}{Wykres zależności czasu od $n$}{1.0}{}
+
+\paragraph{} % (fold)
+Analizując powyższe dane można wywnioskować, iż największy wpływ na czas wykonywania algorytmu ma rozmiar instancji problemu $n$. Na Rysunku 1 przedstwiono zależność pomiędzy czasem wykonania algorytmu, a wartością $\varepsilon$ dla instancji o stałym rozmiarze $n$. Wykres obu funkcji przez dłuższy okres jest linią poziomą, dopiero dla ostaniego parametru nieznacznie wzrasta,lecz wciąż liniowo. Dla wartości parametru $\varepsilon = 0.05$ długość problemu, którą należy uszeregować dokładnie wzrasta znaczniej, niż w poprzednich przykładach. Z powodu zbyt długiego czasu wykonywania, nie przeprowdzone zostały testy dla $\varepsilon = 0.01$.
+
+\paragraph{}
+Analizując wykres przedstawiony na Rysunku 2 można dojść do wniosku, iż bez znaczącej zmiany parametru $\varepsilon$ np. 0.01 czas wykonywania algorytmu dla tych samych instancji problemu, ale większych parametrach $\varepsilon$ jest bardzo zbliżony.   
+
+\section{Wnioski}
+Algorytm \textit{PTAS} jest jednym z łatwiejszych algorytmów obliczania przyblliżonej wartości dla skomplikowanych problemów \textit{NPh i sNPh}. Jednak by uzyskać wyniki z zadowalającą dokładnością, należy użyć małych parametrów $\varepsilon$, co wiąże się z dużym nakładem czasu na obliczanie dokładnych wyników i zbliża algorytm do przeglądu zupełnego (w tym przypadku).
+
+\paragraph{}
+Głównym obszarem zastosowań algorytmu \textit{PTAS} są sytuacje, gdy możemy sobie pozwolić na dość duży błąd rozwiązania. 
 \end{document}
 
 

@@ -23,13 +23,17 @@ namespace PTAS.GUI
 
             int[] tab = new int[n];
             Random rd = new Random();
+            string text = "tasks : ";
             for (int i = 0; i < n; i++)
             {
                 tab[i] = rd.Next(30);
+                text += string.Format("{0}, ", tab[i]);
             }
+            if (text != "tasks : ") text.Remove(text.Length - 1);
 
+            console.AppendText(text + "\n");
             var ptas = new PTAS.Repo.Ptas(tab, eps);
-            ptas.ptasFunction();
+            console.AppendText(string.Format("time : {0} ms\n", ptas.ptasFunction()));
             console.AppendText(ptas.getCpu());
         }
     }

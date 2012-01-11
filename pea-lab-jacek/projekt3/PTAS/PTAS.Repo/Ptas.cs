@@ -93,23 +93,19 @@ namespace PTAS.Repo
             Array.Sort(tasks);
             Array.Reverse(tasks);
 
-            if (!(eps > 1.0/3.0))
+
+            best = getTime(tmp, k);
+            while (getPermutation(tmp))
             {
-                best = getTime(tmp, k);
-                while (getPermutation(tmp))
+                int tmpTime = getTime(tmp, k);
+                if (best > tmpTime)
                 {
-                    int tmpTime = getTime(tmp, k);
-                    if (best > tmpTime)
-                    {
-                        best = tmpTime;
-                        Array.Copy(tmp, optimal, k);
-                    }
+                    best = tmpTime;
+                    Array.Copy(tmp, optimal, k);
                 }
             }
-            else
-            {
-                k = 0;
-            }
+            
+            
             for (int i = k; i < tasksCount; i++)
             {
                 if (!freeCpu(i + 1))
@@ -118,7 +114,7 @@ namespace PTAS.Repo
                 }
             }
             return counter.ElapsedMilliseconds;
-        }
+    }
 
         public List<int> getCpu(bool which)
         {
@@ -155,8 +151,8 @@ namespace PTAS.Repo
                     result2 += string.Format("{0}, ", tasks[i]);
                 }
             }
-            if (result1 != "m1: ") result1.Remove(result1.Length - 2);
-            if (result2 != "m2: ") result1.Remove(result1.Length - 2);
+            if (result1 != "m1: ") result1.Remove(result1.Length - 1);
+            if (result2 != "m2: ") result1.Remove(result1.Length - 1);
             return result1 + "\n" + result2 + "\n";
         }
     }
