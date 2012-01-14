@@ -1,0 +1,18 @@
+- Zagrozenia
+  - przyklady brudnych, niepowtarzalnych i fantomowych odczytów
+  - poziomy izolacji transkacj i ich wplyw na rownoleglosc przetwarzania
+  - blokowanie transakcji rownoleglych (kiedy, w jakiej sytuacji, następuje blokowanie, zakleszczenia i metody ich rozwiązywania)
+  - przyklady praktycznych sytuacji w których odpowiedni poziom izolacji transakcji pozwala zapewnić poprawność danych w bazie danych.
+
+- Przykladowa aplikacja
+  - jednoczesna edycja tych samych danych przez wielu uzytkownikow
+  - zagwarantowanie ze dana operacja moze byc wykonana
+
+
+ACID
+
+- Transakcje nie tylko w bazach danych
+- STM - Software Transactional Memory
+- Atomowe operacji z nierelacyjnych bazach danych
+  - cloud computing
+  - e.g Redis (INC, DEC, etc)

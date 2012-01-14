@@ -1,0 +1,9 @@
+<%= form_for @account do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+    <%= f.hidden_field :name_old, :value => @account.name %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

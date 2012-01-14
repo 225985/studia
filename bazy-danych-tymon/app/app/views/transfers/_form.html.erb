@@ -1,0 +1,10 @@
+<%= form_tag transfers_path, :method => :post do %>
+  <p>
+    <%= label_tag :from %>
+    <%= select_tag :from, options_from_collection_for_select(Account.all, "id", "name_and_balance") %>
+    <%= label_tag :to %>
+    <%= select_tag :to, options_from_collection_for_select(Account.all, "id", "name_and_balance") %>
+    <%= text_field_tag :amount, 0 %>
+  </p>
+  <p><%= submit_tag %></p>
+<% end %>

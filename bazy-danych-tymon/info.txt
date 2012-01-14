@@ -1,0 +1,9 @@
+(2 osoby) Transakcje – zagrożenia równoległego wykonania transakcji w bazie danych (przykłady jasno i klarownie prezentujące sytuacje powstania brudnych, niepowtarzalnych i fantomowych odczytów), poziomy izolacji transakcji i ich wpływ na równoległość przetwarzania, blokowanie transakcji równoległych (kiedy, w jakiej sytuacji, następuje blokowanie, zakleszczenia i metody ich rozwiązywania). Przykłady praktycznych sytuacji w których odpowiedni poziom izolacji transakcji pozwala zapewnić poprawność danych w bazie danych.
+
+W ramach tematu należy przygotować prostą aplikację, w której będzie wyraźnie widać operacje wykonywane na bazie danych i będzie je można wykonać krokowo:
+ - 	Aplikacja 1 - kontach bankowych wielu osób, pozwalając wykonywać przelewy pieniężne pomiędzy kontami oraz edytować dane kont
+- 	Aplikacja 2 - osobach, mieszkaniach i umowach, pozwalać odnotowywać fakt kupna mieszkania przez klienta wprowadzając w momencie kupna podstawowe dane umowy (oznaczenie, data zawarcia, osoba zawierająca) i edytować dane
+- 	Aplikacja 3 – sklep internetowy z możliwością zakupu tego samego produktu przez wiele osób jednocześnie i zagwarantowaniem, że produkt od momentu wybrania do potwierdzenia zakupu jest jeszcze dostępny. Aplikacja powinna również umożliwiać: edycję informacji o produktach, przy wyborze do zakupu wprowadzenie informacji o kupującym (adres dostawy, płatność itd.), wyszukiwanie produktów
+
+Zadania do rozwiązania w programach – jednoczesna edycja tych samych danych przez wielu użytkowników (założyć, że edycja /od wczytania danych do zapisania/ może trwać nawet kilkanaście minut), zagwarantowanie, że operacja (przelew, zakup, itd.) może być zrealizowana (mamy wystarczające środki na koncie, kupowany element jest dostępny/nie został już sprzedanych, itp.).
+
