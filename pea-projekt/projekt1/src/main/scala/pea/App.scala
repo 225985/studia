@@ -90,6 +90,12 @@ object App {
         }.toList
     }
 
+    def readInput(in: List[String]) = in.map(_.split(" ").toList).collect {
+        case "GA" :: n :: k :: Nil => GA(n.toInt, k.toInt)
+        case "TS" :: n :: k :: t :: Nil => TS(n.toInt, k.toInt, t.toInt)
+        case "SA" :: td :: Nil => SA(td.toDouble)
+    }
+
     def main(args: Array[String]){
         if(args.length < 2) sys.exit(-1)
         else {
@@ -97,56 +103,16 @@ object App {
             val k = args(1).toInt
             val instances = readInstances(n).zip(readOptimal(n)).take(k)
 
-            val algs =
-                        (GA(1000, 40), 10) ::
-                        // (TS(10, 4, 7),  10) ::
-                        // (TS(10, 5, 7),  10) ::
-                        // (TS(10, 6, 7),  10) ::
-                        // (TS(10, 7, 7),  10) ::
-                        // (TS(10, 4, 8),  10) ::
-                        // (TS(10, 5, 8),  10) ::
-                        // (TS(10, 6, 8),  10) ::
-                        // (TS(10, 7, 8),  10) ::
-                        // (TS(10, 4, 9),  10) ::
-                        // (TS(10, 5, 9),  10) ::
-                        // (TS(10, 6, 9),  10) ::
-                        // (TS(10, 7, 9),  10) ::
-                        // (TS(10, 4, 10),  10) ::
-                        // (TS(10, 5, 10),  10) ::
-                        // (TS(10, 6, 10),  10) ::
-                        // (TS(10, 7, 10),  10) ::
-                        // (TS(100, 4, 7),  10) ::
-                        // (TS(100, 5, 7),  10) ::
-                        // (TS(100, 6, 7),  10) ::
-                        // (TS(100, 7, 7),  10) ::
-                        // (TS(100, 4, 8),  10) ::
-                        // (TS(100, 5, 8),  10) ::
-                        // (TS(100, 6, 8),  10) ::
-                        // (TS(100, 7, 8),  10) ::
-                        // (TS(100, 4, 9),  10) ::
-                        // (TS(100, 5, 9),  10) ::
-                        // (TS(100, 6, 9),  10) ::
-                        // (TS(100, 7, 9),  10) ::
-                        // (TS(100, 4, 10),  10) ::
-                        // (TS(100, 5, 10),  10) ::
-                        // (TS(100, 6, 10),  10) ::
-                        // (TS(100, 7, 10),  10) ::
-                        // (TS(100), 10) ::
-                        // (TS(200), 10) ::
-                        // (TS(1000), 1) ::
-                        // (SA(0.99),   10) ::
-                        // (SA(0.999),  10) ::
-                        // (SA(0.9999), 10) ::
-                        Nil
+            val algs = readInput(io.Source.stdin.getLines.toList)
 
-            val results = algs.map { case (alg, k) =>
+            val results = algs.map { alg =>
                 val r = instances.zipWithIndex.collect { case ((tasks, optimal), inst) if optimal > 0 =>
                     println(" == Instance %s | optimal: %d | alg: %s == " format (inst+1, optimal, alg.toString))
 
                     val curr = tasks //.dup
 
 
-                    val x = (1 to k)/*.par*/ map { i =>
+                    val x = (1 to 10)/*.par*/ map { i =>
                         val (time, res) = bench(alg(curr))
                         val diff = (res.cost - optimal) * 100.0 / optimal
 
@@ -154,8 +120,14 @@ object App {
                         println("%s%2d) %-120s [%5.2f%%] | %10d%s" format (c, i, res, diff, time, Console.RESET))
                         // print("%s.%s" format (c, Console.RESET))
 
-                        (time, diff)
+                        (time, diff, res)
                     }
+
+                    val (time, diff, res) = x.minBy(_._2)
+
+                    println("**) %-120s [%5.2f%%] | %10d" format (res, diff, time))
+
+
                     println()
 
                     x
@@ -169,7 +141,7 @@ object App {
             results.foreach { case (alg, instances) =>
                 val (time, diff) = ((0.0, 0.0) /: instances){
                     case ((t,d), it) =>
-                        val (time, diff) = ((0.0,0.0) /: it){ case ((a,b),(c,d)) => (a+c, b+d) }
+                        val (time, diff) = ((0.0,0.0) /: it){ case ((a,b),(c,d,_)) => (a+c, b+d) }
                         (t + time / it.length, d + diff / it.length)
                 }
 
