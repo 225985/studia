@@ -52,7 +52,7 @@ object Algorithms {
         def K = k
         def F(tasks: TaskList) = tasks.cost
 
-        def crossover(a: TaskList, b: TaskList) = pmx.pmx(b,a)
+        def crossover(a: TaskList, b: TaskList) = pmx.pmx2(b,a)
         def mutation(tasks: TaskList) = TaskList(randomPermutation(tasks.list))
         def newRandom(tasks: TaskList) = TaskList(randomPermutation(tasks.list))
     }
