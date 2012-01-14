@@ -141,7 +141,7 @@ object App {
 
             val results = algs.map { case (alg, k) =>
                 val r = instances.zipWithIndex.collect { case ((tasks, optimal), inst) if optimal > 0 =>
-                    print(" == Instance %s | optimal: %d | alg: %s == " format (inst+1, optimal, alg.toString))
+                    println(" == Instance %s | optimal: %d | alg: %s == " format (inst+1, optimal, alg.toString))
 
                     val curr = tasks //.dup
 

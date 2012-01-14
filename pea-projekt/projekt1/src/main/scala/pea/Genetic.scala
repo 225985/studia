@@ -17,8 +17,6 @@ abstract class Genetic[A, R : Ordering] extends Function1[A, A] {
     def apply(s0: A) = {
 
         def inner(n: Int, population: List[A], best: A): A = {
-            val best = bestOf(population)
-
             val nextGen = population.grouped(2).flatMap {
                 case a :: b :: Nil =>
                     val (x,y) = crossover(a,b)
@@ -26,7 +24,7 @@ abstract class Genetic[A, R : Ordering] extends Function1[A, A] {
                 case _ => Nil
             }
 
-            val newPopulation = (population ++ nextGen).sortBy(F)(implicitly[Ordering[R]].reverse).take(2*K)
+            val newPopulation = (population ++ nextGen).sortBy(F).take(2*K)
             val newBest = bestOf(newPopulation)
 
             if(n > 0) inner(n-1, newPopulation, newBest)
