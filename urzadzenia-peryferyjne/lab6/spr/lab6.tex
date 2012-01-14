@@ -6,6 +6,7 @@
 \usepackage[table]{xcolor}
 \usepackage{graphicx,pdflscape}
 \usepackage{placeins}
+\usepackage{reportshelper}
 
 
 \title{Urządzenia peryferyjne}
@@ -40,44 +41,67 @@
 
 \section{Cel laboratorium}
 \paragraph{}
-Celem laboratorium było zapoznanie się z zasdą pracy i obsługą skanera płaskiego.
+Celem laboratorium było zapoznanie się z zasdą pracy i obsługą skanera płaskiego. W tym celu wykorzystana została biblioteka WIA 1.0 i język programowania $C\#$
 
-\section{Program}
+\section{Parametry skanowania}
+\paragraph{} % (fold)
+Poza samym zeskanowaniem obrazu, udało nam sie również zmeiniać podstawowe parametry skanowania, takie jak:
+\begin{itemize}
+    \item czarnobiałe lub kolorowe
+    \item rozdzielczość (DPI)
+    \item kontrast
+    \item jasność
+\end{itemize}
 
+\subsection{Rozdzielczość}
+\paragraph{}
+DPI (dots per inch) - liczba plamek przypadająca na cal, używane jako miara rozdzielczości drukarek, ploterów, skanerów itp. 
 
-% \lstset{ %
-%     language=java,                % choose the language of the code
-%     basicstyle=\scriptsize,       % the size of the fonts that are used for the code
-%     numbers=left,                   % where to put the line-numbers
-%     numberstyle=\scriptsize,      % the size of the fonts that are used for the line-numbers
-%     stepnumber=10,                   % the step between two line-numbers. If it's 1 each line 
-%                                     % will be numbered
-%     numbersep=9pt,                  % how far the line-numbers are from the code
-%     % backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
-%     showspaces=false,               % show spaces adding particular underscores
-%     showstringspaces=false,         % underline spaces within strings
-%     showtabs=false,                 % show tabs within strings adding particular underscores
-%     % frame=single,                 % adds a frame around the code
-%     % tabsize=2,                  % sets default tabsize to 2 spaces
-%     % captionpos=b,                   % sets the caption-position to bottom
-%     breaklines=true,                % sets automatic line breaking
-%     % breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
-%     % title=\lstname,                 % show the filename of files included with \lstinputlisting;
-%                                     % also try caption instead of title
-%     % escapeinside={\%*}{*)},         % if you want to add a comment within your code
-%     % morekeywords={*,...}            % if you want to add more keywords to the set
-%     }
-%     \lstinputlisting{p1.cs}
+\subsection{Kontrast}
+\paragraph{} % (fold)
+\label{par:}
+TODO
 
+\subsection{Jasność}
+\paragraph{} % (fold)
+\label{par:}
+TODO
+% paragraph  (end)
 
-% \subsection{GUI aplikacji}
-% \begin{figure}[htbp]
-%       \begin{center}
-%        \includegraphics[width=\textwidth]{screen.PNG}
-% 	\label{fig5}
-% 	\caption{Przykładowe okno programu}
-%       \end{center}
-%     \end{figure}
+\section{Implementacja}
+\paragraph{} % (fold)
+\label{par:}
+Program do obsługi skanera płaskiego napisany został w języku $C\#$ z wykorzystaniem biblioteki WIA 1.0 .
+
+\paragraph{} % (fold)
+\label{}
+W celu wyboru urządzenia skanującego skorzystaliśmy ze standardowego okna dialogowego dostepnego w bibliotece.
+
+\putcode{code/p1.cs}{c++} 
+
+\paragraph{}
+Do inicializacji urządzenia i określenia parametrów skanowania : 
+\putcode{code/p2.cs}{c++} 
+
+\paragraph{} % (fold)
+\label{par:}
+Proces skanowania :
+\putcode{code/p3.cs}{c++} 
+
+\paragraph{} % (fold)
+\label{par:}
+Zapis obrazu do pliku :
+\putcode{code/p4.cs}{c++}
+
+\paragraph{} % (fold)
+\label{par:}
+Przykładowe okno programu :
+\putpicture{img/program.PNG}{Przykładowe okno porgramu}{\textwidth}{}
+% paragraph  (end)
+
+% paragraph  (end)
+
 \section{Wnioski}
+Napisanie programu do obsługi skanera płaskiego w wykorzystaniem biblioteki WIA nie jest zadaniem trudnym. Jedynym problemem z jakim spotkaliśmy się podczas implementacji było znalezienie odpowiednich wartości stałych by ustawić parametry skanowania.
 \paragraph{}
 \end{document}

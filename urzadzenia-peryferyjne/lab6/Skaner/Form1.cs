@@ -110,44 +110,23 @@ namespace Skaner
             try
             {
                 if (Scanner == null)
-                    if (wybierzUrządzenie())
+                    if (chooseDevice())
                     {
                         InitializeITEM();//inicjuje ustawienia skanera      
                         Img = (ImageFile)Dialog1.ShowTransfer(Scanner.Items[1], wiaFormatBMP, true);
-                        //string d = Path.GetTempFileName();
-                       
-                        //Img.SaveFile(d);
-                        //this.Refresh();
                         imageBytes = (byte[])Img.FileData.get_BinaryData(); // <– Converts the ImageFile to a byte array
                         MemoryStream ms = new MemoryStream(imageBytes);
                         Image image = Image.FromStream(ms);
-                        //Size sizeImg = new Size(500, 500);
-                        //Bitmap b = new Bitmap(image, sizeImg.Width, sizeImg.Height);
-                        //Graphics g = Graphics.FromImage(image);
-                        //g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                        //pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
-
                         pictureBox1.Image = image;
-                        
- 
                     }
                     else
                     {
                         InitializeITEM();//inicjuje ustawienia skanera      
                         Img = (ImageFile)Dialog1.ShowTransfer(Scanner.Items[1], wiaFormatBMP, true);
-                        //string d = Path.GetTempFileName();
-
-                        //Img.SaveFile(d);
-                        //this.Refresh();
                         imageBytes = (byte[])Img.FileData.get_BinaryData(); // <– Converts the ImageFile to a byte array
                         MemoryStream ms = new MemoryStream(imageBytes);
                         Image image = Image.FromStream(ms);
-                        //Size sizeImg = new Size(500, 500);
-                        //Bitmap b = new Bitmap(image, sizeImg.Width, sizeImg.Height);
-                        //Graphics g = Graphics.FromImage(image);
-                        //g.InterpolationMode = InterpolationMode.HighQualityBicubic;
                         pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
-
                         pictureBox1.Image = image;
                         return;
                     }
@@ -188,19 +167,19 @@ namespace Skaner
                 Scanner.Items[1].Properties.get_Item(ref Object1).set_Value(ref Object2);
 
                 Object1 = (Object)"6147";
-                Object2 = (Object)DPI;
+                Object2 = (Object)DPI; //rozdzielczość
                 Scanner.Items[1].Properties.get_Item(ref Object1).set_Value(ref Object2);
 
                 Object1 = (Object)"6148";
-                Object2 = (Object)DPI;
+                Object2 = (Object)DPI; 
                 Scanner.Items[1].Properties.get_Item(ref Object1).set_Value(ref Object2);
 
                 Object1 = (Object)(WIA_IPS_FIRST + 9).ToString();
-                Object2 = (Object)C;
+                Object2 = (Object)C; //kontrast
                 Scanner.Items[1].Properties.get_Item(ref Object1).set_Value(ref Object2);
 
                 Object1 = (Object)(WIA_IPS_FIRST + 8).ToString();
-                Object2 = (Object)B;
+                Object2 = (Object)B; //jasność
                 Scanner.Items[1].Properties.get_Item(ref Object1).set_Value(ref Object2);
 
                 //Object1 = (Object)"6152";
@@ -220,7 +199,7 @@ namespace Skaner
         }
 
 
-        private bool wybierzUrządzenie()
+        private bool chooseDevice()
         {
             try
             {
