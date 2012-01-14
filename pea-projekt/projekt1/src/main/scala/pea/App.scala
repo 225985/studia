@@ -45,6 +45,17 @@ object Algorithms {
             // tasks.list.toList.indexWhere(e => e.index == tabu._1) < tasks.list.toList.indexWhere(e => e.index == tabu._2)
         }
     }
+
+    val GA = (n: Int, k: Int) => new Genetic[TaskList, Int] with Common {
+        def N = n
+        def M = 0.01
+        def K = k
+        def F(tasks: TaskList) = tasks.cost
+
+        def crossover(a: TaskList, b: TaskList) = pmx.pmx(b,a)
+        def mutation(tasks: TaskList) = TaskList(randomPermutation(tasks.list))
+        def newRandom(tasks: TaskList) = TaskList(randomPermutation(tasks.list))
+    }
 }
 
 object App {
@@ -86,38 +97,40 @@ object App {
             val k = args(1).toInt
             val instances = readInstances(n).zip(readOptimal(n)).take(k)
 
-            val algs =  (TS(10, 4, 7),  10) ::
-                        (TS(10, 5, 7),  10) ::
-                        (TS(10, 6, 7),  10) ::
-                        (TS(10, 7, 7),  10) ::
-                        (TS(10, 4, 8),  10) ::
-                        (TS(10, 5, 8),  10) ::
-                        (TS(10, 6, 8),  10) ::
-                        (TS(10, 7, 8),  10) ::
-                        (TS(10, 4, 9),  10) ::
-                        (TS(10, 5, 9),  10) ::
-                        (TS(10, 6, 9),  10) ::
-                        (TS(10, 7, 9),  10) ::
-                        (TS(10, 4, 10),  10) ::
-                        (TS(10, 5, 10),  10) ::
-                        (TS(10, 6, 10),  10) ::
-                        (TS(10, 7, 10),  10) ::
-                        (TS(100, 4, 7),  10) ::
-                        (TS(100, 5, 7),  10) ::
-                        (TS(100, 6, 7),  10) ::
-                        (TS(100, 7, 7),  10) ::
-                        (TS(100, 4, 8),  10) ::
-                        (TS(100, 5, 8),  10) ::
-                        (TS(100, 6, 8),  10) ::
-                        (TS(100, 7, 8),  10) ::
-                        (TS(100, 4, 9),  10) ::
-                        (TS(100, 5, 9),  10) ::
-                        (TS(100, 6, 9),  10) ::
-                        (TS(100, 7, 9),  10) ::
-                        (TS(100, 4, 10),  10) ::
-                        (TS(100, 5, 10),  10) ::
-                        (TS(100, 6, 10),  10) ::
-                        (TS(100, 7, 10),  10) ::
+            val algs =
+                        (GA(1000, 40), 10) ::
+                        // (TS(10, 4, 7),  10) ::
+                        // (TS(10, 5, 7),  10) ::
+                        // (TS(10, 6, 7),  10) ::
+                        // (TS(10, 7, 7),  10) ::
+                        // (TS(10, 4, 8),  10) ::
+                        // (TS(10, 5, 8),  10) ::
+                        // (TS(10, 6, 8),  10) ::
+                        // (TS(10, 7, 8),  10) ::
+                        // (TS(10, 4, 9),  10) ::
+                        // (TS(10, 5, 9),  10) ::
+                        // (TS(10, 6, 9),  10) ::
+                        // (TS(10, 7, 9),  10) ::
+                        // (TS(10, 4, 10),  10) ::
+                        // (TS(10, 5, 10),  10) ::
+                        // (TS(10, 6, 10),  10) ::
+                        // (TS(10, 7, 10),  10) ::
+                        // (TS(100, 4, 7),  10) ::
+                        // (TS(100, 5, 7),  10) ::
+                        // (TS(100, 6, 7),  10) ::
+                        // (TS(100, 7, 7),  10) ::
+                        // (TS(100, 4, 8),  10) ::
+                        // (TS(100, 5, 8),  10) ::
+                        // (TS(100, 6, 8),  10) ::
+                        // (TS(100, 7, 8),  10) ::
+                        // (TS(100, 4, 9),  10) ::
+                        // (TS(100, 5, 9),  10) ::
+                        // (TS(100, 6, 9),  10) ::
+                        // (TS(100, 7, 9),  10) ::
+                        // (TS(100, 4, 10),  10) ::
+                        // (TS(100, 5, 10),  10) ::
+                        // (TS(100, 6, 10),  10) ::
+                        // (TS(100, 7, 10),  10) ::
                         // (TS(100), 10) ::
                         // (TS(200), 10) ::
                         // (TS(1000), 1) ::
@@ -138,8 +151,8 @@ object App {
                         val diff = (res.cost - optimal) * 100.0 / optimal
 
                         val c = if(diff == 0) Console.GREEN else Console.RED
-                        // println("%s%2d) %-120s [%5.2f%%] | %10d%s" format (c, i, res, diff, time, Console.RESET))
-                        print("%s.%s" format (c, Console.RESET))
+                        println("%s%2d) %-120s [%5.2f%%] | %10d%s" format (c, i, res, diff, time, Console.RESET))
+                        // print("%s.%s" format (c, Console.RESET))
 
                         (time, diff)
                     }

@@ -11,8 +11,8 @@ object pmx {
       j = rd.nextInt(a.list.length) 
     } 
 
-    println(i)
-    println(j)
+    // println(i)
+    // println(j)
     var r1 = a.list.take(i) ++ b.list.drop(i).take(j-i) ++ a.list.drop(j)
     var r2 = b.list.take(i) ++ a.list.drop(i).take(j-i) ++ b.list.drop(j)
     
@@ -32,12 +32,12 @@ object pmx {
   }
 
 
-  def main(args: Array[String]): Unit = {
-    val a = TaskList(Array(new Task(0,0,0,0), new Task(1,0,0,0), new Task(2,0,0,0), new Task(3,0,0,0), new Task(4,0,0,0), new Task(5,0,0,0), new Task(6,0,0,0), new Task(7,0,0,0), new Task(8,0,0,0), new Task(9,0,0,0), new Task(10,0,0,0)))
-    val b = TaskList(Array(new Task(10,0,0,0),new Task(9,0,0,0),new Task(8,0,0,0),new Task(7,0,0,0),new Task(6,0,0,0),new Task(5,0,0,0),new Task(4,0,0,0), new Task(3,0,0,0), new Task(2,0,0,0), new Task(1,0,0,0), new Task(0,0,0,0)))
-    val (ap, bp) = pmx(a, b)
-    println(ap)
-    println(bp)
-  }
+  // def main(args: Array[String]): Unit = {
+  //   val a = TaskList(Array(new Task(0,0,0,0), new Task(1,0,0,0), new Task(2,0,0,0), new Task(3,0,0,0), new Task(4,0,0,0), new Task(5,0,0,0), new Task(6,0,0,0), new Task(7,0,0,0), new Task(8,0,0,0), new Task(9,0,0,0), new Task(10,0,0,0)))
+  //   val b = TaskList(Array(new Task(10,0,0,0),new Task(9,0,0,0),new Task(8,0,0,0),new Task(7,0,0,0),new Task(6,0,0,0),new Task(5,0,0,0),new Task(4,0,0,0), new Task(3,0,0,0), new Task(2,0,0,0), new Task(1,0,0,0), new Task(0,0,0,0)))
+  //   val (ap, bp) = pmx(a, b)
+  //   println(ap)
+  //   println(bp)
+  // }
 
 }
