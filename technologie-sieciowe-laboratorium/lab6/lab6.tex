@@ -41,10 +41,8 @@
   \paragraph{}
   Celem ćwiczenia jest zapoznanie się z oprogramowaniem GnuPG do szyfrowania i odpisywania dokumentów elektronicznych oraz zarządzaniem kluczami. W ramach ćwiczenia student zapoznaje sie z: podstawowymi algorytmami kryptograficznymi, tworzeniem, eksportem i importem kluczy, podpisywaniem e-maili oraz plików, budowaniem sieci zaufania.
 
-  \section{Zadania}
-  \paragraph{}
 
-  \subsection{Generowanie kluczy}
+  \section{Generowanie kluczy}
   \paragraph{}
   Klucz GPG można utworzyć z lini komend wydając polecenie \texttt{gpg --gen-key}.
   Podczas generowania program pyta użytkownika o szereg opcji:
@@ -73,7 +71,7 @@
   \paragraph{}
   \newpage
 
-  \subsection{Dodawanie, usuwanie i modyfikacja kluczy}
+  \section{Dodawanie, usuwanie i modyfikacja kluczy}
   \paragraph{}
   W celu wyświetlenia listy wygenerowanych kluczy można użyć polecenia \texttt{gpg --list-keys}.
 
@@ -112,7 +110,7 @@
 
   \newpage
 
-  \subsection{Unieważnienie klucza}
+  \section{Unieważnienie klucza}
   \paragraph{}
   Unieważnienie klucza możliwe jest w trybie edycji za pomocą komendy \texttt{revkey}. Rysunek 5 przedstawia przykład unieważnienia klucza za pomocą programu gpg. Podczas procesu uniważnienia można opcjonalnie podać przyczyne oraz komentarz. Wymagane jest również podanie hasła zabezpieczającego dany klucz.
 
@@ -124,7 +122,7 @@
     \end{center}
   \end{figure}
 
-  \subsection{Eksport i import kluczy}
+  \section{Eksport i import kluczy}
   \paragraph{}
   Eksport klucza publicznego jak i prywatnego sprowadza się do wywołania 2 komend: \texttt{gpg --export -a NAZWA} dla klucza publicznego oraz \texttt{gpg --export-secret-key -a} dla klucza prywatnego. Rysunki 6 i 7 pokazują wynik działania tych komend.
 
@@ -191,7 +189,7 @@
   \paragraph{}
   Serwery kluczy znacznie usprawniają wymiane kluczy między użytkownikami. Każdy może zapytać serwer o klucz publiczny podanego adresu email, nie ma potrzebu wysyłania go do każdego użytkownika z osobna.
 
-  \subsection{Szyfrowanie, deszyfrowanie, podpisywanie i weryfikacja podpisu plików}
+  \section{Szyfrowanie, deszyfrowanie, podpisywanie i weryfikacja podpisu plików}
   \paragraph{}
   Podpisywanie plików dobywa się za pomocą komendy \texttt{gpg --clearsign PLIK}. Podpis pliku wymaga podania hasła zabezpieczającego klucz. Po podpisaniu pliku zostaje utworzony plik z podpisem o rozszerzeniu .asc  Przyład takiego podpisu prezentuje Rysunek 12.
 
@@ -231,5 +229,29 @@
       \caption{Szyfrowanie wiadomości}
     \end{center}
   \end{figure}
+
+  \section{Szyfrowanie, deszyfrowanie, podpisywanie i weryfikacja podpisu e-mail}
+  \paragraph{}
+  W celu podpisania oraz szyfrowania wiadomości e-mail w programie Mozilla Thunderbird wystarczy wybrać odpowiednią opcje z menu OpenPGP podczas tworzenia nowej wiadomości. Umiejscowowienie wspomnianych opcji prezentuje Rysunek 16.
+
+  \begin{figure}[h!]
+    \begin{center}
+      \includegraphics[width=\textwidth]{img/16.png}
+      \caption{Podpisywanie oraz szyfrowanie nowej wiadomości}
+    \end{center}
+  \end{figure}
+
+  \paragraph{}
+  Program pocztowy Mozilla Thunderbird umożliwia także automatyczną weryfikację tożsamości nadawcy oraz deszyfrację wiadomości przychodzących.
+
+  \section{Różnice między PGP/inline a PGP/MIME}
+  \paragraph{}
+  Domyślną metodą załączania zaszyfrowanej wiadomości jest PGP/inline, w której to informację o użytym kluczu sa przechowywane wewnątrz wiadomości. Wadą tej metody są problemy z szyfrowaniem niestandardowych znaków (spoza tablicy ASCII) oraz trudności z szyfrowaniem załączników. Ponadto programy pocztowe, które nie wspierają PGP wyświetlają wiadomości jako niezrozumiały tekst. Metoda PGP/MIME rozwiązuje powyższe problemy przenosząc informacje o kluczu do nagłowka wiadomości.
+
+  \section{Wnioski}
+  \paragraph{}
+  Podpisywanie i szyfrowanie plików oraz wiadomości e-mail pozwala na zapobieganie przedostania się poufnych informacji do osób nieupoważnionych. Nowoczesne programy pocztowe wspierają obsługę OpenPGP, dlatego też generowanie kluczy oraz zabezpieczanie wiadomości nie jest procesem skomplikowanych dla użytkownika.
+
+
 
 \end{document}
