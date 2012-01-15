@@ -49,7 +49,7 @@ Konfiguracja sieci ad hoc w systemie Windows 7 jest intuicyjna i nie stanowi ża
 
 \paragraph{} % (fold)
 \label{par:}
-Rysunek \ref{fig:adhocconf} przedstawia podstawową konfigurację sieci bezprzewodowej typu ad hoc, której nadaliśmy nazwę \textit{WieczorekTobolski} oraz takei samo SSID. 
+Rysunek \ref{fig:adhocconf} przedstawia podstawową konfigurację sieci bezprzewodowej typu ad hoc, której nadaliśmy nazwę \textit{WieczorekTobolski} oraz takie samo SSID. 
 \paragraph{} % (fold)
 \label{par:}
 W celu weryfikacji poprawności połączenia, wykonana została komenda ping:
@@ -66,7 +66,7 @@ Rysunki \ref{fig:adhocping1} i \ref{fig:adhocping2} przedstawiają pomyślne wyk
 \newpage
 \paragraph{} % (fold)
 \label{par:}
-W celu zabezpieczenia sieci ad hoc przed nieporządanym dostępem, zabezpieczona została hasłem:
+W celu zabezpieczenia sieci ad hoc przed nieporządanym dostępem, ustawione zostało hasło:
 \putpicturescale{img/j4.PNG}{Zabezpieczona sieć typu ad hoc}{0.6}{fig:adhocpass}
 
 \putpicturescale{img/t3-adhoc-wrong-pass.PNG}{Źle wprowadzone hasło}{0.5}{fig:adhocwrongpass}
@@ -74,5 +74,105 @@ W celu zabezpieczenia sieci ad hoc przed nieporządanym dostępem, zabezpieczona
 \paragraph{} % (fold)
 \label{par:}
 Na Rysunku \ref{fig:adhocpass} przedstawiona została konfiguracja zabezpieczenia sieci hasłem dostępu, natomiast Rysunek \ref{fig:adhocwrongpass} przedstawia próbę uzyskania nieautoryzowanego dostępu do sieci, która zakończyła się niepowodzeniem.
+
+\section{Sieć typu infrastrukturalnego} % (fold)
+\paragraph{} % (fold)
+Konfiguracja podstawowych parametrów sieci bezprzewodowej w routerze Linksys WRT 150 jest prosta i intuicyjna. Wystarczy połączyć się z urządzeniem za pomocą kabla ethernetowego i ustawić podstawowe parametry, lub zkorzystać z ustawień predefiniowanych.
+
+\paragraph{}
+W celu połączenia się z siecią bezprzewodową należy podać prawidłową nazwę SSID.
+
+\putpicturescale{img/pic1.png}{Nieprawidłowa nazwa SSID}{0.8}{fig:rtwrongssid}
+
+\paragraph{} % (fold)
+\label{par:}
+Na Rysunku \ref{fig:rtwrongssid} przedstawiona została sytuacja, w której podano złe SSID, co uniemożliwiło połączenie z siecią. W celu weryfikacji połączenia pomiędzy koputerami, podobnie jak w poprzednim zadaniu, użyto komendy ping, której wynik w obu przypadkach był pozytywny.
+% paragraph  (end)
+
+\paragraph{} % (fold)
+\label{par:}
+Kolejnym etapem konfiguracji infrastrukturalnej sieci bezprzewodowej było zabezpieczenie jej hasłem dostępowym(Rysunek \ref{fig:rtpass}).
+
+\putpicture{img/pic2.png}{Konfiguracja zabezpieczenia sieci bezprzewodowej}{\textwidth}{fig:rtpass}
+
+\putpicturescale{img/pic4.png}{Wymagane podanie hasła podczas próby podłączenia się do sieci}{0.3}{fig:rtgivepass}
+\newpage
+\paragraph{} % (fold)
+\label{par:}
+Rysunek \ref{fig:rtwrongpass} przedstawia sytuację, podczas której użytkownik próbował nawiązać połączenie z siecią bezprzewodową podając błędne hasło.
+
+\putpicturescale{img/pic3.png}{Próba nieautoryzowanego dostępu do sieci}{0.3}{fig:rtwrongpass}
+% paragraph  (end)
+
+\paragraph{} % (fold)
+\label{par:}
+Ostatnia część zadania polegała na zbadaniu wydajności połączenia za pomocą punktu dostępowego z wykorzystaniem programu Jperf, dla różnych rozmiarów przesyłanych danych, a także dla różnych warunków:
+\begin{itemize}
+  \item połączenie szyfrowane i nieszyfrowane
+  \item z przysłonioną i odkrytą anteną punktu dostępowego
+\end{itemize}
+% paragraph  (end)
+
+%\putpicture{img/j8-szyfrowanie.PNG}{Połączenie szyfrowane - odbiorca}{\textwidth}{}
+%\putpicture{img/t6-jperf-szyfr.PNG}{Połączenie szyfrowane - nadawca}{\textwidth}{}
+
+\putpicture{img/j9-bez_szyfrowania.PNG}{Połączenie nieszyfrowane - odbiorca}{\textwidth}{}
+\putpicture{img/t7-jperf-bezszyfr.PNG}{Połączenie nieszyfrowane - nadawca}{\textwidth}{}
+
+\putpicture{img/j10-100mb_bez_szyfrowania.PNG}{Połączenie nieszyfrowane, wielkość danych : 100mb - odbiorca}{\textwidth}{}
+\putpicture{img/t9-jperf-100mb-bezszyfr.PNG}{Połączenie nieszyfrowane, wielkość danych : 100mb - nadawca}{\textwidth}{}
+
+\putpicture{img/j11-bluza-bez-szyfrowania.PNG}{Połączenie nieszyfrowane, wielkość danych : 100mb, zakryta antena - odbiorca}{\textwidth}{}
+\putpicture{img/t10-jperf-100mb-bezszyfr-bluza.PNG}{Połączenie nieszyfrowane, wielkość danych : 100mb, zakryta antena - nadawca}{\textwidth}{}
+
+\putpicture{img/j12-bluza-haslo.PNG}{Połączenie szyfrowane, wielkość danych : 100mb, zakryta antena - odbiorca}{\textwidth}{}
+\putpicture{img/t11-jperf-100mb-szyfr-bluza.PNG}{Połączenie szyfrowane, wielkość danych : 100mb, zakryta antena - nadawca}{\textwidth}{}
+
+\putpicture{img/j13-haslo-bez-bluzy.PNG}{Połączenie szyfrowane, wielkość danych : 100mb, odkryta antena - odbiorca}{\textwidth}{}
+\putpicture{img/t12-jperf-100mb-szyfr.PNG}{Połączenie szyfrowane, wielkość danych : 100mb, odkryta antena - nadawca}{\textwidth}{}
+
+\putpicture{img/j14-10mb-haslo.PNG}{Połączenie szyfrowane, wielkość danych : 10mb, odkryta antena - odbiorca}{\textwidth}{}
+\putpicture{img/t13-jperf-10mb-szyfr.PNG}{Połączenie szyfrowane, wielkość danych : 10mb, odkryta antena - nadawca}{\textwidth}{}
+
+\putpicture{img/j15-10mb-bez-haslo.PNG}{Połączenie nieszyfrowane, wielkość danych : 10mb, odkryta antena - odbiorca}{\textwidth}{}
+\putpicture{img/t13-jperf-10mb-beyszyfr.PNG}{Połączenie nieszyfrowane, wielkość danych : 10mb, odkryta antena - nadawca}{\textwidth}{}
+
+\newpage
+\paragraph{} % (fold)
+\label{par:}
+Rysunki od 10 do 23 przedstawiają wyniki pomiaru wydajności łącza dla różnych parametrów danych. Analizując przedstawione dane, zauważyliśmy iż wyniki symualcji w przedstawionych sytuacjach znacząco od siebie nie odbiegały. Bezpośredni wpływ na to miała odległośc stacji roboczych od punktu dostępowego, która nie przekraczała 1m. By otrzymać wiarygodne dane, należałoby przeprowadzić testy dla stacji roboczych oddalonych o kilkanaście metrów od siebie i punktu dostepowego, najlepiej znajdujące sie w osobnych pomieszczeniach. Niestety warunki panujące w laboratorium nie pozwoliły nam na przeprowadzenie takowych testów.  
+% paragraph  (end)
+\paragraph{} % (fold)
+\label{par:}
+Badając zabezpieczenia sieci, trudno jest jednoznacznie określić najlepsze sposób ograniczenia dostępu. Na pewno nie jest nim wyłączenie bradcastu SSID, bo nawet wtedy istnieje możliwość w łatwy sposób przechwycenia identyfikatora sieci i uzyskania dostępu.
+\paragraph{} % (fold)
+ \label{par:}
+ Listy ACL są dobrym rozwiązaniem w przypadku w miarę stałej grupy osób korzystających z sieci. Możemy wtedy indywidualnie nadawać uprawnienia i ograniczenia użytkownikom. Odbywa się to poprzez filtrowanie adresów MAC.
+
+ \paragraph{} % (fold)
+ \label{par:}
+ Szyfrowanie jest jedną z najlepszych metod zabezpieczenia sieci, gdy liczba użytkowników nie jest stała i pojawiają się nowi użytkownicy. Jednak poziom zabezpieczenia zależy od wybranego sposobu szyfrowania, co ma bezpośredni wpływ na łatwość złamania klucza i nieporzadanego dostępu.
+
+\paragraph{} % (fold)
+\label{par:}
+Połączenie typu ad hoc jest szybsze niż infrastrukturalne, ponieważ bazuje na bezpośrednim połączeniu dwóch stacji roboczych, eliminując pośrednika sieciowego jakim jest router.
+
+\paragraph{} % (fold)
+\label{par:}
+Wykorzystanie szyfrowania nie ma znaczącego wpływu na szybkość transmisji, ponieważ narzuty informacji, w stosunku do rozmiaru pakietu, jest niewielki.
+% paragraph  (end)
+\paragraph{} % (fold)
+\label{par:}
+Rzeczywista prędkość transmisji jest niższa niż podana w standardzie, ponieważ zwiększenei ruchu sieciowego zwiększa również liczbę kolizji, a w rezultacie retransmisję pakietów. Gdy nie ma odpowiedzi od odbiorcy o otrzymaniu pakietu, następuje jego retransmisja. Czynnikami pogorszającymi prędkość transmisji są również odległośc od punktu dostępowego czy występowanie fizycznych przeszkód (ściany, drzwi), ilość stacji roboczych - im więcej, tym wiecej kolizji w sieci.
+
+\paragraph{} % (fold)
+\label{par:}
+Standard WiFi umożliwia transmisję na 14 różnych kanałach, lecz w Polsce wykorzystywanych jest jedynie 13. Częstotliwości kanałów nachodzą na siebie, co oznacza, że zupełnie niezależnych sieci jest tylko 5. Na danym obszarze może pracować do 14 sieci.
+% paragraph  (end)
+
+\section{Wnioski} % (fold)
+\label{sec:wnioski}
+KOnfiguracja sieci bezprzewodowej przy użyciu współczesnych urządzeń nie jest skomplikowanym procesem. Dlatego na potrzeby stworzenia sieci domowej utworzenie sieci bezprzewodowej jest możliwe dla osób nieposiadająch specjalistycznej wiedzy z tego zakresu.
+% section wnioski (end)
 
 \end{document}
