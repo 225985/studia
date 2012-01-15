@@ -122,6 +122,7 @@
     \end{center}
   \end{figure}
 
+  \newpage
   \section{Eksport i import kluczy}
   \paragraph{}
   Eksport klucza publicznego jak i prywatnego sprowadza się do wywołania 2 komend: \texttt{gpg --export -a NAZWA} dla klucza publicznego oraz \texttt{gpg --export-secret-key -a} dla klucza prywatnego. Rysunki 6 i 7 pokazują wynik działania tych komend.
@@ -164,6 +165,8 @@
   Budowanie sieci zaufania może okazać się czasochłonne, ze względu na konieczność wymiany kluczy między użytkownikami.
 
   \newpage
+  \paragraph{}
+  \newpage
 
   \section{Wykorzystanie serwerów kluczy}
   \paragraph{}
@@ -189,6 +192,7 @@
   \paragraph{}
   Serwery kluczy znacznie usprawniają wymiane kluczy między użytkownikami. Każdy może zapytać serwer o klucz publiczny podanego adresu email, nie ma potrzebu wysyłania go do każdego użytkownika z osobna.
 
+  \newpage
   \section{Szyfrowanie, deszyfrowanie, podpisywanie i weryfikacja podpisu plików}
   \paragraph{}
   Podpisywanie plików dobywa się za pomocą komendy \texttt{gpg --clearsign PLIK}. Podpis pliku wymaga podania hasła zabezpieczającego klucz. Po podpisaniu pliku zostaje utworzony plik z podpisem o rozszerzeniu .asc  Przyład takiego podpisu prezentuje Rysunek 12.
@@ -210,6 +214,7 @@
     \end{center}
   \end{figure}
 
+  \newpage
   \paragraph{}
   W celu zaszyfrowania wiadomości należy wywołać komende \texttt{gpg --recipient ODBIORCA --output PLIK\_GPG --encrypt PLIK}. Po zaszyfrowaniu powstaje plik .gpg. Przyład szyfrowania wiadomości znajduje się na Rysunku 14.
 
@@ -230,6 +235,11 @@
     \end{center}
   \end{figure}
 
+  \newpage
+  \paragraph{}
+  \newpage
+
+
   \section{Szyfrowanie, deszyfrowanie, podpisywanie i weryfikacja podpisu e-mail}
   \paragraph{}
   W celu podpisania oraz szyfrowania wiadomości e-mail w programie Mozilla Thunderbird wystarczy wybrać odpowiednią opcje z menu OpenPGP podczas tworzenia nowej wiadomości. Umiejscowowienie wspomnianych opcji prezentuje Rysunek 16.
@@ -244,6 +254,7 @@
   \paragraph{}
   Program pocztowy Mozilla Thunderbird umożliwia także automatyczną weryfikację tożsamości nadawcy oraz deszyfrację wiadomości przychodzących.
 
+  \newpage
   \section{Różnice między PGP/inline a PGP/MIME}
   \paragraph{}
   Domyślną metodą załączania zaszyfrowanej wiadomości jest PGP/inline, w której to informację o użytym kluczu sa przechowywane wewnątrz wiadomości. Wadą tej metody są problemy z szyfrowaniem niestandardowych znaków (spoza tablicy ASCII) oraz trudności z szyfrowaniem załączników. Ponadto programy pocztowe, które nie wspierają PGP wyświetlają wiadomości jako niezrozumiały tekst. Metoda PGP/MIME rozwiązuje powyższe problemy przenosząc informacje o kluczu do nagłowka wiadomości.
