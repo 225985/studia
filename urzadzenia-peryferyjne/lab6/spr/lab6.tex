@@ -41,7 +41,7 @@
 
 \section{Cel laboratorium}
 \paragraph{}
-Celem laboratorium było zapoznanie się z zasdą pracy i obsługą skanera płaskiego. W tym celu wykorzystana została biblioteka WIA 1.0 i język programowania $C\#$
+Celem laboratorium było zapoznanie się z zasadą pracy i obsługą skanera płaskiego. W tym celu wykorzystana została biblioteka WIA 1.0 i język programowania $C\#$.
 
 \section{Parametry skanowania}
 \paragraph{} % (fold)
@@ -56,6 +56,10 @@ Poza samym zeskanowaniem obrazu, udało nam sie również zmeiniać podstawowe p
 \subsection{Rozdzielczość}
 \paragraph{}
 DPI (dots per inch) - liczba plamek przypadająca na cal, używane jako miara rozdzielczości drukarek, ploterów, skanerów itp. 
+\paragraph{} % (fold)
+\label{par:}
+Najczęściej używa się rozdzielczości 75 dpi (skanowanie tekstu, rozdzielczość obrazków umieszczanych w Internecie) bądź 300 dpi (typowe skanowanie obrazków). Tradycyjne klisze fotograficzne mają rozdzielczość do 3000 dpi.
+% paragraph  (end)
 
 \paragraph{} % (fold)
 \label{par:}
@@ -84,11 +88,11 @@ Inne definicje :
 \subsection{Jasność}
 \paragraph{} % (fold)
 \label{par:}
-Jasność jest atrybute wizualnej percepcji, w której źródło wydaje się odbijać lub emitować światło. Jest to subiektywna atrybut$/$własność obiektu.
+Jasność jest atrybutem wizualnej percepcji, w której źródło wydaje się odbijać lub emitować światło.
 
 \paragraph{} % (fold)
 \label{par:}
-W systemie kolorów RGB, jasnośc może być srednią sumy wartości poszczególnych kolorów :
+W systemie kolorów RGB, jasność może być srednią sumy wartości poszczególnych kolorów :
 \begin{equation}
     \mu = \frac{R+G+B}{3}
 \end{equation}
@@ -120,12 +124,12 @@ Zapis obrazu do pliku :
 \paragraph{} % (fold)
 \label{par:}
 Przykładowe okno programu :
-\putpicture{img/program.PNG}{Przykładowe okno porgramu}{\textwidth}{}
+\putpicture{img/program.PNG}{Przykładowe okno programu}{\textwidth}{}
 % paragraph  (end)
 
 % paragraph  (end)
 
 \section{Wnioski}
-Napisanie programu do obsługi skanera płaskiego w wykorzystaniem biblioteki WIA nie jest zadaniem trudnym. Jedynym problemem z jakim spotkaliśmy się podczas implementacji było znalezienie odpowiednich wartości stałych by ustawić parametry skanowania.
+Napisanie programu do obsługi skanera płaskiego z wykorzystaniem biblioteki WIA nie jest zadaniem trudnym. Ustawiając odpowiednie parametry skanowania (kontrast, jasność, dpi) jesteśmy wstanie otrzymać praktycznie dowolne obrazy, których jakość ograniczają możliwości urządzenia.
 \paragraph{}
 \end{document}
