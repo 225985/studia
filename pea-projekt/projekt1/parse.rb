@@ -33,24 +33,39 @@ data = {}
 last = nil
 
 readlines.each do |line|
-  if line.match %r{== Instance \d+ \| optimal: \d+ \| alg: G\(k=(\d+), n=(\d+)\) ==}
-    last = "#{$1}-#{$2}"
+  # puts line
+  case line
+  when %r{== Instance \d+ \| optimal: \d+ \| alg: G\(k=(\d+), n=(\d+)\) ==}
+    last = "GA_#{$1}-#{$2}"
     data[last] ||= []
-  elsif line =~ /\*\)/
+  when %r{== Instance \d+ \| optimal: \d+ \| alg: TS\(n=(\d+), k=(\d+), t=(\d+)\) ==}
+    last = "TS_#{$1}-#{$2}-#{$3}"
+    data[last] ||= []
+  when %r{== Instance \d+ \| optimal: \d+ \| alg: SA\((.+?)\) ==}
+    last = "SA_#{$1}"
+    data[last] ||= []
+  when /\*\)/
     data[last] << line
   end
 end
 
-data = Hash[data.map {|k,v|
-  [k, v.map {|e|
+data = data.map {|k,v|
+  [k] +  v.map {|e|
     e.split("[")[2].split("]").first.strip.sub("%", "").sub(",", ".").to_f
-  }]
-}]
+  }
+}
 
-data.each do |k,v|
-  puts k
-  puts v
-  puts
-  puts
-  puts
+
+data.transpose.each do |a|
+  puts a.join("\t")
+  # puts a[1]
 end
+
+
+# data.each do |k,v|
+#   puts k
+#   puts v
+#   puts
+#   puts
+#   puts
+# end
