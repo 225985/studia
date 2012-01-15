@@ -1,0 +1,78 @@
+\documentclass[wide,a4paper,titlepage,12pt] {article}
+\usepackage{polski}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{slashbox}
+\usepackage[table]{xcolor}
+\usepackage{graphicx,pdflscape}
+\usepackage{placeins}
+\usepackage{reportshelper}
+
+\title{Technologie sieciowe 2}
+\author{Tymon Tobolski (181037)\\ Jacek Wieczorek (181043)}
+
+% Title page layout (fold)
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{titlepage}
+  \begin{center}
+    \vspace*{3cm}
+    \LARGE \@title \par
+    \vspace{2cm}
+    \textit{\small Autor:}\par
+    \normalsize \@author\par \normalsize
+    \vspace{3cm}
+    \textit{\small Prowadzący:}\par
+    Dr inż. Arkadiusz Grzybowski\par
+    \vspace{2cm}
+    Wydział Elektroniki\\ III rok\\ Pn TN 11.15 - 13.00\par
+    \vspace{4cm}
+    \small \@date
+  \end{center}
+\end{titlepage}
+}
+\makeatother
+
+
+\begin{document}
+\maketitle
+\section{Cel laboratorium}
+\paragraph{}
+Celem laboratorium było zapoznanie się z podstawowymi problemami związanymi z budową bezprzewodowej sieci LAN pracującej w standardzie IEEE 802.11 b/g/n.
+
+\section{Konfiguracja sieci typu ad hoc} % (fold)
+\label{sec:}
+Konfiguracja sieci ad hoc w systemie Windows 7 jest intuicyjna i nie stanowi żadnego problemu. 
+
+\putpicturescale{img/j3.PNG}{Skonfigurowana sieć typu ad hoc}{0.8}{fig:adhocconf}
+
+\paragraph{} % (fold)
+\label{par:}
+Rysunek \ref{fig:adhocconf} przedstawia podstawową konfigurację sieci bezprzewodowej typu ad hoc, której nadaliśmy nazwę \textit{WieczorekTobolski} oraz takei samo SSID. 
+\paragraph{} % (fold)
+\label{par:}
+W celu weryfikacji poprawności połączenia, wykonana została komenda ping:
+% paragraph  (end)
+
+\putpicturescale{img/j1.PNG}{Komenda ping do użytkownika Tymon Tobolski}{0.8}{fig:adhocping1}
+
+\putpicturescale{img/t2-adhoc-ping.PNG}{Komenda ping do użytkownika Jacek Wieczorek}{0.8}{fig:adhocping2}
+
+\paragraph{} % (fold)
+\label{par:}
+Rysunki \ref{fig:adhocping1} i \ref{fig:adhocping2} przedstawiają pomyślne wykonanie komendy ping, weryfikujące połączenie pomiędzy dwoma użytkownikami.
+% paragraph  (end)
+\newpage
+\paragraph{} % (fold)
+\label{par:}
+W celu zabezpieczenia sieci ad hoc przed nieporządanym dostępem, zabezpieczona została hasłem:
+\putpicturescale{img/j4.PNG}{Zabezpieczona sieć typu ad hoc}{0.6}{fig:adhocpass}
+
+\putpicturescale{img/t3-adhoc-wrong-pass.PNG}{Źle wprowadzone hasło}{0.5}{fig:adhocwrongpass}
+
+\paragraph{} % (fold)
+\label{par:}
+Na Rysunku \ref{fig:adhocpass} przedstawiona została konfiguracja zabezpieczenia sieci hasłem dostępu, natomiast Rysunek \ref{fig:adhocwrongpass} przedstawia próbę uzyskania nieautoryzowanego dostępu do sieci, która zakończyła się niepowodzeniem.
+
+\end{document}
