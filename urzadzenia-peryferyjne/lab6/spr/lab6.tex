@@ -56,18 +56,42 @@ Poza samym zeskanowaniem obrazu, udało nam sie również zmeiniać podstawowe p
 \subsection{Rozdzielczość}
 \paragraph{}
 DPI (dots per inch) - liczba plamek przypadająca na cal, używane jako miara rozdzielczości drukarek, ploterów, skanerów itp. 
-TODO
+
+\paragraph{} % (fold)
+\label{par:}
+
+% paragraph  (end)
 \subsection{Kontrast}
 \paragraph{} % (fold)
 \label{par:}
-TODO
+Kontrast jest róznicą w parametrach wizualnych obiektu, która pozwala rozróżnić jeden obiekt od drugiego. W postrzeganiu świata realnego, kontrast jest różnicą w kolorach i jasności obiektów w tym samym polu widzenia.  
+
+\paragraph{} % (fold)
+\label{par:}
+W wielu sytuacjach używa się różnych formalnych definicji kontrastu. Jedną z najpopularniejszych i najczęściej spotykanych jest : 
+\begin{equation}
+    \frac{diff(luminance)}{avg(luminance)}
+\end{equation}
+
+\paragraph{}
+Inne definicje : 
+\begin{itemize}
+    \item Kontrast Webera - $\frac{I-I_{b}}{I_{b}}$, gdzie $I$ i $I_{b}$ reprezentują luminancję obiektu i tła
+    \item Kontrast Michelsona -  $\frac{I_{max}-I_{min}}{I_{max}+I_{min}}$, gdzie $I_{max}$ i $I_{min}$ reprezentują maksymalną i minimalną luminancję 
+\end{itemize}
+% paragraph  (end)
 
 \subsection{Jasność}
 \paragraph{} % (fold)
 \label{par:}
-TODO
-% paragraph  (end)
+Jasność jest atrybute wizualnej percepcji, w której źródło wydaje się odbijać lub emitować światło. Jest to subiektywna atrybut$/$własność obiektu.
 
+\paragraph{} % (fold)
+\label{par:}
+W systemie kolorów RGB, jasnośc może być srednią sumy wartości poszczególnych kolorów :
+\begin{equation}
+    \mu = \frac{R+G+B}{3}
+\end{equation}
 \section{Implementacja}
 \paragraph{} % (fold)
 \label{par:}
