@@ -1,1 +1,22 @@
-todo
+best = S_0                                      // stan poczatkowy
+population = generateRandomPopulation(S_0, 2*k) // losowa populacja poczatkowa
+
+while n > 0 // n - ilosc iteracji
+    nextGen = ... TODO
+
+    foreach i in nextGen
+            if rand() < M
+                nextGen[i] = mutate(nextGen[i])
+            end
+    end
+
+    all = population + nextGen
+    sort(all)
+
+    population = []
+    for i in (0..2k)
+        popuation[i] = all[i]
+    end
+
+    best = population[0]
+end
