@@ -270,6 +270,63 @@ TODO
   \end{center}
 \end{figure}
 \end{landscape}
+
+
+\subsection{Porównanie średniego czasu algorytmów}
+\begin{center}
+    \begin{longtable}{|c|c|c|c|}
+        \hline
+         Alg  & 40&  50 & 100 \\ \hline
+        GA(k=50, n=100)& 108,04&  928,76 & 2 535,24\\ \hline
+        GA(k=100, n=100)  &  57,86 &  212,16 & 1 682,69\\ \hline
+        GA(k=150, n=100)  &  38,76  & 92,89&   1 133,71\\ \hline
+        GA(k=200, n=100)   & 26,19  & 69,96 &  859,94\\ \hline
+        GA(k=50, n=1000)   & 10,99 &  14,33 &  378,84\\ \hline
+        GA(k=100, n=1000) & 2,59  &  9,17  &  87,50\\ \hline
+        GA(k=150, n=1000) &  2,53  &  2,14 &   46,63\\ \hline
+        GA(k=200, n=1000)  & 1,44   & 48,89&   39,68\\ \hline
+        TS(n=10, k=4, t=7) & 89,35  & 356,44 & 1 170,06\\ \hline
+        TS(n=10, k=5, t=7) & 89,35  & 356,44&  1 170,06\\ \hline
+        TS(n=10, k=6, t=7) & 89,35 &  356,44&  1 170,06\\ \hline
+        TS(n=10, k=7, t=7) & 89,35 &  356,44 & 1 170,06\\ \hline
+        TS(n=100, k=4, t=7) &1,50 &   2,21 &   28,78\\ \hline
+        TS(n=100, k=5, t=7) &1,31  &  1,69 &   30,62\\ \hline
+        TS(n=100, k=6, t=7)& 1,33 &  6,41  &  33,63\\ \hline
+        TS(n=100, k=7, t=7) &1,78  & 2,43  &  33,78\\ \hline
+        SA(0,990000)  &  8,07   & 15,77 &  337,97\\ \hline
+        SA(0,999000)  &  0,16  &  0,55  &  9,93\\ \hline
+        SA(0,999900)  &  0,11  &  0,01 &   0,57\\ \hline
+                \caption{Różnica}
+    \end{longtable}
+    
+\end{center}
+
+\begin{landscape}
+\begin{figure}[htbp]
+  \begin{center}
+         \includegraphics[scale = 1.0]{img/all40.PNG}
+         \caption{40 zadań}
+  \end{center}
+\end{figure}
+\end{landscape}
+
+\begin{landscape}
+\begin{figure}[htbp]
+  \begin{center}
+         \includegraphics[scale = 1.0]{img/all50.PNG}
+         \caption{50 zadań}
+  \end{center}
+\end{figure}
+\end{landscape}
+
+\begin{landscape}
+\begin{figure}[htbp]
+  \begin{center}
+         \includegraphics[scale = 1.0]{img/all100.PNG}
+         \caption{100 zadań}
+  \end{center}
+\end{figure}
+\end{landscape}
 \end{document}
 
 
