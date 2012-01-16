@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuzykaWieczorekTobolski", "MuzykaWieczorekTobolski\MuzykaWieczorekTobolski.csproj", "{9FE8CE09-332E-4AB4-AE62-3E0DF832CD79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActiveXWeiczorekTobolski", "ActiveXWeiczorekTobolski\ActiveXWeiczorekTobolski.csproj", "{AB641CBA-8D28-452F-8323-F516D56B2FC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaveOutWrite", "WaveOutWrite\WaveOutWrite.csproj", "{E136AADD-3CD5-4C15-AC94-37CF5EBF27FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9FE8CE09-332E-4AB4-AE62-3E0DF832CD79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FE8CE09-332E-4AB4-AE62-3E0DF832CD79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FE8CE09-332E-4AB4-AE62-3E0DF832CD79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FE8CE09-332E-4AB4-AE62-3E0DF832CD79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB641CBA-8D28-452F-8323-F516D56B2FC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB641CBA-8D28-452F-8323-F516D56B2FC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB641CBA-8D28-452F-8323-F516D56B2FC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB641CBA-8D28-452F-8323-F516D56B2FC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E136AADD-3CD5-4C15-AC94-37CF5EBF27FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E136AADD-3CD5-4C15-AC94-37CF5EBF27FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E136AADD-3CD5-4C15-AC94-37CF5EBF27FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E136AADD-3CD5-4C15-AC94-37CF5EBF27FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
