@@ -227,6 +227,49 @@ gdzie : \\
 \section{Wnioski}
 \paragraph{}
 TODO
+
+
+\newpage
+\section{Porównanie}
+\paragraph{} % (fold)
+\label{par:}
+\subsection{Porównanie średniego czasu algorytmów}
+\begin{center}
+    \begin{longtable}{|c|c|c|c|}
+        \hline
+        Alg & 40 & 50 & 100 \\ \hline
+        G(k=50, n=100) & 136,45 & 219,75 & 497,38\\ \hline
+        G(k=100, n=100)& 261,98 & 391,01 & 918,89\\ \hline
+        G(k=150, n=100)& 409,4 &  598,76 & 1394,21\\ \hline
+        G(k=200, n=100)& 572,62 & 908,32 & 1847,48\\ \hline
+        G(k=50, n=1000)& 1285,72& 1904,94& 4428,43\\ \hline
+        G(k=100, n=1000)  &  2492,99 &3706,92& 9026,62\\ \hline
+        G(k=150, n=1000)   & 3713,95 &5595,2  &13981,76\\ \hline
+        G(k=200, n=1000)   & 4954,24& 7452,48& 18717\\ \hline
+        TS(n=10, k=4, t=7) & 23,11 &  46,81 &  333,83\\ \hline
+        TS(n=10, k=5, t=7) & 25,96 &  50,96 &  368,84\\ \hline
+        TS(n=10, k=6, t=7) & 26,23 &  39,14 &  327,85\\ \hline
+        TS(n=10, k=7, t=7) & 19,42  & 38,48  & 314,94\\ \hline
+        TS(n=100, k=4, t=7)& 188,06 & 378,68 & 3028,87\\ \hline
+        TS(n=100, k=5, t=7)& 208,98 & 375,12 & 3009,74\\ \hline
+        TS(n=100, k=6, t=7)& 206,57 & 382,79 & 3004,64\\ \hline
+        TS(n=100, k=7, t=7) &185,13  &387,76 & 3003,1\\ \hline
+        SA(0,990000)  &  1,89  &  2,01 &   3,09\\ \hline
+        SA(0,999000)  &  15,88 &  18,74 &  30,36\\ \hline
+        SA(0,999900)  &  167,36 & 189,63 & 305,09\\ \hline
+                \caption{Średni czas}
+    \end{longtable}
+    
+\end{center}
+
+\begin{landscape}
+\begin{figure}[htbp]
+  \begin{center}
+         \includegraphics[scale = 1.0]{img/timeAll.PNG}
+         \caption{Średni czas}
+  \end{center}
+\end{figure}
+\end{landscape}
 \end{document}
 
 
