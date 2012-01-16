@@ -2,9 +2,14 @@ best = S_0                                      // stan poczatkowy
 population = generateRandomPopulation(S_0, 2*k) // losowa populacja poczatkowa
 
 while n > 0 // n - ilosc iteracji
-    nextGen = ... TODO
+    nextGen = []
+    for i in (0..length(nextGen)/2)
+        nextGen[i], nextGen[i+1] = crossover(population[i], population[i+1])
+        
+        i += 2
+    end
 
-    foreach i in nextGen
+    foreach i in (0..length(nextGen))
             if rand() < M
                 nextGen[i] = mutate(nextGen[i])
             end
