@@ -7,6 +7,7 @@
 \usepackage{graphicx,pdflscape}
 \usepackage{placeins}
 \usepackage{slashbox}
+\usepackage{longtable}
 
 
 \title{Projektowanie efektywnych algorytmów}
@@ -53,10 +54,6 @@ wykonywania zadania $j$. Problem polega na znalezieniu takiej kolejności wykony
 
 \section{Opis algorytmu}
 \paragraph{}
-
-
-\newpage
-\paragraph{}
 Przebieg algorytmu :
 \lstset{ %
     language=java,                % choose the language of the code
@@ -88,7 +85,7 @@ Przebieg algorytmu :
         \item M - prawdopodobieństwo mutacji
 
     \end{itemize}
-\newpage
+
 \section{Implementacja}
 \paragraph{}
 Jezykiem implementacji algorytmu jest $Scala$ w wersji $2.9.1$ działająca na $JVM$.
@@ -116,7 +113,7 @@ Jezykiem implementacji algorytmu jest $Scala$ w wersji $2.9.1$ działająca na $
     % morekeywords={*,...}            % if you want to add more keywords to the set
     }
     \lstinputlisting{code/gen.scala}
-\newpage
+
 \section{Testy}
 \paragraph{}
 Test algorytmu tabu search przeprowadzony został dla trzech zestawów testów o różnej ilośći zadań, każdy składający się ze 125 instancji.
@@ -134,65 +131,99 @@ gdzie : \\
   \item $z$ - ilość rozwiązań w instancji
   \item $m$ - ilość instancji danego problemu
 \end{itemize}
+
+\newpage
+\subsection{Średnia różnica dla zmiennego \textit{k} i stałego \textit{n = 100}}
 \paragraph{}
-
-
-\begin{table}
-    \begin{tabular}{|c|c|c|c|c|}
+\begin{center}
+    \begin{longtable}{|c|c|c|c|c|}
         \hline
         \backslashbox{$I$}{$k$} & 50 & 100 & 150 & 200 \\ \hline
         40 & 108.04 & 57.86 & 38.76 & 26.19 \\ \hline
         50 & 928.76 & 212.16 & 92.89 & 69.96 \\ \hline
-        100 & 2,535.24 & 1,682.69 & 1,133.71 & 859.94 \\
-        \hline
-    \end{tabular}
-    \caption{Diff, n=100}
-\end{table}
+        100 & 2,535.24 & 1,682.69 & 1,133.71 & 859.94 \\ \hline
+        \caption{Diff, n=100}
+     \end{longtable}
+\end{center}
 
-\begin{table}
-    \begin{tabular}{|c|c|c|c|c|}
+\begin{figure}[htbp]
+  \begin{center}
+         \includegraphics[scale = 0.7]{img/GA_diff_100.PNG}
+         \caption{Diff, n=100}
+  \end{center}
+\end{figure}
+
+\newpage
+\subsection{Średnia różnica dla zmiennego \textit{k} i stałego \textit{n = 1000}}
+\paragraph{}
+\begin{center}
+    \begin{longtable}{|c|c|c|c|c|}
         \hline
         \backslashbox{$I$}{$k$} & 50 & 100 & 150 & 200\\ \hline
         40 & 10.99 & 2.59 & 2.53 & 1.44\\ \hline
         50 & 14.33 & 9.17 & 2.14 & 48.89\\ \hline
         100 & 378.84 & 87.50 & 46.63 & 39.68\\
         \hline
-    \end{tabular}
-    \caption{Diff, n=1000}
-\end{table}
+        \caption{Diff, n=1000}
+    \end{longtable}
+\end{center}
 
+\begin{figure}[htbp]
+  \begin{center}
+         \includegraphics[scale = 0.7]{img/GA_diff_1000.PNG}
+         \caption{Diff, n=1000}
+  \end{center}
+\end{figure}
 
-
-
-\begin{table}
-    \begin{tabular}{|c|c|c|c|}
+\newpage
+\subsection{Średnia czas rozwiązywania dla zmiennego \textit{k} i stałego \textit{n = 100}}
+\begin{center}
+    \begin{longtable}{|c|c|c|c|}
         \hline
         \backslashbox{$k$}{$I$} & 40 & 50 & 100\\ \hline
-50 & 136.45 & 219.75 & 497.38\\ \hline
-100 & 261.98 & 391.01 & 918.89\\ \hline
-150 & 409.4 & 598.76 & 1394.21\\ \hline
-200 & 572.62 & 908.32 & 1847.48\\
-        \hline
-    \end{tabular}
-    \caption{Time, n=100}
-\end{table}
+            50 & 136.45 & 219.75 & 497.38\\ \hline
+            100 & 261.98 & 391.01 & 918.89\\ \hline
+            150 & 409.4 & 598.76 & 1394.21\\ \hline
+            200 & 572.62 & 908.32 & 1847.48\\ \hline
 
-\begin{table}
-    \begin{tabular}{|c|c|c|c|}
-        \hline
-        \backslashbox{$k$}{$I$} & 40 & 50 & 100\\ \hline
-50 & 1285.72 & 1904.94 & 4428.43\\ \hline
-100 & 2492.99 & 3706.92 & 9026.62\\ \hline
-150 & 3713.95 & 5595.2 & 13981.76\\ \hline
-200 & 4954.24 & 7452.48 & 18717\\
-        \hline
-    \end{tabular}
-    \caption{Time, n=1000}
-\end{table}
+        \caption{Time, n=100}
+    \end{longtable}
+\end{center}
 
+\begin{figure}[htbp]
+  \begin{center}
+         \includegraphics[scale = 0.7]{img/GA_n_100.PNG}
+         \caption{Time, n=100}
+  \end{center}
+\end{figure}
 
 
 \newpage
+\subsection{Średnia czas rozwiązywania dla zmiennego \textit{k} i stałego \textit{n = 1000}}
+\begin{center}
+    \begin{longtable}{|c|c|c|c|}
+        \hline
+        \backslashbox{$k$}{$I$} & 40 & 50 & 100\\ \hline
+            50 & 1285.72 & 1904.94 & 4428.43\\ \hline
+            100 & 2492.99 & 3706.92 & 9026.62\\ \hline
+            150 & 3713.95 & 5595.2 & 13981.76\\ \hline
+            200 & 4954.24 & 7452.48 & 18717\\
+        \hline
+        \caption{Time, n=1000}
+    \end{longtable}
+    
+\end{center}
+
+\begin{figure}[htbp]
+  \begin{center}
+         \includegraphics[scale = 0.7]{img/GA_n_1000.PNG}
+         \caption{Time, n=1000}
+  \end{center}
+\end{figure}
+
+
+\newpage
+
 \section{Wnioski}
 \paragraph{}
 TODO
