@@ -1,0 +1,11 @@
+backup 8000
+klaster 5000
+klimatyzacja 9000
+router1 10000
+router2 10000
+server1 8000
+server2 8000
+ups 15000
+prad 700
+internet1 500
+internet2 500
