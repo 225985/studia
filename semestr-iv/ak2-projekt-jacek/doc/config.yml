@@ -1,0 +1,20 @@
+document:
+  toc: true
+  title: "Projekt formatu zmiennoprzecinkowego"
+  encoding: "utf8"
+  language: "polski"
+  author: ["Jacek Wieczorek 181043", "Mateusz Lenik 181142"]
+chapters:
+  - name: "wstep"
+    filetype: "markdown"
+  - name: "opis"
+    filetype: "markdown"
+  - name: "implementacja"
+    filetype: "markdown"
+  - name: "testy"
+    filetype: "markdown"
+  - name: "wnioski"
+    filetype: "markdown"
+  - name: "bibliografia"
+    filetype: "markdown"
+

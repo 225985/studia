@@ -1,0 +1,51 @@
+#!/bin/bash
+
+#zadanie 11
+
+if [ ! $# -eq 2 ]
+then
+  echo "za malo argumentow"
+  exit 1
+fi
+
+if [ ! -d $1 ]
+then
+   echo "to nie jest katalog"
+   exit 1
+fi
+
+if [ ! -e $2 ]
+then
+ echo "lista nie istnieje"
+ exit 1
+fi
+
+echo "lista plikow brakujacych w folderze"
+for line in `cat $2`
+do
+   if [ ! -e "$1/$line" ]
+   then
+      echo "$line"
+   fi
+done
+
+contain=0
+echo "pliki brakujace na liscie"
+for f in `ls $1`
+do
+    let "contain=0"
+    for l in `cat $2`
+    do
+      
+      if [ $f == $l ]
+      then
+         let "contain=1"
+      fi
+    done
+   
+    if [ $contain -eq 0 ]
+    then
+       echo "$f"
+    fi
+done
+
