@@ -1,0 +1,241 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6FDC9298135CBD67001873BF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC9297135CBD67001873BF /* main.cpp */; };
+		6FDC92A3135CBDD5001873BF /* Matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC929F135CBDD5001873BF /* Matrix.cpp */; };
+		6FDC92A4135CBDD5001873BF /* mmio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FDC92A1135CBDD5001873BF /* mmio.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6FDC9291135CBD67001873BF /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		6FDC9293135CBD67001873BF /* multiplier */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = multiplier; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FDC9297135CBD67001873BF /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		6FDC9299135CBD67001873BF /* multiplier.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = multiplier.1; sourceTree = "<group>"; };
+		6FDC929F135CBDD5001873BF /* Matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix.cpp; sourceTree = "<group>"; };
+		6FDC92A0135CBDD5001873BF /* Matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix.h; sourceTree = "<group>"; };
+		6FDC92A1135CBDD5001873BF /* mmio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mmio.cpp; sourceTree = "<group>"; };
+		6FDC92A2135CBDD5001873BF /* mmio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mmio.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6FDC9290135CBD67001873BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6FDC9288135CBD67001873BF = {
+			isa = PBXGroup;
+			children = (
+				6FDC9296135CBD67001873BF /* multiplier */,
+				6FDC9294135CBD67001873BF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6FDC9294135CBD67001873BF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6FDC9293135CBD67001873BF /* multiplier */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6FDC9296135CBD67001873BF /* multiplier */ = {
+			isa = PBXGroup;
+			children = (
+				6FDC929F135CBDD5001873BF /* Matrix.cpp */,
+				6FDC92A0135CBDD5001873BF /* Matrix.h */,
+				6FDC92A1135CBDD5001873BF /* mmio.cpp */,
+				6FDC92A2135CBDD5001873BF /* mmio.h */,
+				6FDC9297135CBD67001873BF /* main.cpp */,
+				6FDC9299135CBD67001873BF /* multiplier.1 */,
+			);
+			path = multiplier;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6FDC9292135CBD67001873BF /* multiplier */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6FDC929C135CBD67001873BF /* Build configuration list for PBXNativeTarget "multiplier" */;
+			buildPhases = (
+				6F43125A135CC9BA00066D8C /* ShellScript */,
+				6FDC928F135CBD67001873BF /* Sources */,
+				6FDC9290135CBD67001873BF /* Frameworks */,
+				6FDC9291135CBD67001873BF /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = multiplier;
+			productName = multiplier;
+			productReference = 6FDC9293135CBD67001873BF /* multiplier */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6FDC928A135CBD67001873BF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Politechnika Wroclawska";
+			};
+			buildConfigurationList = 6FDC928D135CBD67001873BF /* Build configuration list for PBXProject "multiplier" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6FDC9288135CBD67001873BF;
+			productRefGroup = 6FDC9294135CBD67001873BF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6FDC9292135CBD67001873BF /* multiplier */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6F43125A135CC9BA00066D8C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "source /opt/intel/bin/iccvars.sh intel64";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6FDC928F135CBD67001873BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6FDC9298135CBD67001873BF /* main.cpp in Sources */,
+				6FDC92A3135CBDD5001873BF /* Matrix.cpp in Sources */,
+				6FDC92A4135CBDD5001873BF /* mmio.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6FDC929A135CBD67001873BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		6FDC929B135CBD67001873BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		6FDC929D135CBD67001873BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.intel.compilers.icc.12_0_0;
+				LIBRARY_SEARCH_PATHS = (
+					"/opt/intel/composerxe-2011.3.167/tbb/include/tbb/**",
+					"/Developer/opt/intel/composerxe-2011.3.167/tbb/include/tbb/**",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6FDC929E135CBD67001873BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.intel.compilers.icc.12_0_0;
+				LIBRARY_SEARCH_PATHS = (
+					"/opt/intel/composerxe-2011.3.167/tbb/include/tbb/**",
+					"/Developer/opt/intel/composerxe-2011.3.167/tbb/include/tbb/**",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6FDC928D135CBD67001873BF /* Build configuration list for PBXProject "multiplier" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6FDC929A135CBD67001873BF /* Debug */,
+				6FDC929B135CBD67001873BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6FDC929C135CBD67001873BF /* Build configuration list for PBXNativeTarget "multiplier" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6FDC929D135CBD67001873BF /* Debug */,
+				6FDC929E135CBD67001873BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6FDC928A135CBD67001873BF /* Project object */;
+}

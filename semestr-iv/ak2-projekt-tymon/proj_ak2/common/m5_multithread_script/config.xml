@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<settings>
+
+	<commands>
+		<cmd>apsi</cmd>
+		<cmd>crafty</cmd>
+	</commands>
+	
+	<l1d>
+		<from>8kB</from>
+		<to>128kB</to>
+	</l1d>
+
+	<l1i>
+		<from>8kB</from>
+		<to>128kB</to>
+	</l1i>
+
+	<l2>
+		<from>1mB</from>
+		<to>1mB</to>
+	</l2>
+
+	<count>
+		<num>4</num>
+	</count>
+
+    <cycles>
+        <num>1000000</num>
+    </cycles>
+
+</settings>

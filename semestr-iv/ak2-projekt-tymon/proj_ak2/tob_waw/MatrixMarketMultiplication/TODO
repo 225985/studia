@@ -1,0 +1,7 @@
+# TODO
+
+* Mnożenie macierzy gęstych w formacie CRS przez wektor i macierzy przez macierz
+* Zaimplementować funkcje weryfikujące poprawność obliczeń, np. na podstawie gotowych danych z pliku.
+# Zaimplementować wczytywanie i zapis macierzy z i do formatu MatrixMarket. 
+* Zaimplementować skrypt (bash, python, perl, ...) pozwalający na przetestowanie kodu
+

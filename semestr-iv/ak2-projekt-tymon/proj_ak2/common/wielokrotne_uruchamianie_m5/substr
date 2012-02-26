@@ -1,0 +1,9 @@
+#!/bin/bash
+if [ $# == 3 ]
+then
+aa="'gcc_166': ['gcc', '166.i -o 166.o', ''],"
+nopref="${1#${1%${2}*}${2}}";
+echo "${nopref%${3}*}";
+else
+echo “Usage: substr string prefix suffix”
+fi

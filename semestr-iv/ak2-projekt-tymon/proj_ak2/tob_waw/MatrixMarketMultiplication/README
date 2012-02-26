@@ -1,0 +1,28 @@
+# Projekt AK2
+    wersja 0.1
+    
+# Wymagania:
+ - kompilacja
+    gcc version >= 4.2.1
+ - testy
+    ruby >= 1.9.2
+    
+Na chwilę obecną po kompilacji odpalenie pliku main z podaniem plików macierzy mtx jako 
+parametrów mnoży te macierze oraz zapisuje wynikową macierz w pliku multiplied.mtx
+
+Funkcja int fileComparison(const char * filename); Za parametr przyjmuje lokacje pliku mtx z którym porównuje wynik przeprowadzonego mnożenia, poczym wyświetla komunikat o tym czy macierze są jednakowe.
+
+Funkcja void saveToFile(); zapisuje macierz do pliku mtx. Obecnie jest stosowana do tworzenia pliku multiplication.mtx, w którym znajduje się macierz wynikowa z przeprowadzonego mnożenia.
+
+# Kompilacja
+    $ make
+
+# Uruchomienie programu
+    $ ./main matrix1.mtx matrix2.mtx
+
+# Testowanie za pomoca skryptu w ruby
+    $ ruby test.rb matrix1.mtx matrix2.mtx multiplied.mtx
+    
+# Funkcja testująca "wszystko"
+    $ make test
+

@@ -1,0 +1,244 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6F32926413743C090000480C /* libtbb.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F32926213743C090000480C /* libtbb.dylib */; };
+		6F32926513743C090000480C /* libtbbmalloc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F32926313743C090000480C /* libtbbmalloc.dylib */; };
+		6F32926613743C110000480C /* libtbb.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6F32926213743C090000480C /* libtbb.dylib */; };
+		6F32926713743C110000480C /* libtbbmalloc.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6F32926313743C090000480C /* libtbbmalloc.dylib */; };
+		6F329274137447A40000480C /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F329272137447A40000480C /* utils.cpp */; };
+		6F782CBC13740D7C0051407B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F782CB713740D7C0051407B /* main.cpp */; };
+		6F782CBD13740D7C0051407B /* Matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F782CB813740D7C0051407B /* Matrix.cpp */; };
+		6F782CBE13740D7C0051407B /* mmio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F782CBA13740D7C0051407B /* mmio.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6F782CA913740D400051407B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				6F32926613743C110000480C /* libtbb.dylib in CopyFiles */,
+				6F32926713743C110000480C /* libtbbmalloc.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		6F32926213743C090000480C /* libtbb.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtbb.dylib; path = "../../../../../../../../opt/intel/composerxe-2011.3.167/tbb/lib/libtbb.dylib"; sourceTree = "<group>"; };
+		6F32926313743C090000480C /* libtbbmalloc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtbbmalloc.dylib; path = "../../../../../../../../opt/intel/composerxe-2011.3.167/tbb/lib/libtbbmalloc.dylib"; sourceTree = "<group>"; };
+		6F329268137443940000480C /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		6F329272137447A40000480C /* utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utils.cpp; sourceTree = "<group>"; };
+		6F329273137447A40000480C /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
+		6F782CAB13740D400051407B /* Matrix */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Matrix; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F782CB713740D7C0051407B /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		6F782CB813740D7C0051407B /* Matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix.cpp; sourceTree = "<group>"; };
+		6F782CB913740D7C0051407B /* Matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix.h; sourceTree = "<group>"; };
+		6F782CBA13740D7C0051407B /* mmio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mmio.cpp; sourceTree = "<group>"; };
+		6F782CBB13740D7C0051407B /* mmio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mmio.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6F782CA813740D400051407B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F32926413743C090000480C /* libtbb.dylib in Frameworks */,
+				6F32926513743C090000480C /* libtbbmalloc.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6F782CA013740D400051407B = {
+			isa = PBXGroup;
+			children = (
+				6F329268137443940000480C /* CoreServices.framework */,
+				6F32926213743C090000480C /* libtbb.dylib */,
+				6F32926313743C090000480C /* libtbbmalloc.dylib */,
+				6F782CAE13740D400051407B /* Matrix */,
+				6F782CAC13740D400051407B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6F782CAC13740D400051407B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6F782CAB13740D400051407B /* Matrix */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6F782CAE13740D400051407B /* Matrix */ = {
+			isa = PBXGroup;
+			children = (
+				6F782CB713740D7C0051407B /* main.cpp */,
+				6F782CB813740D7C0051407B /* Matrix.cpp */,
+				6F782CB913740D7C0051407B /* Matrix.h */,
+				6F782CBA13740D7C0051407B /* mmio.cpp */,
+				6F782CBB13740D7C0051407B /* mmio.h */,
+				6F329272137447A40000480C /* utils.cpp */,
+				6F329273137447A40000480C /* utils.h */,
+			);
+			path = Matrix;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6F782CAA13740D400051407B /* Matrix */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6F782CB413740D400051407B /* Build configuration list for PBXNativeTarget "Matrix" */;
+			buildPhases = (
+				6F782CA713740D400051407B /* Sources */,
+				6F782CA813740D400051407B /* Frameworks */,
+				6F782CA913740D400051407B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Matrix;
+			productName = Matrix;
+			productReference = 6F782CAB13740D400051407B /* Matrix */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6F782CA213740D400051407B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Politechnika Wroclawska";
+			};
+			buildConfigurationList = 6F782CA513740D400051407B /* Build configuration list for PBXProject "Matrix" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6F782CA013740D400051407B;
+			productRefGroup = 6F782CAC13740D400051407B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6F782CAA13740D400051407B /* Matrix */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6F782CA713740D400051407B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F782CBC13740D7C0051407B /* main.cpp in Sources */,
+				6F782CBD13740D7C0051407B /* Matrix.cpp in Sources */,
+				6F782CBE13740D7C0051407B /* mmio.cpp in Sources */,
+				6F329274137447A40000480C /* utils.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6F782CB213740D400051407B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.intel.compilers.icc.12_0_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		6F782CB313740D400051407B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.intel.compilers.icc.12_0_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		6F782CB513740D400051407B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				HEADER_SEARCH_PATHS = "\"/opt/intel/composerxe-2011.3.167/tbb/include\"/**";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"/opt/intel/composerxe-2011.3.167/tbb/lib\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6F782CB613740D400051407B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				HEADER_SEARCH_PATHS = "\"/opt/intel/composerxe-2011.3.167/tbb/include\"/**";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"/opt/intel/composerxe-2011.3.167/tbb/lib\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6F782CA513740D400051407B /* Build configuration list for PBXProject "Matrix" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F782CB213740D400051407B /* Debug */,
+				6F782CB313740D400051407B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6F782CB413740D400051407B /* Build configuration list for PBXNativeTarget "Matrix" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F782CB513740D400051407B /* Debug */,
+				6F782CB613740D400051407B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6F782CA213740D400051407B /* Project object */;
+}

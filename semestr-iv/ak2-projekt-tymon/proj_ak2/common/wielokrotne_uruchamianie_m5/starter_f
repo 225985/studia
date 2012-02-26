@@ -1,0 +1,55 @@
+#wywolanie: 
+#./starter assocL1 assocL2 sizeL1i sizeL1d sizeL2 ILERDZENI ILEINST(10^X) ILEPROG PROGRAMY
+echo --------------- parametrers  inside starter_f -------------------------------
+echo a1 $1
+echo a2 $2
+echo s1i $3
+echo s1d $4
+echo s2 $5
+echo rdzeni $6
+echo instrukcji 10\^$7
+echo ileprog $8
+echo prog $programy
+echo folder $nazwaFolderu
+echo ----------------------------------------
+
+#W pierwotnej wersji mialo to robic kopie zapasowa plikow konfiguracyjnych
+#symulatora. Nie wiem czy to potrzebne, ale raczej nie szkodzi niczemu.
+#Skopiowanie z powrotem jest pod koniec skryptu.
+mv ../../configs/common/Caches.py ../../configs/common/tempCaches
+mv ../../configs/common/CacheConfig.py ../../configs/common/tempCacheConfig
+
+# wstawianie assocow L1 i L2, ktore podane sa jako argumenty $1 i $2
+sed "32s/assoc.*/assoc = $1/;39s/assoc.*/assoc = $2/" ../../configs/common/tempCaches > ../../configs/common/Caches.py
+
+# wstawianie wielkosci pamieci L1d, L1i i L2
+sed "49s/dcache.*(size =.*, ass/dcache = L1Cache(size = '$4kB', ass/;47s/icache.*(size =.*, ass/icache = L1Cache(size = '$3kB', ass/;38s/L2Cache(size =.*, ass/L2Cache(size = '$5kB', ass/" ../../configs/common/tempCacheConfig > ../../configs/common/CacheConfig.py
+
+# tworzenie stringa zawierajacego nazwy wszystkich programow z wywolania
+# na identycznej zasadzie jak w skrypcie starter
+programy=""
+
+#zawiera string z nazwa folderu z wynikami
+nazwaFolderu="m5_"
+for (( i=9; $i <= (9+$8); i++ )) ;
+do
+	programy="$programy ${!i}"
+	nazwaFolderu="$nazwaFolderu${!i}"
+done
+mkdir --parents wyniki/$nazwaFolderu/
+#uruchomienie skryptu
+python run_many.py $6 $7 $programy
+cp $nazwaFolderu/stats.txt wyniki/$nazwaFolderu/"a1=$1_a2=$2_L1i=$3_L1d=$4_L2=$5_rdzeni=$6_instrukcji=$7.txt"
+cat $nazwaFolderu/stats.txt wyniki/$nazwaFolderu/"a1=$1_a2=$2_L1i=$3_L1d=$4_L2=$5_rdzeni=$6_instrukcji=$7.txt" | awk '/cpu0.ipc_total  / {print $2}' > tmp.txt
+
+
+# pliki testowe. sprawdzic mozna czy edycja Caches.py i CacheConfig.py
+# edytowala pliki w sposob oczekiwany przez uzytkownika
+cp ../../configs/common/Caches.py ./testskryptu
+cp ../../configs/common/CacheConfig.py ./testskryptu2
+
+# przywracanie plikow Caches i CacheConfig do pierwotnego stanu
+rm -r ../../configs/common/Caches.py
+rm -r ../../configs/common/CacheConfig.py
+mv ../../configs/common/tempCacheConfig ../../configs/common/CacheConfig.py
+mv ../../configs/common/tempCaches ../../configs/common/Caches.py

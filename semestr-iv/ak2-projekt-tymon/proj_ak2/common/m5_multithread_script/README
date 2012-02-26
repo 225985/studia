@@ -1,0 +1,39 @@
+Konfiguracji dokonuje się poprzez edycję pliku config.xml
+Skrypt wraz z plikiem konfiguracyjnym nalezy umiescic w folderze $M5_HOME/tests/test_progs/, a następnie z tamtego folderu go uruchomić.
+
+
+Lista opcji:
+
+    <commands> - programy do uruchomienia, podawać kolejno w znacznikach <cmd>, np:
+                 
+                 <cmd>apsi</cmd>
+                 <cmd>crafty</cmd>
+                 ...
+
+    <l1d> - rozmiar pamięci podręcznej l1 dcache, <from> - od, <to> - do danej wielkosci.
+
+    <l1i> - rozmiar pamięci podręcznej l1 icache, <from> - od, <to> - do danej wielkosci.
+
+    <l2> - rozmiar pamięci podręcznej l2, <from> - od, <to> - do danej wielkosci.
+
+    <count> - ilosc symulacji pracujacych symultanicznie, podana w znacznikach <num></num>
+
+    <cycles> - ilosc przebiegow, parametr maxinst, podany w znacznikach <num></num>
+
+
+---------------------------------
+Po wykonaniu skryptu w katalogu wyniki zostaną utworzone 4 pliki tekstowe. Zawierają one dane zebrane ze wszystkich symulacji, które są potrzebne do stworzenia wykresów. Są to odpowiednio: IPC oraz współczynnik chybień L2, L1i, L1d. 
+
+
+===============================================
+==================UPDATE=======================
+===============================================
+
+Skrypt "script.py" tworzy w katalogu każdej z symulacji 4 pliki tekstowe zawierające wyniki tej symulacji, tj.: ipc, współczynnik chybień l2,l1i,l1d.
+
+Skrypt "script1.py" -  za pomocą osobnego pliku "sh" o nazwie "sim1.sh" tworzona jest posortowana lista katalogów wynikowych. Zapisywana jest ona do pliku "katalogisort.txt". Następną rzeczą jest policzenie linii w tym pliku, czyli sprawdzenie ile było symulacji. Liczba ta zapisywana jest w pliku "linie.txt". 
+
+Skrypt "script2.py" odpowiedzialny jest za "wyciągniecie" wyników symulacji z każdego katalogu w odpowiedniej kolejności. Tutaj właśnie wykorzystany jest plik "katalogisort.txt". Dane zapisywane są do plików "ipc.txt", "l2.txt", "l1d.txt", "l1i.txt" w katalogu "wyniki".
+
+
+Aby wszystko działało poprawnie należy najpierw uruchomić "script.py", po zakończeniu jego działania "script1.py", a na koniec "script2.py"

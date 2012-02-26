@@ -1,0 +1,16 @@
+Grupa: Dziwiński, Taramina
+Architektura: NVIDIA CUDA
+
+Grupa: Lewoc, Naczke
+Architektura: Symulator M5
+
+Grupa: Kaczmarski, Adamiak
+Architektura: Intel
+
+Grupa: Tobolski, Wawszczak
+Architektura: Intel Cluster
+
+Grupa: Bilski, Horecki
+Architektura: GNU
+
+

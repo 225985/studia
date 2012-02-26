@@ -1,0 +1,32 @@
+############## MIN #### 
+Assoc L1:
+2
+Assoc L2:
+8
+Size L1i in kB:
+64
+Size L1d in kB:
+64
+Size L2 in kB:
+2
+Ilosc rdzeni:
+4
+Ilosc instrukcji 10 podniesione do potęgi:
+6
+############### MAX ##
+Assoc L1 max:
+2
+Assoc L2 max:
+8
+Size L1i max:
+64
+Size L1d max:
+64
+Size L2 max:
+128
+Cores max:
+4
+################ SENSITIVITY ###
+What increase in parameter values is needed to continue search(1.1 means 10%):
+1.01
+

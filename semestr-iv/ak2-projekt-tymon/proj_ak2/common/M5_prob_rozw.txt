@@ -1,0 +1,18 @@
+PROBLEMY Z SYMULATOREM M5 i ICH ROZWIAZANIA:
+
+Problem: 
+Sym. M5 skompilowany poprawnie, próba uruchomienia skryptu run_many.py z odpowiednimi argumentami zakończona niepowodzeniem. 
+W pliku err.txt :
+mmap: Invalid argument
+fatal: Could not mmap!
+@ cycle 0
+[PhysicalMemory:build/ALPHA_SE/mem/physical.cc, line 97]
+Memory Usage: 21352 KBytes
+For more information see: http://www.m5sim.org/fatal/6f4c9efd
+
+Rozwiązanie: 
+w skrypcie se_ak2.py w lini numer 165:
+  physmem = PhysicalMemory(range=AddrRange("4GB"),latency='40ns')
+
+wartość 4GB zmieniamy na mniejszą wartość (mniejszą od ilości naszej fizycznej pamięci RAM) np na 2GB.
+

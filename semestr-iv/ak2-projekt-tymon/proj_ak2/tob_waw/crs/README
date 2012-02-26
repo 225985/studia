@@ -1,0 +1,28 @@
+# Projekt AK2
+    wersja 0.1
+    
+# Wymagania:
+ - kompilacja
+    gcc version >= 4.2.1
+ - testy
+    ruby >= 1.8.7 (1.9.x)
+    
+Na chwilę obecną po kompilacji odpalenie pliku main z podaniem plików macierzy mtx jako 
+parametrów mnoży te macierze oraz zapisuje wynikową macierz w pliku.
+
+Macierze sa wczytywane z plikow w formacie MatrixMarket i zapisywane w pamieci w formacie CRS.
+Przed pomnozeniem macierzy jedna z nich jest konwertowana do formatu CCS.
+Wynikowa macierz jest rowniez przechowywana w formacie CRS, z ktorego to nastepu zapis do pliku w formacie MatrixMarket
+
+# Kompilacja
+    $ make
+
+# Uruchomienie programu
+    $ ./main matrix1.mtx matrix2.mtx result.mtx
+
+# Testowanie za pomoca skryptu w ruby
+    $ ./test.rb matrix1.mtx matrix2.mtx result.mtx
+    
+# Funkcja testująca "wszystko"
+    $ make test
+

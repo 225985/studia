@@ -1,0 +1,12 @@
+gcc_166
+bzip2
+apsi
+mcf
+art
+equake
+swim
+mesa
+crafty
+eon_rushmeier
+vortex
+sixtrack
