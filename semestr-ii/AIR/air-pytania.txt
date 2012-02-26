@@ -1,0 +1,162 @@
+1. Która z metod nawigacji wózków AGV jest najmniej dokładna:
+* metoda sonarowa
+- metoda laserowa
+- metoda żyroskopowa
+
+2. Czy człon proporcjonalny jest członem:
+* zerowego rzędu
+- pierwszego rzędu
+- drugiego rzędu
+
+3. Obiekt opisany równaniem różniczkowym y(t)=u'(t) jest:
+- liniowy, statyczny, z czasem dyskretnym
+- nieliniowy, dynamiczny, z czasem ciągłym
+- nielinowy, styatyczny, z czasem dyskretnym
+* liniowy, dynamiczny, z czasem ciągłym
+
+4. Klasyczny regulator PID jest regulatorem
+* liniowym
+- nieliniowym
+- liniowym, lub nieliniowym zależnie od nastaw
+- liniowym, lub nieliniowym zależnie od sterowanego obiektu
+
+5. W układzie automatycznej regulacji wejściem obiektu jest:
+- wartość zadana jego wyjścia
+- uchyb regulacji
+* wyście regulatora
+
+6. Metoda dobory nastaw regulatorów to metoda:
+- Taylora
+* Zieglera-Nicholsa
+- Nyquista
+
+7. Odpowiedź skokowa stabilnego systemu liniowego:
+- maleje do zera
+* ustala sie na stałej wartości
+- nie wiadomo, zależu to od warunku początkowego
+- zawsze rośnie, lecz nie szybciej niż wykładniczo
+
+8. Jeśli robot posiada 2 przeguby 4 klasy i 4 przeguby 5 klasy to jego liczba stopni swobody wynosi:
+- sieden
+- sześć
+* osiem
+
+9. Ile parametrów nastawimy w regulatorze typu PID
+- jeden
+* trzy
+- zależy to od konkretnego regulatora PID
+
+10.Która z metod nawigacji AGV jest najmniej dokładna?
+* metoda pętli indukcyjnej
+- metoda laserowa
+- metoda żyroskopowa
+
+11. Czymmierzymy temperaturę?
+- termoskopem
+* termoelementem
+- termotronem
+
+12. Który z poniższych obiektów jest liniowy (spełnia zasadę superpozycji)
+- y(t)=3u(t)+2
+- y(t)=|u(t)|
+* y(t)=u'(t) 
+- y(t)=tu(t-2)
+
+13. Które z poniższych zdań jest prawdziwe:
+- duza wartosc przeregulowania powoduja duza wartosc uchybu w stanie ustalonym 
+- duza wartosc uchybu w stanie ustalonym powoduje duza wartosc całkowego kryterium regulacji
+* duzą wartosc całkowego kryterium regulacji powoduje duze przeregulowanie
+- krótki czas regulacji powoduje małe przeregulowanie
+
+14. Metoda doboru nastaw regulatorów to metoda:
+- metoda Zieglera-Newmana
+* metoda Zieglera-Nicholsa
+- metoda Zieglera-Nyquista
+
+15. Transformata Laplacea przekształca funkcję rzeczywistą zmiennej rzeczywistej w:
+* funkcje zespolona zmiennej zespolonej
+- funkcje rzeczywista zmiennej rzeczywistej
+- funkcje rzeczywista zmiennej zespolonej
+- funkcje zespolona zmiennej rzeczywistej
+
+16. Jesli robot posiada 3 przeguby 4 klasy i 4 przeguby 5 klasy to jego liczba stopni swobody wynosi:
+* 10
+- 6
+- 8
+
+17. Obiekt liniowy jest stabilny jezeli:
+- jego warunki początkowe są zerowe 
+- jego sygnał wejsciowy jest ograniczony 
+? jego odpowiedz impulsowa zanika do zera 
+? jego odpowiedz skokowa nie ma oscylacji
+
+18. Uchyb regulacji to:
+- różnica pomiedzy wejsciem a wyjsciem obiektu
+* różnica pomiedzy wartoscia zadana a wyjsciem obiektu
+- roznica pomiedzy wejsciem obiektu a wartoscia zadaną 
+- roznica pomiedzy wyjsciem obiektu a jego wartoscia w chwili koncowej
+
+19. Robot IRB1400 jest robotem o konfiguracji:
+- kartezjanskiej
+* antropomorficznej
+- sferycznej
+
+20. Czy kontroler PID zawiera człon całkujący?
+* Tak
+- Nie
+- Czasami
+
+21. Transformata Laplace’a sygnału wejściowego:
+- Zamienia funkcje zespolona na funkcje rzeczywista
+-	Zamienia funkcje zespolona na zespolona
+* Zamienia funkcje rzeczywista na zespolona
+
+22. Odpowiedź skokowa członu całkujacego ma wartosc:
+* Rosnaca
+- Stała
+- Malejaca
+
+23. Robot o 2 modułach klasy IV i 2 klasy V ma ile stopniswobody?
+- 4 
+* 6 
+- 8
+
+24. Najdokładniejsząmetodąnawigacjijestmetoda
+- Sonarowa
+* Laserowa
+- GPS
+
+25. Uchyb jest
+* Wejsciem układu sterujacego 
+- Wejsciem całego układu
+- Wyjsciem całego układu
+
+26. Ktory z ponizszych protokołow nie jest protokołem przemysłowym?
+- Profibus 
+* UDP
+- Net bus
+
+27. Robotprogramowanyprzeztzw.uczenienalezydorobotów:
+- Prostych
+* II generacji
+- III generacji
+
+29. Wczesne sterowniki PLC nie realizowały:
+-	Zaleznosci czasowych
+- Przetwarzania sygnałow cyfrowych
+* Przetwarzania sygnałow analogowych
+
+30. Czysterujac wejsciem mozna zdestabilizowac układ zamkniety z członem PID?
+* tak
+- nie 
+- zalezy
+
+31. Czy na podstawie znajomosci odpowiedzi impulsowej mozemy wyznaczyc model układu?
+* tak
+- nie 
+- tylko całkujacy
+
+32. Robot cylindryczny jest robotem o konfiguracji
+- OOP
+* OPP
+- POO
