@@ -1,0 +1,206 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[      4814,        197]
+NotebookOptionsPosition[      3212,        133]
+NotebookOutlinePosition[      3553,        148]
+CellTagsIndexPosition[      3510,        145]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Limit[Sin[x]/x, x -> 0]", "Input",
+ CellChangeTimes->{{3.466253062576515*^9, 3.466253064023179*^9}}],
+
+Cell["1", "Output",
+ CellChangeTimes->{3.4662530650007668`*^9, 3.466253250606717*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Limit[Tan[x]/x, x -> 0]", "Input"],
+
+Cell["1", "Output",
+ CellChangeTimes->{3.466253070049408*^9, 3.4662532507001247`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Limit[(a^x - 1)/x, x -> 0]", "Input"],
+
+Cell["Log[a]", "Output",
+ CellChangeTimes->{3.4662530745968847`*^9, 3.466253250733124*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Limit[(E^x - 1)/x, x -> 0]", "Input"],
+
+Cell["1", "Output",
+ CellChangeTimes->{3.4662530923517714`*^9, 3.466253250766815*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Limit[Log[x + 1]/x, x -> 0]", "Input"],
+
+Cell["1", "Output",
+ CellChangeTimes->{3.466253103820355*^9, 3.4662532508001213`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Limit[(1/x + 1)^x, x -> Infinity]", "Input"],
+
+Cell["E", "Output",
+ CellChangeTimes->{3.466253118531973*^9, 3.466253250833695*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Limit[(a/x + 1)^x, x -> Infinity]", "Input",
+ CellChangeTimes->{{3.466253145435443*^9, 3.466253155665846*^9}}],
+
+Cell["E^a", "Output",
+ CellChangeTimes->{{3.4662531317062407`*^9, 3.466253157980592*^9}, 
+   3.466253250865822*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Limit[(x + 1)^(1/x), x -> 0]", "Input",
+ CellChangeTimes->{{3.466253167978614*^9, 3.466253184026403*^9}}],
+
+Cell["E", "Output",
+ CellChangeTimes->{3.466253184451831*^9, 3.4662532509015713`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Limit[((x + 1)^a - 1)/x, x -> 0]", "Input",
+ CellChangeTimes->{{3.466253185834478*^9, 3.4662532089309893`*^9}}],
+
+Cell["a", "Output",
+ CellChangeTimes->{3.46625320946148*^9, 3.46625325093784*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Limit[ArcSin[x]/x, x -> 0]", "Input",
+ CellChangeTimes->{{3.466253252871236*^9, 3.4662532646361437`*^9}}],
+
+Cell["1", "Output",
+ CellChangeTimes->{3.466253265475709*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Limit[ArcTan[x]/x, x -> 0]", "Input",
+ CellChangeTimes->{{3.466253266896956*^9, 3.466253276812717*^9}}],
+
+Cell["1", "Output",
+ CellChangeTimes->{3.466253277267338*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Limit[Sinh[x]/x, x -> 0]", "Input",
+ CellChangeTimes->{{3.466253278197419*^9, 3.46625329149302*^9}}],
+
+Cell["1", "Output",
+ CellChangeTimes->{3.4662532921255627`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Limit[Tanh[x]/x, x -> 0]", "Input",
+ CellChangeTimes->{{3.46625329277567*^9, 3.4662533000453253`*^9}}],
+
+Cell["1", "Output",
+ CellChangeTimes->{3.4662533004514713`*^9}]
+}, Open  ]]
+},
+WindowSize->{640, 750},
+WindowMargins->{{206, Automatic}, {Automatic, 55}},
+FrontEndVersion->"7.0 for Mac OS X x86 (32-bit) (November 10, 2008)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 106, 1, 27, "Input"],
+Cell[676, 25, 85, 1, 27, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[798, 31, 40, 0, 27, "Input"],
+Cell[841, 33, 85, 1, 27, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[963, 39, 43, 0, 27, "Input"],
+Cell[1009, 41, 90, 1, 27, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1136, 47, 43, 0, 27, "Input"],
+Cell[1182, 49, 85, 1, 27, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1304, 55, 44, 0, 27, "Input"],
+Cell[1351, 57, 85, 1, 27, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1473, 63, 50, 0, 27, "Input"],
+Cell[1526, 65, 83, 1, 27, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1646, 71, 116, 1, 27, "Input"],
+Cell[1765, 74, 115, 2, 27, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1917, 81, 111, 1, 27, "Input"],
+Cell[2031, 84, 85, 1, 27, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2153, 90, 117, 1, 27, "Input"],
+Cell[2273, 93, 81, 1, 27, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2391, 99, 111, 1, 27, "Input"],
+Cell[2505, 102, 61, 1, 27, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2603, 108, 109, 1, 27, "Input"],
+Cell[2715, 111, 61, 1, 27, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2813, 117, 106, 1, 27, "Input"],
+Cell[2922, 120, 63, 1, 27, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3022, 126, 108, 1, 27, "Input"],
+Cell[3133, 129, 63, 1, 27, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

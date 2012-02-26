@@ -1,0 +1,123 @@
+Zad 8.1
+integrate 3(x^(2/3)) + 1/(x^3) - 2x*sqrt(x)
+integrate (1-x)/(1-x^(1/3))
+integrate x^4/(x^2+1)
+integrate cos2x/(cosx - sinx)
+integrate (x^3 + x^(2/3) - 1)/sqrt(x)
+integrate (2^x - 5^x)/10^x
+
+Zad 8.2
+integrate x*e^(-3x)
+integrate x^2 * 2^x
+integrate sqrt(x)*arctan(sqrt(x))
+integrate x/(cosx)^2
+integrate x^2 sinx
+integrate arccosx/sqrt(x+1)
+integrate log(x+1)
+integrate arccosx
+integrate e^(2x) sinx
+
+Zad 8.3
+integrate cos(sqrt(x))/sqrt(x)
+integrate sqrt(1+4x)/x
+integrate (x+1)sin(x^2 + 2x + 2)
+integrate cosx/sqrt(1+sinx)
+integrate 1/coshx
+integrate (5-3x)^10
+integrate x^2 (5x^3 + 1)^(1/5)
+integrate 1/(2+sqrt(x))
+integrate logx/x
+integrate e^x/(e^(2x) + 1)
+integrate 5sinx/(3-2cosx)
+integrate x^3 e^(x^2)
+
+Zad 9.1
+integrate 1/(x-3)^7
+integrate 4/(x+5)
+integrate 5/(2-7x)^3
+integrate 8/(9x+20)
+
+Zad 9.2
+integrate 1/(x^2 + 4x + 29)
+integrate (6x+2)/(x^2 + x + 4)
+integrate (4x+2)/(x^2 - 10x + 29)
+integrate (x-1)/(9x^2 + 6x + 2)
+
+Zad 9.3
+integrate (x+2)/(x(x-2))
+integrate x^2/(x+1)
+integrate 1/((x-1)x^2)
+integrate 1/((x^2+1)(x^2+4))
+integrate (4x+1)/(2x^2 + x + 1)
+integrate (3x-1)/(x^2-x+1)
+integrate 1/(x^2 + 2x + 8)
+integrate 2/(x^2 + 6x + 18)
+integrate (5-4x)/(x^2-4x+20)
+integrate x^2/(x^2+2x+5)
+integrate x(x+2)/(x^2+2x+2)
+integrate 1/(x(x^2+4))
+
+Zad 9.4
+integrate sin^3x
+integrate sin^4x cos^3x
+integrate cos^4x
+integrate sin^3x cos^6x
+integrate cos^2x cos2x
+integrate sin^2(2x) sin^2x
+
+Zad 9.5
+integrate 1/(sinx + cosx)
+integrate (1+tanx)/cosx
+integrate 1/(1+2cos^2x)
+integrate sin^2x/(1+cosx)
+integrate 1/(1-tanx)
+integrate sin^5x/cos^3x
+integrate 1/cosx
+integrate 1/(sinx + cosx)
+integrate 1/(3sinx + 4cosx + 5)
+
+Zad 10.1
+integrate x(1+x^3) from -1 to 2
+integrate sqrt(x) + 1/sqrt(x) from 1 to 2
+integrate 1/x^3 - 2/x^2 + 1/x^4 from 1 to 2
+integrate (x-1)/(x+1) from 0 to 1
+integrate 1/(x^2 + 9) from 0 to 9
+integrate 1/(x^2 - 1) from -1/2 to 1/2
+integrate sinx + cos^2x from pi to 2pi
+integrate xlogx from 1 to e
+
+Zad 10.2
+integrate sinx e^cosx from 0 to pi
+integrate x/sqrt(1+x) from 1 to 3
+integrate xsqrt(1+x) from 0 to 1
+integrate 1/(1+sqrt(3x-2)) from 1 to 6
+integrate lnx from 1 to e
+integrate sqrt(9-x^2) from 0 to 3
+integrate e^x/(1+e^(2x)) from 0 to 1/2 log(3)
+
+Zad 10.3
+integrate xe^2x from -1 to 1
+integrate x^2w^(2x) from 0 to 1
+integrate lnx/x^2 from sqrt(e) to e
+integrate xsin2x from 0 to 4
+integrate x(1+cosx) from 0 to pi
+integrate arcsinx from 0 to 1
+
+Zad 10.4
+integrate (x-1)sng(lnx) from 1/e to 2
+
+integrate 1/(x^2 + a^2)
+ax^2 + bx + c = a(x+b/2a)^2 - (b^2-4ac)/4a
+x^4 + 4 = (x^2 -2 x + 2)(x^2 + 2x + 2)
+
+t = tg(x/2)
+sinx = 2t / (1+t^2)
+cosx = (1-t^2) / (1+t^2)
+
+t = tanx
+sinx = t/(1+t^2)
+cosx = 1/(t+t^2)
+
+sinxcosy = 1/2 (sin(x+y) + sin(x-y))
+cosxcosy = 1/2 (cos(x+y) + cos(x-y))
+sinxsiny = -1/2 (cos(x+y) - cos(x-y))
