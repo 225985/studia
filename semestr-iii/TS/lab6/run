@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ "$1" == "octave" ]; then
+	/Applications/Octave.app/Contents/Resources/bin/octave lab6.m
+elif [ "$1" == "latex" ]; then
+	latex --output-format=pdf lab6.tex && open lab6.pdf
+fi

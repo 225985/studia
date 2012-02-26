@@ -1,0 +1,43 @@
+Dyskretna transformata Fouriera
+
+1. sinus
+wyznaczyc widmo dla sygnalu ktory 
+a) w n probkach bedzie mial calkowita liczbe okresow
+b) w n probkach bedzie mial niecalkowita liczbe okresow
+fft/g + semilogy -> widmo
+
+2. dyskretna transformata Fouriera (probkowanie widma ciaglego)
+a) f_{sin} \in \frac{m*fpr}{N}, m \in {0,1,..,N-1}
+b) f_{sin} \notin \frac{m*fpr}{N}
+-> semilogy (porownac widmo w obu przypadkach)
+??? nie wiem o co kaman ???
+
+3. transformata Fouriera
+dla sygnalow sinus i prostokat
+Jak wyglada czesc rzeczywista, urojona, modul i faza?
+y = fft(x);
+yr = real(y);
+yi = imag(y);
+ya = abs(y);
+yf = angle(y);
+yff = unwrap(yf);
+
+4. Faza 
+Jak wygladaja wykresy fazowe dla sinusa i cosinusa?
+w = angle(fft(x));
+W n probkach ma byc calkowita liczba okresow sygnalu !!
+
+yf = angle(y);
+faza od pi do -pi (wykres nie jest ciagly)
+yff = unwrap(yf); (bez punktow nieciaglosci)
+plot(yff);
+
+5. Wygenerowac sygnal zespolony x(m) = x_r(m) + i*x_i(m)
+wyznaczyc to co w pkt 3 
+Czy transformata dla sygnalu zespolonego ma takie same wlasciwosci co dla sygnalu rzeczywistego?
+
+Generowanie sygnalu zespolonego:
+xr = sin(...)
+xi = cos(...)
+
+x = complex(xr, xi);

@@ -1,0 +1,41 @@
+Laboratorium nr 6 - Filtry NOI (Nieskonczona Odpowiedz Impulsowa)
+
+H(z) = 
+1. Jak polozenie rzeczywistego zera wplywa na funkcje transmitancji i odpowiedz impulsowa filtru?
+2. Jak polozenie bieguna wplywa na funkcje transmitancji i odpowiedz impulsowa filtru?
+[ tu po 6 polozen]
+
+3. Jak polozenie zespolonego sprzezonego zera wplywa na funkcje transmitancji?
+   Jak kat alfa i odleglosc od poczatku ukladu wspolrzednych wplywa na charakterystyke (w srodku, na, poza + dwa katy)
+4. Jak polozenie zespolonego sprzezonego bieguna wplywa na funckjce transmitancji?
+[tu po 4 polozenia]
+
+
+b = poly([ ... polozenie zera... ]);
+a = poly([ ... polozenie bieguna ...]);
+freqz(b,a);
+
+
+Przyklad:
+
+odleglosc od punktu (0,0) = 0,5
+b = poly([0.5]);
+a == 1 (bo nie ma 
+freqz(b, 1);
+
+a = poly([0.5])
+freqz(1, a);
+
+w pkt 1 a = 1
+w pkt 2 b = 1
+w pkt 3 a = 1
+w pkt 4 b = 1
+
+dla pkt 3
+b = poly([0.5 + 0.5i, 0.5 - 0.5i])
+freqz(b, 1)
+
+odpowiedz impulsowa ukladu: (odpowedz na pobudzenie delta)
+x = zeros(1, 100);
+x(1) = 1;
+y = filter(b, a, x); // odpowiedz impulsowa (y)

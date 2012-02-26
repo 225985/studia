@@ -1,0 +1,25 @@
+Laboratorum nr 3 - 23.11.2010 - Probkowanie i kwantowanie
+
+1. Probkowanie
+sinus
+a) fpr > 2*f
+b) fpr == 2*f
+c) fpr < f
+
+Jak wyglada sygnal w dziedzinie czasu i czestotliwosci?
+
+
+Wykres widma:
+ 
+y = abs(fft(x));
+// policzyc os czestotliwosci f
+plot(f,y);
+// zamiast plot
+semilogy(f,y) // skala y logarytmiczna
+
+2. Kwantowanie
+sinus, prostokat, trojkat
+Jak sie zmienia w dziedzinie czasu i czestotliwosci?
+Jak wyglada widmo sygnalu i bledu po kwantyzacji?
+Wybrac trzy przypadki
+Jak zmienia sie szum kwantyzacji?

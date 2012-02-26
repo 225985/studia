@@ -1,0 +1,47 @@
+Laboratorium 2 - 9.11.2010 - korelacja
+
+Korelacja - podobieństwo dwóch zjawisk (np. sygnalow, jak jeden jest podobny do drugiego)
+
+Korelacja wzajemna (dla 2), autokorelacja (dla 1)
+
+R_{xx}(\tau) = E[x(t)x(t+\tau)]
+
+R_{x,y}(\tau) = E[x(t)y(t+\tau)]
+
+\tau - przesuniecie
+
+x = [1,2,3,4,5]
+y = [5,4,3,2,1]
+
+R_{x,y}(0) = \sum_{i} x_i y_i 
+R_{x,y}(0) = 1*5 + 2*4 + 3*3 + 4*2 + 5*1
+R_{x,y}(1) = 2*5 + 3*4 + 4*3 + 5*2
+R_{x,y}(2) = 3*5 + 4*4 + 5*3
+
+1. Autokorelacja
+  a) Jak wyglada funkcja autokorelacji dla sygnalu sinus
+  b) Jak wyglada dla cosinus
+  Czym sie od siebie roznia?
+  
+  c) Funkcja prostokatna o roznym wypelnieniu
+  Czym sie od siebie roznia?
+  
+  d) szum biały
+  
+2. Korelacja wzajemna
+  a) x = sin, y = cos
+  b) x = cos, y = sin
+  Czym sie od siebie roznia?
+  
+  c) x = sin, y = prostokat
+  d) x = sin, y = szum bialy
+  
+# Octave
+z = xcorr(x, y, taumax)
+
+taumax = 40% * Len
+  
+  
+# Generowanie szumu bialego
+x = randn(1000, 1)
+x = rand(1000, 1)

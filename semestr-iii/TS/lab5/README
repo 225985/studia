@@ -1,0 +1,32 @@
+Teoria sygnałów - laboratorium nr 5
+
+Filtr SOI
+
+Parametry oceny filtru (czy dobry jest :P)
+(idealny -> prostokat, nie mozna jej uzyskac)
+- d1 - poziom zafalowan w pasmie przepustowym, im mniejszy tym lepszy
+- d2 - tlumienie w pasmie zaporowym filtru, jak najwieksze
+- d3 - szerokosc pasma przejsciowego, jak najmniejsze
+- charakterystyka fazowa powinna byc liniowa w pasmie przepustowym
+
+
+h = fir1(N, 0.5); N - rzad filtru
+freqz(h, 1) - charakterystyka (pasmo przepustowe, calosc, faza)
+
+1. Sprawdzic wplyw rzedu filtru na jego charakterystyke czestotliwosciowa
+(zmieniac rzad filtru)
+
+N (do 10, do 20, do 30)
+
+2. Wyciecie fragmentu oknem, rozne
+- Wplyw rodzaju okna na charakterystyke czestotliwosciowa filtru
+
+h = fir1(N, 0.5, okno)
+freqz(h, 1)
+
+Okna:
+- hanning(N+1)
+- hamming(N+1)
+- gauswin(N+1)
+- bartlet(N+1)
+- kaiser(N+1, 0.5)

@@ -1,0 +1,14 @@
+z0 - cyfra
+z1 - znak
+z2 - kropka
+
+q0 - nie ma nic
+q1 - error
+q2 - jest tylko kropka
+q3 - sa tylko cyfry
+q4 - cyfry z lub bez kropki i znak
+q5 - cyfry i kropka
+
+y0 - nie ma liczby
+y1 - jest liczba
+y2 - error
