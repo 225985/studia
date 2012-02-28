@@ -1,0 +1,99 @@
+\documentclass[wide,a4paper,titlepage,12pt] {article}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{placeins}
+
+
+\title{Inżynieria e-systemów java}
+\author{Tymon Tobolski (181037)\\ Jacek Wieczorek (181043) \\ Mateusz Lenik()}
+
+% Title page layout (fold)
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{titlepage}
+  \begin{center}
+    \vspace*{3cm}
+    \LARGE \@title \par
+    \vspace{2cm}
+    \textit{\small Autor:}\par
+    \normalsize \@author\par \normalsize
+    \vspace{3cm}
+    \textit{\small Prowadzący:}\par
+    Dr inż. Katarzyna Nowak \par
+    \vspace{2cm}
+    Wydział Elektroniki\\ III rok\\ Śr 7.30 - 9.00\par
+
+  \end{center}
+\end{titlepage}
+}
+\makeatother
+  \lstset{
+    language=c++,
+    basicstyle=\ttfamily\scriptsize,
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=10,
+    numbersep=9pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    breaklines=true,
+  }
+
+\begin{document}
+\maketitle
+  \section{Opis projektu}
+  \paragraph{}
+  Celem projektu jest napisanie systemu, pozwalającego użytkownikowi na zakładanie i porwadzenie mikroblogów wraz zmożliwością po Aplikacja zostanie napisana w języku jruby z wykorzystaniem framework'a Ruby on Rails.
+  \begin{itemize}
+    \item Platforma : JVM
+    \item Język impementacji : jruby, coffescript
+    \item Framework : Ruby on Rails 
+  \end{itemize}
+  \section{Funkcjonalności systemu}
+  \paragraph{}
+  \begin{itemize}
+   \item Obsługa użytkowników
+   \begin{itemize}
+    \item Tworzenie konta
+    \item Edycja użytkownika
+    \item System autentykacji
+    \item Usuwanie użytkowników
+    \item Follow user
+   \end{itemize}
+   \item Obsługa blogów
+    \begin{itemize}
+      \item Tworzenie bloga
+      \item Zarządzanie blogiem
+      \item Tablica z postami użytkowników "follow"
+    \end{itemize}
+   \item Obsługa postów
+    \begin{itemize}
+      \item Dodawanie posta
+      \item Edycja posta
+      \item Usuwanie posta
+    \end{itemize}
+  \item Dyskusje
+    \begin{itemize}
+      \item Tworzenie dyskusji
+      \item Zarządzanie dyskusjami
+      \item Dyskusje publiczne i prywatne
+      \item Zapraszanie użytkowników
+      \item Dodawanie postów w dyskusji
+    \end{itemize}
+  \item Dodatkowe funkcjonalności
+    \begin{itemize}
+      \item Powiązanie kont użytkowników z kontami facebook
+      \item Pobieranie avatarów z gravatara lub facebook (zdjęcie profilowe) 
+    \end{itemize}
+  \end{itemize}
+  \section{Podział zadań}
+  \paragraph{}
+  W pracy nad projektem zamierzamy wykorzystać metodologię SCRUM, która zakłada podział projektu na małe zadania, nie moduły. Z tego względu nie jesteśmy wstanie określić kto będzie się zajmował jaką częścią projektu. Taski będą wmiarę postępu pracy przypisane członką zespołu.
+  \paragraph{}
+  Oprócz wyżej wymienionych funkcjonalności w projekcie należy również zadbać o frontend i testy całego systemu. 
+
+
+  
+\end{document}
