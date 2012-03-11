@@ -16,7 +16,6 @@ class BlogsController < ApplicationController
   # GET /blogs/1.json
   def show
     @blog = Blog.find(params[:id])
-    @blog.user = current_user
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @blog }
@@ -42,8 +41,8 @@ class BlogsController < ApplicationController
   # POST /blogs
   # POST /blogs.json
   def create
-    @blog = Blog.new(params[:blog])
-
+    @blog = current_user.blogs.build(params[:blog])
+    
     respond_to do |format|
       if @blog.save
         format.html { redirect_to @blog, :notice => 'Blog was successfully created.' }
