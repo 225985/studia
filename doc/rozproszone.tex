@@ -1,0 +1,103 @@
+\documentclass[wide,a4paper,titlepage,12pt]{article}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{setspace}
+
+\title{Rozproszona aplikacja umożliwiająca przeglądanie fraktali}
+\author{Tymon Tobolski {\small(181037)}\\ Jacek Wieczorek {\small(181043)} \\
+Mateusz Lenik {\small(181142)}}
+
+\makeatletter
+\renewcommand{\maketitle}{
+  \begin{titlepage}
+    \begin{center}
+      \vspace*{3cm}
+      \LARGE \@title \par
+      \vspace{2cm}
+      \textit{\small Autor:}\par
+      \normalsize \@author\par \normalsize
+      \vspace{3cm}
+      \textit{\small Prowadzący:}\par
+      dr inż. Marek Woda \par
+      \vspace{2cm}
+      Wydział Elektroniki\\ III rok\\ Pn 12.15 - 14.00\par
+
+    \end{center}
+  \end{titlepage}
+}
+\makeatother
+\setlength{\parindent}{0em}
+\onehalfspacing
+
+\begin{document}
+\maketitle
+
+\section*{Opis projektu}
+
+Celem projektu jest stworzenie aplikacji internetowej pozwalającej użytkownikowi
+na przeglądanie fraktali renderowanych na klastrze. Aplikacja
+pozwalałaby na przybliżanie i oddalanie widocznej części fraktala, zmianę
+kolorów oraz zapisywanie ostatniej przeglądanej pozycji przez danego
+użytkownika.
+
+\section*{Uzasadnienie biznesowe}
+
+Projekt może zostać wykorzystany jako proof of concept dla aplikacji
+przetwarzających duże ilości danych i prezentację ich w formie lub na mapie.
+Jest to proste do rozbudowy demo technologiczne, na podstawie którego można
+stworzyć bardziej skomplikowane aplikacje.
+
+\section*{Technologie}
+
+Aplikacja będzie oparta o technologie wykorzystujące JVM, dzięki czemu możliwe
+będzie uruchomienie jej na kilku platformach bez konieczności modyfikacji.
+Dodatkowo ułatwia to korzystanie z różnych języków programowania podczas
+implementacji aplikacji. Za interfejs webowy będzie odpowiadała aplikacja w Ruby
+on Rails, która będzie się komunikowała z rozproszonym backendem
+zaimplementowanym w Scali.
+
+\begin{itemize}
+  \item Platforma: JVM
+  \item Język implementacji: JRuby, Scala, CoffeeScript
+  \item Framework: Ruby on Rails
+\end{itemize}
+
+\newpage
+\section*{Funkcjonalności systemu}
+
+\begin{itemize}
+  \item Obsługa użytkowników
+    \begin{itemize}
+      \item Utworzenie konta,
+      \item Autentykacja za pomocą OAuth,
+      \item Pobieranie awatarów z serwisu Gravatar,
+      \item Zapisanie ustawień i ostatniej przeglądanej pozycji.
+    \end{itemize}
+  \item Wyświetlanie mapy
+    \begin{itemize}
+      \item Nawigacja po mapie za pomocą myszy,
+      \item Wybór renderowanego fraktala,
+      \item Wybór kolorów dla renderowanego fraktala,
+      \item Wybór metody podziału obrazu do renderowania.
+    \end{itemize}
+  \item Renderowanie
+    \begin{itemize}
+      \item Podział obrazu na mniejsze fragmenty do renderowania na backendzie,
+      \item Przesyłanie żądań z aplikacji do backendu,
+      \item Komunikacja między węzłami backendu.
+    \end{itemize}
+\end{itemize}
+
+\section*{Podział zadań}
+
+W pracy nad projektem zamierzamy wykorzystać metodologię SCRUM, która zakłada
+podział projektu na małe zadania, nie moduły. Z tego względu nie jesteśmy
+w stanie określić kto będzie się zajmował jaką częścią projektu. Zadania będą w
+miarę postępu prac przypisane członkom zespołu.
+\vspace{1em}
+
+Oprócz wyżej wymienionych funkcjonalności w projekcie należy również zadbać o
+testy systemu.
+
+\end{document}
+
