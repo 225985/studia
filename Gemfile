@@ -16,6 +16,7 @@ end
 
 gem 'jquery-rails'
 gem 'twitter-bootstrap-rails'
+gem 'haml'
 
 group :development do
   gem 'rspec-rails', '~> 2.8.1'
