@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.2'
 
-gem 'activerecord-jdbcsqlite3-adapter'
 gem 'jruby-openssl'
 
 # Gems used only for assets and not required
