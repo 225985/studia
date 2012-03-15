@@ -16,5 +16,6 @@
 
 # Ignore all non tex files in doc.
 !/doc/*.tex
+!/doc/*.pod
 /doc/*
 
