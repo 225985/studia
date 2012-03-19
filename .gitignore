@@ -15,10 +15,12 @@
 /tmp
 
 # Ignore all non tex files in doc.
-!/doc/*.tex
-!/doc/*.pod
 /doc/*
+!/doc/*.tex
+!/doc/*.pdf
+!/doc/*.graffle
+!/doc/*.pod
 
 .DS_Store
-dist/target
-dist/project/target
+/dist/target
+/dist/project/target
