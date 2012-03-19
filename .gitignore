@@ -20,3 +20,5 @@
 /doc/*
 
 .DS_Store
+dist/target
+dist/project/target
