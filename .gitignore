@@ -19,3 +19,4 @@
 !/doc/*.pod
 /doc/*
 
+.DS_Store
