@@ -20,6 +20,7 @@
 !/doc/*.pdf
 !/doc/*.graffle
 !/doc/*.pod
+!/doc/*.pptx
 
 .DS_Store
 /dist/target
