@@ -140,6 +140,7 @@ DEPENDENCIES
   jquery-rails
   jruby-openssl
   json
+  multi_json
   rails (= 3.2.2)
   sass-rails (~> 3.2.3)
   simple_form

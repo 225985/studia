@@ -13,7 +13,7 @@ gem 'devise'
 gem 'haml'
 gem 'haml-rails'
 gem 'simple_form'
-gem 'multi_json-1.0.3'
+gem 'multi_json'
 
 # Gems used only for assets and not required
 # in production environments by default.
