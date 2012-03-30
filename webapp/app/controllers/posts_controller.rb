@@ -8,7 +8,8 @@ class PostsController < ApplicationController
     @post.user = current_user
     respond_to do |format|
       if @post.save
-        redirect_to @blog
+        flash[:success] = "Micropost created!"
+        redirect_to blog_path(@blog)
       else
         format.html { render :action => "new" }
         format.json { render :json => @post.errors, :status => :unprocessable_entity }

@@ -10,15 +10,20 @@
   %b User:
   = @blog.user_id
 
+%h2 Posts
+- @blog.posts.each do |post|
+  .post
+    %p= post.content
+    %hr
 
 = link_to 'Edit', edit_blog_path(@blog)
 \|
 = link_to 'Back', blogs_path
 
 .posts
-  %h3 New comment
+  %h3 New post
   = simple_form_for @new_post, :url => posts_path(@blog) do |f|
     %fieldset
       = f.input :content, :as => :text
     .actions
-      = f.submit "Add comment", :class => "btn success"
+      = f.submit "Add post", :class => "btn success"
