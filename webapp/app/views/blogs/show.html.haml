@@ -10,6 +10,15 @@
   %b User:
   = @blog.user_id
 
+
 = link_to 'Edit', edit_blog_path(@blog)
 \|
 = link_to 'Back', blogs_path
+
+.posts
+  %h3 New comment
+  = simple_form_for @new_post, :url => posts_path(@blog) do |f|
+    %fieldset
+      = f.input :content, :as => :text
+    .actions
+      = f.submit "Add comment", :class => "btn success"
