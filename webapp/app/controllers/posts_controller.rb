@@ -4,23 +4,31 @@ class PostsController < ApplicationController
 
 
   def create
-    @post = @blog.posts.build(params[:post])
-    @post.user = current_user
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to blog_path(@blog)}
-      else
-        format.html { redirect_to blog_path(@blog)}
+    if current_user == @blog.user
+      @post = @blog.posts.build(params[:post])
+      @post.user = current_user
+      respond_to do |format|
+        if @post.save
+          format.html { redirect_to blog_path(@blog)}
+        else
+          format.html { redirect_to blog_path(@blog)}
+        end
       end
-    end
+    else
+      redirect_to blog_path(@blog)
+    end  
   end
 
 
   def destroy
-    @post = Post.find(params[:id])
-    @post.destroy
-    respond_to do |format|
-      format.html { redirect_to blog_path(@blog)}
+    if current_user == @blog.user
+      @post = Post.find(params[:id])
+      @post.destroy
+      respond_to do |format|
+        format.html { redirect_to blog_path(@blog)}
+      end
+    else
+      redirect_to blog_path(@blog)
     end
   end
 
