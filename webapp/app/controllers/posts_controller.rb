@@ -3,8 +3,6 @@ class PostsController < ApplicationController
   before_filter :fetch_blog
 
 
-
-
   def create
     @post = @blog.posts.build(params[:post])
     @post.user = current_user
@@ -12,27 +10,22 @@ class PostsController < ApplicationController
       if @post.save
         format.html { redirect_to blog_path(@blog)}
       else
-        format.html { render :action => "new" }
-        format.json { render :json => @post.errors, :status => :unprocessable_entity }
+        format.html { redirect_to blog_path(@blog)}
       end
     end
   end
 
-  # DELETE /posts/1
-  # DELETE /posts/1.json
+
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-
     respond_to do |format|
-      format.html { redirect_to posts_url }
-      format.json { head :no_content }
+      format.html { redirect_to blog_path(@blog)}
     end
   end
 
 
   protected
-
       def fetch_blog
         @blog = Blog.find(params[:blog_id])
       end
