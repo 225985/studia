@@ -3,13 +3,14 @@ class PostsController < ApplicationController
   before_filter :fetch_blog
 
 
+
+
   def create
     @post = @blog.posts.build(params[:post])
     @post.user = current_user
     respond_to do |format|
       if @post.save
-        flash[:success] = "Micropost created!"
-        redirect_to blog_path(@blog)
+        format.html { redirect_to blog_path(@blog)}
       else
         format.html { render :action => "new" }
         format.json { render :json => @post.errors, :status => :unprocessable_entity }
@@ -33,6 +34,6 @@ class PostsController < ApplicationController
   protected
 
       def fetch_blog
-        @blog = Blog.find(params[:format])
+        @blog = Blog.find(params[:blog_id])
       end
 end

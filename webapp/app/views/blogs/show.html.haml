@@ -22,7 +22,7 @@
 
 .posts
   %h3 New post
-  = simple_form_for @new_post, :url => posts_path(@blog) do |f|
+  = simple_form_for @new_post, :url => blog_posts_path(@blog) do |f|
     %fieldset
       = f.input :content, :as => :text
     .actions
