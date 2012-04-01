@@ -1,5 +1,7 @@
 Mandelbrot::Application.routes.draw do
-  root :to =>  "home#index"
+
+  root          :to =>  "pages#home"
+  get "/about", :to => "pages#about"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

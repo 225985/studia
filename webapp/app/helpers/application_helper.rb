@@ -1,10 +1,8 @@
 module ApplicationHelper
-  def title_helper
-    base_title = "Fractal Explorer"
-    unless @title.nil?
-      "#{base_title} | #{@title}"
-    else
-      base_title
+  def title page_title
+    content_for :title do
+      page_title
     end
   end
+
 end
