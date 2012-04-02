@@ -59,7 +59,10 @@
     .fill
       .container
         %ul.nav
-          / %li= link_to "Microblogs", root_path, :class => "brand"
+          %li= link_to "Microblogs", root_path, :class => "brand"
+          %li= link_to "About", about_path
+          %li= link_to "Help", help_path
+          %li= link_to "Contact", contact_path
         .pull-right.header-text
           - if signed_in?
             Hello #{current_user.email}
