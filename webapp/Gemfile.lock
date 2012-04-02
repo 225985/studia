@@ -89,6 +89,7 @@ GEM
       guard (>= 0.10.0)
       spork (>= 0.8.4)
     haml (3.1.4)
+    hashie (1.2.0)
     hike (1.2.1)
     i18n (0.6.0)
     journey (1.0.3)
@@ -106,6 +107,9 @@ GEM
     multi_json (1.2.0)
     nokogiri (1.5.2)
     nokogiri (1.5.2-java)
+    omniauth (1.0.3)
+      hashie (~> 1.2)
+      rack
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -201,6 +205,7 @@ DEPENDENCIES
   guard-spork
   haml
   jquery-rails
+  omniauth
   rails (= 3.2.2)
   rb-fsevent
   rspec-rails (~> 2.8.1)
