@@ -6,5 +6,10 @@
         %li= link_to "Home", root_path
         %li= link_to "About", about_path
       %ul.nav.pull-right
-        %li= link_to "Sign In", "#"
+        - unless current_user
+          %li= link_to "Sign In with Twitter", signin_path_with(:twitter)
+          %li= link_to "Sign In with Github", signin_path_with(:github)
+        - else
+          %li= link_to "Sign Out", signout_path
+
 
