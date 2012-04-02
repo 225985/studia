@@ -50,7 +50,7 @@ object Mandelbrot1 {
   }
 
   def main(args: Array[String]) {
-    run(300, 2048)
+    run(500, 2048)
   }
 }
 
@@ -85,7 +85,7 @@ object Mandelbrot2 {
   }
 
   def main(args: Array[String]) {
-    run(500, 4096)
+    run(100, 2048)
   }
 }
 
