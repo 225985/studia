@@ -8,8 +8,12 @@
       %ul.nav.pull-right
         - unless current_user
           %li= link_to "Sign In with Twitter", signin_path_with(:twitter)
-          %li= link_to "Sign In with Github", signin_path_with(:github)
         - else
-          %li= link_to "Sign Out", signout_path
+          %li
+            Hello, #{current_user.name}!
+            %img.avatar{:src => current_user.avatar}
+          %li.divider-vertical
+          %li
+            = link_to "Sign Out", signout_path
 
 

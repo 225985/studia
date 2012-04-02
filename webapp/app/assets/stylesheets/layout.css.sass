@@ -12,7 +12,13 @@ h1
   background-color: white
   padding: 20px
   @include box-shadow(darken($background, 20%) 1px 1px 3px)
-  @include border-radius(5px, 5px)
+  @include border-radius(5px 5px)
+
+.avatar
+  height: 30px
+  margin: 5px 0px 5px 5px
+  @include box-shadow(darken($background, 80%) 0px 0px 2px)
+  @include border-radius(2px 2px)
 
 #fractal
   height: 400px
