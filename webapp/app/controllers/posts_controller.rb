@@ -9,9 +9,9 @@ class PostsController < ApplicationController
     @post.user = current_user
     respond_to do |format|
       if @post.save
-        format.html { redirect_to blog_path(@blog)}
+        format.html { redirect_to blog_path(@blog) }
       else
-        format.html { redirect_to blog_path(@blog)}
+        format.html { redirect_to blog_path(@blog) }
       end
     end
   end
@@ -21,7 +21,7 @@ class PostsController < ApplicationController
     @post = @blog.post.find(params[:id])
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to blog_path(@blog)}
+      format.html { redirect_to blog_path(@blog) }
     end
   end
 

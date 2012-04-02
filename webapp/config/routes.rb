@@ -1,10 +1,17 @@
 Webapp::Application.routes.draw do
+  root :to => 'home#index'
+
+  devise_for :users
+
+  match '/help',    :to => 'home#help'
+  match '/about',   :to => 'home#about'
+  match '/contact', :to => 'home#contact'
 
   resources :blogs do
     resources :posts 
   end
 
-  devise_for :users
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
