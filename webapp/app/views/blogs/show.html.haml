@@ -15,7 +15,7 @@
   .post
     %p= post.content
     - if @blog.user == current_user
-      = link_to 'Usun', blog_post_path( @blog, post ), :method => :delete 
+      = link_to 'Usun', blog_post_path(@blog, post), :confirm => 'Are you sure?', :method => :delete
     %hr
 
 

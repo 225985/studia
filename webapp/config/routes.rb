@@ -3,13 +3,13 @@ Webapp::Application.routes.draw do
 
   devise_for :users
 
-  match '/help',    :to => 'home#help'
-  match '/about',   :to => 'home#about'
-  match '/contact', :to => 'home#contact'
-
   resources :blogs do
     resources :posts 
   end
+
+  match '/help',    :to => 'home#help'
+  match '/about',   :to => 'home#about'
+  match '/contact', :to => 'home#contact'
 
   
 
