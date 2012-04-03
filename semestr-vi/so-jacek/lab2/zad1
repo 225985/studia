@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#Dwa argumenty, skrypt ma odpowiedzieć na pytanie czy oba obiekty czy dowiązania wskazują na ten sam obiekt
+
+if [ ! $# -eq 2 ]
+then
+  echo "za malo argumentow"
+  exit 1
+fi
+
+path1=`readlink -f $1`
+path2=`readlink -f $2`
+
+if [ $path1 == $path2 ]
+then
+	echo "wskazuja na te same pliki"
+else
+	echo "nie wskazuja"
+fi 
