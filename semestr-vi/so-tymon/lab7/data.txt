@@ -1,0 +1,16 @@
+	1 tab
+		2 taby
+			3 taby
+    4 spacje
+  2 spacje
+ 1 spacja
+0 spacji
+        x
+	x
+ala	ma kota
+ala1	ma kota
+ala22	ma kota
+ala333	ma kota
+ala4444	ma kota
+
+
