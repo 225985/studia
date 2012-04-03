@@ -18,7 +18,7 @@ class PostsController < ApplicationController
 
 
   def destroy
-    @post = @blog.post.find(params[:id])
+    @post = @blog.posts.find(params[:id])
     @post.destroy
     respond_to do |format|
       format.html { redirect_to blog_path(@blog) }
