@@ -1,5 +1,7 @@
 class BlogsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :fetch_blog, :except => [:show, :new, :create]
+  before_filter :check_owner, :except => [:show, :new, :create]
 
   def show
     @blog = Blog.find(params[:id])
@@ -20,7 +22,6 @@ class BlogsController < ApplicationController
   end
 
   def edit
-    @blog = Blog.find(params[:id])
   end
 
   def create
@@ -40,8 +41,6 @@ class BlogsController < ApplicationController
   # PUT /blogs/1
   # PUT /blogs/1.json
   def update
-    @blog = Blog.find(params[:id])
-
     respond_to do |format|
       if @blog.update_attributes(params[:blog])
         format.html { redirect_to @blog, :notice => 'Blog was successfully updated.' }
@@ -56,12 +55,20 @@ class BlogsController < ApplicationController
   # DELETE /blogs/1
   # DELETE /blogs/1.json
   def destroy
-    @blog = Blog.find(params[:id])
     @blog.destroy
-
     respond_to do |format|
       format.html { redirect_to root_path }
       format.json { head :no_content }
     end
   end
+
+
+  protected
+      def fetch_blog
+        @blog = Blog.find(params[:id])
+      end
+
+      def check_owner
+        raise Unauthorized if @blog.user != current_user
+      end
 end
