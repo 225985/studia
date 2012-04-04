@@ -41,17 +41,17 @@ class BaseActor(router: ActorRef) extends Actor with ActorLogging {
     case Job(item) =>
       log.info("Distributing job: " + item)
       implicit val timeout = Timeout(5 seconds)
+
       val count = item.split("-").map { item =>
+        // send each item to router and return a Future
         router ? PartialJob(item)
       }.map { future =>
+        // await for each result
         Await.result(future, timeout.duration).asInstanceOf[PartialJobResult]
       }.foldLeft(0) {
-        case (sum, res) => sum + res.count
+        case (sum, res) => sum + res.count // sum results
       }
 
-      sender ! JobResult(count)
-
-    case PartialJobResult(item, count) =>
-      log.info("Got result for " + item + " => " + count)
+      sender ! JobResult(count) // send result to client
   }
 }
