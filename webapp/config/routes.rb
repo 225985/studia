@@ -1,10 +1,12 @@
 Webapp::Application.routes.draw do
   root :to => 'home#index'
 
-  devise_for :users
+  devise_for :users 
 
   resources :blogs do
-    resources :posts 
+    resources :posts do
+      get :dupa, :on => :member
+    end
   end
 
   match '/help',    :to => 'home#help'

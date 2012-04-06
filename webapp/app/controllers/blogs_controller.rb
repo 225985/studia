@@ -1,13 +1,12 @@
 class BlogsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :fetch_blog, :except => [:show, :new, :create]
+  before_filter :fetch_blog, :except => [:new, :create]
   before_filter :check_owner, :except => [:show, :new, :create]
 
   def show
-    @blog = Blog.find(params[:id])
     @new_post = Post.new
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { render :layout => "wall_page" }
       format.json { render :json => @blog }
     end
   end

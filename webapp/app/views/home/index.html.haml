@@ -6,8 +6,8 @@
       %h3 My Microblogs:
       %table
         - @blogs.each do |blog|
-          %tr{ :colspan => 3} 
-            %td{:class => "sidebar-table"}= blog.blog_title
+          %tr
+            %td{:class => "sidebar-table", :colspan => 3}= blog.blog_title
           %tr{ :style => "border-bottom: solid 1px black"}
             %td{:class => "sidebar-table"}= link_to 'Show', blog, :class => "btn primary"
             %td{:class => "sidebar-table"}= link_to 'Edit', edit_blog_path(blog), :class => "btn info"

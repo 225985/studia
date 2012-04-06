@@ -1,33 +1,47 @@
-%p#notice= notice
+:css
+  textarea#post_content {
+    width: 530px;
+    height: 80px;
+    margin-left: -270px;
+  }
 
-%p
-  %b Blog title:
-  = @blog.blog_title
-%p
-  %b Description:
-  = @blog.description
-%p
-  %b User:
-  = gravatar_for @blog.user 
+  .addbtn {
+    position : realtive !important;
+    float : right !important;
+    margin-right : 8px; 
+  }
 
-%h2 Posts
-- @blog.posts.each do |post|
-  .post
-    %p= post.content
-    - if @blog.user == current_user
-      = link_to 'Usun', blog_post_path(@blog, post), :confirm => 'Are you sure?', :method => :delete
-    %hr
+.row-fluid
+  .span4
+    .well.sidebar-nav
+      %h3 Blog title:
+      %p= @blog.blog_title
+      
+      %h3 Description:
+      %p= @blog.description
+      
+      %h3 User:
+      = gravatar_for @blog.user
 
+      - if @blog.user == current_user
+        %h3 Actions
+        = link_to 'Edit', edit_blog_path(@blog), :class => "btn info"
+      
+  .span8
+    .content
+      %p#notice= notice
+      .posts
+        %h3 New post
+        = simple_form_for @new_post, :url => blog_posts_path(@blog) do |f|
+          %fieldset
+            = f.input :content, :as => :text, :required => false, :label => ''
+            = f.submit "Add post", :class => "addbtn btn success"
 
-- if @blog.user == current_user
-  .posts
-    %h3 New post
-    = simple_form_for @new_post, :url => blog_posts_path(@blog) do |f|
-      %fieldset
-        = f.input :content, :as => :text
-      .actions
-        = f.submit "Add post", :class => "btn success"
-
-  = link_to 'Edit', edit_blog_path(@blog)
-  \|
-  = link_to 'Back', blogs_path
+      %h2 Posts
+      - @blog.posts.each do |post|
+        .post
+          %p= post.content
+          - if @blog.user == current_user
+            = link_to 'Delete', blog_post_path(@blog, post), :confirm => 'Are you sure?', :method => :delete, :class => "btn danger"
+          %hr
+ 
