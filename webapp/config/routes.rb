@@ -4,9 +4,7 @@ Webapp::Application.routes.draw do
   devise_for :users 
 
   resources :blogs do
-    resources :posts do
-      get :dupa, :on => :member
-    end
+    resources :posts
   end
 
   match '/help',    :to => 'home#help'
