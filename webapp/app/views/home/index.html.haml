@@ -1,0 +1,18 @@
+.row-fluid
+  .span5
+    .well.sidebar-nav
+      .new-blog
+        = link_to 'Create new blog', new_blog_path, :class => "btn success"
+      %h3 My Microblogs:
+      %table
+        - @blogs.each do |blog|
+          %tr{ :colspan => 3} 
+            %td{:class => "sidebar-table"}= blog.blog_title
+          %tr{ :style => "border-bottom: solid 1px black"}
+            %td{:class => "sidebar-table"}= link_to 'Show', blog, :class => "btn primary"
+            %td{:class => "sidebar-table"}= link_to 'Edit', edit_blog_path(blog), :class => "btn info"
+            %td{:class => "sidebar-table"}= link_to 'Destroy', blog, :confirm => 'Are you sure?', :method => :delete, :class => "btn danger"
+  .span7
+    .content
+      %h1 Home#index
+      %p Find me in app/views/home/index.html.haml

@@ -78,3 +78,70 @@ label.collection_check_boxes {
   vertical-align: -2px;
   margin-left:   2px;
 }
+
+#container { width: 800px; padding: 20px; }
+html, body {
+  background-color: #eee;
+}
+body {
+  padding-top: 40px;
+}
+.container > footer p {
+  text-align: center;
+}
+.container {
+  width: 820px;
+}
+
+.container-fluid {
+  width: 820px;
+}
+
+.content {
+  background-color: #fff;
+  padding: 20px;
+  margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+  -webkit-border-radius: 0 0 6px 6px;
+     -moz-border-radius: 0 0 6px 6px;
+          border-radius: 0 0 6px 6px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+          box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+.header-text{
+  font-size : 15px;
+  color : #fff;
+  padding: 8px 20px 12px;
+}
+.actions{
+  background : #fff;
+  border : none;
+  width : 650px;
+}
+
+tr.success .txt {
+  text-decoration: line-through;
+}
+
+.table-width {
+  width : 820px;
+}
+
+.sidebar-nav{
+  margin-right: 10px;
+}
+
+.wall-container {
+  width: 900px;
+}
+
+.sidebar-table {
+  border:0 !important;
+}
+
+.new-blog {
+  width: 140px;
+  margin-left: auto;
+  margin-right: auto;
+  position: inline;
+}
