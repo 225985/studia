@@ -145,3 +145,7 @@ tr.success .txt {
   margin-right: auto;
   position: inline;
 }
+
+.profile_link {
+  color: white !important;
+}

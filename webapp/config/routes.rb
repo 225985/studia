@@ -3,9 +3,17 @@ Webapp::Application.routes.draw do
 
   devise_for :users 
 
-  resources :blogs do
-    resources :posts
+  as :user do
+    get "/profile/:id" => "sessions#show_profile", :as => :profile
+    get "/profile/:id/edit" => "sessions#edit_profile", :as => :edit_profile 
+    put "/profile/:id" => "sessions#update_profile", :as => :profile
   end
+
+  resources :blogs do
+    resources :posts, :only => [:create, :destroy]
+  end
+
+  resources :relationships, :only => [:create, :destroy]
 
   match '/help',    :to => 'home#help'
   match '/about',   :to => 'home#about'

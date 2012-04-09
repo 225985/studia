@@ -23,6 +23,12 @@
       %h3 User:
       = gravatar_for @blog.user
 
+      %br
+      %p= @blog.user.followed_users.count
+
+      %br
+      %p= @blog.user.followers.count
+
       - if @blog.user == current_user
         %h3 Actions
         = link_to 'Edit', edit_blog_path(@blog), :class => "btn info"

@@ -65,7 +65,8 @@
           %li= link_to "Contact", contact_path
         .pull-right.header-text
           - if signed_in?
-            Hello #{current_user.email}
+            Hello 
+            = link_to current_user.email, profile_path(current_user), :method => :get, :class => "profile_link"
             = link_to "Logout", destroy_user_session_path , :method => :delete 
 
   .container
