@@ -19,5 +19,5 @@ end
 
 WORKERS.each do |host|
   @log.info "Deploying on #{host}"
-  sh "ssh ubuntu@#{host} 'cd mandelbrot && git pull && sudo restart mandelbrot'"
+  sh "ssh ubuntu@#{host} 'cd mandelbrot && git pull && sudo stop mandelbrot; sudo start mandelbrot'" # restart sucks
 end
