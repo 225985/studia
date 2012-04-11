@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+require "logger"
+
+WORKERS = File.readlines(File.join(File.dirname(__FILE__), "..", "workers.conf")).map {|e| e.strip }.reject {|e| e == ""}
+
+@log = Logger.new(STDOUT)
+@log.level = Logger::INFO
+@log.formatter = proc do |level, datetime, progname, msg|
+  "#{datetime} [#{level}] #{msg}\n"
+end
+
+def sh(cmd)
+  @log.debug "SH: " + cmd
+  # system cmd
+end
+
+@log.info "Deploying workers"
+
+WORKERS.each do |host|
+  @log.info "Deploying on #{host}"
+  sh "ssh ubuntu@#{host} 'cd mandelbrot && git pull && sudo restart mandelbrot'"
+end

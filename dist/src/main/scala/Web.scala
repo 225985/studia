@@ -24,8 +24,8 @@ object Hardcore {
 
   lazy val base = {
     // Just for tests
-    new Worker(config.getConfig("worker1"))
-    new Worker(config.getConfig("worker2"))
+    // new Worker(config.getConfig("worker1"))
+    // new Worker(config.getConfig("worker2"))
 
     system.actorOf(Props(new BaseActor(router)), name = "base")
   }
