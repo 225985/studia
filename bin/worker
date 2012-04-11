@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd dist
+target/start dist.Worker

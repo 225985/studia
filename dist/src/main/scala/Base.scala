@@ -27,7 +27,7 @@ class WorkerActor extends Actor with ActorLogging {
 object Worker {
   def main(args: Array[String]) {
     val config = ConfigFactory.load()
-    new Worker(config.getConfig("worker" + args.head).withFallback(config))
+    new Worker(config.getConfig("worker").withFallback(config))
   }
 }
 
