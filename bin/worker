@@ -1,4 +1,5 @@
 #!/bin/sh
 
 cd dist
+../bin/sbt stage
 target/start dist.Worker
