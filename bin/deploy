@@ -12,7 +12,7 @@ end
 
 def sh(cmd)
   @log.debug "SH: " + cmd
-  # system cmd
+  system cmd
 end
 
 @log.info "Deploying workers"

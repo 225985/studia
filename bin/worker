@@ -2,6 +2,6 @@
 
 cd dist
 ../bin/sbt stage
-hostname=`curl http://169.254.169.254/latesteta-data/public-hostname`
+hostname=`curl http://169.254.169.254/latest/meta-data/public-hostname`
 echo "Hostname: $hostname"
 target/start -Dworker.akka.remote.netty.hostname=$hostname dist.Worker
