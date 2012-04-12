@@ -1,3 +1,7 @@
+import com.typesafe.startscript.StartScriptPlugin
+
+seq(StartScriptPlugin.startScriptForClassesSettings: _*)
+
 name := "dist"
 
 version := "0.1.0"
@@ -17,3 +21,4 @@ libraryDependencies ++= Seq(
 fork in run := true
 
 mainClass in (Compile, run) := Some("play.core.server.NettyServer")
+

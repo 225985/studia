@@ -1,0 +1,3 @@
+#!/bin/sh
+
+cat workers.conf | awk '{print "ubuntu@" $0}' | xargs csshx

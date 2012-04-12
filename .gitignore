@@ -26,4 +26,8 @@
 .DS_Store
 /dist/target
 /dist/project/target
+/dist/project/project/target
+/dist/.ensime
+/dist/.ensime_port
+/dist/logs/application.log
 *.pgm

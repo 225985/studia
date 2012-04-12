@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cd dist
+../bin/sbt stage
+target/start -Dhttp.port=9000 play.core.server.NettyServer
