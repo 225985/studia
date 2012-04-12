@@ -20,19 +20,31 @@ def ssh(host, commands)
   sh "ssh ubuntu@#{host} '#{commands}'"
 end
 
-@log.info "Deploying workers"
+def workers
+  @log.info "Deploying workers"
 
-CONFIG["workers"].each do |host|
-  @log.info "Deploying on #{host}"
-  ssh host, "cd mandelbrot && git pull && sudo stop mandelbrot; sudo start mandelbrot" # restart sucks
+  CONFIG["workers"].each do |host|
+    @log.info "Deploying on #{host}"
+    ssh host, "cd mandelbrot && git pull && sudo stop mandelbrot; sudo start mandelbrot" # restart sucks
+  end
+end
+
+def webapp
+  @log.info "Deploying webapp on #{CONFIG['webapp']}"
+  ssh CONFIG["webapp"], "cd mandelbrot/webapp && git pull && bundle install --path vendor/bundle --without development test && RAILS_ENV=production rake db:migrate assets:precompile && touch tmp/restart.txt"
+end
+
+def webapi
+  @log.info "Deploying webapi on #{CONFIG['webapi']}"
+  ssh CONFIG["webapi"], "cd mandelbrot && git pull && sudo stop mandelbrot-api; sudo start mandelbrot-api" # restart sucks
 end
 
 
-@log.info "Deploying webapp on #{CONFIG['webapp']}"
+if ARGV.first
+  send(ARGV.first)
+else
+  workers
+  webapi
+  webapp
+end
 
-ssh CONFIG["webapp"], "cd mandelbrot/webapp && git pull && bundle install --path vendor/bundle --without development test && RAILS_ENV=production rake db:migrate assets:precompile && touch tmp/restart.txt"
-
-
-@log.info "Deploying webapi on #{CONFIG['webapi']}"
-
-ssh CONFIG["webapi"], "cd mandelbrot && git pull && sudo stop mandelbrot-api; sudo start mandelbrot-api" # restart sucks
