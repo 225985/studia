@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
 require "logger"
+require "yaml"
 
-WORKERS = File.readlines(File.join(File.dirname(__FILE__), "..", "workers.conf")).map {|e| e.strip }.reject {|e| e == ""}
-WEBAPP = "ec2-23-21-33-85.compute-1.amazonaws.com"
+CONFIG = YAML.load(File.read(File.join(File.dirname(__FILE__), "..", "hosts.yml")))
 
 @log = Logger.new(STDOUT)
 @log.level = Logger::INFO
@@ -22,11 +22,17 @@ end
 
 @log.info "Deploying workers"
 
-WORKERS.each do |host|
+CONFIG["workers"].each do |host|
   @log.info "Deploying on #{host}"
   ssh host, "cd mandelbrot && git pull && sudo stop mandelbrot; sudo start mandelbrot" # restart sucks
 end
 
-@log.info "Deploying webapp on #{WEBAPP}"
 
-ssh WEBAPP, "cd mandelbrot/webapp && git pull && bundle install --path vendor/bundle --without development test && RAILS_ENV=production rake db:migrate assets:precompile && touch tmp/restart.txt"
+@log.info "Deploying webapp on #{CONFIG['webapp']}"
+
+ssh CONFIG["webapp"], "cd mandelbrot/webapp && git pull && bundle install --path vendor/bundle --without development test && RAILS_ENV=production rake db:migrate assets:precompile && touch tmp/restart.txt"
+
+
+@log.info "Deploying webapi on #{CONFIG['webapi']}"
+
+ssh CONFIG["webapi"], "cd mandelbrot && git pull && sudo stop mandelbrot-api; sudo start mandelbrot-api" # restart sucks
