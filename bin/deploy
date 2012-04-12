@@ -3,6 +3,7 @@
 require "logger"
 
 WORKERS = File.readlines(File.join(File.dirname(__FILE__), "..", "workers.conf")).map {|e| e.strip }.reject {|e| e == ""}
+WEBAPP = "ec2-23-21-33-85.compute-1.amazonaws.com"
 
 @log = Logger.new(STDOUT)
 @log.level = Logger::INFO
@@ -15,9 +16,17 @@ def sh(cmd)
   system cmd
 end
 
+def ssh(host, commands)
+  sh "ssh ubuntu@#{host} '#{commands}'"
+end
+
 @log.info "Deploying workers"
 
 WORKERS.each do |host|
   @log.info "Deploying on #{host}"
-  sh "ssh ubuntu@#{host} 'cd mandelbrot && git pull && sudo stop mandelbrot; sudo start mandelbrot'" # restart sucks
+  ssh host, "cd mandelbrot && git pull && sudo stop mandelbrot; sudo start mandelbrot" # restart sucks
 end
+
+@log.info "Deploying webapp on #{WEBAPP}"
+
+ssh WEBAPP, "cd mandelbrot/webapp && git pull && bundle install --path vendor/bundle --without development test && RAILS_ENV=production rake db:migrate assets:precompile && touch tmp/restart.txt"
