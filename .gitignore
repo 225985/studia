@@ -31,3 +31,4 @@
 /dist/.ensime_port
 /dist/logs/application.log
 *.pgm
+.powder
