@@ -1,91 +1,60 @@
-package dist
-
-import java.io._
-import java.lang.Math
-
-class Complex(var a: Double, var b: Double){
-  def +(that: Complex) = new Complex( this.a + that.a, this.b + that.b)
-  def *(that: Complex) = new Complex( this.a * that.a - this.b * that.b, this.a * that.b + that.a * this.b)
-  def abs() = Math.sqrt(this.a * this.a + this.b * this.b)
-  def *=(that: Complex) ={
-      val newa = this.a * that.a - this.b * that.b
-      this.b = this.a * that.b + that.a * this.b
-      this.a = newa
-      this
+import java.awt.image.BufferedImage
+import java.awt.Color
+import java.awt.Dimension
+import java.awt.Graphics2D
+ 
+import scala.swing.MainFrame
+import scala.swing.Panel
+import scala.swing.SimpleSwingApplication
+ 
+object Mandelbrot extends SimpleSwingApplication {
+  val ER = 4.0 // escape radius
+  val maxIter = 50000 // max iteration
+  val N = 1000 // image dimension
+ 
+  def top = new MainFrame {
+    title = "Mandelbrot Set"
+ 
+    contents = new Panel {
+      override protected def paintComponent(g: Graphics2D) = {
+        super.paintComponent(g)
+        var start = System.currentTimeMillis()
+        g setColor Color.BLACK
+        var image = new BufferedImage(N, N, BufferedImage.TYPE_INT_RGB)
+        var m = new Mandelbrot(N, ER, maxIter, 3)
+        for {
+          i <- 0 until N
+          j <- 0 until N
+        } image.setRGB(i, j, m.pms(i * N + j))
+        g.drawImage(image, 0, 0, null)
+        println(System.currentTimeMillis() - start)
+      }
     }
-  def +=(that: Complex)={
-      this.a += that.a
-      this.b += that.b
-      this
+ 
+    size = new Dimension(N, N)
   }
 }
-
-
-
-object Mandelbrot1 {
-
-  def run(n: Int, level: Int) : Unit = {
-    val out = new FileOutputStream("man1.pgm")
-    out.write(("P5\n"+n+" "+n+"\n255\n").getBytes())
-
-    for {y0 <- 0 until n 
-        x0 <- 0 until n }{
-
-      val x = -2.0 + x0 * 3.0/n
-      val y = -1.5 + y0 * 3.0/n
-
-      var z = new Complex(0, 0)
-      var c = new Complex(x, y)
-
-      for( i <- 0 until level )
-        z = z * z + c 
-
-      if (z.abs < 2)
-        out.write(0)
-      else
-        out.write(255)
+ 
+class Mandelbrot(n: Int, er: Double, maxIter: Int, zoom: Int) {
+ 
+  val pms = (0 to n * n).map { (x => computeColor(x / n, x % n)) } // work gets done here
+ 
+  def computeColor(x: Int, y: Int): Int = {
+ 
+    var (i, zx, zy) = (0, 0.0, 0.0)
+    val cx = -2.5 + x * (er / n) / zoom
+    val cy = 2 - y * (er / n) / zoom
+ 
+    while (zx * zx + zy * zy < er && i < maxIter) {
+      val temp = zx * zx - zy * zy + cx
+      zy = 2 * zx * zy + cy;
+      zx = temp;
+      i = i + 1;
     }
-
-    out.close()
-  }
-
-  def main(args: Array[String]) {
-    run(500, 2048)
-  }
-}
-
-object Mandelbrot2 {
-
-  def run(n: Int, level: Int) : Unit = {
-    val out = new FileOutputStream("man2.pgm")
-    out.write(("P5\n"+n+" "+n+"\n255\n").getBytes())
-
-    for {y0 <- 0 until n
-        x0 <- 0 until n }{
-
-     val x = -2.0 + x0*3.0/n
-     val y = -1.5 + y0*3.0/n
-
-     var z = new Complex(0,0)
-     var c = new Complex(x,y)
-     var i = 0
-     do {
-       z *= z
-       z += c
-       i += 1
-     } while( z.abs < 2 && i < level)
-
-     if (z.abs < 2)
-       out.write(0);
-     else
-       out.write( (i*255.0/level).toInt );
-   }
-    out.close()
-    
-  }
-
-  def main(args: Array[String]) {
-    run(100, 2048)
+ 
+    if (i == maxIter)
+      Color.BLACK.getRGB()
+    else
+      (Color.getHSBColor(i / 20.0F, 1F, 1F)).getRGB()
   }
 }
-
