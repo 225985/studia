@@ -10,7 +10,8 @@
           %li= link_to "Sign In with Twitter", signin_path_with(:twitter)
         - else
           %li
-            Hello, #{current_user.name}!
+            %p.navbar-text Hello, #{current_user.name}!
+          %li
             %img.avatar{:src => current_user.avatar}
           %li.divider-vertical
           %li

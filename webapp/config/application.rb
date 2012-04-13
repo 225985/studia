@@ -60,9 +60,9 @@ module Mandelbrot
     # Enable the asset pipeline
     config.assets.enabled = true
 
-    %w(vendor lib).each do |l|
-      config.sass.load_paths << Rails.root.join(l, 'assets', 'stylesheets')
-    end
+    # %w(vendor lib).each do |l|
+      # config.sass.load_paths << Rails.root.join(l, 'assets', 'stylesheets')
+    # end
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'

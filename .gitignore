@@ -12,6 +12,7 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
+/dist/logs/*
 /tmp
 
 # Ignore all non tex files in doc.
@@ -30,3 +31,4 @@
 /dist/.ensime_port
 /dist/logs/application.log
 *.pgm
+.powder
