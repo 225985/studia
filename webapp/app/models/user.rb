@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  attr_accessible :latitude, :longtitude, :zoom
+
   def self.create_with_omniauth(auth)
     create! do |user|
       user.provider = auth["provider"]
@@ -9,6 +11,7 @@ class User < ActiveRecord::Base
   end
 
 end
+
 
 # == Schema Information
 #
@@ -21,5 +24,8 @@ end
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
 #  avatar     :string(255)
+#  latitude   :float
+#  longtitude :float
+#  zoom       :integer
 #
 

@@ -9,7 +9,7 @@
   %body
     = render "layouts/navbar"
     .container
-      = render :partial => "layouts/flash", :locals => {:flash => flash}
+      #flash= render :partial => "layouts/flash", :locals => {:flash => flash}
       .content
         = yield
 

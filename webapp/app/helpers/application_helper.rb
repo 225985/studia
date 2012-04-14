@@ -19,6 +19,16 @@ module ApplicationHelper
     @current_user ||= User.find session[:user_id] if session[:user_id]
   end
 
+  def user_signed_in?
+    !!@current_user
+  end
+
+  def current_user_hash
+    [:latitude, :longtitude, :zoom].reduce({}) do |a, o|
+      a.merge o => current_user.try(o)
+    end
+  end
+
   def signin_path_with(provider)
     "/auth/#{provider}"
   end
