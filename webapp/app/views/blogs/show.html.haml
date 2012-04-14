@@ -21,12 +21,12 @@
       %p= @blog.description
       
       %h3 User:
-      = gravatar_for @blog.user
+      = link_to gravatar_for(@blog.user), profile_path
 
-      %br
+      %h3 Followed users
       %p= @blog.user.followed_users.count
 
-      %br
+      %h3 Followers
       %p= @blog.user.followers.count
 
       - if @blog.user == current_user
