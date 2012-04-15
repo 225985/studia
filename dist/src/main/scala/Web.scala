@@ -37,10 +37,9 @@ object Web extends Application {
 
   def route = {
     case GET(Path("/")) & QueryString(qs) => Action {
-      val sentence = QueryString(qs, "s").flatMap(_.headOption).getOrElse("")
-
+      //val sentence = QueryString(qs, "s").flatMap(_.headOption).getOrElse("")
       Async {
-        (Hardcore.base ? Job(sentence)).asPromise.map { case JobResult(count) => Ok("Count: " + count + "\n") }
+       (Hardcore.base ? Job(0, 0, 1)).asPromise.map { case JobResult(url) => Ok(url + "\n") }
       }
     }
   }

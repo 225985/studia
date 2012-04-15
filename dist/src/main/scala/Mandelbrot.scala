@@ -1,39 +1,41 @@
+package dist
+
 import java.awt.image.BufferedImage
 import java.awt.Color
 import java.awt.Dimension
 import java.awt.Graphics2D
  
-import scala.swing.MainFrame
-import scala.swing.Panel
-import scala.swing.SimpleSwingApplication
+// import scala.swing.MainFrame
+// import scala.swing.Panel
+// import scala.swing.SimpleSwingApplication
  
-object Mandelbrot extends SimpleSwingApplication {
-  val ER = 4.0 // escape radius
-  val maxIter = 50000 // max iteration
-  val N = 1000 // image dimension
+// object Mandelbrot extends SimpleSwingApplication {
+//   val ER = 4.0 // escape radius
+//   val maxIter = 50000 // max iteration
+//   val N = 1000 // image dimension
  
-  def top = new MainFrame {
-    title = "Mandelbrot Set"
+//   def top = new MainFrame {
+//     title = "Mandelbrot Set"
  
-    contents = new Panel {
-      override protected def paintComponent(g: Graphics2D) = {
-        super.paintComponent(g)
-        var start = System.currentTimeMillis()
-        g setColor Color.BLACK
-        var image = new BufferedImage(N, N, BufferedImage.TYPE_INT_RGB)
-        var m = new Mandelbrot(N, ER, maxIter, 3)
-        for {
-          i <- 0 until N
-          j <- 0 until N
-        } image.setRGB(i, j, m.pms(i * N + j))
-        g.drawImage(image, 0, 0, null)
-        println(System.currentTimeMillis() - start)
-      }
-    }
+//     contents = new Panel {
+//       override protected def paintComponent(g: Graphics2D) = {
+//         super.paintComponent(g)
+//         var start = System.currentTimeMillis()
+//         g setColor Color.BLACK
+//         var image = new BufferedImage(N, N, BufferedImage.TYPE_INT_RGB)
+//         var m = new Mandelbrot(N, ER, maxIter, 3)
+//         for {
+//           i <- 0 until N
+//           j <- 0 until N
+//         } image.setRGB(i, j, m.pms(i * N + j))
+//         g.drawImage(image, 0, 0, null)
+//         println(System.currentTimeMillis() - start)
+//       }
+//     }
  
-    size = new Dimension(N, N)
-  }
-}
+//     size = new Dimension(N, N)
+//   }
+// }
  
 class Mandelbrot(n: Int, er: Double, maxIter: Int, zoom: Int) {
  
