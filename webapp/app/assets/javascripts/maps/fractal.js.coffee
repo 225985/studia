@@ -11,10 +11,9 @@ $ ->
     map.addLayer layer
     map.setView new L.LatLng(latitude, longtitude), zoom
 
-    map.on "dragend", (event) ->
-      c = map.getCenter()
-      z = map.getZoom()
-      $.post '/update', user: {latitude: c.lat, longtitude: c.lng, zoom: z}, (data) ->
-        alert data.msg
-
+    if $("#fractal").data('id')?
+      map.on "moveend", (event) ->
+        c = map.getCenter()
+        z = map.getZoom()
+        $.post '/update', user: {latitude: c.lat, longtitude: c.lng, zoom: z}
 

@@ -24,7 +24,7 @@ module ApplicationHelper
   end
 
   def current_user_hash
-    [:latitude, :longtitude, :zoom].reduce({}) do |a, o|
+    [:id, :latitude, :longtitude, :zoom].reduce({}) do |a, o|
       a.merge o => current_user.try(o)
     end
   end
