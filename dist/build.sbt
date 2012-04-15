@@ -22,3 +22,5 @@ fork in run := true
 
 mainClass in (Compile, run) := Some("play.core.server.NettyServer")
 
+mainClass in Compile := None
+
