@@ -1,3 +1,8 @@
-#!/bin/sh
+#!/usr/bin/env ruby
 
-cat workers.conf | awk '{print "ubuntu@" $0}' | xargs csshx
+require "logger"
+require "yaml"
+
+CONFIG = YAML.load(File.read(File.join(File.dirname(__FILE__), "..", "hosts.yml")))
+
+puts "csshx #{(CONFIG["workers"] << CONFIG["webapi"] << CONFIG["webapp"]).map{|e| "ubuntu@#{e}"}.join(" ")}"
