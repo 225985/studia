@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+require "yaml"
+
+puts "Getting instances..."
+hosts = `ec2-describe-instances | grep INSTANCE`.split("\n").inject({}) {|h,e| a=e.split(" "); h[a[1]] = a[3]; h }
+
+puts "Getting tags..."
+tags = `ec2-describe-tags`.split("\n").map {|e| a=e.split(" "); [a[2],a[4]] }
+
+workers = tags.select {|i,n| n =~ /^frac/ }.map {|i,n| hosts[i] }
+
+info = {
+  "webapp" => hosts[tags.find {|i,n| n == "webapp" }[0]],
+  "webapi" => hosts[tags.find {|i,n| n == "webapi" }[0]],
+  "workers" => workers
+}
+
+
+yml = YAML.dump(info)
+puts yml
+File.open("hosts.yml", "w"){|f| f.write yml }
+
+akka_workers = workers.map {|h| "              akka://Worker@#{h}:2552" }.join(",\n")
+conf = <<-EOS
+            nodes = [
+#{akka_workers}
+            ]
+EOS
+
+puts conf
