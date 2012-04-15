@@ -6,8 +6,8 @@ $ ->
 
     map = new L.Map 'fractal'
     # layer = new L.TileLayer "http://{s}.mandelbrot.dev/api/{z}/{x}/{y}.png",
-    layer = new L.TileLayer "http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png",
-                            attribution: "Fractal Explorer", maxZoom: 20
+    layer = new L.TileLayer "http://192.168.0.12:9000/img/{x}/{y}/{z}",
+                            attribution: "Fractal Explorer", maxZoom: 100
     map.addLayer layer
     map.setView new L.LatLng(latitude, longtitude), zoom
 

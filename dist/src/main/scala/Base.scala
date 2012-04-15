@@ -10,31 +10,18 @@ import akka.util.Timeout
 import akka.util.duration._
 import akka.dispatch.Await
 
-// case class Job(item: String)
-// case class JobResult(count: Int)
+case class Render(x: Int, y: Int, z: Int)
+case class FractalData(data: Array[Array[Int]])
 
-// case class PartialJob(item: String)
-// case class PartialJobResult(item: String, count: Int)
-
-
-case class Job(i: Int, j: Int, zoom: Int) //TODO nie wiem za bardzo co ma przychodzic, dalem takie
-case class JobResult(url: String)
-
-case class PartialJob(i: Int, j: Int, er: Double, zoom: Int, dim: Int, it : Int)
-case class PartialJobResult(i: Int, result: List[Int])
-
-
+case class RenderRow(x: Int, y: Int, z: Int, row: Int)
+case class RowData(data: Array[Int])
 
 class WorkerActor extends Actor with ActorLogging {
   def receive = {
-    case PartialJob(i, j, er, zoom, dim, it) =>
-      log.info("Working on: " + i)
-      val mandelbrot = new Mandelbrot(dim, er, it, zoom)
-      var result = List[Int]()
-      for(k <- j until dim ) {
-        result = result ::: List(mandelbrot.pms(i * dim + k))
-      }
-      sender ! PartialJobResult(i, result)
+    case RenderRow(x, y, z, row) =>
+      println("Working on %d/%d/%d %d" format (x,y,z,row))
+      val data = Mandelbrot.row(x, y, z, row)
+      sender ! RowData(data)
   }
 }
 
@@ -46,34 +33,25 @@ object Worker {
 }
 
 class Worker(config: Config) {
+  println("Starting new worker")
   val system = ActorSystem("Worker", config)
 }
 
-
 class BaseActor(router: ActorRef) extends Actor with ActorLogging {
-  val dim = 256 //Na sztywno po ustaleniu z lenikiem
+  val N = 256
+
   def receive = {
-    //TODO
-    case Job(i, j, zoom) =>
-      log.info("Distributing job")
+    case Render(x, y, z) =>
+      printf("Distributing %d/%d/%d" format (x,y,z))
+
       implicit val timeout = Timeout(5 seconds)
 
-      // val count = item.split("-").map { item =>
-      //   // send each item to router and return a Future
-      //   router ? PartialJob(item)
-      // }.map { future =>
-      //   // await for each result
-      //   Await.result(future, timeout.duration).asInstanceOf[PartialJobResult]
-      // }.foldLeft(0) {
-      //   case (sum, res) => sum + res.count // sum results
-      // }
+      val data = (0 until N).map { row =>
+        router ? RenderRow(x, y, z, row)
+      }.map { future =>
+        Await.result(future, timeout.duration).asInstanceOf[RowData].data
+      }.toArray
 
-      for( k <- i to dim ) {
-        
-      }
-
-
-      val url = "http://www.aaa.com"
-      sender ! JobResult(url) // send result to client
+      sender ! FractalData(data)
   }
 }
