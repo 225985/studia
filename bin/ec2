@@ -21,11 +21,17 @@ yml = YAML.dump(info)
 puts yml
 File.open("hosts.yml", "w"){|f| f.write yml }
 
-akka_workers = workers.map {|h| "              akka://Worker@#{h}:2552" }.join(",\n")
+akka_workers = workers.map {|h| "              \"akka://Worker@#{h}:2552\"" }.join(",\n")
 conf = <<-EOS
             nodes = [
 #{akka_workers}
             ]
 EOS
 
+puts
+puts "application.conf nodes:"
+
 puts conf
+
+puts
+puts "Remember to set webapp host in fractal.js.coffee !"

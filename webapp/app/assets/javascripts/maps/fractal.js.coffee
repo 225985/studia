@@ -5,8 +5,7 @@ $ ->
     zoom       = $("#fractal").data('zoom') ? 3
 
     map = new L.Map 'fractal'
-    # layer = new L.TileLayer "http://{s}.mandelbrot.dev/api/{z}/{x}/{y}.png",
-    layer = new L.TileLayer "http://192.168.0.12:9000/img/{x}/{y}/{z}",
+    layer = new L.TileLayer "http://ec2-184-73-42-103.compute-1.amazonaws.com/img/{x}/{y}/{z}",
                             attribution: "Fractal Explorer", maxZoom: 100
     map.addLayer layer
     map.setView new L.LatLng(latitude, longtitude), zoom
