@@ -35,7 +35,7 @@ object Hardcore {
 }
 
 object Web extends Application with Controller {
-  implicit val timeout = Timeout(15 seconds)
+  implicit val timeout = Timeout(30 seconds)
 
   def route = {
     case GET(Path(Seg("img" :: xs :: ys :: zs :: Nil))) => Action {

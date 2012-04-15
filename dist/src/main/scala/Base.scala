@@ -19,7 +19,7 @@ case class RowData(data: Array[Int])
 class WorkerActor extends Actor with ActorLogging {
   def receive = {
     case RenderRow(x, y, z, row) =>
-      println("Working on %d/%d/%d %d" format (x,y,z,row))
+      // println("Working on %d/%d/%d %d" format (x,y,z,row))
       val data = Mandelbrot.row(x, y, z, row)
       sender ! RowData(data)
   }
@@ -44,7 +44,7 @@ class BaseActor(router: ActorRef) extends Actor with ActorLogging {
     case Render(x, y, z) =>
       printf("Distributing %d/%d/%d" format (x,y,z))
 
-      implicit val timeout = Timeout(5 seconds)
+      implicit val timeout = Timeout(15 seconds)
 
       val data = (0 until N).map { row =>
         router ? RenderRow(x, y, z, row)
