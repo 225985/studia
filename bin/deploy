@@ -35,8 +35,11 @@ def webapp
 end
 
 def webapi
-  @log.info "Deploying webapi on #{CONFIG['webapi']}"
-  ssh CONFIG["webapi"], "cd mandelbrot && git pull && sudo stop mandelbrot-api; sudo start mandelbrot-api" # restart sucks
+  @log.info "Deploying webapi"
+  CONFIG["webapi"].each do |host|
+    @log.info "Deploying webapi on #{host}"
+    ssh host, "cd mandelbrot && git pull && sudo stop mandelbrot-api; sudo start mandelbrot-api" # restart sucks
+  end
 end
 
 
