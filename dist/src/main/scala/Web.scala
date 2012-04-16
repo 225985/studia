@@ -24,13 +24,14 @@ object Hardcore {
   lazy val config = ConfigFactory.load()
 
   lazy val system = ActorSystem("Base", config.getConfig("base"))
-  lazy val router = system.actorOf(Props[WorkerActor].withRouter(FromConfig()), name = "router")
+  // lazy val router = system.actorOf(Props[WorkerActor].withRouter(FromConfig()), name = "router")
 
   lazy val base = {
     // Just for tests
     // new Worker(config.getConfig("worker"))
 
-    system.actorOf(Props(new BaseActor(router)), name = "base")
+    // system.actorOf(Props(new BaseActor(router)), name = "base")
+    system.actorOf(Props[SingleBaseActor], name = "base")
   }
 }
 

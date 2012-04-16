@@ -44,13 +44,24 @@ class BaseActor(router: ActorRef) extends Actor with ActorLogging {
     case Render(x, y, z) =>
       printf("Distributing %d/%d/%d" format (x,y,z))
 
-      // implicit val timeout = Timeout(15 seconds)
+      implicit val timeout = Timeout(15 seconds)
 
-      // val data = (0 until N).map { row =>
-      //   router ? RenderRow(x, y, z, row)
-      // }.map { future =>
-      //   Await.result(future, timeout.duration).asInstanceOf[RowData].data
-      // }.toArray
+      val data = (0 until N).map { row =>
+        router ? RenderRow(x, y, z, row)
+      }.map { future =>
+        Await.result(future, timeout.duration).asInstanceOf[RowData].data
+      }.toArray
+
+      sender ! FractalData(data)
+  }
+}
+
+class SingleBaseActor extends Actor with ActorLogging {
+  val N = 256
+
+  def receive = {
+    case Render(x, y, z) =>
+      printf("Distributing %d/%d/%d" format (x,y,z))
 
       val data = (0 until N).map { row => Mandelbrot.row(x, y, z, row) }.toArray
 

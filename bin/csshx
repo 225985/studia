@@ -5,4 +5,10 @@ require "yaml"
 
 CONFIG = YAML.load(File.read(File.join(File.dirname(__FILE__), "..", "hosts.yml")))
 
-puts "csshx #{(CONFIG["workers"] + CONFIG["webapi"] << CONFIG["webapp"]).map{|e| "ubuntu@#{e}"}.join(" ")}"
+hosts = if ARGV.first
+  CONFIG[ARGV.first]
+else
+  CONFIG["workers"] + CONFIG["webapi"] << CONFIG["webapp"]
+end
+
+puts "csshx #{hosts.map{|e| "ubuntu@#{e}"}.join(" ")}"
