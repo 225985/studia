@@ -22,6 +22,7 @@
 !/doc/*.graffle
 !/doc/*.pod
 !/doc/*.pptx
+!/doc/*.ppt
 
 .DS_Store
 /dist/target
