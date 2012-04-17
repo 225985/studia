@@ -6,7 +6,7 @@ zad336: licz zad336.c
 licz: licz.c
 	gcc -o licz licz.c
 
-test: zad336
+test: all
 	./licz
 
 
