@@ -10,3 +10,4 @@ init: init.c
 
 clean:
 	rm -f init pk_prod pk_kons *.o
+
