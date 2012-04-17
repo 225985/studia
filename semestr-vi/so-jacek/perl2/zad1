@@ -1,0 +1,49 @@
+#!/usr/bin/perl -w
+
+#W zadanym drzewie katalogów wylistować pliki regularne, do których właściciel ma prawo zapisu, a grupa lub inni nie maja prawa 
+#wykoannia, o najczesciej występującej nazwie
+
+use File::Find;
+use File::Basename;
+use Cwd 'abs_path';
+
+my $dir = abs_path(@ARGV);
+
+my %tab = ();
+my %tab_count = ();
+
+find(\&my_func,$dir);
+
+sub my_func
+{    
+    my $file = "$File::Find::name";
+    return unless -f $file;
+    
+    my $access = (stat($_))[2];       
+    if(( -w $_) and (! ($access & 0010) or ! ($access & 0001)))
+    {
+        my $filename = basename($file);
+
+        if(exists($tab{$filename})) {
+             $tab{$filename} = $tab{$filename} . $file . "\n";
+             $tab_count{$filename}++;
+        } else {
+            $tab{$filename} = $file . "\n";
+            $tab_count{$filename} = 1;
+        }
+    }
+}
+
+$f_name = "";
+$f_count = 0;
+
+foreach $x (%tab_count) {
+  if($tab_count{$x} > $f_count) {
+    $f_name = $x;
+    $f_count = $tab_count{$x};
+  }
+}
+
+print "$tab{$f_name} \n"
+
+
