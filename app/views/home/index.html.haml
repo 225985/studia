@@ -19,7 +19,8 @@
           - @feeds.each do |feed|
             %tr
               %td= feed.user.email
-              %td= feed.blog.blog_title
+              - if !feed.blog.nil?
+                %td= feed.blog.blog_title 
               %td= feed.created_at
             %tr
               %td= feed.content
