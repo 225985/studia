@@ -21,7 +21,9 @@
 !/doc/*.pdf
 !/doc/*.graffle
 !/doc/*.pod
+!/doc/*.png
 !/doc/*.pptx
+!/doc/*.ppt
 
 .DS_Store
 /dist/target

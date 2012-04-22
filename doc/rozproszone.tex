@@ -2,6 +2,7 @@
 \usepackage{polski}
 \usepackage[utf8]{inputenc}
 \usepackage{setspace}
+\usepackage{graphicx}
 
 \title{Rozproszona aplikacja umożliwiająca przeglądanie fraktali}
 \author{Tymon Tobolski {\small(181037)}\\ Jacek Wieczorek {\small(181043)} \\
@@ -58,7 +59,8 @@ zaimplementowanym w Scali.
 
 \begin{itemize}
   \item Platforma: JVM
-  \item Język implementacji: JRuby, Scala, CoffeeScript
+  \item Język implementacji: Ruby, Scala, CoffeeScript
+  \item Baza danych: SQLite lub MySQL
   \item Framework: Ruby on Rails
 \end{itemize}
 
@@ -70,7 +72,7 @@ zaimplementowanym w Scali.
     \begin{itemize}
       \item Utworzenie konta,
       \item Autentykacja za pomocą OAuth,
-      \item Pobieranie awatarów z serwisu Gravatar,
+      \item Pobieranie awatarów,
       \item Zapisanie ustawień i ostatniej przeglądanej pozycji.
     \end{itemize}
   \item Wyświetlanie mapy
@@ -88,16 +90,59 @@ zaimplementowanym w Scali.
     \end{itemize}
 \end{itemize}
 
-\section*{Podział zadań}
+\section*{Implementacja}
 
-W pracy nad projektem zamierzamy wykorzystać metodologię SCRUM, która zakłada
-podział projektu na małe zadania, nie moduły. Z tego względu nie jesteśmy
-w stanie określić kto będzie się zajmował jaką częścią projektu. Zadania będą w
-miarę postępu prac przypisane członkom zespołu.
-\vspace{1em}
+Praca nad projektem została podzielona na dwie części, aplikację internetową
+oraz rozproszone API pozwalające na renderowanie części fraktala.
 
-Oprócz wyżej wymienionych funkcjonalności w projekcie należy również zadbać o
-testy systemu.
+\subsection*{Aplikacja internetowa}
+
+Aplikacja internetowa została utworzona przy użyciu frameworka Ruby on Rails. Do
+wyświetlania fraktala wykorzystana została biblioteka Leaflet. Aplikacja
+pobiera poszczególne części fraktala łącząc się z rozproszonym API. Obecnie
+zaimplementowane jest logowanie za pomocą Twitter OAuth. Dla zalogowanego
+użytkownika zapisywana jest ostatnie przeglądane współrzędne fraktala.
+
+\subsection*{Rozproszone API}
+
+Biblioteka Leaflet pobiera z API obrazki o rozmiarach $256 \times 256$ pikseli
+korzystając z URL w formacie \texttt{http://\{serwer\}/img/\{x\}/\{y\}/\{z\}}
+wypełniając pola \texttt{x}, \texttt{y}, \texttt{z} odpowiednimi
+wartościami. Następnie, zgodnie z rysunkiem~\ref{fig:loadbalancing}, zapytanie
+jest przydzielane do odpowiednich węzłów, jest renderowane, a następnie wynik
+jest zwracany do klienta.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.5]{schema.pdf}
+\end{center}
+\caption{Load balancing.}
+\label{fig:loadbalancing}
+\end{figure}
+
+API zostało zaimplementowane w języku Scala wykorzystując bibliotekę Akka.io
+umożliwiającą łatwe użycie Actor pattern.
+
+\section*{Wdrożenie}
+
+Aplikacja została wdrożona na klastrze obliczeniowym składającym się z
+dziewięciu maszyn wirtualnych. Ze względu na łatwą konfigurację, jako host
+maszyn wirtualnych została wybrana platforma Amazon EC2.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.33]{ec2.png}
+\end{center}
+\caption{Klaster obliczeniowy.}
+\label{fig:ec2}
+\end{figure}
+
+\section*{Podsumowanie}
+
+Zaimplementowana zostały podstawowe funkcjonalności aplikacji. W przyszłości
+dodane zostaną pozostałe funkcjonalności, takie jak wybór dodatkowych opcji w
+aplikacji. Do projektu dodana zostanie również dokumentacja projektowa oraz
+testy behawioralne.
 
 \end{document}
 
