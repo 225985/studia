@@ -10,7 +10,7 @@ gem 'rails', '3.2.2'
 
 gem 'activerecord-jdbcsqlite3-adapter'
 
-gem 'jruby-openssl', :git => 'https://github.com/jruby/jruby-ossl.git'
+gem 'jruby-openssl'
 gem 'json'
 gem 'devise'
 gem "omniauth-facebook"
