@@ -9,6 +9,7 @@ Webapp::Application.routes.draw do
     put "/profile/:id" => "sessions#update_profile", :as => :profile
     get "/profile/:id/following" => "sessions#following", :as => :following
     get "/profile/:id/followers" => "sessions#followers", :as => :followers
+    delete "/profile/:id/delete" => "sessions#delete_profile", :as => :delte_profile
   end
 
   resources :blogs do

@@ -9,6 +9,11 @@ class SessionsController < ::Devise::SessionsController
   def edit_pofile
   end
 
+  def delete_profile
+    @user.destroy
+    redirect_to root_path
+  end
+
   def update_profile
     respond_to do |format|
       if @user.update_attributes(params[:user])
