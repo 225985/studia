@@ -7,10 +7,20 @@
   dictum leo sit amet mattis. Ut quis neque nisi, a ultrices purus. Nullam
   blandit risus bibendum odio tincidunt ut posuere lectus elementum.
 
-%ul.fractals
-  - ["mandelbrot", "julia"].each do |kind|
-    - [10, 100, 1000, 10000, 100000].each do |quality|
-      %li= link_to "#{kind}(#{quality})", "#", "data-kind" => kind, "data-quality" => quality
+.fractals
+  / %label Kind
+  %select#kind
+    %option{:value => "mandelbrot"} Mandelbrot
+    %option{:value => "julia"} Julia
+  / %label Iterations
+  %select#iter
+    - [10, 100, 1000, 10000].each do |q|
+      %option{:value => q, :selected => (q==1000 ? "selected" : nil)}= q
+  / %label Tile size
+  %select#size
+    - [32, 64, 128, 256].each do |s|
+      %option{:value => s, :selected => (s==256 ? "selected" : nil)}= "#{s}x#{s}"
+  %button.btn.btn-primary#render Render
 
 
 

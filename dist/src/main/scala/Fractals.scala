@@ -3,22 +3,20 @@ package dist
 import java.awt.Color
 
 trait Fractal {
-  import Config._
-
   def pixel(cx: Double, cy: Double, maxIter: Int): Int
   def size: Double
   def xOffset: Double
   def yOffset: Double
 
-  def row(x: Int, y: Int, z: Int, row: Int, maxIter: Int): Array[Int] = {
-    (0 until N).map { y0 => calculate(x * N + row, y * N + y0, z, maxIter) }.toArray
+  def row(n: Int, x: Int, y: Int, z: Int, row: Int, maxIter: Int): Array[Int] = {
+    (0 until n).map { y0 => calculate(n, x * n + row, y * n + y0, z, maxIter) }.toArray
   }
 
-  def calculate(x: Int, y: Int, z: Int, maxIter: Int) = {
-    val n = math.pow(2, z) * N
+  def calculate(n: Int, x: Int, y: Int, z: Int, maxIter: Int) = {
+    val m = math.pow(2, z) * n
 
-    val cx = (x/n) * size - xOffset
-    val cy = (y/n) * size - yOffset
+    val cx = (x/m) * size - xOffset
+    val cy = (y/m) * size - yOffset
 
     pixel(cx, cy, maxIter)
   }
@@ -38,7 +36,6 @@ object Mandelbrot extends Fractal {
   def yOffset = 1.75
 
   def pixel(cx: Double, cy: Double, maxIter: Int) = {
-    println("px(%f, %f, %d)" format (cx, cy, maxIter))
     var (i, zx, zy) = (0, 0.0, 0.0)
 
     while (zx * zx + zy * zy < 4 && i < maxIter) {
@@ -46,11 +43,7 @@ object Mandelbrot extends Fractal {
       zy = 2 * zx * zy + cy;
       zx = temp;
       i = i + 1;
-
-      println("i=%d zx=%f zy=%f" format (i,zx,zy))
     }
-
-    // println("-px " + i)
 
     if (i == maxIter) Color.BLACK.getRGB()
     else Color.getHSBColor(i / 20.0F, 1F, 1F).getRGB()

@@ -39,21 +39,21 @@ object Hardcore {
 }
 
 object Web extends Application with Controller {
-  import Config._
   implicit val timeout = Timeout(30 seconds)
 
   def route = {
-    case GET(Path(Seg(kind :: quality :: xs :: ys :: zs :: Nil))) => Action {
+    case GET(Path(Seg(size :: kind :: quality :: xs :: ys :: zs :: Nil))) => Action {
       (for {
+        n <- parseInt(size)
+        maxIter <- parseInt(quality)
         x <- parseInt(xs)
         y <- parseInt(ys)
         z <- parseInt(zs)
-        maxIter <- parseInt(quality)
       } yield {
         println("Starting %d/%d/%d" format (x,y,z))
 
         Async {
-          (Hardcore.base ? Render(kind, x, y, z, maxIter)).asPromise.map {
+          (Hardcore.base ? Render(kind, n, x, y, z, maxIter)).asPromise.map {
             case FractalData(data) =>
               println("Got fractal data %d/%d/%d" format (x,y,z))
               val output = render(data)
@@ -73,10 +73,11 @@ object Web extends Application with Controller {
   }
 
   def render(data: Array[Array[Int]]) = {
-    val img = new BufferedImage(N, N, BufferedImage.TYPE_INT_RGB)
+    println("rendering " + data.length)
+    val img = new BufferedImage(data.length, data.length, BufferedImage.TYPE_INT_RGB)
     for {
-      i <- 0 until N
-      j <- 0 until N
+      i <- 0 until data.length
+      j <- 0 until data.length
     } img.setRGB(i, j, data(i)(j))
     val output = new ByteArrayOutputStream
     ImageIO.write(img, "png", output)
