@@ -8,9 +8,9 @@ gem 'rails', '3.2.2'
 # puma webserver is faster than webrick
 #gem 'puma'
 
-#gem 'activerecord-jdbcsqlite3-adapter'
+gem 'sqlite3'
 
-gem 'openssl'
+# gem 'openssl'
 gem 'json'
 gem 'devise'
 gem "omniauth-facebook"
