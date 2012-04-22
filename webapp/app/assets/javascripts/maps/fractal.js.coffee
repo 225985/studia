@@ -1,14 +1,28 @@
 $ ->
-  if $("#fractal").size() > 0
-    latitude   = $("#fractal").data('latitude') ? 0
-    longtitude = $("#fractal").data('longtitude') ? 0
-    zoom       = $("#fractal").data('zoom') ? 3
+  $("ul.fractals a").click (e) ->
+    e.preventDefault()
+    e.stopPropagation()
 
-    map = new L.Map 'fractal'
-    layer = new L.TileLayer "http://ec2-107-20-61-228.compute-1.amazonaws.com/img/{x}/{y}/{z}",
-                            attribution: "Fractal Explorer", maxZoom: 100
-    map.addLayer layer
-    map.setView new L.LatLng(latitude, longtitude), zoom
+    latitude   = $("#fractal").data('latitude') ? 79.2
+    longtitude = $("#fractal").data('longtitude') ? 45
+    zoom       = $("#fractal").data('zoom') ? 4
+
+    kind = $(this).data("kind") ? "mandelbrot"
+    quality = $(this).data("quality") ? 1000
+
+    window.map ||= new L.Map 'fractal', {
+      center: new L.LatLng(latitude, longtitude)
+      zoom: zoom
+    }
+
+    if window.layer
+      window.map.removeLayer(window.layer)
+
+    window.layer = new L.TileLayer "http://localhost:9000/#{kind}/#{quality}/{x}/{y}/{z}", attribution: "Fractal Explorer",
+                                                                                    maxZoom: 100,
+                                                                                    tileSize: 64
+
+    window.map.addLayer(window.layer)
 
     if $("#fractal").data('id')?
       map.on "moveend", (event) ->

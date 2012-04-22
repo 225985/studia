@@ -6,6 +6,14 @@
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rhoncus
   dictum leo sit amet mattis. Ut quis neque nisi, a ultrices purus. Nullam
   blandit risus bibendum odio tincidunt ut posuere lectus elementum.
+
+%ul.fractals
+  - ["mandelbrot", "julia"].each do |kind|
+    - [10, 100, 1000, 10000, 100000].each do |quality|
+      %li= link_to "#{kind}(#{quality})", "#", "data-kind" => kind, "data-quality" => quality
+
+
+
 #fractal{:data => current_user_hash}
 
 
