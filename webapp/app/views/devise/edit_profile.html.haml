@@ -1,9 +1,0 @@
-%h1 Edit profile #{@user.email}
-
-= simple_form_for @user, :url => profile_path(@user) do |f|
-  %fieldset
-    = f.input :fullname
-    = f.input :description, :as => :text
-  .actions
-    = f.submit "Save", :class => "btn success"
-

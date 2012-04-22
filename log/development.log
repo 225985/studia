@@ -44629,3 +44629,55 @@ Served asset /posts.js - 304 Not Modified (0ms)
 
 Started GET "/assets/application.js?body=1" for 0:0:0:0:0:0:0:1%0 at Sun Apr 22 17:37:04 +0200 2012
 Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/" for 0:0:0:0:0:0:0:1%0 at Sun Apr 22 18:05:57 +0200 2012
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  SELECT "users".id FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = 1
+  [1m[36mBlog Load (0.0ms)[0m  [1mSELECT "blogs".* FROM "blogs" WHERE "blogs"."user_id" = 1[0m
+  [1m[35mPost Load (0.0ms)[0m  SELECT "posts".* FROM "posts" WHERE (user_id IN ('4'))
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 4 LIMIT 1[0m
+  [1m[35mBlog Load (0.0ms)[0m  SELECT "blogs".* FROM "blogs" WHERE "blogs"."id" = 12 LIMIT 1
+  Rendered home/index.html.haml within layouts/wall_page (420.0ms)
+Completed 200 OK in 1387ms (Views: 798.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 0:0:0:0:0:0:0:1%0 at Sun Apr 22 18:05:59 +0200 2012
+Served asset /application.css - 304 Not Modified (52ms)
+
+
+Started GET "/assets/blogs.css?body=1" for 0:0:0:0:0:0:0:1%0 at Sun Apr 22 18:06:00 +0200 2012
+Served asset /blogs.css - 304 Not Modified (9ms)
+
+
+Started GET "/assets/home.css?body=1" for 0:0:0:0:0:0:0:1%0 at Sun Apr 22 18:06:00 +0200 2012
+Served asset /home.css - 304 Not Modified (10ms)
+
+
+Started GET "/assets/posts.css?body=1" for 0:0:0:0:0:0:0:1%0 at Sun Apr 22 18:06:00 +0200 2012
+Served asset /posts.css - 304 Not Modified (69ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 0:0:0:0:0:0:0:1%0 at Sun Apr 22 18:06:00 +0200 2012
+Served asset /jquery.js - 304 Not Modified (22ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 0:0:0:0:0:0:0:1%0 at Sun Apr 22 18:06:00 +0200 2012
+Served asset /jquery_ujs.js - 304 Not Modified (26ms)
+
+
+Started GET "/assets/blogs.js?body=1" for 0:0:0:0:0:0:0:1%0 at Sun Apr 22 18:06:00 +0200 2012
+Served asset /blogs.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/home.js?body=1" for 0:0:0:0:0:0:0:1%0 at Sun Apr 22 18:06:00 +0200 2012
+Served asset /home.js - 304 Not Modified (11ms)
+
+
+Started GET "/assets/posts.js?body=1" for 0:0:0:0:0:0:0:1%0 at Sun Apr 22 18:06:00 +0200 2012
+Served asset /posts.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/application.js?body=1" for 0:0:0:0:0:0:0:1%0 at Sun Apr 22 18:06:00 +0200 2012
+Served asset /application.js - 304 Not Modified (62ms)

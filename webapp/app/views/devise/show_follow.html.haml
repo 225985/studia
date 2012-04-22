@@ -1,9 +1,0 @@
-%h1= @title
-
-%p= @user.email
-
-%table
-  - @users.each do |us|
-    %tr
-      %td= gravatar_for(us) 
-      %td= us.fullname
