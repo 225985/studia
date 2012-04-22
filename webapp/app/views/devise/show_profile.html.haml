@@ -1,16 +1,22 @@
 %h1 Profile 
 
 %h3 Gravatar :
-= gravatar_for @user
+= gravatar_for(@user)
 
 %h3 Username :
-%p= current_user.email 
+%p= @user.email 
 
 %h3 Fullname :
-%p= current_user.fullname
+%p= @user.fullname
 
 %h3 Description :
-%p= current_user.description
+%p= @user.description
+
+%h3 Followed users
+=link_to @user.followed_users.count, following_path(@user)
+
+%h3 Followers
+=link_to @user.followers.count, followers_path(@user)
 
 -if current_user == @user
   = link_to "Edit profile", edit_profile_path, :class => "btn info"

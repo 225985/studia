@@ -3,6 +3,7 @@ class HomeController < ApplicationController
 
   def index
   	@blogs = current_user.blogs
+    @feeds = current_user.feed
   	render :layout => "wall_page"
   end
 

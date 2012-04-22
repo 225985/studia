@@ -7,6 +7,8 @@ Webapp::Application.routes.draw do
     get "/profile/:id" => "sessions#show_profile", :as => :profile
     get "/profile/:id/edit" => "sessions#edit_profile", :as => :edit_profile 
     put "/profile/:id" => "sessions#update_profile", :as => :profile
+    get "/profile/:id/following" => "sessions#following", :as => :following
+    get "/profile/:id/followers" => "sessions#followers", :as => :followers
   end
 
   resources :blogs do

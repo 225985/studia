@@ -18,6 +18,9 @@ class User < ActiveRecord::Base
                                    :dependent =>   :destroy
   has_many :followers, :through => :reverse_relationships, :source => :follower
 
+  def feed
+    Post.from_users_followed_by(self)
+  end
 
   def following?(other_user)
     relationships.find_by_followed_id(other_user.id)

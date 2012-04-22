@@ -13,7 +13,6 @@ class BlogsController < ApplicationController
 
   def new
     @blog = Blog.new
-
     respond_to do |format|
       format.html 
       format.json { render :json => @blog }

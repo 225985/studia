@@ -1,7 +1,7 @@
 class SessionsController < ::Devise::SessionsController
   before_filter :authenticate_user!
   before_filter :fetch_user
-  before_filter :check_permissions, :except => [:show_profile]
+  before_filter :check_permissions, :except => [:show_profile, :following, :followers]
 
   def show_profile
   end
@@ -17,6 +17,18 @@ class SessionsController < ::Devise::SessionsController
         format.html { render :action => "edit_profile" }
       end
     end
+  end
+
+  def following
+    @title = "Following"
+    @users = @user.followed_users
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @users = @user.followers
+    render 'show_follow'
   end
 
   protected

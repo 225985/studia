@@ -23,11 +23,14 @@
       %h3 User:
       = link_to gravatar_for(@blog.user), profile_path
 
+      .follow-button
+        =render 'devise/follow_form'
+
       %h3 Followed users
-      %p= @blog.user.followed_users.count
+      =link_to @blog.user.followed_users.count, following_path(@blog.user)
 
       %h3 Followers
-      %p= @blog.user.followers.count
+      =link_to @blog.user.followers.count, followers_path(@blog.user)
 
       - if @blog.user == current_user
         %h3 Actions
@@ -36,12 +39,13 @@
   .span8
     .content
       %p#notice= notice
-      .posts
-        %h3 New post
-        = simple_form_for @new_post, :url => blog_posts_path(@blog) do |f|
-          %fieldset
-            = f.input :content, :as => :text, :required => false, :label => ''
-            = f.submit "Add post", :class => "addbtn btn success"
+      -if current_user == @blog.user
+        .posts
+          %h3 New post
+          = simple_form_for @new_post, :url => blog_posts_path(@blog) do |f|
+            %fieldset
+              = f.input :content, :as => :text, :required => false, :label => ''
+              = f.submit "Add post", :class => "addbtn btn success"
 
       %h2 Posts
       - @blog.posts.each do |post|
