@@ -1,0 +1,25 @@
+.row-fluid
+  .span5
+    .well.sidebar-nav
+      .new-blog
+        = link_to 'Create new blog', new_blog_path, :class => "btn success"
+      %h3 My Microblogs:
+      %table
+        - @blogs.each do |blog|
+          %tr
+            %td{:class => "sidebar-table", :colspan => 3}= blog.blog_title
+          %tr{ :style => "border-bottom: solid 1px black"}
+            %td{:class => "sidebar-table"}= link_to 'Show', blog, :class => "btn primary"
+            %td{:class => "sidebar-table"}= link_to 'Edit', edit_blog_path(blog), :class => "btn info"
+            %td{:class => "sidebar-table"}= link_to 'Destroy', blog, :confirm => 'Are you sure?', :method => :delete, :class => "btn danger"
+  .span7
+    .content
+      %table
+        - @feeds.each do |feed|
+          %tr
+            %td= feed.user.email
+            %td= feed.blog.blog_title
+            %td= feed.created_at
+          %tr
+            %td= feed.content
+

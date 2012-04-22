@@ -1,0 +1,9 @@
+o: ActiveSupport::Cache::Entry	:@compressedF:@created_atf1333392966.447:@expires_in0:@value"D{"
+class"ProcessedAsset"logical_path"home.js"pathname"0$root/app/assets/javascripts/home.js.coffee"content_type"application/javascript"
+mtime"2012-04-02T20:51:01+02:00"lengthi%"digest"%571454e6b728ddcfb7fdc3b132066f5a"source"%(function() {
+
+
+
+}).call(this);
+"dependency_digest"%b74f7012b9ca43cf182111726c6d7445"required_paths["0$root/app/assets/javascripts/home.js.coffee"dependency_paths[{"	path"0$root/app/assets/javascripts/home.js.coffee"
+mtime"2012-04-02T20:51:01+02:00"digest"%6b7d15da56c9b5e72e591dce20abfd72"_version"%aa7d0db7619379e13b08335dee027df2

@@ -1,0 +1,7 @@
+-if current_user != @blog.user
+  -if current_user.following?(@blog.user) 
+    =render 'devise/unfollow'
+  -else 
+    =render 'devise/follow'
+
+  

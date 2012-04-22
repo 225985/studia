@@ -1,0 +1,57 @@
+:css
+  textarea#post_content {
+    width: 530px;
+    height: 80px;
+    margin-left: -270px;
+  }
+
+  .addbtn {
+    position : realtive !important;
+    float : right !important;
+    margin-right : 8px; 
+  }
+
+.row-fluid
+  .span4
+    .well.sidebar-nav
+      %h3 Blog title:
+      %p= @blog.blog_title
+      
+      %h3 Description:
+      %p= @blog.description
+      
+      %h3 User:
+      = link_to gravatar_for(@blog.user), profile_path
+
+      .follow-button
+        =render 'devise/follow_form'
+
+      %h3 Followed users
+      =link_to @blog.user.followed_users.count, following_path(@blog.user)
+
+      %h3 Followers
+      =link_to @blog.user.followers.count, followers_path(@blog.user)
+
+      - if @blog.user == current_user
+        %h3 Actions
+        = link_to 'Edit', edit_blog_path(@blog), :class => "btn info"
+      
+  .span8
+    .content
+      %p#notice= notice
+      -if current_user == @blog.user
+        .posts
+          %h3 New post
+          = simple_form_for @new_post, :url => blog_posts_path(@blog) do |f|
+            %fieldset
+              = f.input :content, :as => :text, :required => false, :label => ''
+              = f.submit "Add post", :class => "addbtn btn success"
+
+      %h2 Posts
+      - @blog.posts.each do |post|
+        .post
+          %p= post.content
+          - if @blog.user == current_user
+            = link_to 'Delete', blog_post_path(@blog, post), :confirm => 'Are you sure?', :method => :delete, :class => "btn danger"
+          %hr
+ 
