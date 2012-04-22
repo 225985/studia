@@ -7,8 +7,13 @@ gem 'rails', '3.2.2'
 
 # puma webserver is faster than webrick
 #gem 'puma'
+group :development do
+  gem 'sqlite3'
+end
 
-gem 'sqlite3'
+group :production do
+  gem 'pg', '0.12.2'
+end
 
 # gem 'openssl'
 gem 'json'
