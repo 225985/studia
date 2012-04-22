@@ -15,11 +15,15 @@
   .span7
     .content
       %table
-        - @feeds.each do |feed|
-          %tr
-            %td= feed.user.email
-            %td= feed.blog.blog_title
-            %td= feed.created_at
-          %tr
-            %td= feed.content
+        -if @feeds.count > 0
+          - @feeds.each do |feed|
+            %tr
+              %td= feed.user.email
+              %td= feed.blog.blog_title
+              %td= feed.created_at
+            %tr
+              %td= feed.content
+        - else
+          %p No feeds
+        
 
