@@ -13,6 +13,7 @@ gem 'activerecord-jdbcsqlite3-adapter'
 gem 'jruby-openssl'
 gem 'json'
 gem 'devise'
+gem "omniauth-facebook"
 gem 'haml'
 gem 'haml-rails'
 gem 'simple_form'

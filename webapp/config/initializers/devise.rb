@@ -208,6 +208,9 @@ Devise.setup do |config|
   config.sign_out_via = :delete
   config.sign_out_via = :get if Rails.env.test?
 
+  require "omniauth-facebook"
+  config.omniauth :facebook, "174166766040067", "990918b9e51c93bd719aa70eb9f570ac", 
+    {:scope => 'email, offline_access', :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}}
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
