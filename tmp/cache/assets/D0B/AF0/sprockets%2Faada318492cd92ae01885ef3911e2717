@@ -1,9 +1,0 @@
-o: ActiveSupport::Cache::Entry	:@compressedF:@created_atf1332881438.981:@expires_in0:@value"H{"
-class"ProcessedAsset"logical_path"posts.js"pathname"1$root/app/assets/javascripts/posts.js.coffee"content_type"application/javascript"
-mtime"2012-03-22T20:35:21+01:00"lengthi%"digest"%571454e6b728ddcfb7fdc3b132066f5a"source"%(function() {
-
-
-
-}).call(this);
-"dependency_digest"%b74f7012b9ca43cf182111726c6d7445"required_paths["1$root/app/assets/javascripts/posts.js.coffee"dependency_paths[{"	path"1$root/app/assets/javascripts/posts.js.coffee"
-mtime"2012-03-22T20:35:21+01:00"digest"%6b7d15da56c9b5e72e591dce20abfd72"_version"%aa7d0db7619379e13b08335dee027df2
