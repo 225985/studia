@@ -70,7 +70,12 @@ tr.success .txt {
   position: inline;
 }
 
-label, input, textarea {
-  margin-left: 0px;
-  margin: 0px;
+label {
+  margin-left: -85px;
+}
+
+#post_content {
+  width: 530px;
+  height: 80px;
+  margin-bottom: 5px;
 }

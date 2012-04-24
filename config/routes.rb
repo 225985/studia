@@ -1,18 +1,18 @@
 Webapp::Application.routes.draw do
   root :to => 'home#index'
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" } 
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   as :user do
     get "/profile/:id" => "sessions#show_profile", :as => :profile
-    get "/profile/:id/edit" => "sessions#edit_profile", :as => :edit_profile 
+    get "/profile/:id/edit" => "sessions#edit_profile", :as => :edit_profile
     put "/profile/:id" => "sessions#update_profile", :as => :profile
     get "/profile/:id/following" => "sessions#following", :as => :following
     get "/profile/:id/followers" => "sessions#followers", :as => :followers
     delete "/profile/:id/delete" => "sessions#delete_profile", :as => :delte_profile
   end
 
-  resources :blogs do
+  resources :blogs, :except => :index do
     resources :posts, :only => [:create, :destroy]
   end
 
@@ -22,7 +22,7 @@ Webapp::Application.routes.draw do
   match '/about',   :to => 'home#about'
   match '/contact', :to => 'home#contact'
 
-  
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
