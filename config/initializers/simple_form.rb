@@ -13,10 +13,6 @@ SimpleForm.setup do |config|
     # You can make any of these extensions optional by
     # renaming `b.use` to `b.optional`.
 
-    # Determines whether to use HTML5 (:email, :url, ...)
-    # and required attributes
-    b.use :html5
-
     # Calculates placeholders automatically from I18n
     # You can also pass a string as f.input :placeholder => "Placeholder"
     b.use :placeholder
@@ -46,7 +42,6 @@ SimpleForm.setup do |config|
   end
 
   config.wrappers :bootstrap, :tag => 'div', :class => 'control-group', :error_class => 'error' do |b|
-    b.use :html5
     b.use :placeholder
     b.use :label
     b.wrapper :tag => 'div', :class => 'controls' do |ba|
@@ -57,7 +52,6 @@ SimpleForm.setup do |config|
   end
 
   config.wrappers :prepend, :tag => 'div', :class => "control-group", :error_class => 'error' do |b|
-    b.use :html5
     b.use :placeholder
     b.use :label
     b.wrapper :tag => 'div', :class => 'controls' do |input|
@@ -70,7 +64,6 @@ SimpleForm.setup do |config|
   end
 
   config.wrappers :append, :tag => 'div', :class => "control-group", :error_class => 'error' do |b|
-    b.use :html5
     b.use :placeholder
     b.use :label
     b.wrapper :tag => 'div', :class => 'controls' do |input|
