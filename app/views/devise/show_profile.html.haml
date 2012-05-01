@@ -19,6 +19,7 @@
 =link_to @user.followers.count, followers_path(@user)
 
 -if current_user == @user
+  %h3 Actions
   = link_to "Edit profile", edit_profile_path, :class => "btn info"
   = link_to 'Delete user', delte_profile_path, :confirm => 'Are you sure?', :method => :delete, :class => "btn danger"
 
