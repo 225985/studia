@@ -27,5 +27,5 @@ $ ->
       map.on "moveend", (event) ->
         c = map.getCenter()
         z = map.getZoom()
-        $.post '/update', user: {latitude: c.lat, longtitude: c.lng, zoom: z}
+        $.post '/update', user: {latitude: c.lat, longtitude: c.lng, zoom: z, kind: kind, iter: iter, size: size}
 

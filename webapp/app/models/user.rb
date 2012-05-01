@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :latitude, :longtitude, :zoom
+  attr_accessible :latitude, :longtitude, :zoom, :kind, :iter, :size
 
   def self.create_with_omniauth(auth)
     create! do |user|

@@ -11,18 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120414193124) do
+ActiveRecord::Schema.define(:version => 20120501231544) do
 
   create_table "users", :force => true do |t|
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.string   "avatar"
     t.float    "latitude"
     t.float    "longtitude"
     t.integer  "zoom"
+    t.string   "kind",       :limit => nil
+    t.integer  "iter"
+    t.integer  "size"
   end
 
 end
