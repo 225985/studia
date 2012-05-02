@@ -1,6 +1,9 @@
 = simple_form_for @blog do |f|
   .inputs
-    = f.input :blog_title
+    = f.input :title
     = f.input :description, :as => :text
+    = f.input :kind, :as => :select, :collection => Blog::TYPES, :selected => "Blog", :id => "blog-type"
+    .blog-public
+      = f.input :public, :as => :boolean, :id => "blog-public"
   .actions
     = f.button :submit, 'Save'

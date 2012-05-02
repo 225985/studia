@@ -1,32 +1,40 @@
 %h1 Profile 
 
-%h3 Gravatar :
-= gravatar_for(@user)
+.profile-display
+  #prop#prop-profile
+    .properties-display
+      %h3 Username :
+      %p= @user.email 
+    .properties-display
+      %h3 Fullname :
+      %p= @user.fullname
+  #prop
+    .properties-display
+      %h3 Gravatar :
+      = gravatar_for(@user)
+    .properties-display
+      %h3 Description :
+      %p= @user.description
+  #prop
+    .properties-display
+      %h3 Followed / Followers
+      =link_to @user.followed_users.count, following_path(@user) 
+      \/
+      =link_to @user.followers.count, followers_path(@user)
+    .properties-display
+      -if current_user == @user
+        %h3 Actions
+        = link_to "Edit", edit_profile_path, :class => "btn info"
+        = link_to 'Delete', delte_profile_path, :confirm => 'Are you sure?', :method => :delete, :class => "btn danger"
 
-%h3 Username :
-%p= @user.email 
-
-%h3 Fullname :
-%p= @user.fullname
-
-%h3 Description :
-%p= @user.description
-
-%h3 Followed users
-=link_to @user.followed_users.count, following_path(@user)
-
-%h3 Followers
-=link_to @user.followers.count, followers_path(@user)
-
--if current_user == @user
-  %h3 Actions
-  = link_to "Edit profile", edit_profile_path, :class => "btn info"
-  = link_to 'Delete user', delte_profile_path, :confirm => 'Are you sure?', :method => :delete, :class => "btn danger"
-
-%h3 Microblogs:
-%table{ :style => "width: 300px;"}
-  - @user.blogs.each do |blog|
-    %tr
-      %td= blog.blog_title
-      %td= link_to 'Show', blog, :class => "btn primary"
+.profile-display
+  %h3 Microblogs:
+  %table
+    - @user.blogs.each do |blog|
+      %tr
+        %td{:class => "blog-title-cell"}= blog.title
+        %td= link_to 'Show', blog, :class => "btn primary"
+        -if current_user == @user
+          %td= link_to 'Edit', edit_blog_path(blog), :class => "btn info"
+          %td= link_to 'Destroy', blog, :confirm => 'Are you sure?', :method => :delete, :class => "btn danger"
 

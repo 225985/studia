@@ -1,3 +1,11 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+$ ->
+  $("#blog_kind").change (e) ->
+    e.preventDefault()
+    e.stopPropagation()
+
+    if($(this).val() == "Discussion")
+      $(".blog-public").show("slow")
+    else
+      $("#blog_public").attr('checked', false)
+      $(".blog-public").hide("slow")
+    

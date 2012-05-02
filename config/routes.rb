@@ -10,6 +10,7 @@ Webapp::Application.routes.draw do
     get "/profile/:id/following" => "sessions#following", :as => :following
     get "/profile/:id/followers" => "sessions#followers", :as => :followers
     delete "/profile/:id/delete" => "sessions#delete_profile", :as => :delte_profile
+
   end
 
   resources :blogs, :except => :index do
@@ -21,6 +22,9 @@ Webapp::Application.routes.draw do
   match '/help',    :to => 'home#help'
   match '/about',   :to => 'home#about'
   match '/contact', :to => 'home#contact'
+  match '/userlist', :to =>'home#user_list'
+
+
 
 
 
