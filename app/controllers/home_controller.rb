@@ -21,7 +21,7 @@ class HomeController < ApplicationController
     @usernames = User.all
     respond_to do |format|
       format.html { render 'user_list'}
-      format.json { render :json => @usernames.select { |u| u.fullname}}
+      format.json { render :json => @usernames.collect { |u| u.fullname}}
     end
   end
 

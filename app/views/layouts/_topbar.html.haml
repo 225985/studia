@@ -1,3 +1,6 @@
+%script{:type => "text/javascript"}
+  var LoggedIn = "#{signed_in?}"
+
 .topbar
   .fill
     .container
@@ -6,8 +9,9 @@
         %li= link_to "About", about_path
         %li= link_to "Help", help_path
         %li= link_to "Contact", contact_path
-      .pull-right.header-text
-        - if signed_in?
+      - if signed_in?
+        %input{:as => :text, :id => "usernames"}      
+        .pull-right.header-text
           Hello
           = link_to current_user.email, profile_path(current_user), :method => :get, :class => "profile_link"
           = link_to "Logout", destroy_user_session_path , :method => :delete

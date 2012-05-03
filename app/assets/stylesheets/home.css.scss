@@ -32,9 +32,9 @@ body {
 }
 
 .header-text{
-  font-size : 15px;
-  color : #fff;
-  padding: 8px 20px 12px;
+  font-size : 15px !important;
+  color : #fff !important;
+  padding: 8px 20px 12px!important;
 }
 
 .actions{
@@ -87,4 +87,9 @@ textarea {
 
 .control-group {
   margin-bottom: 10px;
+}
+#usernames{
+  margin-top : 7px;
+  width : 150px;
+
 }
