@@ -8,9 +8,6 @@ class PostsController < ApplicationController
     @post = @blog.posts.build(params[:post])
     @post.user = current_user
     respond_to do |format|
-      if @post.save
-        format.html { redirect_to blog_path(@blog) }
-      else
         format.html { redirect_to blog_path(@blog) }
       end
     end

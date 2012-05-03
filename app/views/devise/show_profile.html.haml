@@ -18,23 +18,39 @@
   #prop
     .properties-display
       %h3 Followed / Followers
-      =link_to @user.followed_users.count, following_path(@user) 
-      \/
-      =link_to @user.followers.count, followers_path(@user)
+      #follow-numbers
+        =render 'follow_numbers'
     .properties-display
+      %h3 Actions
       -if current_user == @user
-        %h3 Actions
-        = link_to "Edit", edit_profile_path, :class => "btn info"
-        = link_to 'Delete', delte_profile_path, :confirm => 'Are you sure?', :method => :delete, :class => "btn danger"
+        = link_to "Edit", edit_profile_path(@user), :class => "btn info"
+        = link_to 'Delete', delte_profile_path(@user), :confirm => 'Are you sure?', :method => :delete, :class => "btn danger"
+      -else
+        =render 'devise/follow_form'
 
 .profile-display
   %h3 Microblogs:
-  %table
-    - @user.blogs.each do |blog|
-      %tr
-        %td{:class => "blog-title-cell"}= blog.title
-        %td= link_to 'Show', blog, :class => "btn primary"
-        -if current_user == @user
-          %td= link_to 'Edit', edit_blog_path(blog), :class => "btn info"
-          %td= link_to 'Destroy', blog, :confirm => 'Are you sure?', :method => :delete, :class => "btn danger"
+  - if @blogs.count > 0
+    %table
+      - @blogs.each do |blog|
+        %tr
+          %td{:class => "blog-title-cell"}= blog.title
+          %td= link_to 'Show', blog, :class => "btn primary"
+          -if current_user == @user
+            %td= link_to 'Edit', edit_blog_path(blog), :class => "btn info"
+            %td= link_to 'Destroy', blog, :confirm => 'Are you sure?', :method => :delete, :class => "btn danger"
+  - else
+    %p User doesn't have any microblogs    
 
+  %h3 Discussions:
+  - if @discussions.count > 0
+    %table
+      - @discussions.each do |blog|
+        %tr
+          %td{:class => "blog-title-cell"}= blog.title
+          %td= link_to 'Show', blog, :class => "btn primary"
+          -if current_user == @user
+            %td= link_to 'Edit', edit_blog_path(blog), :class => "btn info"
+            %td= link_to 'Destroy', blog, :confirm => 'Are you sure?', :method => :delete, :class => "btn danger"
+  - else
+    %p User doesn't have any discussions 

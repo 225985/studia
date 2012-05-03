@@ -1,0 +1,3 @@
+= simple_form_for(@blog.invitations.build(:user_id => user.id), :url => blog_invitations_path(@blog), :remote => :true)  do |f|
+  = f.hidden_field :user_id
+  = f.submit "Invite", :class => "btn primary"

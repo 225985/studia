@@ -42,3 +42,24 @@
   margin-right: auto;
   position: inline;
 }
+
+.author-gravatar{
+  display: inline-block;
+}
+
+.author-gravatar img {
+  width : 30px;
+  height : 30px;
+}
+
+.author-name {
+  display: inline-block;
+  font-size : 20px;
+}
+
+.follow-table{
+  width : 300px;
+  border : none;
+  border-style : 0px !important;
+}
+

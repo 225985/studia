@@ -1,0 +1,13 @@
+-if @feeds.count > 0
+  - @feeds.each do |feed|
+    .feed-main
+      .feed-content
+        = feed.content
+      .feed-bottom
+        = link_to feed.user.email, profile_path(feed.user) 
+        \via
+        = link_to feed.blog.title, blog_path(feed.blog)
+        \at
+        = feed.created_at
+- else
+  %p No feeds

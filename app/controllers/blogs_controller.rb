@@ -5,6 +5,7 @@ class BlogsController < ApplicationController
 
   def show
     @new_post = Post.new
+    @user = @blog.user
     respond_to do |format|
       format.html { render :layout => "wall_page" }
       format.json { render :json => @blog }
@@ -20,6 +21,7 @@ class BlogsController < ApplicationController
   end
 
   def edit
+    @users = User.all
   end
 
   def create
@@ -54,6 +56,12 @@ class BlogsController < ApplicationController
       format.html { redirect_to root_path }
       format.json { head :no_content }
     end
+  end
+
+  def add_user
+  end
+
+  def remove_user
   end
 
 

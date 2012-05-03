@@ -15,9 +15,11 @@ Webapp::Application.routes.draw do
 
   resources :blogs, :except => :index do
     resources :posts, :only => [:create, :destroy]
+    resources :invitations, :only => [:create, :destroy]
   end
 
   resources :relationships, :only => [:create, :destroy]
+
 
   match '/help',    :to => 'home#help'
   match '/about',   :to => 'home#about'

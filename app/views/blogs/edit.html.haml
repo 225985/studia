@@ -2,6 +2,10 @@
 
 = render 'form'
 
+-@users.each do |user|
+    %p= user.email
+    =render :partial => 'invite_form', :locals  => { :user => user }
+
 = link_to 'Show', @blog
 \|
-= link_to 'Back', blogs_path
+= link_to 'Back', root_path

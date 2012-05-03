@@ -1,20 +1,18 @@
 .row-fluid
   .span4
     .well.sidebar-nav
-      %h3 Blog title:
+      %h3 Title:
       %p= @blog.title
 
       %h3 Description:
       %p= @blog.description
 
-      %h3 User:
-      = link_to gravatar_for(@blog.user), profile_path
+      %h3 Author:
+      = render 'author'
 
-      %h3 Followed users
-      =link_to @blog.user.followed_users.count, following_path(@blog.user)
-
-      %h3 Followers
-      =link_to @blog.user.followers.count, followers_path(@blog.user)
+      %h3 Followed / Followers
+      #follow-numbers
+        =render 'devise/follow_numbers'
 
       %h3 Actions
       - if @blog.user == current_user
@@ -38,10 +36,5 @@
               = f.submit "Add post", :class => "btn success add-post"
 
       %h2 Posts
-      - @blog.posts.each do |post|
-        .post
-          %p= post.content
-          - if @blog.user == current_user
-            = link_to 'Delete', blog_post_path(@blog, post), :confirm => 'Are you sure?', :method => :delete, :class => "btn danger"
-          %hr
+      =render 'posts'
 

@@ -1,0 +1,1 @@
+$(".invite-form-<%= @user.id %>").html("<%= escape_javascript(render :partial =>'blogs/invite' , :locals  => { :user => @user })  %>")

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120502181418) do
+ActiveRecord::Schema.define(:version => 20120503202939) do
 
   create_table "blogs", :force => true do |t|
     t.string   "title"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20120502181418) do
     t.boolean  "public"
   end
 
-  create_table "inviteds", :force => true do |t|
+  create_table "invitations", :force => true do |t|
     t.integer  "blog_id"
     t.integer  "user_id"
     t.datetime "created_at", :null => false

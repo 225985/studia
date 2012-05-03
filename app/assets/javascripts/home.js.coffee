@@ -3,8 +3,3 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 
-$ ->
-  if LoggedIn == "true"
-    $.get "/userlist.json", (data) ->
-      $("#usernames").autocomplete
-        source: data

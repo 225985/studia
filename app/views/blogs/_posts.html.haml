@@ -1,0 +1,10 @@
+- @blog.posts.each do |post|
+  .feed-main
+    .feed-content
+      = post.content
+    .feed-bottom
+      = link_to post.user.email, profile_path(post.user) 
+      \at
+      = post.created_at
+      -if current_user == @blog.user
+        =link_to 'Delete', blog_post_path(@blog, post), :confirm => 'Are you sure?', :method => :delete

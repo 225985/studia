@@ -1,0 +1,6 @@
+#invite-form{ :class => "invite-form-#{user.id}" }
+  -if current_user != user
+    -if @blog.invited?(user) 
+      =render :partial => 'remove', :locals  => { :user => user }
+    -else 
+      =render :partial => 'invite', :locals  => { :user => user }

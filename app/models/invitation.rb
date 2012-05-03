@@ -1,4 +1,4 @@
-class Invited < ActiveRecord::Base
+class Invitation < ActiveRecord::Base
   attr_accessible :user_id
 
   belongs_to :blog, :class_name => "Blog"

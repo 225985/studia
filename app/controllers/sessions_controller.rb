@@ -4,6 +4,8 @@ class SessionsController < ::Devise::SessionsController
   before_filter :check_permissions, :except => [:show_profile, :following, :followers]
 
   def show_profile
+    @blogs = @user.blogs.find_all{ |blog| blog.kind == "Blog" }
+    @discussions = @user.blogs.find_all{ |blog| blog.kind == "Discussion" }
   end
 
   def edit_pofile

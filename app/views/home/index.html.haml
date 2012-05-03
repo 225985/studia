@@ -29,17 +29,6 @@
         %p You don't have any discussions
   .span7
     .content
-      %table
-        -if @feeds.count > 0
-          - @feeds.each do |feed|
-            %tr
-              %td= feed.user.email
-              - if !feed.blog.nil?
-                %td= feed.blog.title 
-              %td= feed.created_at
-            %tr
-              %td= feed.content
-        - else
-          %p No feeds
+      =render 'feeds'
         
 
