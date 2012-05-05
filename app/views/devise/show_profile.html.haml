@@ -1,32 +1,33 @@
 %h1 Profile 
 
 .profile-display
-  #prop#prop-profile
-    .properties-display
-      %h3 Username :
-      %p= @user.email 
-    .properties-display
-      %h3 Fullname :
-      %p= @user.fullname
-  #prop
-    .properties-display
-      %h3 Gravatar :
-      = gravatar_for(@user)
-    .properties-display
-      %h3 Description :
-      %p= @user.description
-  #prop
-    .properties-display
-      %h3 Followed / Followers
-      #follow-numbers
-        =render 'follow_numbers'
-    .properties-display
-      %h3 Actions
-      -if current_user == @user
-        = link_to "Edit", edit_profile_path(@user), :class => "btn info"
-        = link_to 'Delete', delte_profile_path(@user), :confirm => 'Are you sure?', :method => :delete, :class => "btn danger"
-      -else
-        =render 'devise/follow_form'
+  %table
+    %tr
+      %td{ :style => "width : 50%;"}
+        %h3 Username :
+        %p= @user.email 
+      %td{ :style => "width : 50%;"}
+        %h3 Fullname :
+        %p= @user.fullname
+    %tr
+      %td{ :style => "width : 50%;"}
+        %h3 Gravatar :
+        = gravatar_for(@user)
+      %td{ :style => "width : 50%;"}
+        %h3 Description :
+        %p= @user.description
+    %tr
+      %td
+        %h3 Followed / Followers
+        #follow-numbers
+          =render 'follow_numbers'
+      %td
+        %h3 Actions
+        -if current_user == @user
+          = link_to "Edit", edit_profile_path(@user), :class => "btn info"
+          = link_to 'Delete', delte_profile_path(@user), :confirm => 'Are you sure?', :method => :delete, :class => "btn danger"
+        -else
+          =render 'devise/follow_form'
 
 .profile-display
   %h3 Microblogs:
