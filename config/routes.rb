@@ -25,6 +25,7 @@ Webapp::Application.routes.draw do
   match '/about',   :to => 'home#about'
   match '/contact', :to => 'home#contact'
   match '/userlist', :to =>'home#user_list'
+  match '/unauthorized', :to =>'home#unauthorized'
 
 
 

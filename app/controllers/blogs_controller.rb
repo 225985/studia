@@ -2,6 +2,7 @@ class BlogsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :fetch_blog, :except => [:new, :create]
   before_filter :check_owner, :except => [:show, :new, :create]
+  before_filter :check_permission, :only => [:show]
 
   def show
     @new_post = Post.new
@@ -74,5 +75,9 @@ class BlogsController < ApplicationController
 
       def check_owner
         raise Unauthorized if @blog.user != current_user
+      end
+
+      def check_permission
+        redirect_to unauthorized_path if @blog.kind == 'Discussion' && !@blog.public && !@blog.invited?(current_user) 
       end
 end

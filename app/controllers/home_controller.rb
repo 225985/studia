@@ -17,6 +17,9 @@ class HomeController < ApplicationController
   def contact
   end
 
+  def unauthorized
+  end
+
   def user_list
     @usernames = User.all
     respond_to do |format|

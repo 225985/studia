@@ -38,7 +38,7 @@
   .span8
     .content
       %p#notice= notice
-      -if current_user == @blog.user
+      -if current_user == @blog.user || (@blog.public && @blog.kind == 'Discussion') || (@blog.invited?(current_user) && @blog.kind == 'Discussion')
         .posts
           %h3 New post
           = simple_form_for @new_post, :url => blog_posts_path(@blog), :remote => :true do |f|

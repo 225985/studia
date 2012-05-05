@@ -31,6 +31,8 @@ class PostsController < ApplicationController
       end
 
       def check_owner
-        raise Unauthorized if @blog.user != current_user
+        raise Unauthorized if ( (@blog.user != current_user && @blog.kind == 'Blog') || (@blog.kind == 'Discussion' && !@blog.public && !@blog.invited?(current_user)) ) 
       end
+
+
 end
