@@ -6,6 +6,25 @@
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rhoncus
   dictum leo sit amet mattis. Ut quis neque nisi, a ultrices purus. Nullam
   blandit risus bibendum odio tincidunt ut posuere lectus elementum.
+
+.fractals
+  / %label Kind
+  %select#kind
+    - ["mandelbrot", "julia"].each do |q|
+      %option{:value => q, :selected => (q==@kind ? "selected" : nil)}= q.capitalize
+
+  / %label Iterations
+  %select#iter
+    - [10, 100, 1000, 10000].each do |q|
+      %option{:value => q, :selected => (q==@iter ? "selected" : nil)}= q
+  / %label Tile size
+  %select#size
+    - [32, 64, 128, 256].each do |s|
+      %option{:value => s, :selected => (s==@size ? "selected" : nil)}= "#{s}x#{s}"
+  %button.btn.btn-primary#render Render
+
+
+
 #fractal{:data => current_user_hash}
 
 

@@ -18,7 +18,10 @@ import akka.util.duration._
 
 import scala.collection.JavaConversions._
 
-import java.io.ByteArrayInputStream
+import java.awt.image.BufferedImage
+import java.awt.Color
+import java.io.{ByteArrayOutputStream, ByteArrayInputStream}
+import javax.imageio.ImageIO
 
 object Hardcore {
   lazy val config = ConfigFactory.load()
@@ -39,8 +42,10 @@ object Web extends Application with Controller {
   implicit val timeout = Timeout(30 seconds)
 
   def route = {
-    case GET(Path(Seg("img" :: xs :: ys :: zs :: Nil))) => Action {
+    case GET(Path(Seg(size :: kind :: quality :: xs :: ys :: zs :: Nil))) => Action {
       (for {
+        n <- parseInt(size)
+        maxIter <- parseInt(quality)
         x <- parseInt(xs)
         y <- parseInt(ys)
         z <- parseInt(zs)
@@ -48,10 +53,10 @@ object Web extends Application with Controller {
         println("Starting %d/%d/%d" format (x,y,z))
 
         Async {
-          (Hardcore.base ? Render(x, y, z)).asPromise.map {
+          (Hardcore.base ? Render(kind, n, x, y, z, maxIter)).asPromise.map {
             case FractalData(data) =>
               println("Got fractal data %d/%d/%d" format (x,y,z))
-              val output = Mandelbrot.image(data)
+              val output = render(data)
               val stream = new ByteArrayInputStream(output.toByteArray)
               println("Rendered %d/%d/%d" format (x,y,z))
               SimpleResult(
@@ -65,6 +70,18 @@ object Web extends Application with Controller {
         }
       }) getOrElse NotFound
     }
+  }
+
+  def render(data: Array[Array[Int]]) = {
+    println("rendering " + data.length)
+    val img = new BufferedImage(data.length, data.length, BufferedImage.TYPE_INT_RGB)
+    for {
+      i <- 0 until data.length
+      j <- 0 until data.length
+    } img.setRGB(i, j, data(i)(j))
+    val output = new ByteArrayOutputStream
+    ImageIO.write(img, "png", output)
+    output
   }
 
   def parseInt(s: String) = try { Some(s.toInt) } catch { case _ => None }
