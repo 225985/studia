@@ -1,0 +1,21 @@
+%p
+  %a#show-settings Show settings
+  %a#hide-settings Hide settings
+#settings
+  %h3 Settings
+  %form.form-inline
+    %fieldset
+      %select#kind
+        - ["mandelbrot", "julia"].each do |q|
+          %option{:value => q, :selected => (q==@kind ? "selected" : nil)}= q.capitalize
+
+      %select#iter
+        - [10, 100, 1000, 10000].each do |q|
+          %option{:value => q, :selected => (q==@iter ? "selected" : nil)}= q
+
+      %select#size
+        - [32, 64, 128, 256].each do |s|
+          %option{:value => s, :selected => (s==@size ? "selected" : nil)}= "#{s}x#{s}"
+
+      %button.btn.btn-primary#render Render
+
