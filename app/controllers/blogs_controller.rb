@@ -78,6 +78,6 @@ class BlogsController < ApplicationController
       end
 
       def check_permission
-        redirect_to unauthorized_path if @blog.kind == 'Discussion' && !@blog.public && !@blog.invited?(current_user) 
+        redirect_to unauthorized_path if @blog.kind == 'Discussion' && !@blog.public && !@blog.invited?(current_user) @blog.user != current_user 
       end
 end
