@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require leaflet
-//= require_tree .
+//= require maps/fractal
+//= require home
+

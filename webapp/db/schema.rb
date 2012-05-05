@@ -17,15 +17,15 @@ ActiveRecord::Schema.define(:version => 20120501231544) do
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.string   "avatar"
     t.float    "latitude"
     t.float    "longtitude"
     t.integer  "zoom"
-    t.string   "kind"
-    t.integer  "iter"
-    t.integer  "size"
+    t.string   "kind",       :default => "mandelbrot"
+    t.integer  "iter",       :default => 1000
+    t.integer  "size",       :default => 256
   end
 
 end

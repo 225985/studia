@@ -5,7 +5,7 @@ update = ->
 
   kind    = $("#kind").val() ? "mandelbrot"
   iter    = $("#iter").val() ? 1000
-  size    = $("#size").val() ? 64
+  size    = $("#size").val() ? 256
 
   window.map ||= new L.Map 'fractal', {
     center: new L.LatLng(latitude, longtitude)
