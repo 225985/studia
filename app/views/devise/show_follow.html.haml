@@ -3,15 +3,15 @@
 -if @users.count == 0
   %p There isn't any users
 -else
-  %table{ :style => 'width : 400px; border : none !important;'}
+  %table{ :style => 'width : 400px;', :class => 'sidebar-table'} 
     - @users.each do |us|
-      %tr{:style => "border-bottom: solid 1px black"}
+      %tr
         %td{:style => 'width : 40px'}
           .author-gravatar
             = link_to gravatar_for(us), profile_path(us)
         %td{:style => 'width : 300px'}
           .author-name
-            - if us.fullname != ''
+            - if !us.fullname.nil? && !us.fullname.empty?
               = link_to us.fullname, profile_path(us)
             -else 
               = link_to us.email, profile_path(us)

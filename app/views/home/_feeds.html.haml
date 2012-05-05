@@ -7,7 +7,8 @@
         = link_to feed.user.email, profile_path(feed.user) 
         \via
         = link_to feed.blog.title, blog_path(feed.blog)
-        \at
-        = feed.created_at
+        \posted
+        = time_ago_in_words(feed.created_at)
+        \ago
 - else
   %p No feeds

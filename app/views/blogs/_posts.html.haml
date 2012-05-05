@@ -1,10 +1,14 @@
-- @blog.posts.each do |post|
-  .feed-main
-    .feed-content
-      = post.content
-    .feed-bottom
-      = link_to post.user.email, profile_path(post.user) 
-      \at
-      = post.created_at
-      -if current_user == @blog.user
-        =link_to 'Delete', blog_post_path(@blog, post), :confirm => 'Are you sure?', :method => :delete
+-if @blog.posts.count > 0
+  - @blog.posts.each do |post|
+    .feed-main
+      .feed-content
+        = post.content
+      .feed-bottom
+        = link_to post.user.email, profile_path(post.user) 
+        \posted
+        = time_ago_in_words(post.created_at)
+        \ago
+        -if current_user == @blog.user
+          =link_to 'Delete', blog_post_path(@blog, post), :confirm => 'Are you sure?', :method => :delete, :remote => :true
+-else
+  %p Blog wall is empty

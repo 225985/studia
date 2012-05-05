@@ -60,7 +60,16 @@ tr.success .txt {
 }
 
 .sidebar-table {
-  border:0 !important;
+  border:0px !important;
+}
+
+.sidebar-table tr {
+  border-bottom:1px solid !important; 
+  border-top:1px solid !important; 
+}
+
+.sidebar-table td {
+  border : none !important;
 }
 
 label {

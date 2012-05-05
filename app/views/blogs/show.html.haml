@@ -17,9 +17,20 @@
       %h3 Actions
       - if @blog.user == current_user
         = link_to 'Edit', edit_blog_path(@blog), :class => "btn info"
+        - if @blog.kind == 'Discussion' && !@blog.public
+          \
+          =link_to 'Invite', '#user-list', :class => "btn primary", :rel => 'facebox'
+          \
+          =link_to 'Invited', '#invited-list', :class => "btn success", :rel => 'facebox'
+          #user-list{ :style => 'display:none;'}
+            = render :partial => 'users', :locals => {:users => @users}
+
+          #invited-list{ :style => 'display:none'}
+            = render :partial => 'users', :locals => {:users => @invited }
       - else
         .follow-button
           =render 'devise/follow_form'
+
 
 
 
@@ -30,11 +41,16 @@
       -if current_user == @blog.user
         .posts
           %h3 New post
-          = simple_form_for @new_post, :url => blog_posts_path(@blog) do |f|
+          = simple_form_for @new_post, :url => blog_posts_path(@blog), :remote => :true do |f|
             %fieldset
               = f.input :content, :as => :text, :required => false, :label => ''
               = f.submit "Add post", :class => "btn success add-post"
 
       %h2 Posts
-      =render 'posts'
+      #posts-list
+        =render 'posts'
+
+
+
+
 

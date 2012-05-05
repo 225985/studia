@@ -1,0 +1,18 @@
+
+-if users.count > 0
+  %table{ :class => 'sidebar-table', :style => 'margin-top : 15px;'}
+    -users.each do |user|
+      %tr
+        %td{:style => 'width : 40px'}
+          .author-gravatar
+            = link_to gravatar_for(user), profile_path(user)
+        %td{:style => 'width : 300px'}
+          .author-name
+            - if !user.fullname.nil? && !user.fullname.empty?
+              = link_to user.fullname, profile_path(user)
+            -else 
+              = link_to user.email, profile_path(user)
+        %td  
+          =render :partial => 'blogs/invite_form', :locals => { :user => user }
+-else
+  %p The list is empty

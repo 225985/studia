@@ -8,8 +8,9 @@ class PostsController < ApplicationController
     @post = @blog.posts.build(params[:post])
     @post.user = current_user
     respond_to do |format|
-        format.html { redirect_to blog_path(@blog) }
-      end
+      @post.save
+      format.html { redirect_to blog_path(@blog) }
+      format.js
     end
   end
 
@@ -19,6 +20,7 @@ class PostsController < ApplicationController
     @post.destroy
     respond_to do |format|
       format.html { redirect_to blog_path(@blog) }
+      format.js
     end
   end
 

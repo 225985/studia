@@ -2,7 +2,7 @@
   .inputs
     = f.input :title
     = f.input :description, :as => :text
-    = f.input :kind, :as => :select, :collection => Blog::TYPES, :selected => "Blog", :id => "blog-type"
+    = f.input :kind, :as => :select, :collection => Blog::TYPES, :id => "blog-type"
     .blog-public
       = f.input :public, :as => :boolean, :id => "blog-public"
   .actions
