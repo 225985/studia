@@ -20,11 +20,12 @@ class HomeController < ApplicationController
   def unauthorized
   end
 
+
   def user_list
-    @usernames = User.all
+    @users = User.all
+    @title = 'User list'
     respond_to do |format|
-      format.html { render 'user_list'}
-      format.json { render :json => @usernames.collect { |u| u.fullname}}
+      format.html { render 'devise/show_follow'}
     end
   end
 

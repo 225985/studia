@@ -11,6 +11,9 @@ $ ->
   if $('#blog_public').attr('checked') == false
     $("#invite-button").show()
 
+  $('#tabs a').click (e) ->
+    e.preventDefault();
+    $(this).tab('show');
 
   $("#blog_kind").change (e) ->
     e.preventDefault()
@@ -33,3 +36,6 @@ $ ->
       $("#invite-button").hide("slow")
 
   $('a[rel*=facebox]').facebox() 
+
+  
+  

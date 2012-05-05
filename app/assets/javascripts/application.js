@@ -15,6 +15,7 @@
 //= require jquery-ui
 //= require_tree .
 //= require facebox
+//= require bootstrap-tab
 
 
 

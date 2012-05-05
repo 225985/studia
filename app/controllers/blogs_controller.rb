@@ -1,8 +1,14 @@
 class BlogsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :fetch_blog, :except => [:new, :create]
-  before_filter :check_owner, :except => [:show, :new, :create]
+  before_filter :fetch_blog, :except => [:new, :create, :index]
+  before_filter :check_owner, :except => [:show, :new, :create, :index]
   before_filter :check_permission, :only => [:show]
+
+
+  def index
+    @blogs = Blog.select { |b| b.kind == 'Blog'}
+    @discussions = Blog.select { |b| b.kind == 'Discussion' }
+  end
 
   def show
     @new_post = Post.new

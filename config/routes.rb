@@ -13,7 +13,7 @@ Webapp::Application.routes.draw do
 
   end
 
-  resources :blogs, :except => :index do
+  resources :blogs do
     resources :posts, :only => [:create, :destroy]
     resources :invitations, :only => [:create, :destroy]
   end
