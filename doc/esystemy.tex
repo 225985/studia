@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{listings}
 \usepackage{placeins}
+\usepackage{longtable}
 
 
 \title{Inżynieria e-systemów java}
@@ -29,12 +30,11 @@
 }
 \makeatother
   \lstset{
-    language=c++,
     basicstyle=\ttfamily\scriptsize,
     numbers=left,
     numberstyle=\scriptsize,
-    stepnumber=10,
-    numbersep=9pt,
+    stepnumber=50,
+    numbersep=3pt,
     showspaces=false,
     showstringspaces=false,
     showtabs=false,
@@ -45,7 +45,7 @@
 \maketitle
   \section{Opis projektu}
   \paragraph{}
-  Celem projektu jest stworzenie portalu, pozwalającego użytkownikowi na zakładanie i porwadzenie mikroblogów wraz zmożliwością follow'ania wpisów innych użytkowników. Aplikacja zostanie napisana w języku ruby z wykorzystaniem framework'a Ruby on Rails.
+  Celem projektu jest stworzenie portalu, pozwalającego użytkownikowi na zakładanie i prowadzenie mikroblogów wraz zmożliwością follow'ania wpisów innych użytkowników. Aplikacja zostałą napisana w języku ruby z wykorzystaniem framework'a Ruby on Rails.
   \begin{itemize}
     \item Platforma : JVM
     \item Język impementacji : ruby, coffescript
@@ -83,15 +83,82 @@
     \end{itemize}
   \item Dodatkowe funkcjonalności
     \begin{itemize}
-      \item Powiązanie kont użytkowników z kontami facebook
+      \item Powiązanie kont użytkowników z kontami facebook (logowanie przy użyciu facebook'a)
       \item Pobieranie avatarów z gravatara lub facebook (zdjęcie profilowe) 
     \end{itemize}
   \end{itemize}
-  \section{Podział zadań}
+  \section{Implementacja}
   \paragraph{}
-  W pracy nad projektem zamierzamy wykorzystać metodologię SCRUM, która zakłada podział projektu na małe zadania, nie moduły. Z tego względu nie jesteśmy wstanie określić kto będzie się zajmował jaką częścią projektu. Zadania będą w miarę postępu prac przypisane członkom zespołu.
-  \paragraph{}
-  Oprócz wyżej wymienionych funkcjonalności w projekcie należy również zadbać o frontend i testy całego systemu. 
+  System został zaimplementowany w architekturze $MVC$ z wykorzystaniem architektury $REST$.
+  \subsection{Kontrolery}
+    \subsubsection{Blogs Controller}
+    \paragraph{}
+      Kontroler odpowiadający za funkcjonalności blogów : tworzenie, edytowanie, usuwanie, wyświetlanie, zabezpieczenie dostępu do edycji osób nie mających odpowiednich uprawnień.
+    \subsubsection{Home Conroller}
+    \paragraph{} % (fold)
+    \label{par:}
+    Kontroler odpowiadający za wyświetlanei stron statycznych np : About, Contact, etc. 
+    % paragraph  (end)
+    \subsubsection{Invitations Controller}
+    \paragraph{}
+    Kontroler odpowiedzialny za dodawanie i usuwanie użytkowników z dyskusji.
+
+    \subsubsection{OmniauthCallbacks Controller}
+    \paragraph{}
+    Kontroler odpowiedzialny za możliwość logowania się przez konto Facebook.
+    
+    \subsubsection{Posts Controller}
+    \paragraph{}
+    Kontroler odpowiedzialny za funkcjonalnośći postów.
+    
+    \subsubsection{Registration Controller}
+    \paragraph{}
+    Kontroler odpowiedzialny za niestandardowe przeładowanie po rejestracji użytkownika.
+    
+    \subsubsection{Relationships Controller}
+    \paragraph{}
+    Kontroler odpowiedzialny za akcje typu Follow/Unfollow user.
+
+    \subsubsection{Sessions Controller}
+    \paragraph{}
+    Kontroler odpowiedzialny za edycję profilu użytkownika
+
+    \subsubsection{Inne}
+    \paragraph{}
+    W celu stowrzenia systemu atentykacji i rejestracji użytkowników skorzystaliśmy z gotowej biblioteki \textit{Devise}. Wszelkie dodatkowe akcje zawarte w kotrolerach : Session, Registration i OmniauthCallbacks pozwalają nam na dostosowanie systemu do naszych potrzeb w szybki i wygodny sposób.
+
+    \subsection{Views}
+    \paragraph{}
+    Wszelkei widoki zostały napisane przy uzyciu języka znaczników \textit{Haml}. W celu generowania formularzy użyty został gem \textit{SimpleForm}, a cały layout oparty o bibliotekę styli css - \textit{Bootstrap}. Skrypty wykorzystujące \textit{jQuery}, napisane zostały przy pomocy języka \textit{CoffeScript}, kompilowalnego do kodu javascript.
+    
+    \subsection{Model}
+    \paragraph{}
+    W projekcie wykorzystana została baza danych \textit{PostgreSql} w wersji produkcyjnej i \textit{SqlLite} w wersji deweloperskiej.
+
+    \paragraph{}
+    W celu łatwego dostepu do bazy danych i zarządzania nimi skorzystalimy z biblioteki \textit{ActiveRecords} implementującej \textit{ORM}.
+
+    \paragraph{}
+    W projekcie wystpują następujące modele :
+    \begin{itemize}
+      \item Blog
+      \item Invitation
+      \item Post
+      \item Relationship
+      \item User
+    \end{itemize}
+
+    \subsection{Routes}
+    \paragraph{}
+      \small{
+        \input{routes.tex}
+      }
+
+      \section{Testy}
+      \paragraph{}
+      TODO
+
+
 
 
   
