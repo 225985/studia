@@ -35,7 +35,7 @@
     %table
       - @blogs.each do |blog|
         %tr
-          %td{:class => "blog-title-cell"}= blog.title
+          %td{:class => "blog-title-cell", :style => "width : 100px;"}= blog.title
           %td= link_to 'Show', blog, :class => "btn primary"
           -if current_user == @user
             %td= link_to 'Edit', edit_blog_path(blog), :class => "btn info"
@@ -48,7 +48,7 @@
     %table
       - @discussions.each do |blog|
         %tr
-          %td{:class => "blog-title-cell"}= blog.title
+          %td{:class => "blog-title-cell", :style => "width : 100px;"}= blog.title
           %td= link_to 'Show', blog, :class => "btn primary"
           -if current_user == @user
             %td= link_to 'Edit', edit_blog_path(blog), :class => "btn info"
