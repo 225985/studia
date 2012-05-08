@@ -1,5 +1,5 @@
 CC 		= clang++
-CCFLAGS = -lcurl
+CCFLAGS = -lcurl -lncurses -pthread
 
 all: main
 
