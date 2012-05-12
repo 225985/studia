@@ -5,6 +5,7 @@ describe User do
 end
 
 
+
 # == Schema Information
 #
 # Table name: users
@@ -19,5 +20,8 @@ end
 #  latitude   :float
 #  longtitude :float
 #  zoom       :integer
+#  kind       :string(255)     default("mandelbrot")
+#  iter       :integer         default(1000)
+#  size       :integer         default(256)
 #
 
