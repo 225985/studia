@@ -37,6 +37,8 @@ group :development do
 
   gem 'pry-rails'
 
+  gem "rails-erd"
+
   if RUBY_PLATFORM =~ /darwin/
     gem 'growl'
     gem 'rb-fsevent', :require => false
