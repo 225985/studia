@@ -42,7 +42,7 @@ object Web extends Application with Controller {
   implicit val timeout = Timeout(30 seconds)
 
   def route = {
-    case GET(Path(Seg(size :: kind :: quality :: xs :: ys :: zs :: Nil))) => Action {
+    case GET(Path(Seg("img" :: size :: kind :: quality :: xs :: ys :: zs :: Nil))) => Action {
       (for {
         n <- parseInt(size)
         maxIter <- parseInt(quality)

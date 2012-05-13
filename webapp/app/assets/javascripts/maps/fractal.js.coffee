@@ -3,7 +3,7 @@ update = ->
   longtitude = $("#fractal").data('longtitude') ? 0 #45
   zoom       = $("#fractal").data('zoom') ? 2
 
-  kind    = $("#kind").val() ? "mandelbrot"
+  kind    = $("#kind").val() ? "mandelbrot-color"
   iter    = $("#iter").val() ? 1000
   size    = $("#size").val() ? 256
 
@@ -15,7 +15,7 @@ update = ->
   if window.layer
     window.map.removeLayer(window.layer)
 
-  window.layer = new L.TileLayer "http://localhost:9000/#{size}/#{kind}/#{iter}/{x}/{y}/{z}", attribution: "Fractal Explorer", maxZoom: 100, tileSize: size
+  window.layer = new L.TileLayer "http://{s}.m.teamon.eu/img/#{size}/#{kind}/#{iter}/{x}/{y}/{z}", attribution: "Fractal Explorer", maxZoom: 100, tileSize: size
 
   window.map.addLayer(window.layer)
 
