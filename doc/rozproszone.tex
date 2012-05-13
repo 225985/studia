@@ -83,7 +83,7 @@ zaimplementowanym w Scali.
   \item Platforma: JVM
   \item Język implementacji: Ruby, Scala, CoffeeScript
   \item Baza danych: SQLite lub MySQL
-  \item Framework: Ruby on Rails
+  \item Framework: Ruby on Rails, Play
 \end{itemize}
 
 \newpage
@@ -147,7 +147,7 @@ Kontroler odpowiedzialny za aktualizację ustawień fraktala dla zalogowanego u�
 
 \subsection{Widoki}
 \paragraph{}
-Wszelkei widoki zostały napisane przy uzyciu języka znaczników \textit{Haml}. W celu generowania 
+Wszelkie widoki zostały napisane przy uzyciu języka znaczników \textit{Haml}. W celu generowania 
 formularzy użyty został gem \textit{SimpleForm}, a cały layout oparty o bibliotekę styli 
 css - \textit{Bootstrap}. Skrypty wykorzystujące \textit{jQuery}, napisane zostały przy pomocy 
 języka \textit{CoffeScript}, kompilowalnego do kodu javascript.
@@ -236,9 +236,13 @@ następuje mniej operacji renderowania obrazów png, co może dać zauważalny e
 
 \paragraph{}
 Rysunek \ref{fig:plot1} przedstawia wykres zależności czasu generowania jednej płytki od jej wielkości, dla róznej ilości
-iteracji algorytmu. Jak widać mimo, iż czas generowania płytki o rozmiarze 32x32 jest najkrótszy, jest to najmniej ekonomiczna
+iteracji algorytmu. Jak widać mimo, iż czas generowania płytki o rozmiarze 32x32 jest najkrótszy (Tabela \ref{tab:tab}), jest to najmniej ekonomiczna
 forma generowania fraktala. By stworzyć obrazek o wielkoci 256x256, musielibyśmy wygenerować 64 płytki, co dla pojedynczego
-workera zwiększa czas dziesięciokrotnie. To zastosowanie miałoby sens, tylko przy bardzo dużej liczbie workerów. 
+workera zwiększa czas dziesięciokrotnie. Możemy to zauważyć na Rysunku \ref{fig:plot2}. To zastosowanie miałoby sens, 
+tylko przy bardzo dużej liczbie workerów. 
+
+\paragraph{}
+\input{table.tex}
 
 \paragraph{}
 Preprowadzenie idealnych testów sprawdzających wydajność naszego systemu dla różnych parametrów jest zadaniem niemożliwym, 
@@ -246,7 +250,7 @@ z powodu braku odpowiedniego środowiska testowego. Nasza aplikacja została wdr
 że poważny wpływ na wyniki ma aktualna prędkość łącza, cache przeglądarki, aplikacji oraz serwera.
 
 \paragraph{}
-Zwiększenie liczby workerów, powoduje liniowe zmneijszanie się czasu wykonywania zadania. Nie możemy jednak określić w miarę
+Zwiększenie liczby workerów, powoduje liniowe zmniejszanie się czasu wykonywania zadania. Nie możemy jednak określić w miarę
 dokładnych wartości, ponieważ wpływ łącza internetowego i jakość połączenia w danej chwili, ma bardzo duże znaczenie na otrzymane wyniki.
 
 \begin{figure}[h!]
@@ -259,10 +263,18 @@ dokładnych wartości, ponieważ wpływ łącza internetowego i jakość połąc
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.5]{plot1.png}
+\includegraphics[scale=0.6]{plot1.png}
 \end{center}
-\caption{Wykres czasu generowania płytki w zależności od jej rozmiaru w ms}
+\caption{Wykres czasu generowania płytki w zależności od jej rozmiaru i ilości iteracji w ms}
 \label{fig:plot1}
+\end{figure}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.6]{plot2.png}
+\end{center}
+\caption{Wykres czasu generowania płytki w zależności od jej rozmiaru i ilości iteracji w ms, po przesklowaniu do rozmiaru 256}
+\label{fig:plot2}
 \end{figure}
 
 \end{document}
