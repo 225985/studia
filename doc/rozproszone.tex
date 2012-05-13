@@ -155,8 +155,20 @@ zwracany jest do klienta.
 \label{fig:loadbalancing}
 \end{figure}
 
-API zostało zaimplementowane w języku Scala wykorzystując bibliotekę Akka.io
-umożliwiającą łatwe użycie Actor pattern.
+\subsection{REST API}
+\paragraph{}
+API zostało zaimplementowane w języku Scala wykorzystując framework \textit{Play 2.0}.
+
+\paragraph{}
+Zadaniem API jest przyjęcie request'u od aplikacji internetowej, sparsowanie danych, rozdzielenie zadań
+z wykorzysatniem load balancingu serwera nginx, a następnie zwrócenie wygenerowanych obrazów.
+
+\subsection{Worker}
+\paragraph{}
+Bazową klasą dla systemu generującego fraktale jest trait \textit{Fractal}, rozszerzany przez klasy 
+\textit{Mandelbrot} i \textit{Julia}, odpowiadające bezpośrednio za kształt generowanych fraktali. W celu 
+wygenerowania monochromatycznych fraktali, zaimplementowane zostały dwa obiekty \textit{MandelbrotGrayscale} 
+i \textit{JuliaGrayscale}, rozszerzające swoje pierwowzory.
 
 \section{Wdrożenie}
 \paragraph{}
@@ -172,16 +184,41 @@ maszyn wirtualnych została wybrana platforma Amazon EC2.
 \label{fig:ec2}
 \end{figure}
 
+
+\newpage
+
 \section{Testy}
 \paragraph
-TODO
+W pierwszej wersji systemu, generowanie fraktali polegało na rozdzielaniu pomiędzy workery obliczanie 
+wierszy lub kolumn obrazka. Był to wysoce niewydajny system, który mimo zwiększania ilość workerów, nie poprawiał
+szybkości działania. Problemem był proces generowania ostatecznego obrazu, który zajmował najwięcej czasu.
 
-\section{Podsumowanie}
 \paragraph{}
-Zaimplementowana zostały podstawowe funkcjonalności aplikacji. W przyszłości
-dodane zostaną pozostałe funkcjonalności, takie jak wybór dodatkowych opcji w
-aplikacji. Do projektu dodana zostanie również dokumentacja projektowa oraz
-testy behawioralne.
+Rysunek \ref{fig:amazon} pokazuje przykładowe działanie systemu. Licząc od góry, piąta stacja odpowiedzialna 
+za renderowanie obrazków, wykorzystuje swoje zasoby procesora i pamięci w maksymalnym stopniu, czego nie można 
+powiedzieć o reszcie workerów, odpowiedzialnych za obliczenia.
+
+\paragraph{}
+W obecnym systemie, proces rozdzeilanai zadań opiera się standardowy system lefleta, czyli podziału obrazu na kwadratowe
+płytki, a każda stacja robocza zwraca wygenerowany fragment. Jest to znacznie bardziej wydajny system pozwalający na dobranie
+większej liczby parametrów.
+
+\paragraph{}
+Bezpośredni wpływ na szybkość generowania obrazów ma ilość iteracji oraz wielkość płytki. Dla większych rozmiarów płytek 
+następuje mniej operacji renderowania obrazów png, co może dać zauważalny efekt przy generowaniu fraktala. 
+
+\paragraph{}
+Preprowadzenie idealnych testów sprawdzających wydajność naszego systemu dla różnych parametrów jest zadaniem niemożliwym, 
+z powodu braku odpowiedniego środowiska testowego. Nasza aplikacja została wdrożona na serwerach amazon, co powoduje, 
+że poważny wpływ na wyniki ma aktualna prędkość łącza, cache przeglądarki, aplikacji oraz serwera.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.33]{amazon.png}
+\end{center}
+\caption{Pierwszy system}
+\label{fig:amazon}
+\end{figure}
 
 \end{document}
 
