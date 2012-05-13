@@ -1,9 +1,11 @@
 \documentclass[wide,a4paper,titlepage,12pt] {article}
 \usepackage{polski}
 \usepackage[utf8]{inputenc}
-\usepackage{listings}
 \usepackage{placeins}
 \usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{xcolor,listings}
+
 
 
 \title{Inżynieria e-systemów java}
@@ -28,21 +30,13 @@
   \end{center}
 \end{titlepage}
 }
-\makeatother
-  \lstset{
-    basicstyle=\ttfamily\scriptsize,
-    numbers=left,
-    numberstyle=\scriptsize,
-    stepnumber=50,
-    numbersep=3pt,
-    showspaces=false,
-    showstringspaces=false,
-    showtabs=false,
-    breaklines=true,
-  }
+
 
 \begin{document}
-\maketitle
+  \maketitle
+  \tableofcontents
+  \newpage
+
   \section{Opis projektu}
   \paragraph{}
   Celem projektu jest stworzenie portalu, pozwalającego użytkownikowi na zakładanie i prowadzenie mikroblogów wraz zmożliwością follow'ania wpisów innych użytkowników. Aplikacja zostałą napisana w języku ruby z wykorzystaniem framework'a Ruby on Rails.
@@ -84,7 +78,7 @@
   \item Dodatkowe funkcjonalności
     \begin{itemize}
       \item Powiązanie kont użytkowników z kontami facebook (logowanie przy użyciu facebook'a)
-      \item Pobieranie avatarów z gravatara lub facebook (zdjęcie profilowe) 
+      \item Pobieranie avatarów z gravatara
     \end{itemize}
   \end{itemize}
   \section{Implementacja}
@@ -158,11 +152,29 @@
       \item User
     \end{itemize}
 
-    \subsection{Routes}
-    \paragraph{}
+      \begin{figure}[h!]
+        \begin{center}
+          \includegraphics[scale=0.8]{erd.pdf}
+        \end{center}
+        \caption{Diagram ERD modelu}
+        \label{fig:model}
+      \end{figure}
+      \newpage
+
+      \newpage
+      \subsection{Najważniejsze biblioteki}
+      \paragraph{}
       \small{
-        \input{routes.tex}
+        \input{gemfile.tex}
       }
+
+      \newpage
+      \subsection{Routes}
+      \paragraph{}
+        \small{
+          \input{routes.tex}
+        }
+
 
       \section{Testy}
       \paragraph{}
