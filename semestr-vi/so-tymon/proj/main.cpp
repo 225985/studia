@@ -10,6 +10,7 @@
 using namespace std;
 
 struct file_t {
+    int id;
     char url[1000];
     double total;
     double downloaded;
@@ -27,10 +28,16 @@ pthread_t * worker_threads;
 int * worker_threads_args;
 int worker_threads_count;
 bool worker_threads_running = true;
+int last_file_id = -1;
 
 pthread_t gui_thread;
 bool gui_thread_keep = true;
 bool gui_changed = false;
+int gui_offset_x = 0;
+int gui_offset_y = 0;
+int screen_width;
+int screen_height;
+bool gui_autoscroll = true;
 
 pthread_mutex_t gui_mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t gui_cond = PTHREAD_COND_INITIALIZER;
@@ -76,6 +83,7 @@ void * worker_thread_fun(void * arg){
 
         f = files_queue.front();
         files_queue.pop_front();
+        last_file_id = max(last_file_id, f->id);
         pthread_mutex_unlock(&files_queue_mutex);
 
         pthread_mutex_lock(&gui_mutex);
@@ -116,6 +124,7 @@ void * worker_thread_fun(void * arg){
                 pthread_mutex_unlock(&gui_mutex);
             } else {
                 strcpy(f->path, fname);
+                delete fname;
 
                 CURLcode res = curl_easy_perform(curl);
 
@@ -170,6 +179,14 @@ void wait_for_worker_threads(){
     pthread_mutex_unlock(&gui_mutex);
 }
 
+int get_done_files_count(){
+    int c=0;
+    for(list<file_t*>::iterator it=files.begin(); it!=files.end(); it++){
+        if((*it)->done) c++;
+    }
+    return c;
+}
+
 void print_done(){
     printw("\n\n Download finished. Press any key to exit.");
 }
@@ -178,58 +195,70 @@ void paint(){
     char str[256];
     char bar[40];
     double perc;
+    int x = gui_offset_x;
     int y = 0;
     file_t * f;
 
+
+
     erase();
-    mvprintw(0, 0, " == Parallel cURL == ");
+    mvprintw(0, 0, " == Parallel cURL == (%d threads, %d files, %d downloaded) - autoscroll: %s (press 's' to toggle)",
+        worker_threads_count,
+        files.size(),
+        get_done_files_count(),
+        gui_autoscroll ? "on" : "off");
 
-    y+=2;
+    y += 2;
 
-    int i = 0;
+    int i = -1;
     for(list<file_t *>::iterator it = files.begin(); it != files.end(); it++){
-        f = *it;
-        clrtoeol();
-
-        if(f->done){
-            mvprintw(y, 0, "%3d. %-50s", i+1, f->url);
-            if(f->error){
-                attron(COLOR_PAIR(3));
-                mvprintw(y, 55, " ERROR: %s", f->error_msg);
-                attroff(COLOR_PAIR(3));
-            } else {
-                attron(COLOR_PAIR(2));
-                mvprintw(y, 55, " 100%%");
-                attroff(COLOR_PAIR(2));
-            }
-        } else if(f->thread != -1){
-            if(f->total != 0.0) perc = f->downloaded*100/f->total;
-            else perc = 0.0;
-
-            int p = (int)(perc/5);
-            for(int j=0; j<p; j++) bar[j] = '|';
-            bar[p] = '\0';
-
-            mvprintw(y, 0, "%3d. %-50s [", i+1, f->url);
-            attron(COLOR_PAIR(1));
-            mvprintw(y, 57, "%-20s", bar);
-            attroff(COLOR_PAIR(1));
-            mvprintw(y, 77, "] - %6.2f%% (Thread #%d) %s", perc, f->thread, f->path);
-        } else {
-            mvprintw(y, 0, "%3d. %s", (i+1), f->url);
-        }
-
-        y++;
         i++;
+        if(i >= gui_offset_y){
+            f = *it;
+            clrtoeol();
+
+            if(f->done){
+                mvprintw(y, x, "%3d. %-50s", i+1, f->url);
+                if(f->error){
+                    attron(COLOR_PAIR(3));
+                    mvprintw(y, x+55, " ERROR: %s", f->error_msg);
+                    attroff(COLOR_PAIR(3));
+                } else {
+                    attron(COLOR_PAIR(2));
+                    mvprintw(y, x+55, " 100%%");
+                    attroff(COLOR_PAIR(2));
+                    mvprintw(y, x+61, "%s", f->path);
+                }
+            } else if(f->thread != -1){
+                if(f->total != 0.0) perc = f->downloaded*100/f->total;
+                else perc = 0.0;
+
+                int p = (int)(perc/5);
+                for(int j=0; j<p; j++) bar[j] = '|';
+                bar[p] = '\0';
+
+                mvprintw(y, x, "%3d. %-50s [", i+1, f->url);
+                attron(COLOR_PAIR(1));
+                mvprintw(y, x+57, "%-20s", bar);
+                attroff(COLOR_PAIR(1));
+                mvprintw(y, x+77, "] - %6.2f%% (Thread #%d)", perc, f->thread);
+            } else {
+                mvprintw(y, x, "%3d. %s", (i+1), f->url);
+            }
+            y++;
+        }
     }
 
     refresh();
 }
 
 void * gui_thread_fun(void * _arg){
+    int c;
     initscr();
+    keypad(stdscr, true);
+    getmaxyx(stdscr, screen_height, screen_width);
 
-    if(has_colors() == FALSE){
+    if(has_colors() == false){
         endwin();
         printf("Your terminal does not support color\n");
         exit(1);
@@ -240,9 +269,33 @@ void * gui_thread_fun(void * _arg){
     init_pair(2, COLOR_GREEN, COLOR_BLACK);
     init_pair(3, COLOR_RED, COLOR_BLACK);
 
+    nodelay(stdscr, true);
+
     while(worker_threads_running){
         pthread_mutex_lock(&gui_mutex);
-        while(!gui_changed) pthread_cond_wait(&gui_cond, &gui_mutex);
+        while(!gui_changed){
+            if((c = getch()) != ERR){
+                switch(c){
+                    case 's':
+                        gui_autoscroll = !gui_autoscroll;
+                        break;
+
+                    case KEY_UP:
+                        if(!gui_autoscroll && gui_offset_y > 0) gui_offset_y--;
+                        break;
+
+                    case KEY_DOWN:
+                        int df = files.size() + 2 - screen_height;
+                        if(!gui_autoscroll && gui_offset_y < df) gui_offset_y++;
+                        break;
+                }
+            }
+
+            pthread_cond_wait(&gui_cond, &gui_mutex);
+        }
+
+        if(gui_autoscroll) gui_offset_y = last_file_id - screen_height + 3;
+
         paint();
         gui_changed = false;
         pthread_mutex_unlock(&gui_mutex);
@@ -265,6 +318,19 @@ void wait_for_gui_thread(){
     pthread_join(gui_thread, NULL);
 }
 
+void cleanup(){
+    pthread_cond_destroy(&gui_cond);
+    pthread_mutex_destroy(&gui_mutex);
+    pthread_mutex_destroy(&files_queue_mutex);
+
+    for(list<file_t *>::iterator it = files.begin(); it != files.end(); it++){
+        delete *it;
+    }
+
+    delete [] worker_threads;
+    delete [] worker_threads_args;
+}
+
 int main(int argc, char const *argv[]){
     if(argc < 3){
         printf("Usage: %s [FILE] [WORKERS_NUM]\n", argv[0]);
@@ -276,10 +342,12 @@ int main(int argc, char const *argv[]){
     if(urls_file != NULL){
         char url[256];
         file_t * f;
+        int i = 0;
 
         while(fscanf(urls_file, "%s", url) != EOF){
             f = new file_t;
             strcpy(f->url, url);
+            f->id = i++;
             f->thread = -1;
             f->done = false;
             f->error = false;
@@ -302,6 +370,8 @@ int main(int argc, char const *argv[]){
 
     wait_for_worker_threads();
     wait_for_gui_thread();
+
+    cleanup();
 
     return 0;
 }
