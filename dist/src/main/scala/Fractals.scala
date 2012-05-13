@@ -2,14 +2,23 @@ package dist
 
 import java.awt.Color
 
+trait ColorUtils {
+  def grayscale(color: Color): Color = {
+    val (r,g,b) = (color.getRed, color.getGreen, color.getBlue)
+    val z = 0.299*r + 0.587*g + 0.114*b;
+    val y = Math.round(z).toInt
+    new Color(y, y, y)
+  }
+}
+
 trait Fractal {
-  def pixel(cx: Double, cy: Double, maxIter: Int): Int
+  def pixel(cx: Double, cy: Double, maxIter: Int): Color
   def size: Double
   def xOffset: Double
   def yOffset: Double
 
   def row(n: Int, x: Int, y: Int, z: Int, row: Int, maxIter: Int): Array[Int] = {
-    (0 until n).map { y0 => calculate(n, x * n + row, y * n + y0, z, maxIter) }.toArray
+    (0 until n).map { y0 => calculate(n, x * n + row, y * n + y0, z, maxIter).getRGB }.toArray
   }
 
   def calculate(n: Int, x: Int, y: Int, z: Int, maxIter: Int) = {
@@ -24,13 +33,17 @@ trait Fractal {
 
 object Fractal {
   val fractals = Map(
-    "mandelbrot" -> Mandelbrot,
-    "julia" -> Julia
+    "mandelbrot-color" -> Mandelbrot,
+    "mandelbrot-gray" -> MandelbrotGrayscale,
+    "julia-color" -> Julia,
+    "julia-gray" -> JuliaGrayscale
   )
   def apply(kind: String) = fractals(kind)
 }
 
-object Mandelbrot extends Fractal {
+
+object Mandelbrot extends Mandelbrot
+class Mandelbrot extends Fractal {
   def size = 3.5
   def xOffset = 2.5
   def yOffset = 1.75
@@ -45,12 +58,13 @@ object Mandelbrot extends Fractal {
       i = i + 1;
     }
 
-    if (i == maxIter) Color.BLACK.getRGB()
-    else Color.getHSBColor(i / 20.0F, 1F, 1F).getRGB()
+    if (i == maxIter) Color.BLACK
+    else Color.getHSBColor(i / 20.0F, 1F, 1F)
   }
 }
 
-object Julia extends Fractal {
+object Julia extends Julia
+class Julia extends Fractal {
   def size = 4.0
   def xOffset = 2.0
   def yOffset = 2.0
@@ -66,7 +80,15 @@ object Julia extends Fractal {
       i = i + 1
     }
 
-    if (i == maxIter) Color.BLACK.getRGB()
-    else Color.getHSBColor(i / 20.0F, 1F, 1F).getRGB()
+    if (i == maxIter) Color.BLACK
+    else Color.getHSBColor(i / 20.0F, 1F, 1F)
   }
+}
+
+object MandelbrotGrayscale extends Mandelbrot with ColorUtils {
+  override def pixel(cx: Double, cy: Double, maxIter: Int) = grayscale(super.pixel(cx, cy, maxIter))
+}
+
+object JuliaGrayscale extends Julia with ColorUtils {
+  override def pixel(cx: Double, cy: Double, maxIter: Int) = grayscale(super.pixel(cx, cy, maxIter))
 }
