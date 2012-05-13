@@ -46,7 +46,7 @@ użytkownika.
 \section{Uzasadnienie biznesowe}
 \paragraph{}
 Projekt może zostać wykorzystany jako proof of concept dla aplikacji
-przetwarzających duże ilości danych i prezentację ich w formie lub na mapie.
+przetwarzających duże ilości danych i prezentację ich na mapie.
 Jest to proste do rozbudowy demo technologiczne, na podstawie którego można
 stworzyć bardziej skomplikowane aplikacje.
 
@@ -88,7 +88,6 @@ zaimplementowanym w Scali.
     \begin{itemize}
       \item Podział obrazu na mniejsze fragmenty do renderowania na backendzie,
       \item Przesyłanie żądań z aplikacji do backendu,
-      \item Komunikacja między węzłami backendu.
     \end{itemize}
 \end{itemize}
 
@@ -141,8 +140,9 @@ a także ich ustawienia fraktali.
 \section{Rozproszone API}
 \paragraph{}
 Biblioteka Leaflet pobiera z API obrazki o zdefiniowanych przez użytkownika rozmiarach w pikselach
-korzystając z URL w formacie \texttt{http://\{serwer\}/img/\{x\}/\{y\}/\{z\}}
-wypełniając pola \texttt{x}, \texttt{y}, \texttt{z} odpowiednimi
+korzystając z URL w formacie \newline
+ \texttt{http://\{serwer\}/img/\{kind\}/\{size\}/\{quality\}/\{x\}/\{y\}/\{z\}}
+wypełniając pola \texttt{kind}, \texttt{size}, \texttt{quality}, \texttt{x}, \texttt{y}, \texttt{z} odpowiednimi
 wartościami. Następnie, zgodnie z rysunkiem \ref{fig:loadbalancing}, zapytanie
 jest przydzielane do odpowiednich węzłów, renderowane, a rezultat
 zwracany jest do klienta.
