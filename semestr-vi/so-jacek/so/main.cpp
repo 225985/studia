@@ -1,61 +1,38 @@
 #include <ncurses.h>
 #include <pthread.h>
-#include "common.h"
 #include <sys/time.h>
 
 
-using namespace std;
+struct thread_data_t{
+  int id;
+  int speed;
+  int fuel_laps;
+  int current_fuel;
+} ;
 
 pthread_mutex_t fakeMutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t fakeCond = PTHREAD_COND_INITIALIZER;
 
 pthread_mutex_t mutexRefresh = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t mainMutex = PTHREAD_MUTEX_INITIALIZER;
 
+pthread_mutex_t pitstopMutex = PTHREAD_MUTEX_INITIALIZER;
+pthread_cond_t pitstopCond = PTHREAD_COND_INITIALIZER;
 
-int race_length;
+int lapLength, threadsCount, rc, restCount;
+bool pitstop = false;
+pthread_t * threads;
+thread_data_t * threadsParameters;
 
 void *thread_function(void *arg);
+void *main_thread_function(void *arg);
 void wait_race(int timeInSec);
+void init_threads();
+void clear_all();
 
 int main(){
-    int threadsCount = 0, rc;
-
-    initscr();
-
-    printw("Threads count : \n");
-    scanw("%d", &threadsCount);
-
-    pthread_t * threads = new pthread_t[threadsCount];
-    thread_data_t * threadsParameters = new thread_data_t[threadsCount];
-
-    for(int i=0; i<threadsCount; i++){
-        printw("Thread %d speed and fuel \n", i);
-        refresh();
-        threadsParameters[i].id = i+1;
-        scanw("%d %d", &threadsParameters[i].speed, &threadsParameters[i].fuel_laps);
-    }
-
-    clear();
-
-    for(int i=0; i<threadsCount; i++) {
-        if((rc = pthread_create(&threads[i], NULL, thread_function, &threadsParameters[i]))){
-            printw("Thread %d init error \n", i) ;
-        }
-    }
-
-    for (int i=0; i<threadsCount; i++) {
-        pthread_join(threads[i], NULL);
-    }
-    pthread_mutex_destroy(&mutexRefresh);
-
-
-    printw("press any key\n");
-    getch();
-    endwin();
-
-    delete [] threads;
-    delete [] threadsParameters;
-    
+    init_threads();
+    clear_all();
     return 0;
 }
 
@@ -77,9 +54,25 @@ void *thread_function(void *arg) {
             refresh();
         pthread_mutex_unlock (&mutexRefresh);
 
-        wait_race(data->speed);
+        wait_race(lapLength / data->speed);
         loops++;
         fuel--;
+
+        if(!pitstop) {
+            pthread_mutex_lock(&pitstopMutex);
+                pthread_mutex_lock (&mutexRefresh);
+                    printw("Thread %d is in  pitstop\n", data->id);
+                    refresh();
+                pthread_mutex_unlock (&mutexRefresh);
+                pitstop = true;
+                pthread_cond_signal(&pitstopCond);
+                wait_race(5);
+                pitstop = false;
+                pthread_cond_signal(&pitstopCond);
+                fuel = data->fuel_laps;
+            pthread_mutex_unlock(&pitstopMutex);
+        }
+
     }
 
     pthread_mutex_lock (&mutexRefresh);
@@ -104,4 +97,50 @@ void wait_race(int timeInSec)
     pthread_mutex_lock(&fakeMutex);
     rt = pthread_cond_timedwait(&fakeCond, &fakeMutex, &timeToWait);
     pthread_mutex_unlock(&fakeMutex);
+}
+
+void init_threads() {
+    initscr();
+
+    printw("Lap length : \n");
+    scanw("%d", &lapLength);
+
+    printw("Threads count : \n");
+    scanw("%d", &threadsCount);
+
+    threads = new pthread_t[threadsCount];
+    threadsParameters = new thread_data_t[threadsCount];
+
+    for(int i=0; i<threadsCount; i++){
+        printw("Thread %d speed(1-10) and fuel \n", i);
+        refresh();
+        threadsParameters[i].id = i+1;
+        scanw("%d %d", &threadsParameters[i].speed, &threadsParameters[i].fuel_laps);
+    }
+
+    clear();
+
+    for(int i=0; i<threadsCount; i++) {
+        if((rc = pthread_create(&threads[i], NULL, thread_function, &threadsParameters[i]))){
+            printw("Thread %d init error \n", i) ;
+        }
+    }   
+}
+
+void clear_all() {
+    for (int i=0; i<threadsCount; i++) {
+        pthread_join(threads[i], NULL);
+    }
+    pthread_mutex_destroy(&mutexRefresh);
+    pthread_mutex_destroy(&pitstopMutex);
+    pthread_cond_destroy(&pitstopCond);
+    pthread_mutex_destroy(&fakeMutex);
+    pthread_cond_destroy(&fakeCond);
+
+    delete [] threads;
+    delete [] threadsParameters;
+
+    printw("press any key\n");
+    getch();
+    endwin();
 }
