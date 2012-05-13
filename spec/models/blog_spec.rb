@@ -10,12 +10,12 @@ describe Blog do
 
   context "with given initialized object" do
     before :each do
-      @blog = Blog.new :blog_title => "Blog", :description => "Lorem ipsum" do |b|
+      @blog = Blog.new :title => "Blog", :description => "Lorem ipsum" do |b|
         b.user = @user
       end
     end
 
-    [:user, :posts, :blog_title, :description].each do |field|
+    [:user, :posts, :title, :description].each do |field|
       context "##{field}" do
         it "should be a method" do
           lambda do
@@ -33,7 +33,7 @@ describe Blog do
   context "with given attributes" do
     before :each do
       @hash = {
-        :blog_title => "Blog",
+        :title => "Blog",
         :description => "Lorem ipsum"
       }
     end

@@ -6,7 +6,7 @@ describe Post do
                         :password_confirmation => "password",
                         :fullname => "Sample user",
                         :description => "Sample description"
-    @blog = Blog.create :blog_title => "Title", :description => "Description" do |b|
+    @blog = Blog.create :title => "Title", :description => "Description" do |b|
       b.user = @user
     end
   end
