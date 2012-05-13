@@ -5,6 +5,11 @@ gem 'rails', '3.2.2'
 group :development do
   gem 'sqlite3', :platform => :ruby
   gem 'activerecord-jdbcsqlite3-adapter', :platform => :jruby
+  gem 'pry-rails'
+end
+
+group :development, :test do
+  gem "rspec-rails"
 end
 
 group :production do
@@ -33,18 +38,3 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug'
