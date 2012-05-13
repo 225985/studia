@@ -15,7 +15,7 @@ update = ->
   if window.layer
     window.map.removeLayer(window.layer)
 
-  window.layer = new L.TileLayer "http://ec2-23-20-42-58.compute-1.amazonaws.com/img/#{size}/#{kind}/#{iter}/{x}/{y}/{z}", attribution: "Fractal Explorer", maxZoom: 100, tileSize: size
+  window.layer = new L.TileLayer "http://{s}.m.teamon.eu/img/#{size}/#{kind}/#{iter}/{x}/{y}/{z}", attribution: "Fractal Explorer", maxZoom: 100, tileSize: size
 
   window.map.addLayer(window.layer)
 
