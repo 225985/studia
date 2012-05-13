@@ -24,6 +24,7 @@
 !/doc/*.png
 !/doc/*.pptx
 !/doc/*.ppt
+!/doc/*.scala
 
 .DS_Store
 /dist/target

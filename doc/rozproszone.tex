@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{setspace}
 \usepackage{graphicx}
+\usepackage{xcolor,listings}
 
 \title{Rozproszona aplikacja umożliwiająca przeglądanie fraktali}
 \author{Tymon Tobolski {\small(181037)}\\ Jacek Wieczorek {\small(181043)} \\
@@ -29,6 +30,25 @@ Mateusz Lenik {\small(181142)}}
 \makeatother
 \setlength{\parindent}{0em}
 \onehalfspacing
+
+\lstset{ %
+language=C++,                % choose the language of the code
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+numbers=left,                   % where to put the line-numbers
+numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
+stepnumber=1,                   % the step between two line-numbers. If it is 1 each line will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+frame=single,           % adds a frame around the code
+tabsize=2,          % sets default tabsize to 2 spaces
+captionpos=b,           % sets the caption-position to bottom
+breaklines=true,        % sets automatic line breaking
+breakatwhitespace=false,    % sets if automatic breaks should only happen at whitespace
+escapeinside={\%*}{*)}          % if you want to add a comment within your code
+}
 
 \begin{document}
 \maketitle
@@ -163,12 +183,18 @@ API zostało zaimplementowane w języku Scala wykorzystując framework \textit{P
 Zadaniem API jest przyjęcie request'u od aplikacji internetowej, sparsowanie danych, rozdzielenie zadań
 z wykorzysatniem load balancingu serwera nginx, a następnie zwrócenie wygenerowanych obrazów.
 
+
+\lstinputlisting{api.scala}
+
+
 \subsection{Worker}
 \paragraph{}
 Bazową klasą dla systemu generującego fraktale jest trait \textit{Fractal}, rozszerzany przez klasy 
 \textit{Mandelbrot} i \textit{Julia}, odpowiadające bezpośrednio za kształt generowanych fraktali. W celu 
 wygenerowania monochromatycznych fraktali, zaimplementowane zostały dwa obiekty \textit{MandelbrotGrayscale} 
 i \textit{JuliaGrayscale}, rozszerzające swoje pierwowzory.
+
+\lstinputlisting{worker.scala}
 
 \section{Wdrożenie}
 \paragraph{}
@@ -207,10 +233,21 @@ większej liczby parametrów.
 Bezpośredni wpływ na szybkość generowania obrazów ma ilość iteracji oraz wielkość płytki. Dla większych rozmiarów płytek 
 następuje mniej operacji renderowania obrazów png, co może dać zauważalny efekt przy generowaniu fraktala. 
 
+
+\paragraph{}
+Rysunek \ref{fig:plot1} przedstawia wykres zależności czasu generowania jednej płytki od jej wielkości, dla róznej ilości
+iteracji algorytmu. Jak widać mimo, iż czas generowania płytki o rozmiarze 32x32 jest najkrótszy, jest to najmniej ekonomiczna
+forma generowania fraktala. By stworzyć obrazek o wielkoci 256x256, musielibyśmy wygenerować 64 płytki, co dla pojedynczego
+workera zwiększa czas dziesięciokrotnie. To zastosowanie miałoby sens, tylko przy bardzo dużej liczbie workerów. 
+
 \paragraph{}
 Preprowadzenie idealnych testów sprawdzających wydajność naszego systemu dla różnych parametrów jest zadaniem niemożliwym, 
 z powodu braku odpowiedniego środowiska testowego. Nasza aplikacja została wdrożona na serwerach amazon, co powoduje, 
 że poważny wpływ na wyniki ma aktualna prędkość łącza, cache przeglądarki, aplikacji oraz serwera.
+
+\paragraph{}
+Zwiększenie liczby workerów, powoduje liniowe zmneijszanie się czasu wykonywania zadania. Nie możemy jednak określić w miarę
+dokładnych wartości, ponieważ wpływ łącza internetowego i jakość połączenia w danej chwili, ma bardzo duże znaczenie na otrzymane wyniki.
 
 \begin{figure}[h!]
 \begin{center}
@@ -218,6 +255,14 @@ z powodu braku odpowiedniego środowiska testowego. Nasza aplikacja została wdr
 \end{center}
 \caption{Pierwszy system}
 \label{fig:amazon}
+\end{figure}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.5]{plot1.png}
+\end{center}
+\caption{Wykres czasu generowania płytki w zależności od jej rozmiaru w ms}
+\label{fig:plot1}
 \end{figure}
 
 \end{document}
