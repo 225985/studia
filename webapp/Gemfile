@@ -35,6 +35,8 @@ group :development do
   gem 'guard-livereload'
   gem 'annotate'
 
+  gem 'pry-rails'
+
   if RUBY_PLATFORM =~ /darwin/
     gem 'growl'
     gem 'rb-fsevent', :require => false
