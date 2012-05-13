@@ -130,6 +130,10 @@ GEM
       activesupport (= 3.2.2)
       bundler (~> 1.0)
       railties (= 3.2.2)
+    rails-erd (0.4.5)
+      activerecord (~> 3.0)
+      activesupport (~> 3.0)
+      ruby-graphviz (~> 0.9.18)
     railties (3.2.2)
       actionpack (= 3.2.2)
       activesupport (= 3.2.2)
@@ -154,6 +158,7 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec (~> 2.8.0)
+    ruby-graphviz (0.9.21)
     rubyzip (0.9.7)
     sass (3.1.15)
     sass-rails (3.2.5)
@@ -212,6 +217,7 @@ DEPENDENCIES
   omniauth
   omniauth-twitter
   rails (= 3.2.2)
+  rails-erd
   rb-fsevent
   rspec-rails (~> 2.8.1)
   sass-rails (~> 3.2.3)

@@ -36,7 +36,7 @@ Mateusz Lenik {\small(181142)}}
 \newpage
 
 \section{Opis projektu}
-
+\paragraph{}
 Celem projektu jest stworzenie aplikacji internetowej pozwalającej użytkownikowi
 na przeglądanie fraktali renderowanych na klastrze. Aplikacja
 pozwalałaby na przybliżanie i oddalanie widocznej części fraktala, zmianę
@@ -44,14 +44,14 @@ kolorów oraz zapisywanie ostatniej przeglądanej pozycji przez danego
 użytkownika.
 
 \section{Uzasadnienie biznesowe}
-
+\paragraph{}
 Projekt może zostać wykorzystany jako proof of concept dla aplikacji
 przetwarzających duże ilości danych i prezentację ich w formie lub na mapie.
 Jest to proste do rozbudowy demo technologiczne, na podstawie którego można
 stworzyć bardziej skomplikowane aplikacje.
 
 \section{Technologie}
-
+\paragraph{}
 Aplikacja będzie oparta o technologie wykorzystujące JVM, dzięki czemu możliwe
 będzie uruchomienie jej na kilku platformach bez konieczności modyfikacji.
 Dodatkowo ułatwia to korzystanie z różnych języków programowania podczas
@@ -93,20 +93,53 @@ zaimplementowanym w Scali.
 \end{itemize}
 
 \section{Implementacja}
-
+\paragraph{}
 Praca nad projektem została podzielona na dwie części, aplikację internetową
 oraz rozproszone API pozwalające na renderowanie części fraktala.
 
-\subsection{Aplikacja internetowa}
+W obecnej wersji system pozwala na wybór renderowanego fraktala spośród dwóch algorytmów,
+Mandelbrota i zbioru Julii. Oba obrazy można uzyskać zarówno w wersji monochromatycznej, 
+jak i kolorowej. Dla każdego z fraktali można również zdefiniować ilość iteracji algorytmu oraz
+wymiary płytek. 
 
+\section{Aplikacja internetowa}
+\paragraph{}
 Aplikacja internetowa została utworzona przy użyciu frameworka Ruby on Rails. Do
 wyświetlania fraktala wykorzystana została biblioteka Leaflet. Aplikacja
 pobiera poszczególne części fraktala łącząc się z rozproszonym API. Obecnie
 zaimplementowane jest logowanie za pomocą Twitter OAuth. Dla zalogowanego
-użytkownika zapisywana jest ostatnie przeglądane współrzędne oraz wybrane parametry fraktala.
+użytkownika zapisywana jest ostatnie przeglądane współrzędne oraz wybrane parametry renderowanego fraktala.
 
-\subsection{Rozproszone API}
+\paragraph{}
+Aplikacja internetowa została zaimplementowana w architekturze MVC z wykorzystaniem architektury REST.
 
+\subsection{Kontrolery}
+\subsubsection{PagesController}
+\paragraph{}
+Kontroler odpowiedzialny za wyświetlanie stron statycznych.
+
+\subsubsection{SessionsController}
+\paragraph{}
+Kontroler odpowiedzialny za tworzenie i kończenie sesji użytkownika
+
+\subsubsection{UsersController}
+\paragraph{}
+Kontroler odpowiedzialny za aktualizację ustawień fraktala dla zalogowanego użytkownika
+
+\subsection{Widoki}
+\paragraph{}
+Wszelkei widoki zostały napisane przy uzyciu języka znaczników \textit{Haml}. W celu generowania 
+formularzy użyty został gem \textit{SimpleForm}, a cały layout oparty o bibliotekę styli 
+css - \textit{Bootstrap}. Skrypty wykorzystujące \textit{jQuery}, napisane zostały przy pomocy 
+języka \textit{CoffeScript}, kompilowalnego do kodu javascript.
+
+\subsection{Model}
+\paragraph{}
+W aplikacji zstał wykorzystany model \textit{User} przechowujący podstawowe dane o zarejestrowanych użytkownikach,
+a także ich ustawienia fraktali.
+
+\section{Rozproszone API}
+\paragraph{}
 Biblioteka Leaflet pobiera z API obrazki o zdefiniowanych przez użytkownika rozmiarach w pikselach
 korzystając z URL w formacie \texttt{http://\{serwer\}/img/\{x\}/\{y\}/\{z\}}
 wypełniając pola \texttt{x}, \texttt{y}, \texttt{z} odpowiednimi
@@ -126,7 +159,7 @@ API zostało zaimplementowane w języku Scala wykorzystując bibliotekę Akka.io
 umożliwiającą łatwe użycie Actor pattern.
 
 \section{Wdrożenie}
-
+\paragraph{}
 Aplikacja została wdrożona na klastrze obliczeniowym składającym się z
 dziewięciu maszyn wirtualnych. Ze względu na łatwą konfigurację, jako host
 maszyn wirtualnych została wybrana platforma Amazon EC2.
@@ -139,8 +172,12 @@ maszyn wirtualnych została wybrana platforma Amazon EC2.
 \label{fig:ec2}
 \end{figure}
 
-\section{Podsumowanie}
+\section{Testy}
+\paragraph
+TODO
 
+\section{Podsumowanie}
+\paragraph{}
 Zaimplementowana zostały podstawowe funkcjonalności aplikacji. W przyszłości
 dodane zostaną pozostałe funkcjonalności, takie jak wybór dodatkowych opcji w
 aplikacji. Do projektu dodana zostanie również dokumentacja projektowa oraz
