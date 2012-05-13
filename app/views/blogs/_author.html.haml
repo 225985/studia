@@ -1,0 +1,8 @@
+.author-main
+  .author-gravatar
+    = link_to gravatar_for(@blog.user), profile_path(@blog.user)
+  .author-name
+    - if !@blog.user.fullname.nil? && !@blog.user.fullname.empty?
+      = link_to @blog.user.fullname, profile_path(@blog.user)
+    - else 
+      = link_to @blog.user.email, profile_path(@blog.user)

@@ -8,11 +8,9 @@ class PostsController < ApplicationController
     @post = @blog.posts.build(params[:post])
     @post.user = current_user
     respond_to do |format|
-      if @post.save
-        format.html { redirect_to blog_path(@blog) }
-      else
-        format.html { redirect_to blog_path(@blog) }
-      end
+      @post.save
+      format.html { redirect_to blog_path(@blog) }
+      format.js
     end
   end
 
@@ -22,6 +20,7 @@ class PostsController < ApplicationController
     @post.destroy
     respond_to do |format|
       format.html { redirect_to blog_path(@blog) }
+      format.js
     end
   end
 
@@ -32,6 +31,8 @@ class PostsController < ApplicationController
       end
 
       def check_owner
-        raise Unauthorized if @blog.user != current_user
+        raise Unauthorized if ( (@blog.user != current_user && @blog.kind == 'Blog') || (@blog.user != current_user && @blog.kind == 'Discussion' && !@blog.public && !@blog.invited?(current_user)) ) 
       end
+
+
 end

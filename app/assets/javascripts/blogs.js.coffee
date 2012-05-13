@@ -1,3 +1,41 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+$ ->
+
+  if $("#blog_kind").val() == ''
+    $("#blog_kind").val("Blog")
+
+  $("#blog_kind option[value='']").remove()
+
+  if $("#blog_kind").val() == "Discussion"
+    $(".blog-public").show()
+  
+  if $('#blog_public').attr('checked') == false
+    $("#invite-button").show()
+
+  $('#tabs a').click (e) ->
+    e.preventDefault();
+    $(this).tab('show');
+
+  $("#blog_kind").change (e) ->
+    e.preventDefault()
+    e.stopPropagation()
+
+    if $(this).val() == "Discussion"
+      $(".blog-public").show("slow")
+    else
+      $("#blog_public").attr('checked', false)
+      $(".blog-public").hide("slow")
+
+
+  $("#blog_public").change (e) ->
+    e.preventDefault()
+    e.stopPropagation()
+
+    if $(this).attr('checked') == false
+      $("#invite-button").show("slow")
+    else
+      $("#invite-button").hide("slow")
+
+  $('a[rel*=facebox]').facebox() 
+
+  
+  

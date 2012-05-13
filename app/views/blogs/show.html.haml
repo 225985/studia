@@ -1,44 +1,56 @@
 .row-fluid
   .span4
     .well.sidebar-nav
-      %h3 Blog title:
-      %p= @blog.blog_title
+      %h3 Title:
+      %p= @blog.title
 
       %h3 Description:
       %p= @blog.description
 
-      %h3 User:
-      = link_to gravatar_for(@blog.user), profile_path
+      %h3 Author:
+      = render 'author'
 
-      .follow-button
-        =render 'devise/follow_form'
+      %h3 Followed / Followers
+      #follow-numbers
+        =render 'devise/follow_numbers'
 
-      %h3 Followed users
-      =link_to @blog.user.followed_users.count, following_path(@blog.user)
-
-      %h3 Followers
-      =link_to @blog.user.followers.count, followers_path(@blog.user)
-
+      %h3 Actions
       - if @blog.user == current_user
-        %h3 Actions
         = link_to 'Edit', edit_blog_path(@blog), :class => "btn info"
+        - if @blog.kind == 'Discussion' && !@blog.public
+          \
+          =link_to 'Invite', '#user-list', :class => "btn primary", :rel => 'facebox'
+          \
+          =link_to 'Invited', '#invited-list', :class => "btn success", :rel => 'facebox'
+          #user-list{ :style => 'display:none;'}
+            = render :partial => 'users', :locals => {:users => @users}
+
+          #invited-list{ :style => 'display:none'}
+            = render :partial => 'users', :locals => {:users => @invited }
+      - else
+        .follow-button
+          =render 'devise/follow_form'
+
+
+
+
 
   .span8
     .content
       %p#notice= notice
-      -if current_user == @blog.user
+      -if current_user == @blog.user || (@blog.public && @blog.kind == 'Discussion') || (@blog.invited?(current_user) && @blog.kind == 'Discussion')
         .posts
           %h3 New post
-          = simple_form_for @new_post, :url => blog_posts_path(@blog) do |f|
+          = simple_form_for @new_post, :url => blog_posts_path(@blog), :remote => :true do |f|
             %fieldset
               = f.input :content, :as => :text, :required => false, :label => ''
-              = f.submit "Add post"
+              = f.submit "Add post", :class => "btn success add-post"
 
       %h2 Posts
-      - @blog.posts.each do |post|
-        .post
-          %p= post.content
-          - if @blog.user == current_user
-            = link_to 'Delete', blog_post_path(@blog, post), :confirm => 'Are you sure?', :method => :delete, :class => "btn danger"
-          %hr
+      #posts-list
+        =render 'posts'
+
+
+
+
 

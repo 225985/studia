@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :fullname, :description
 
+  validates :description, :length => { :maximum => 150 }
+  validates :fullname, :length => { :maximum => 64 }
+
   has_many :blogs, :dependent => :destroy
   has_many :posts, :dependent => :destroy
 

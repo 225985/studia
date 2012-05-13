@@ -32,9 +32,9 @@ body {
 }
 
 .header-text{
-  font-size : 15px;
-  color : #fff;
-  padding: 8px 20px 12px;
+  font-size : 15px !important;
+  color : #fff !important;
+  padding: 8px 20px 12px!important;
 }
 
 .actions{
@@ -60,22 +60,59 @@ tr.success .txt {
 }
 
 .sidebar-table {
-  border:0 !important;
+  border:0px !important;
 }
 
-.new-blog {
-  width: 140px;
-  margin-left: auto;
-  margin-right: auto;
-  position: inline;
+.sidebar-table tr {
+  border-bottom:1px solid !important; 
+  border-top:1px solid !important; 
+}
+
+.sidebar-table td {
+  border : none !important;
 }
 
 label {
-  margin-left: -85px;
+  float : none;
+}
+
+input {
+  height : 25px;
+}
+
+textarea {
+  height : 150px; 
 }
 
 #post_content {
   width: 530px;
   height: 80px;
   margin-bottom: 5px;
+}
+
+.add-post {
+  float : right !important;
+}
+
+.control-group {
+  margin-bottom: 10px;
+}
+#usernames{
+  margin-top : 7px;
+  width : 150px;
+
+}
+
+.feed-bottom {
+  text-align : right;
+}
+
+.feed-content {
+  font-size : 19px !important;
+  margin-bottom : 10px;
+}
+
+.feed-main {
+  margin-top : 20px;
+  border-bottom : 1px solid;
 }

@@ -1,23 +1,12 @@
-%h1 Listing blogs
+%ul{ :class => 'tabs',:id => "tabs", :"data-tabs" => "tabs"}
+  %li{:class => 'active'} 
+    =link_to 'Blogs', '#blogs', :class => 'active'
+  %li
+    =link_to 'Discussions', '#discussions'
 
-%table
-  %tr
-    %th Blog title
-    %th Description
-    %th User
-    %th
-    %th
-    %th
+.tab-content
+  .tab-pane.active{:id =>'blogs'}
+    =render :partial => 'blogs', :locals => {:blogs => @blogs }
 
-  - @blogs.each do |blog|
-    %tr
-      %td= blog.blog_title
-      %td= blog.description
-      %td= blog.user_id
-      %td= link_to 'Show', blog
-      %td= link_to 'Edit', edit_blog_path(blog)
-      %td= link_to 'Destroy', blog, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New Blog', new_blog_path
+  .tab-pane{:id => 'discussions'}
+    =render :partial => 'blogs', :locals => {:blogs => @discussions }

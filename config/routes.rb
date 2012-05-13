@@ -1,7 +1,7 @@
 Webapp::Application.routes.draw do
   root :to => 'home#index'
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", :registrations => "registrations" }
 
   as :user do
     get "/profile/:id" => "sessions#show_profile", :as => :profile
@@ -10,17 +10,24 @@ Webapp::Application.routes.draw do
     get "/profile/:id/following" => "sessions#following", :as => :following
     get "/profile/:id/followers" => "sessions#followers", :as => :followers
     delete "/profile/:id/delete" => "sessions#delete_profile", :as => :delte_profile
+
   end
 
-  resources :blogs, :except => :index do
+  resources :blogs do
     resources :posts, :only => [:create, :destroy]
+    resources :invitations, :only => [:create, :destroy]
   end
 
   resources :relationships, :only => [:create, :destroy]
 
+
   match '/help',    :to => 'home#help'
   match '/about',   :to => 'home#about'
   match '/contact', :to => 'home#contact'
+  match '/userlist', :to =>'home#user_list'
+  match '/unauthorized', :to =>'home#unauthorized'
+
+
 
 
 
