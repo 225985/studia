@@ -7,7 +7,7 @@ class PagesController < ApplicationController
     else
       @size = 256
       @iter = 1000
-      @kind = "mandelbrot"
+      @kind = "mandelbrot-color"
     end
   end
 

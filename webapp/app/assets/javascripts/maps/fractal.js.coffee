@@ -3,7 +3,7 @@ update = ->
   longtitude = $("#fractal").data('longtitude') ? 0 #45
   zoom       = $("#fractal").data('zoom') ? 2
 
-  kind    = $("#kind").val() ? "mandelbrot"
+  kind    = $("#kind").val() ? "mandelbrot-color"
   iter    = $("#iter").val() ? 1000
   size    = $("#size").val() ? 256
 

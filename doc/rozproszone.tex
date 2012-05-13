@@ -32,8 +32,10 @@ Mateusz Lenik {\small(181142)}}
 
 \begin{document}
 \maketitle
+\tableofcontents
+\newpage
 
-\section*{Opis projektu}
+\section{Opis projektu}
 
 Celem projektu jest stworzenie aplikacji internetowej pozwalającej użytkownikowi
 na przeglądanie fraktali renderowanych na klastrze. Aplikacja
@@ -41,14 +43,14 @@ pozwalałaby na przybliżanie i oddalanie widocznej części fraktala, zmianę
 kolorów oraz zapisywanie ostatniej przeglądanej pozycji przez danego
 użytkownika.
 
-\section*{Uzasadnienie biznesowe}
+\section{Uzasadnienie biznesowe}
 
 Projekt może zostać wykorzystany jako proof of concept dla aplikacji
 przetwarzających duże ilości danych i prezentację ich w formie lub na mapie.
 Jest to proste do rozbudowy demo technologiczne, na podstawie którego można
 stworzyć bardziej skomplikowane aplikacje.
 
-\section*{Technologie}
+\section{Technologie}
 
 Aplikacja będzie oparta o technologie wykorzystujące JVM, dzięki czemu możliwe
 będzie uruchomienie jej na kilku platformach bez konieczności modyfikacji.
@@ -65,7 +67,7 @@ zaimplementowanym w Scali.
 \end{itemize}
 
 \newpage
-\section*{Funkcjonalności systemu}
+\section{Funkcjonalności systemu}
 
 \begin{itemize}
   \item Obsługa użytkowników
@@ -90,27 +92,27 @@ zaimplementowanym w Scali.
     \end{itemize}
 \end{itemize}
 
-\section*{Implementacja}
+\section{Implementacja}
 
 Praca nad projektem została podzielona na dwie części, aplikację internetową
 oraz rozproszone API pozwalające na renderowanie części fraktala.
 
-\subsection*{Aplikacja internetowa}
+\subsection{Aplikacja internetowa}
 
 Aplikacja internetowa została utworzona przy użyciu frameworka Ruby on Rails. Do
 wyświetlania fraktala wykorzystana została biblioteka Leaflet. Aplikacja
 pobiera poszczególne części fraktala łącząc się z rozproszonym API. Obecnie
 zaimplementowane jest logowanie za pomocą Twitter OAuth. Dla zalogowanego
-użytkownika zapisywana jest ostatnie przeglądane współrzędne fraktala.
+użytkownika zapisywana jest ostatnie przeglądane współrzędne oraz wybrane parametry fraktala.
 
-\subsection*{Rozproszone API}
+\subsection{Rozproszone API}
 
-Biblioteka Leaflet pobiera z API obrazki o rozmiarach $256 \times 256$ pikseli
+Biblioteka Leaflet pobiera z API obrazki o zdefiniowanych przez użytkownika rozmiarach w pikselach
 korzystając z URL w formacie \texttt{http://\{serwer\}/img/\{x\}/\{y\}/\{z\}}
 wypełniając pola \texttt{x}, \texttt{y}, \texttt{z} odpowiednimi
-wartościami. Następnie, zgodnie z rysunkiem~\ref{fig:loadbalancing}, zapytanie
-jest przydzielane do odpowiednich węzłów, jest renderowane, a następnie wynik
-jest zwracany do klienta.
+wartościami. Następnie, zgodnie z rysunkiem \ref{fig:loadbalancing}, zapytanie
+jest przydzielane do odpowiednich węzłów, renderowane, a rezultat
+zwracany jest do klienta.
 
 \begin{figure}[h!]
 \begin{center}
@@ -123,7 +125,7 @@ jest zwracany do klienta.
 API zostało zaimplementowane w języku Scala wykorzystując bibliotekę Akka.io
 umożliwiającą łatwe użycie Actor pattern.
 
-\section*{Wdrożenie}
+\section{Wdrożenie}
 
 Aplikacja została wdrożona na klastrze obliczeniowym składającym się z
 dziewięciu maszyn wirtualnych. Ze względu na łatwą konfigurację, jako host
@@ -137,7 +139,7 @@ maszyn wirtualnych została wybrana platforma Amazon EC2.
 \label{fig:ec2}
 \end{figure}
 
-\section*{Podsumowanie}
+\section{Podsumowanie}
 
 Zaimplementowana zostały podstawowe funkcjonalności aplikacji. W przyszłości
 dodane zostaną pozostałe funkcjonalności, takie jak wybór dodatkowych opcji w

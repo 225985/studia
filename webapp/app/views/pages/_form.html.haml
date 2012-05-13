@@ -6,7 +6,7 @@
   %form.form-inline
     %fieldset
       %select#kind
-        - ["mandelbrot", "julia"].each do |q|
+        - ["mandelbrot-color", "mandelbrot-gray", "julia-color", "julia-gray"].each do |q|
           %option{:value => q, :selected => (q==@kind ? "selected" : nil)}= q.capitalize
 
       %select#iter
