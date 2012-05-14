@@ -139,11 +139,12 @@ void *car_thread_function(void *arg) {
             loops++;
             fuel--;
             
+            pthread_mutex_lock(&pitstop_mutex);
             if(!pitstop) {
-                pthread_mutex_lock(&pitstop_mutex);
+                
                 pitstop = true;
                 pthread_cond_signal(&pitstop_cond);
-                pthread_mutex_unlock(&pitstop_mutex);
+
 
                 pthread_mutex_lock(&paint_mutex);
                 cars[cid-1][0] = 21;
@@ -155,11 +156,12 @@ void *car_thread_function(void *arg) {
                 usleep(PITSTOP_TIME);
                 fuel = data->fuel_laps;
 
-                pthread_mutex_lock(&pitstop_mutex);
                 pitstop = false;
                 pthread_cond_signal(&pitstop_cond);
+            } else {
                 pthread_mutex_unlock(&pitstop_mutex);
             }
+
 
         } else {
             pthread_mutex_lock(&paint_mutex);

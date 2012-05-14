@@ -1,6 +1,12 @@
-all: main.cpp
-	g++ main.cpp -o main -lncurses
-	./main
+CCFLAGS = -lncurses -pthread
+
+all: main
+
+main: main.cpp
+	g++ $(CCFLAGS) main.cpp -o main
+
+test: all
+	./main 
 
 clean:
-	rm main
+	rm -rf *.o main
