@@ -1,16 +1,17 @@
 #include <ncurses.h>
 #include <pthread.h>
-#include <sys/time.h>
+#include <time.h>
 #include <unistd.h>
 #include <string.h>
+#include <stdlib.h>
 
 #define MICRO 1000000
-#define PITSTOP_TIME 3 * MICRO
-#define LAP_LENGTH 40;
-#define PS_X 22;
-#define PS_Y 0;
-#define MAX_X 19;
-#define MAX_Y 9;
+#define PITSTOP_TIME 9
+#define LAP_LENGTH 40
+#define PS_X 22
+#define PS_Y 0
+#define MAX_X 19
+#define MAX_Y 9
 
 struct thread_data_t{
   int id;
@@ -26,12 +27,12 @@ pthread_mutex_t cars_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 pthread_cond_t pitstop_cond = PTHREAD_COND_INITIALIZER;
 pthread_cond_t paint_cond = PTHREAD_COND_INITIALIZER;
-pthread_cond_t cars_cond = PTHREAD_COND_INITIALIZER;
 
 
 int lapLength, threadsCount, rc, restCount;
 bool pitstop = false;
 bool repaint = true;
+bool finish = false;
 pthread_t * threads;
 pthread_t paint_thread;
 thread_data_t * threadsParameters;
@@ -45,18 +46,23 @@ int ** cars;
 void *car_thread_function(void *arg);
 void *paint_thread_function(void *arg);
 void init_threads();
-void clear_all();
+void clear_car_threads();
+void clear_paint_thread();
+void clear_rest();
 void print_lap();
 
 //===============================================
 int main(){
     init_threads();
-    clear_all();
+    clear_car_threads();
+    clear_paint_thread();
+    clear_rest();
     return 0;
 }
 
 //===============================================
 void init_threads() {
+    srand(time(NULL));
     initscr();
     printw("Lap length : \n");
     scanw("%d", &lapLength);
@@ -95,22 +101,35 @@ void init_threads() {
     }   
 }
 
-//===============================================
-void clear_all() {
+void clear_car_threads(){
     for (int i=0; i<threadsCount; i++) {
         pthread_join(threads[i], NULL);
-    }
+    }   
+    finish = true;
+}
 
-    pthread_join(paint_thread, NULL);
+void clear_paint_thread(){
+    pthread_join(paint_thread, NULL);  
+}
+
+//===============================================
+void clear_rest() {
 
     pthread_mutex_destroy(&pitstop_mutex);
-    pthread_cond_destroy(&pitstop_cond);
     pthread_mutex_destroy(&cars_mutex);
     pthread_mutex_destroy(&paint_mutex);
+    pthread_mutex_destroy(&cars_mutex);
+
     pthread_cond_destroy(&paint_cond);
+    pthread_cond_destroy(&pitstop_cond);
 
     delete [] threads;
     delete [] threadsParameters;
+
+    for(int i=0; i<threadsCount; i++){
+        delete [] cars[i];
+    }
+    delete [] cars;
 
     printw("press any key\n");
     getch();
@@ -155,8 +174,9 @@ void *car_thread_function(void *arg) {
                 pthread_cond_signal(&paint_cond);
                 pthread_mutex_unlock(&paint_mutex);
 
-                usleep(PITSTOP_TIME);
+                usleep(((rand() % PITSTOP_TIME) +1) * MICRO);
                 fuel = data->fuel_laps;
+
                 pthread_mutex_lock(&pitstop_mutex);
                 pitstop = false;
                 pthread_cond_signal(&pitstop_cond);
@@ -204,12 +224,18 @@ void *car_thread_function(void *arg) {
 
 //===============================================
 void *paint_thread_function(void *arg){
-    while(restCount > 1){
-        pthread_mutex_lock(&paint_mutex);
-        while(!repaint) pthread_cond_wait(&paint_cond, &paint_mutex);
-        print_lap();
-        repaint = false;
-        pthread_mutex_unlock(&paint_mutex);
+    while(!finish){
+        pthread_mutex_lock(&cars_mutex);
+        if(restCount > 1) {
+            pthread_mutex_unlock(&cars_mutex);
+            pthread_mutex_lock(&paint_mutex);
+            while(!repaint) pthread_cond_wait(&paint_cond, &paint_mutex);
+            print_lap();
+            repaint = false;
+            pthread_mutex_unlock(&paint_mutex);
+        } else {
+            pthread_mutex_unlock(&cars_mutex);
+        }
     }
 
     for(int i=0; i<threadsCount; i++){
