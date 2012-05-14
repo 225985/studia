@@ -26,6 +26,7 @@ pthread_mutex_t cars_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 pthread_cond_t pitstop_cond = PTHREAD_COND_INITIALIZER;
 pthread_cond_t paint_cond = PTHREAD_COND_INITIALIZER;
+pthread_cond_t cars_cond = PTHREAD_COND_INITIALIZER;
 
 
 int lapLength, threadsCount, rc, restCount;
@@ -127,7 +128,7 @@ void *car_thread_function(void *arg) {
     int y = 0;
     int cid = data->id;
 
-    while(fuel > 0){
+    while(fuel > 0 && restCount > 1){
         usleep(sleep);
 
         if(x > 0 && y == 0) { x--; }
@@ -144,6 +145,7 @@ void *car_thread_function(void *arg) {
                 
                 pitstop = true;
                 pthread_cond_signal(&pitstop_cond);
+                pthread_mutex_unlock(&pitstop_mutex);
 
 
                 pthread_mutex_lock(&paint_mutex);
@@ -155,9 +157,10 @@ void *car_thread_function(void *arg) {
 
                 usleep(PITSTOP_TIME);
                 fuel = data->fuel_laps;
-
+                pthread_mutex_lock(&pitstop_mutex);
                 pitstop = false;
                 pthread_cond_signal(&pitstop_cond);
+                pthread_mutex_unlock(&pitstop_mutex);
             } else {
                 pthread_mutex_unlock(&pitstop_mutex);
             }
@@ -177,27 +180,46 @@ void *car_thread_function(void *arg) {
     }
     
     pthread_mutex_lock(&cars_mutex);
-    restCount--;
-    pthread_mutex_unlock(&cars_mutex);
+    if(restCount > 1) {
+        restCount--;
+        pthread_mutex_unlock(&cars_mutex);
 
-    pthread_mutex_lock(&paint_mutex);
-    cars[cid-1][0] = -1;
-    cars[cid-1][1] = -1;
-    repaint = true;
-    pthread_cond_signal(&paint_cond);
-    
+        pthread_mutex_lock(&paint_mutex);
+        cars[cid-1][0] = -1;
+        cars[cid-1][1] = -1;
+        repaint = true;
+        pthread_cond_signal(&paint_cond);
+        pthread_mutex_unlock(&paint_mutex);
+    } else {
+        pthread_mutex_unlock(&cars_mutex);
+
+        pthread_mutex_lock(&paint_mutex);
+        repaint = true;
+        pthread_cond_signal(&paint_cond);
+        pthread_mutex_unlock(&paint_mutex);        
+    }
+
     pthread_exit(NULL);
 }
 
 //===============================================
 void *paint_thread_function(void *arg){
-    while(restCount > 0){
+    while(restCount > 1){
         pthread_mutex_lock(&paint_mutex);
         while(!repaint) pthread_cond_wait(&paint_cond, &paint_mutex);
         print_lap();
         repaint = false;
         pthread_mutex_unlock(&paint_mutex);
     }
+
+    for(int i=0; i<threadsCount; i++){
+        if(cars[i][0] != -1 && cars[i][1] != -1) {
+            printw("Car %d win!!!! \n", i+1);
+            refresh();
+            break;
+        }
+    }
+
 
     pthread_exit(NULL);
 }
@@ -213,7 +235,7 @@ void print_lap(){
 
     for(int i=0; i<threadsCount; i++){
         if(cars[i][0] != -1 && cars[i][1] != -1) {
-            lap[cars[i][1]][cars[i][0]] = (char)(48 + i);
+            lap[cars[i][1]][cars[i][0]] = (char)(49 + i);
         }
     }
 
