@@ -6,11 +6,11 @@
 #include <stdlib.h>
 
 #define MICRO 1000000
-#define PITSTOP_TIME 9
+#define PITSTOP_TIME 6
 #define MAX_X 24
 #define MAX_Y 19
 #define LAP_LENGTH 90
-#define DEFAULT_PITSTOP 3 * MICRO
+#define DEFAULT_PITSTOP 3 
 
 struct thread_data_t{
   int id;
@@ -25,9 +25,6 @@ pthread_mutex_t cars_mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t pitstop_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 pthread_cond_t paint_cond = PTHREAD_COND_INITIALIZER;
-
-
-
 
 
 int lapLength, threadsCount, rc, restCount;
@@ -165,7 +162,7 @@ void *car_thread_function(void *arg) {
             pthread_mutex_unlock(&pitstop_mutex);
             if(!changed_speed) {
                 changed_speed = true;
-                new_speed = (int)(DEFAULT_PITSTOP / len);
+                new_speed = (int)(DEFAULT_PITSTOP * MICRO / len);
                 new_speed = new_speed > sleep ? new_speed : sleep;
             }
 
