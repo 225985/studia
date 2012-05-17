@@ -178,7 +178,7 @@ void *car_thread_function(void *arg) {
                 fuel = data->fuel_laps;
 
                 pthread_mutex_lock(&pitstop_mutex);
-                pitstop = false;
+                pitstop = false;    
                 pthread_cond_signal(&pitstop_cond);
                 pthread_mutex_unlock(&pitstop_mutex);
             } else {
