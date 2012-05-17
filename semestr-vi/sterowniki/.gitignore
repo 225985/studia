@@ -2,3 +2,6 @@
 *.hex
 *.eep
 *.o
+
+*.aux
+*.log
