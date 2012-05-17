@@ -21,12 +21,14 @@ struct thread_data_t{
 } ;
 
 pthread_mutex_t refresh_mutex = PTHREAD_MUTEX_INITIALIZER;
-pthread_mutex_t pitstop_mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t paint_mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t cars_mutex = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t pitstop_mutex = PTHREAD_MUTEX_INITIALIZER;
 
-pthread_cond_t pitstop_cond = PTHREAD_COND_INITIALIZER;
 pthread_cond_t paint_cond = PTHREAD_COND_INITIALIZER;
+
+
+
 
 
 int lapLength, threadsCount, rc, restCount;
@@ -52,7 +54,44 @@ void clear_rest();
 void print_lap();
 
 //===============================================
-int main(){
+int main(int argc, char **argv){
+    
+    if(argc < 3) {
+        printf("[lap length] [thread count] [t1 speed] [t1 fuel] ...");
+        return 0;
+    }
+
+    lapLength = atoi(argv[1]);
+    threadsCount = atoi(argv[2]);
+
+    if(argc < 3 + threadsCount * 2) {
+        printf("[lap length] [thread count] [t1 speed] [t3ś fuel] ...");
+        return 0;
+    } else if (threadsCount < 2 || threadsCount > 7){
+        printf("threads count <2,7>");
+        return 0;
+    }
+
+    restCount = threadsCount;
+    threads = new pthread_t[threadsCount];
+    threadsParameters = new thread_data_t[threadsCount];
+
+    cars = new int*[threadsCount];
+    for(int i=0; i<threadsCount; i++){
+        cars[i] = new int[2];
+        cars[i][0] = MAX_X;
+        cars[i][1] = 0;
+    }
+
+    for(int i=3, j=0; j<threadsCount; i += 2, j++){
+        threadsParameters[j].id = j+1;
+        threadsParameters[j].speed = atoi(argv[i]);
+        threadsParameters[j].fuel_laps = atoi(argv[i+1]);
+    }
+
+    srand(time(NULL));
+    initscr();
+
     init_threads();
     clear_car_threads();
     clear_paint_thread();
@@ -62,38 +101,8 @@ int main(){
 
 //===============================================
 void init_threads() {
-    srand(time(NULL));
-    initscr();
-    printw("Lap length : \n");
-    scanw("%d", &lapLength);
-
-    printw("Threads count : \n");
-    scanw("%d", &threadsCount);
-
-    restCount = threadsCount;
-    threads = new pthread_t[threadsCount];
-
-
-    threadsParameters = new thread_data_t[threadsCount];
-
-
-    cars = new int*[threadsCount];
-    for(int i=0; i<threadsCount; i++){
-        cars[i] = new int[2];
-        cars[i][0] = MAX_X;
-        cars[i][1] = 0;
-    }
-
-    for(int i=0; i<threadsCount; i++){
-        printw("Thread %d speed(1-10) and fuel \n", i+1);
-        refresh();
-        threadsParameters[i].id = i+1;
-        scanw("%d %d", &threadsParameters[i].speed, &threadsParameters[i].fuel_laps);
-    }
-
-    refresh();
-    
     rc = pthread_create(&paint_thread, NULL, paint_thread_function, NULL);
+
     for(int i=0; i<threadsCount; i++) {
         if((rc = pthread_create(&threads[i], NULL, car_thread_function, &threadsParameters[i]))){
             printw("Thread %d init error \n", i) ;
@@ -115,13 +124,12 @@ void clear_paint_thread(){
 //===============================================
 void clear_rest() {
 
-    pthread_mutex_destroy(&pitstop_mutex);
     pthread_mutex_destroy(&cars_mutex);
     pthread_mutex_destroy(&paint_mutex);
     pthread_mutex_destroy(&cars_mutex);
+    pthread_mutex_destroy(&pitstop_mutex);
 
     pthread_cond_destroy(&paint_cond);
-    pthread_cond_destroy(&pitstop_cond);
 
     delete [] threads;
     delete [] threadsParameters;
@@ -141,14 +149,36 @@ void *car_thread_function(void *arg) {
 
     thread_data_t *data = (thread_data_t *)arg;
     int fuel = data->fuel_laps;
-    int loops = 1;
-    int sleep = (lapLength * MICRO / data->speed) / LAP_LENGTH;
-    int x = MAX_X; 
-    int y = 0;
-    int cid = data->id;
+    int loops = 0;
+    int sleep = (int)((lapLength * MICRO / data->speed) / LAP_LENGTH); //max speed of car
+    int x = MAX_X; // indexes in tab
+    int y = 0; // indexes in tab
+    int cid = data->id; // id of car
+
+    bool changed_speed = false; // if speed was changed when someone in pitstop
+    int new_speed = 0; // new slower speed
+    int len = LAP_LENGTH; // current lap length raced
 
     while(fuel > 0 && restCount > 1){
-        usleep(sleep);
+        
+        pthread_mutex_lock(&pitstop_mutex);
+        if(pitstop) {
+            pthread_mutex_unlock(&pitstop_mutex);
+            if(!changed_speed) {
+                changed_speed = true;
+                new_speed = (int)(3 * MICRO / len);
+                new_speed = new_speed > sleep ? new_speed : sleep;
+            }
+
+            usleep(new_speed);
+
+        } else {
+            pthread_mutex_unlock(&pitstop_mutex);
+            if(changed_speed) changed_speed = false;
+            usleep(sleep);
+        }
+
+        len--;
 
         if(x > 0 && y == 0) { x--; }
         else if(x == 0 && y < 9) { y++; }
@@ -158,13 +188,14 @@ void *car_thread_function(void *arg) {
         if(x == 19 && y ==0) {
             loops++;
             fuel--;
+            len = LAP_LENGTH;
+            new_speed = sleep;
             
             pthread_mutex_lock(&pitstop_mutex);
             if(!pitstop) {
-                
                 pitstop = true;
-                pthread_cond_signal(&pitstop_cond);
                 pthread_mutex_unlock(&pitstop_mutex);
+
 
 
                 pthread_mutex_lock(&paint_mutex);
@@ -179,8 +210,8 @@ void *car_thread_function(void *arg) {
 
                 pthread_mutex_lock(&pitstop_mutex);
                 pitstop = false;    
-                pthread_cond_signal(&pitstop_cond);
                 pthread_mutex_unlock(&pitstop_mutex);
+
             } else {
                 pthread_mutex_unlock(&pitstop_mutex);
             }
