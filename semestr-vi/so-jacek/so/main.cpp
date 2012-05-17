@@ -7,11 +7,10 @@
 
 #define MICRO 1000000
 #define PITSTOP_TIME 9
-#define LAP_LENGTH 40
-#define PS_X 22
-#define PS_Y 0
-#define MAX_X 19
-#define MAX_Y 9
+#define MAX_X 24
+#define MAX_Y 19
+#define LAP_LENGTH 90
+#define DEFAULT_PITSTOP 3 * MICRO
 
 struct thread_data_t{
   int id;
@@ -39,7 +38,7 @@ pthread_t * threads;
 pthread_t paint_thread;
 thread_data_t * threadsParameters;
 
-char lap[11][24];
+char lap[MAX_Y + 2][MAX_X + 5];
 int ** cars;
 
 
@@ -166,7 +165,7 @@ void *car_thread_function(void *arg) {
             pthread_mutex_unlock(&pitstop_mutex);
             if(!changed_speed) {
                 changed_speed = true;
-                new_speed = (int)(3 * MICRO / len);
+                new_speed = (int)(DEFAULT_PITSTOP / len);
                 new_speed = new_speed > sleep ? new_speed : sleep;
             }
 
@@ -181,11 +180,11 @@ void *car_thread_function(void *arg) {
         len--;
 
         if(x > 0 && y == 0) { x--; }
-        else if(x == 0 && y < 9) { y++; }
-        else if(x < 19 && y == 9) { x++; }
-        else if(x == 19 && y > 0 ) { y--; }
+        else if(x == 0 && y < MAX_Y) { y++; }
+        else if(x < MAX_X && y == MAX_Y) { x++; }
+        else if(x == MAX_X && y > 0 ) { y--; }
 
-        if(x == 19 && y ==0) {
+        if(x == MAX_X && y ==0) {
             loops++;
             fuel--;
             len = LAP_LENGTH;
@@ -199,7 +198,7 @@ void *car_thread_function(void *arg) {
 
 
                 pthread_mutex_lock(&paint_mutex);
-                cars[cid-1][0] = 21;
+                cars[cid-1][0] = MAX_X + 2;
                 cars[cid-1][1] = 0;
                 repaint = true;
                 pthread_cond_signal(&paint_cond);
@@ -214,6 +213,12 @@ void *car_thread_function(void *arg) {
 
             } else {
                 pthread_mutex_unlock(&pitstop_mutex);
+                pthread_mutex_lock(&paint_mutex);
+                cars[cid-1][0] = x;
+                cars[cid-1][1] = y;
+                repaint = true;
+                pthread_cond_signal(&paint_cond);
+                pthread_mutex_unlock(&paint_mutex); 
             }
 
 
@@ -284,11 +289,11 @@ void *paint_thread_function(void *arg){
 //===============================================
 void print_lap(){
     clear();
-    strcpy(lap[0], "--------------------[ ]");
-    for(int i=1; i<9;i++){
-        strcpy(lap[i], "|                  |");
+    strcpy(lap[0], "-------------------------[ ]");
+    for(int i=1; i<20;i++){
+        strcpy(lap[i], "|                       |");
     }
-    strcpy(lap[9], "--------------------");
+    strcpy(lap[MAX_Y], "-------------------------");
 
     for(int i=0; i<threadsCount; i++){
         if(cars[i][0] != -1 && cars[i][1] != -1) {
@@ -296,7 +301,7 @@ void print_lap(){
         }
     }
 
-    for(int i=0; i<10; i++){
+    for(int i=0; i<MAX_Y + 1; i++){
         printw("%s\n",lap[i]);
     }
     refresh();
