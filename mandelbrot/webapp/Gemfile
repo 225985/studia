@@ -1,0 +1,47 @@
+source 'https://rubygems.org'
+
+gem 'rails', '3.2.2'
+gem 'sqlite3'
+
+gem 'thin'
+
+gem 'haml'
+gem 'omniauth'
+gem 'omniauth-twitter'
+
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'compass-rails'
+  gem 'jquery-rails'
+
+  gem 'therubyracer'
+
+  gem 'uglifier', '>= 1.0.3'
+end
+
+group :development do
+  gem 'rspec-rails', '~> 2.8.1'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'spork-rails'
+
+  gem 'guard-rails'
+  gem 'guard-rspec'
+  gem 'guard-spork'
+
+  gem 'guard-livereload'
+  gem 'annotate'
+
+  gem 'pry-rails'
+
+  gem "rails-erd"
+
+  if RUBY_PLATFORM =~ /darwin/
+    gem 'growl'
+    gem 'rb-fsevent', :require => false
+  end
+end
+

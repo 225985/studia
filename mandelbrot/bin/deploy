@@ -1,0 +1,53 @@
+#!/usr/bin/env ruby
+
+require "logger"
+require "yaml"
+
+CONFIG = YAML.load(File.read(File.join(File.dirname(__FILE__), "..", "hosts.yml")))
+
+@log = Logger.new(STDOUT)
+@log.level = Logger::INFO
+@log.formatter = proc do |level, datetime, progname, msg|
+  "#{datetime} [#{level}] #{msg}\n"
+end
+
+def sh(cmd)
+  @log.debug "SH: " + cmd
+  system cmd
+end
+
+def ssh(host, commands)
+  sh "ssh ubuntu@#{host} '#{commands}'"
+end
+
+def workers
+  @log.info "Deploying workers"
+
+  CONFIG["workers"].each do |host|
+    @log.info "Deploying on #{host}"
+    ssh host, "cd mandelbrot && git pull && sudo stop mandelbrot; sudo start mandelbrot" # restart sucks
+  end
+end
+
+def webapp
+  @log.info "Deploying webapp on #{CONFIG['webapp']}"
+  ssh CONFIG["webapp"], "cd mandelbrot/webapp && git pull && bundle install --path vendor/bundle --without development test && RAILS_ENV=production rake db:migrate assets:precompile && touch tmp/restart.txt"
+end
+
+def webapi
+  @log.info "Deploying webapi"
+  CONFIG["webapi"].each do |host|
+    @log.info "Deploying webapi on #{host}"
+    ssh host, "cd mandelbrot && git pull && sudo stop mandelbrot-api; sudo start mandelbrot-api" # restart sucks
+  end
+end
+
+
+if ARGV.first
+  send(ARGV.first)
+else
+  workers
+  webapi
+  webapp
+end
+

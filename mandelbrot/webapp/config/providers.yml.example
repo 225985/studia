@@ -1,0 +1,8 @@
+twitter:
+  key: 'YOUR_KEY'
+  secret: 'YOUR_SECRET'
+
+github:
+  key: 'YOUR_KEY'
+  secret: 'YOUR_SECRET'
+
