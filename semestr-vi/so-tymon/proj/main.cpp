@@ -199,8 +199,6 @@ void paint(){
     int y = 0;
     file_t * f;
 
-
-
     erase();
     mvprintw(0, 0, " == Parallel cURL == (%d threads, %d files, %d downloaded) - autoscroll: %s (press 's' to toggle)",
         worker_threads_count,
@@ -301,6 +299,9 @@ void * gui_thread_fun(void * _arg){
         pthread_mutex_unlock(&gui_mutex);
     }
 
+
+    nodelay(stdscr, false);
+
     print_done();
     getch();
 
@@ -345,6 +346,7 @@ int main(int argc, char const *argv[]){
         int i = 0;
 
         while(fscanf(urls_file, "%s", url) != EOF){
+            if(url[0] == '#') continue;
             f = new file_t;
             strcpy(f->url, url);
             f->id = i++;
