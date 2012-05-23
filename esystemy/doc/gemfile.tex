@@ -1,0 +1,53 @@
+
+\begin{lstlisting}[
+    caption=Spis najważniejszych bibliotek,
+    firstnumber=1,
+    language=Ruby,
+    keywordstyle=\color{red},
+    stringstyle=\color{blue},
+]
+source 'https://rubygems.org'
+
+gem 'rails', '3.2.2'
+
+group :development do
+  # gem do obslugi bazy danych sqlite
+  gem 'sqlite3', :platform => :ruby 
+  # gem do obslugi bazy danych sqlite jruby
+  gem 'activerecord-jdbcsqlite3-adapter', :platform => :jruby 
+  # generowanie diagramow
+  gem "rails-erd" 
+end
+
+group :production do
+  # gem do obslugi bazy danych Postgres
+  gem 'pg', '0.12.2' 
+end
+
+...
+# gem do obslugi autentykacji uzytkownikow
+gem 'devise' 
+# gem do obslugi logowania przez FB przy pomocy OAuth
+gem 'omniauth-facebook' 
+# gem pozwaljacy na wykorzystanie jezyka znacznikow HAML
+gem 'haml' 
+gem 'haml-rails'
+# gem pozwalajacy na proste tworzenie formularzy
+gem 'simple_form' 
+
+
+group :assets do
+  ...
+  # gem pozwalajacy na pisanie javascript w jezyku CoffeScript
+  gem 'coffee-rails' 
+end
+
+gem 'jquery-rails' # dolaczenie biblioteki js jQuery
+gem 'jqueryui_rails' # dolaczenie biblioteki js jQuery-ui
+
+\end{lstlisting}
+
+
+
+
+

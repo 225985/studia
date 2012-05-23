@@ -1,0 +1,15 @@
+-if blogs.count == 0
+  %p There isn't any apps
+-else
+  %table
+    -blogs.each do |blog|
+      %tr
+        %td
+          =linkt_to blog.title, blog
+        %td
+          - if !blog.user.fullname.nil? && !blog.user.fullname.empty?
+              = link_to blog.user.fullname, profile_path(blog.user)
+          - else 
+            = link_to blog.user.email, profile_path(blog.user)
+        %td
+          =link_to 'Show', blog, :class => "btn primary"

@@ -1,0 +1,34 @@
+.row-fluid
+  .span5
+    .well.sidebar-nav
+      .new-blog
+        = link_to 'Create', new_blog_path, :class => "btn success"
+      %h3 My Microblogs:
+      - if @blogs.count > 0
+        %table
+          - @blogs.each do |blog|
+            %tr
+              %td{:class => "sidebar-table", :colspan => 3}= blog.title
+            %tr{ :style => "border-bottom: solid 1px black"}
+              %td{:class => "sidebar-table"}= link_to 'Show', blog, :class => "btn primary"
+              %td{:class => "sidebar-table"}= link_to 'Edit', edit_blog_path(blog), :class => "btn info"
+              %td{:class => "sidebar-table"}= link_to 'Destroy', blog, :confirm => 'Are you sure?', :method => :delete, :class => "btn danger"
+      - else
+        %p You don't have any microblogs
+      %h3 My Discussions
+      - if @discussions.count > 0
+        %table
+          - @discussions.each do |disc|
+            %tr
+              %td{:class => "sidebar-table", :colspan => 3}= disc.title
+            %tr{ :style => "border-bottom: solid 1px black"}
+              %td{:class => "sidebar-table"}= link_to 'Show', disc, :class => "btn primary"
+              %td{:class => "sidebar-table"}= link_to 'Edit', edit_blog_path(disc), :class => "btn info"
+              %td{:class => "sidebar-table"}= link_to 'Destroy', disc, :confirm => 'Are you sure?', :method => :delete, :class => "btn danger"
+      - else
+        %p You don't have any discussions
+  .span7
+    .content
+      =render 'feeds'
+        
+

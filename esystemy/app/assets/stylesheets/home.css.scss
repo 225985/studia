@@ -1,0 +1,118 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#container { width: 800px; padding: 20px; }
+html, body {
+  background-color: #eee;
+}
+
+body {
+  padding-top: 40px;
+}
+
+.container > footer p {
+  text-align: center;
+}
+
+.container {
+  width: 820px;
+}
+
+.content {
+  background-color: #fff;
+  padding: 20px;
+  margin: 0 -20px;
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+
+.header-text{
+  font-size : 15px !important;
+  color : #fff !important;
+  padding: 8px 20px 12px!important;
+}
+
+.actions{
+  background : #fff;
+  border : none;
+  width : 650px;
+}
+
+tr.success .txt {
+  text-decoration: line-through;
+}
+
+.table-width {
+  width : 820px;
+}
+
+.sidebar-nav{
+  margin-right: 10px;
+}
+
+.wall-container {
+  width: 900px;
+}
+
+.sidebar-table {
+  border:0px !important;
+}
+
+.sidebar-table tr {
+  border-bottom:1px solid !important; 
+  border-top:1px solid !important; 
+}
+
+.sidebar-table td {
+  border : none !important;
+}
+
+label {
+  float : none;
+}
+
+input {
+  height : 25px;
+}
+
+textarea {
+  height : 150px; 
+}
+
+#post_content {
+  width: 530px;
+  height: 80px;
+  margin-bottom: 5px;
+}
+
+.add-post {
+  float : right !important;
+}
+
+.control-group {
+  margin-bottom: 10px;
+}
+#usernames{
+  margin-top : 7px;
+  width : 150px;
+
+}
+
+.feed-bottom {
+  text-align : right;
+}
+
+.feed-content {
+  font-size : 19px !important;
+  margin-bottom : 10px;
+}
+
+.feed-main {
+  margin-top : 20px;
+  border-bottom : 1px solid;
+}

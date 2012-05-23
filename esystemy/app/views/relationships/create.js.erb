@@ -1,0 +1,4 @@
+$(".follow-form-<%= @user.id%>").html("<%= escape_javascript(render('devise/unfollow')) %>")
+$("#follow-form").html("<%= escape_javascript(render('devise/unfollow')) %>")
+$("#follow-numbers").html("<%= escape_javascript(render('devise/follow_numbers')) %>")
+

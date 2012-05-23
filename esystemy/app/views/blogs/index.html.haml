@@ -1,0 +1,12 @@
+%ul{ :class => 'tabs',:id => "tabs", :"data-tabs" => "tabs"}
+  %li{:class => 'active'} 
+    =link_to 'Blogs', '#blogs', :class => 'active'
+  %li
+    =link_to 'Discussions', '#discussions'
+
+.tab-content
+  .tab-pane.active{:id =>'blogs'}
+    =render :partial => 'blogs', :locals => {:blogs => @blogs }
+
+  .tab-pane{:id => 'discussions'}
+    =render :partial => 'blogs', :locals => {:blogs => @discussions }
