@@ -1,0 +1,71 @@
+\documentclass[wide,a4paper,titlepage,12pt] {article}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{placeins}
+
+
+\title{Sterowniki mikroprocesorowe w aplikacjach sieciowych}
+\author{Tymon Tobolski (181037)\\ Jacek Wieczorek (181043)}
+
+% Title page layout (fold)
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{titlepage}
+  \begin{center}
+    \vspace*{3cm}
+    \LARGE \@title \par
+    \vspace{2cm}
+    \textit{\small Autor:}\par
+    \normalsize \@author\par \normalsize
+    \vspace{3cm}
+    \textit{\small Prowadzący:}\par
+    Dr inż. Jerzy Greblicki \par
+    \vspace{2cm}
+    Wydział Elektroniki\\ III rok\\ Cz TP 12.15 - 15.00\par
+
+  \end{center}
+\end{titlepage}
+}
+\makeatother
+  \lstset{
+    language=c++,
+    basicstyle=\ttfamily\scriptsize,
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=10,
+    numbersep=9pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    breaklines=true,
+  }
+
+\begin{document}
+\maketitle
+  \section{Cel laboratorium}
+  \paragraph{}
+  Celem laboratorium było zapoznanie się z obsługą liczników oraz przerwań na mikrokontrolerze Atmega 328p.
+
+  \section{Kod źródłowy}
+  \lstinputlisting{../lab002.c}
+
+  \section{Czyszczenie flagi TOV1}
+  \paragraph{}
+  Operacja czyszczenia flagi TOV1 powinna być wykonywana tak szybko jak to
+  jest możliwe stąd też rozwiązanie polegające na wpisywanie logicznej jedynki
+  zapewnia najkrótszy czas wykonania zadania.
+  \paragraph{} % (fold)
+
+  Zapis logicznej 1 na pozycji TOV1 wymaga tylko jednej operacji,
+  ponadto wpisanie 0 do pozostałych bitów rejestru TIFR1 nie zmieni ich wartości.
+  W przypadku zapisu na pozycji TOV1 wartości 0 wymaga użycia również operacji odczytu, zmiany i zapisu,
+  co może skutkować zmienieniem innych wartości w rejestrze.
+
+  \section{Wnioski}
+  \paragraph{}
+  Operacje na rejestrach liczników nie są skomplikowanym zadaniem. Można je wykonać na kilka sposobów,
+  bez lub z wykorzystaniem mechanizmu przerwań. Dzięki wykorzystaniu mechanizmu obsługi przerwań
+  jesteśmy w stanie wykonywać operacje na licznikach \"w tle\" kontrolera, bez potrzeby blokowania
+  wykonania innych operacji.
+\end{document}
