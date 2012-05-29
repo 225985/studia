@@ -1,0 +1,50 @@
+  \tiny{
+  \begin{center}
+    \begin{longtable}{|c|c|c|c|}
+    \hline
+    Path name &Method & Path & Action \\ \hline
+
+                    root &       &$/$                                        & home\#index \\
+        new\_user\_session &GET    &$/$users$/$sign\_in(.:format)                  &devise$/$sessions\#new\\
+            user\_session &POST   &$$/$$users$/$sign\_in(.:format)                 & devise$/$sessions\#create\\
+    destroy\_user\_session &DELETE &$/$users$/$sign\_out(.:format)                & devise$/$sessions\#destroy\\
+  user\_omniauth\_callback &       &$/$users$/$auth$/$:action$/$callback(.:format)   & omniauth\_callbacks\#(?-mix:facebook)\\
+           user\_password &POST   &$/$users$/$password(.:format)                & devise$/$passwords\#create\\
+       new\_user\_password &GET    &$/$users$/$password$/$new(.:format)            & devise$/$passwords\#new\\
+      edit\_user\_password &GET    &$/$users$/$password$/$edit(.:format)           & devise$/$passwords\#edit\\
+                         &PUT    &$/$users$/$password(.:format)                & devise$/$passwords\#update\\
+cancel\_user\_registration &GET    &$/$users$/$cancel(.:format)                  & registrations\#cancel\\
+       user\_registration &POST   &$/$users(.:format)                         & registrations\#create\\
+   new\_user\_registration &GET    &$/$users$/$sign\_up(.:format)                 & registrations\#new\\
+  edit\_user\_registration &GET    &$/$users$/$edit(.:format)                    & registrations\#edit\\
+                         &PUT    &$/$users(.:format)                         & registrations\#update\\
+                         &DELETE &$/$users(.:format)                         & registrations\#destroy\\
+                 profile &GET    &$/$profile$/$:id(.:format)                   & sessions\#show\_profile\\
+            edit\_profile &GET    &$/$profile$/$:id$/$edit(.:format)              & sessions\#edit\_profile\\
+                 profile &PUT    &$/$profile$/$:id(.:format)                   & sessions\#update\_profile\\
+               following &GET    &$/$profile$/$:id$/$following(.:format)         & sessions\#following\\
+               followers &GET    &$/$profile$/$:id$/$followers(.:format)         & sessions\#followers\\
+           delte\_profile &DELETE &$/$profile$/$:id$/$delete(.:format)            & sessions\#delete\_profile\\
+              blog\_posts &POST   &$/$blogs$/$:blog\_id$/$posts(.:format)          & posts\#create\\
+               blog\_post &DELETE &$/$blogs$/$:blog\_id$/$posts$/$:id(.:format)      & posts\#destroy\\
+        blog\_invitations &POST   &$/$blogs$/$:blog\_id$/$invitations(.:format)     &invitations\#create\\
+         blog\_invitation &DELETE &$/$blogs$/$:blog\_id$/$invitations$/$:id(.:format) &invitations\#destroy\\
+                   blogs &GET    &$/$blogs(.:format)                          &blogs\#index\\
+                         &POST   &$/$blogs(.:format)                          &blogs\#create\\
+                new\_blog &GET    &$/$blogs$/$new(.:format)                      &blogs\#new\\
+               edit\_blog &GET    &$/$blogs$/$:id$/$edit(.:format)                 &blogs\#edit\\
+                    blog &GET    &$/$blogs$/$:id(.:format)                      &blogs\#show\\
+                         &PUT    &$/$blogs$/$:id(.:format)                      &blogs\#update\\
+                         &DELETE &$/$blogs$/$:id(.:format)                     & blogs\#destroy\\
+           relationships &POST   &$/$relationships(.:format)                 & relationships\#create\\
+            relationship &DELETE &$/$relationships$/$:id(.:format)             & relationships\#destroy\\
+                    help &       &$/$help(.:format)                          & home\#help\\
+                   about &       &$/$about(.:format)                         & home\#about\\
+                 contact &       &$/$contact(.:format)                       & home\#contact\\
+                userlist &       &$/$userlist(.:format)                      & home\#user\_list\\
+            unauthorized &       &$/$unauthorized(.:format)                  & home\#unauthorized\\ \hline
+
+\caption{Ścieżki dostępne w aplikacji}\\
+    \end{longtable}
+\end{center}
+}

@@ -1,0 +1,82 @@
+
+Blog
+  with given initialized object
+    #user
+      should be a method
+      should not return nil
+    #posts
+      should be a method
+      should not return nil
+    #blog_title
+      should be a method
+      should not return nil
+    #description
+      should be a method
+      should not return nil
+  with given attributes
+    #new
+      should initialize new object
+      should create valid object
+    #create
+      should return an object
+      should save the post
+
+Post
+  with given initialized object
+    #user
+      should be a method
+      should not return nil
+    #blog
+      should be a method
+      should not return nil
+    #content
+      should be a method
+      should not return nil
+  with given attributes
+    #new
+      should initialize new object
+      should create valid object
+      should fail without content
+      should fail without user
+      should fail without blog
+    #create
+      should return an object
+      should save the post
+      should fail without content
+      should fail without user
+      should fail without blog
+
+User
+  with given initialized object
+    should have #password method
+    should have #password_confirmation method
+    should have #remember_me method
+    should have #blogs method
+    should have #posts method
+    should have #feed method
+    should have #relationships method
+    should have #followed_users method
+    should have #reverse_relationships method
+    should have #followers method
+    should have #following? method
+    should have #follow! method
+    should have #unfollow! method
+    #email
+      should be a method
+      should not return nil
+    #fullname
+      should be a method
+      should not return nil
+    #description
+      should be a method
+      should not return nil
+  with given attributes
+    #new
+      should initialize new object
+      should create valid object
+    #create
+      should return an object
+      should save the user
+
+Finished in 0.33327 seconds
+51 examples, 0 failures
