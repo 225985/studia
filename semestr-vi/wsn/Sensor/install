@@ -1,0 +1,2 @@
+#!/bin/sh
+make clean && make iris && ls /dev | grep usb | grep tty | grep "A$" | TP=$1 ruby -e 'readlines.each.with_index {|e,i| cmd = "make iris reinstall,#{i+1+ENV["TP"].to_i} mib510,/dev/#{e}"; puts cmd; system cmd  }'
