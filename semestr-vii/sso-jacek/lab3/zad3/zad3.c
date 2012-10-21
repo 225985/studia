@@ -19,7 +19,6 @@ int main(int argc, const char *argv[]){
         return -1;
     }
 
-
     pipe(fd1);
     pipe(fd2);
     
@@ -42,7 +41,6 @@ int main(int argc, const char *argv[]){
 
         printf("Command 2 : %s %s\n", argv[3], argv[4]);
         dup2(fd2[0], 0); // 0 - stdin
-
 
         execlp(argv[3], "c", argv[4], NULL);
         close(fd2[0]);

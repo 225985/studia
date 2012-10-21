@@ -1,0 +1,16 @@
+Zad1
+- kompilacja : make all
+- testowanie zadania 1a : make testa
+- uruchomienie ./zad1a
+- testowanie zadania 1b : make testb
+- uruchomienie ./zad1b
+
+Zad2
+- kompilacja : make all
+- testowanie : make test
+- uruchomienie : ./zad2
+
+Zad3
+- kompilacja :make all
+- testowanie : mkae test
+- uruchomienie ./zad3 cmd1 -par1 cmd2 -par1 np. ./zad3 ls -la cat -n
