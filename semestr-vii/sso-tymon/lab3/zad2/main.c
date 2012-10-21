@@ -72,7 +72,6 @@ int main(int argc, const char *argv[]){
 
 
         execvp(cmd[0][0], &cmd[0][0]);
-        // execlp("ls", "l", "-l", NULL);
         perror("execlp");
         close(fd1[1]);
     } else if((pid = fork()) == 0){

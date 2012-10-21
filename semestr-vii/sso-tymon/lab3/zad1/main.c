@@ -26,7 +26,7 @@ int main(int argc, const char *argv[]){
         close(fd[1]);
 
         for(i=0; i < n; ++i){
-            read(fd[0], outbuf, 20);
+            read(fd[0], outbuf, 10);
             printf("[\033[1;31mc\033[0m] Got %s\n", outbuf);
             fflush(stdout);
             sleep(1);
@@ -40,8 +40,7 @@ int main(int argc, const char *argv[]){
             sprintf(inbuf, "%d", 100*i);
             printf("[\033[1;32mp\033[0m] Sending %s\n", inbuf);
             fflush(stdout);
-            write(fd[1], inbuf, 20);
-            /*sleep(1);*/
+            write(fd[1], inbuf, 10);
         }
 
         close(fd[1]);
