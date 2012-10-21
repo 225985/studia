@@ -9,7 +9,7 @@
 
 int main(int argc, const char *argv[]){
     int fd1[2], fd2[2];
-	int pid, status, i, res;
+	int pid, status, res;
 	char buffer[255];
 
     pipe(fd1);

@@ -23,9 +23,6 @@ int main(int argc, const char *argv[]){
     pipe(fd1);
     pipe(fd2);
     
-
-
-
     if((pid = fork()) == 0){
         close(fd1[0]);
         close(fd2[0]);
