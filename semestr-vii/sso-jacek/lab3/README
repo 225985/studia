@@ -12,5 +12,5 @@ Zad2
 
 Zad3
 - kompilacja :make all
-- testowanie : mkae test
+- testowanie : make test
 - uruchomienie ./zad3 cmd1 -par1 cmd2 -par1 np. ./zad3 ls -la cat -n
