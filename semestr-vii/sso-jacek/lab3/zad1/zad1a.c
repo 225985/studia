@@ -36,7 +36,5 @@ int main(int argc, const char *argv[]){
 
 
     wait(&status);
-    wait(&status);
-
     return 0;
 }
