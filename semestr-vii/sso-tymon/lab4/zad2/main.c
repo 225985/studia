@@ -1,5 +1,5 @@
 /*
- * SSO - Lab 4
+ * SSO - Lab 4.2
  * Tymon Tobolski 181037
  */
 
