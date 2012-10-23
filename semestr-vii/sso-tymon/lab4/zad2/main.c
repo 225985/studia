@@ -72,6 +72,9 @@ int main(int argc, char ** argv){
     int r;
     char c;
 
+    printf("Type [s,n,p,e]: ");
+    fflush(stdout);
+
     if(!isatty(ttyfd)) fatal("not on a tty");
     if(tcgetattr(ttyfd, &orig_termios) < 0) fatal("can't get tty settings");
     if(atexit(tty_reset) != 0) fatal("atexit: can't register tty reset");
@@ -82,6 +85,7 @@ int main(int argc, char ** argv){
     if(argc < 2) fatal("Missing fifo file path");
 
     mplayer_init(argv[1]);
+
 
     while(1){
         r = read(0, &c, 1);
@@ -96,6 +100,8 @@ int main(int argc, char ** argv){
             case 'n':
                 mplayer_send(MPLAYER_NEXT);
                 break;
+            case 'e':
+                exit(0);
             default:
                 printf("Unknown command");
                 break;

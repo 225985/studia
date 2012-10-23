@@ -1,0 +1,12 @@
+Zad1:
+
+  $ ./main -w -n 1000 /tmp/sso-fifo1
+  $ ./main -r -s 5 /tmp/sso-fifo1
+
+
+Zad2:
+
+  $ ./main /tmp/sso-fifo2
+
+
+  $ mplayer -input file=/tmp/sso-fifo2 [files]
