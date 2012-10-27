@@ -5,10 +5,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-#define READ 0
-#define WRITE 1
-
-
 int main(int argc, char ** argv){
     int mode;
     int i,res,fd,c;
@@ -18,11 +14,11 @@ int main(int argc, char ** argv){
     while ((c = getopt(argc, argv, "rw")) != -1){
         switch(c){
             case 'r':
-                mode = READ;
+                mode = 0;
                 break;
 
             case 'w':
-                mode = WRITE;
+                mode = 1;
                 break;
 
             default:
@@ -35,7 +31,7 @@ int main(int argc, char ** argv){
     total = 0;
 
     switch(mode){
-        case READ:
+        case 0:
             fd = open("db", O_RDONLY);
             if(fd < 0) perror("open");
             
@@ -50,7 +46,7 @@ int main(int argc, char ** argv){
             close(fd);
             break;
 
-        case WRITE:
+        case 1:
             res = unlink("db");
             res = mkfifo("db", 0666);
             if(res < 0) perror("write");

@@ -1,0 +1,3 @@
+Create fifo file : mkfifo player
+open mplayer with path to fifo file
+open program with argument path to fifo file
