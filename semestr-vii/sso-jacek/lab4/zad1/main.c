@@ -5,25 +5,6 @@
 #include <time.h>
 #include <sys/stat.h>
 
-int main(int argc, const char *argv[]){
-    char ch;
-    while ((ch = getopt(argc, argv, "rwi")) != -1) {
-        switch (ch) {
-            case 'r' :
-                my_read();            
-                break;
-            case 'w' :
-                my_write();
-                break;
-            case 'i' :
-                init();
-                break;
-            default :
-                printf("wrong parameter \n");
-        }
-    }
-    return 0;
-}
 
 void init(){
     //create and test fifo file
@@ -69,3 +50,24 @@ void my_read(){
     printf("read text : %s\n", text);
     close(fdes);
 }
+
+int main(int argc, const char *argv[]){
+    char ch;
+    while ((ch = getopt(argc, argv, "rwi")) != -1) {
+        switch (ch) {
+            case 'r' :
+                my_read();            
+                break;
+            case 'w' :
+                my_write();
+                break;
+            case 'i' :
+                init();
+                break;
+            default :
+                printf("wrong parameter \n");
+        }
+    }
+    return 0;
+}
+

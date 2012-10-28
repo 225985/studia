@@ -1,7 +1,3 @@
-/*
- * SSO - Lab 4.2
- * Tymon Tobolski 181037
- */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,12 +6,6 @@
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-
-#define MPLAYER_START "pause"
-#define MPLAYER_NEXT "pt_step 1"
-#define MPLAYER_PREV "pt_step -1"
-
-// tty stolen from http://www.cs.uleth.ca/~holzmann/C/system/ttyraw.c
 
 static struct termios orig_termios;  /* TERMinal I/O Structure */
 static int ttyfd = STDIN_FILENO;
