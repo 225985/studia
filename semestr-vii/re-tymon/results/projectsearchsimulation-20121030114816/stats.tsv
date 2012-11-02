@@ -1,0 +1,6 @@
+name	nbRequest	nbRequestOK	nbRequestKO	minResponseTime	minResponseTimeOK	minResponseTimeKO	maxResponseTime	maxResponseTimeOK	maxResponseTimeKO	meanResponseTime	meanResponseTimeOK	meanResponseTimeKO	deviation	deviationOK	deviationKO	percentile1	percentile1OK	percentile1KO percentile2	percentile2OK	percentile2KO	group1Name	group1Count	group1Percentage	group2Name	group2Count	group2Percentage	group3Name	group3Count	group3Percentage	group4Name	group4Count	group4Percentage	meanNumberOfRequestsPerSecond	meanNumberOfRequestsPerSecondOK	meanNumberOfRequestsPerSecondKO
+Global Information	1600	1600	0	0	0	-1	290	290	-1	1	1	-1	14	14	-1	0	0	-1	10	10	-1	t < 800 ms	1600	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	84	84	-1
+Homepage	400	400	0	0	0	-1	20	20	-1	0	0	-1	2	2	-1	0	0	-1	10	10	-1	t < 800 ms	400	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	21	21	-1
+Projects	400	400	0	0	0	-1	20	20	-1	0	0	-1	2	2	-1	0	0	-1	10	10	-1	t < 800 ms	400	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	21	21	-1
+Search	400	400	0	0	0	-1	20	20	-1	0	0	-1	2	2	-1	0	0	-1	10	10	-1	t < 800 ms	400	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	21	21	-1
+Project page	400	400	0	0	0	-1	290	290	-1	4	4	-1	27	27	-1	10	10	-1	140	140	-1	t < 800 ms	400	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	21	21	-1

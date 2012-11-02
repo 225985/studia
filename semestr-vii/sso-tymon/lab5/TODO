@@ -1,0 +1,16 @@
+SSO
+
+do poniedzialku podeslac
+
+problem 5 filozofow,
+semafory ipc - widelce
+sem_get()
+sem_op()
+shmem - zmienna sledzaca stan dzialania systemu, tablica char[6] (stirng 5 + \0),, bez chronionego dostepu kazdy pisze tylko do swojej komorki
+
+sygnaly signal(SIGX, handler) - sprzatanie
+
+na procesach :(
+
+
+nastepne lab: przerzucic na watki, monitory, zmienne warunkowe + problem 2 kont bankowych
