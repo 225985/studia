@@ -11,7 +11,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/mman.h>
-// #include <semaphore.h>
+#include <semaphore.h>
 #include <sys/sem.h>
 
 #define PERROR(f, msg) if(f < 0) { perror(msg); exit(1); }
