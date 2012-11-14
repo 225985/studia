@@ -1,5 +1,5 @@
-SRCS = $(wildcard *.md)
-OBJS = $(SRCS:.md=.o)
+# SRCS = $(wildcard *.md)
+# OBJS = $(SRCS:.md=.tex)
 
 TITLE  = "Projekt inżynierski"
 AUTHOR = "Tymon Tobolski (181037)"
@@ -7,15 +7,15 @@ AUTHOR = "Tymon Tobolski (181037)"
 POPTS = -N --toc -s \
 				-V title=$(TITLE) \
 				-V author=$(AUTHOR) \
-				-V fontsize=wide,a4paper,titlepage
+				-V fontsize=wide,a4paper,titlepage \
+				-V lang=polish \
+				-V geometry=portrait \
+				-H header.pandoc
 
 all: main
 
-%.o: %.md
-	sed 's/^# /\\pagebreak{}\n\n# /g' $< > $@
-
-main: $(OBJS)
-	pandoc $(POPTS) -f markdown -o index.pdf *.o
+main:
+	pandoc $(POPTS) -o index.pdf *.md
 
 clean:
-	rm -rf *.{aux,log,pdf,out,o,tex,toc}
+	rm -rf *.{aux,log,pdf,out,toc,tex}
