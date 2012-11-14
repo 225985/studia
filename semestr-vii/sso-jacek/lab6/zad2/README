@@ -1,0 +1,2 @@
+Program opera się na 3 typach wątków : operujący an koncie 1, operący na koncie 2 i operujący na obu kontach. Wątki z dodatnią wartością amount wpłacają na konto, ujemną wypłacają.
+W programie użyte są 3 zmienne warunkowe sygnalizujące wolne konto 1, 2 lub oba. Gdy stan konta pomniejszony lub powiększony o wartość amount jest mniejszy od 0 lub konto jest zajęte, wątek oczekuje na zmiennej warunkowej.
