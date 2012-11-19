@@ -3,7 +3,7 @@
 # Install
 # 1. $ sudo apt-get install bluetooth bluez-utils blueman ruby1.9.1 ffmpeg
 # 2. edit /etc/dbus-1/system.d/bluetooth.conf
-#    <policy user="root"> => <policy user="pi">
+#    <policy user="root"> => <policy user="pi"> NO!!!! must stay root!!!!!!!!
 # 3. sudo hciconfig hci0 up (teamon is mega idiot)
 # 4. $ ruby app.rb
 
@@ -13,7 +13,7 @@ mac = ARGV[0] || begin
 end
 puts "GPS Mac address: #{mac}"
 puts "Pairing with GPS device..."
-system "echo '0000' | bluez-simple-agent hci0 #{mac}"
+system "sudo echo '0000' | sudo bluez-simple-agent hci0 #{mac}"
 
 conn_thread = Thread.new do
   puts "Connecting to GPS devise..."
