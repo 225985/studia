@@ -4,7 +4,8 @@
 # 1. $ sudo apt-get install bluetooth bluez-utils blueman ruby1.9.1 ffmpeg
 # 2. edit /etc/dbus-1/system.d/bluetooth.conf
 #    <policy user="root"> => <policy user="pi">
-# 3. $ ruby app.rb
+# 3. sudo hciconfig hci0 up (teamon is mega idiot)
+# 4. $ ruby app.rb
 
 mac = ARGV[0] || begin
   puts "Scanning..."
