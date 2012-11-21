@@ -27,7 +27,7 @@ http://yuml.me/edit/d0d4436b
 
 Aplikacja pobiera informacje o projektach w dwóch wersjach: podstawowej - tylko nazwa projektu lub pełnej - pełny obiekt projektu wraz ze wszystkimi obiektami podrzędnymi. W przypadku bazy relacyjnej pobranie pełnej wersji projektu wymagałoby wielu skomplikowanych operacji.
 
-Zamiast relacyjnej bazy danych w aplikacji został wykorzystany key-value store (TODO TRANSLATE) Redis.[^1]
+Zamiast relacyjnej bazy danych w aplikacji został wykorzystany key-value store (TODO TRANSLATE) Redis^[Redis - [http://redis.io](http://redis.io)].
 
 TODO - co to kurwa jest redis i jak to dziala
 
@@ -51,7 +51,7 @@ Struktura projektu jest wielopoziomowym rozległym drzewem. Każde zapytanie pub
 Synchronizacja dostępu do danych na poziomie procesu aplikacji uniemożliwiłaby wykorzystanie wielu serwerów, a tym samym ograniczyłaby na stałe możliwości skalowania całego projektu.
 W celu wyeliminowania konieczności ręcznej synchronizacji danych zostały wykorzystane atomowe operacje dostępne w bazie danych Redis. Do przechowywania informacji o projekcie aplikacja wykorzystuje wbudowane typy danych takie jak `String`, `List` oraz `Set`.
 
-Lista najczęściej wykorzystywanych w aplikacji komend[^2]:
+Lista najczęściej wykorzystywanych w aplikacji komend^[Lista dostępnych komend - [http://redis.io/commands](http://redis.io/commands) ]:
 
 --------------------------------------------------------------------
 Komenda                   Opis
@@ -258,7 +258,3 @@ tokens-to-users:5nqrd6slef10414jiosh4rton6    teamon
 ```
 
 Pozwala to na szybkie pobranie potrzebnych wartości bez potrzeby wykonywania skomplikowanych operacji.
-
-[^1]: [Redis - http://redis.io](http://redis.io)
-
-[^2]: [Lista dostępnych komend](http://redis.io/commands) 

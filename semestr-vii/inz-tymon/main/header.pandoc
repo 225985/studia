@@ -9,3 +9,11 @@
 \let\stdsection\section
 \renewcommand\section{\newpage\stdsection}
 
+% Highlight inline `code`
+\usepackage{soul}
+
+\definecolor{Light}{gray}{.97}
+\sethlcolor{Light}
+
+\let\OldTexttt\texttt
+\renewcommand{\texttt}[1]{\OldTexttt{\hl{#1}}}

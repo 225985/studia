@@ -10,7 +10,8 @@ POPTS = -N --toc -s \
 				-V fontsize=wide,a4paper,titlepage \
 				-V lang=polish \
 				-V geometry=portrait \
-				-H header.pandoc
+				-H header.pandoc \
+				--highlight-style tango
 
 all: main
 
@@ -19,6 +20,9 @@ main:
 
 tex:
 	pandoc $(POPTS) -o index.tex *.md
+
+groff:
+	pandoc $(POPTS) -o index.groff *.md
 
 clean:
 	rm -rf *.{aux,log,pdf,out,toc,tex}

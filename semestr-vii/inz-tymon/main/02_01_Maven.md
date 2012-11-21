@@ -4,7 +4,7 @@ W celu zachowania kompatybilności z istniejącymi narzędziami aplikacja implem
 
 Przykładowy adres URL repozytorium TypeSafe:
 
-```
+```bash
 http://repo.typesafe.com/typesafe/releases/
 ```
 
@@ -13,13 +13,13 @@ Adres URL składa się z pakietu, nazwy, wersji oraz nazwy pliku.
 
 Schemat adresu:
 
-```
+```bash
 PUT http://repozytorium/pakiet/nazwa/wersja/nazwa-artefaktu-wersja-rozszerzenie
 ```
 
 Dla przykładu skompilowany moduł (`.jar`) `lucene-core` z projektu Apache Lucene w wersji 3.6.1 zostanie wysłany pod adres
 
-```
+```bash
 PUT http://repozytorium/org/apache/lucene/lucene-core/3.6.1/lucene-core-3.6.1.jar
 ```
 
@@ -31,7 +31,7 @@ Standard Maven pozwala na zagnieżdżanie projektów w podprojekty. Każdy modu�
 
 Przykładowo, pełna publikacja projektu Apache Lucene składającego się z modułów `lucene-core` oraz `lucene-queries` we wersji 3.6.1 wymagałaby następujących operacji:
 
-```
+```bash
 PUT http://.../org/apache/lucene/lucene-core/3.6.1/lucene-core-3.6.1.pom
 PUT http://.../org/apache/lucene/lucene-core/3.6.1/lucene-core-3.6.1.jar
 PUT http://.../org/apache/lucene/lucene-core/3.6.1/lucene-core-3.6.1-sources.jar
@@ -42,13 +42,13 @@ PUT http://.../org/apache/lucene/lucene-queries/3.6.1/lucene-queries-3.6.1-sourc
 PUT http://.../org/apache/lucene/lucene-queries/3.6.1/lucene-queries-3.6.1-javadoc.jar
 ```
 
-Każda wersja kompilatora języka Java jest kompatybilna wstecz, nie ma problemów z używaniem projektu skompilowanego za pomocą kompilatora javac 1.3 w projekcie który wykorzystuje kompilator javac 1.4 lub nowszy. W przypadku projektów w języku Scala pojawiła się pewna trudność w wersjonowaniu artefaktów. Ze względu na bardzo dynamiczny rozwój języka nowe wersje kompilatora scalac są wydawane stosunkowo często i nie są ze sobą kompatybilne binarnie. Kompatybilność wsteczna jest zachowana jedynie w przypadku numeru wydania[^1].
+Każda wersja kompilatora języka Java jest kompatybilna wstecz, nie ma problemów z używaniem projektu skompilowanego za pomocą kompilatora javac 1.3 w projekcie który wykorzystuje kompilator javac 1.4 lub nowszy. W przypadku projektów w języku Scala pojawiła się pewna trudność w wersjonowaniu artefaktów. Ze względu na bardzo dynamiczny rozwój języka nowe wersje kompilatora scalac są wydawane stosunkowo często i nie są ze sobą kompatybilne binarnie. Kompatybilność wsteczna jest zachowana jedynie w przypadku numeru wydania^[Numeracja wersji oprogramowania - [http://pl.wikipedia.org/wiki/Numeracja_wersji_oprogramowania](http://pl.wikipedia.org/wiki/Numeracja_wersji_oprogramowania)].
 
 Oznacza to tyle, że projekt skompilowany kompilatorem scalac w wersji 2.7.x nie może być użyty w innym projekcie używającym kompilatora w wersji 2.8.x. Zależność ta działa w obie strony, projekt skompilowany pod 2.8.x nie może być wykorzystany pod 2.7.x. 
 
 W celu rozwiązania problemu niekompatybilności między wersjami kompilatora (nie tracąc przy tym ogólnej kompatybilności z systemem Maven) zastosowano prostą konwencje w nazewnictwie artefaktów.
 
-```
+```bash
 nazwa-artefaktu-do-publikacji = nazwa-artefaktu_wersja-kompilatora
 ```
 
@@ -65,7 +65,7 @@ W celu ułatwienia publikowania projektów poprzez sbt wprowadzone zostało komp
 Standard maven określa także sposób pobierania projektów jako zależności w innych projektach. Odbywa się to dwuetapowo. W celu pobrania artefaktu Maven przeszukuje dostępne repozytoria za pomocą zapytań HTTP HEAD.
 
 Schemat adresu:
-```
+```bash
 HEAD http://repozytorium/pakiet/nazwa/wersja/nazwa-artefaktu-wersja-rozszerzenie
 ```
 
@@ -74,7 +74,7 @@ Serwer powinien zwrócić ściśle określona odpowiedz:
 * w przypadku gdy dany artefakt znajduje się w repozytorium
     * Status HTTP: 200 `Found`
     * Nagłówki HTTP:
-        * `Content-Type`[^2] - typ pliku
+        * `Content-Type`^[MIME Content-Type - [http://en.wikipedia.org/wiki/MIME#Content-Type](http://en.wikipedia.org/wiki/MIME#Content-Type )] - typ pliku
         * `Content-Length` - rozmiar pliku
 * w przypadku gdy danego artefaktu nie ma w repozytorium
     * Status HTTP: 404 `Not Found`
@@ -84,7 +84,3 @@ Gdy serwer repozytorium odpowie statusem 200 `Found` Maven wysyła zapytanie HTT
 W przypadku gdy w żadnym z dostępnych repozytoriów nie ma dostępnego danego artefaktu Maven zwróci błąd użytkownikowi.
 
 Ponadto Maven najpierw pobiera plik `.pom`, aby sprawdzić zależności danego artefaktu i pobrać je w dokładnie taki sam sposób jak opisany powyżej.
-
-[^1]: [Numeracja wersji oprogramowania](ttp://pl.wikipedia.org/wiki/Numeracja_wersji_oprogramowania)
-
-[^2]: [MIME Content-Type](http://en.wikipedia.org/wiki/MIME#Content-Type )
