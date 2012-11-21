@@ -2,7 +2,7 @@
 
 ## Cel pracy
 
-## Istniejące rozwiązania
+## Istniejące rozwiązania ##
 
 ### Sonatype
 

@@ -17,5 +17,8 @@ all: main
 main:
 	pandoc $(POPTS) -o index.pdf *.md
 
+tex:
+	pandoc $(POPTS) -o index.tex *.md
+
 clean:
 	rm -rf *.{aux,log,pdf,out,toc,tex}
