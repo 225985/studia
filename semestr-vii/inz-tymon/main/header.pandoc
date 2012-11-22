@@ -11,6 +11,7 @@
 
 % Highlight inline `code`
 \usepackage{soul}
+\usepackage{xcolor}
 
 \definecolor{Light}{gray}{.97}
 \sethlcolor{Light}

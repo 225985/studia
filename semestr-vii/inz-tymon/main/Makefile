@@ -21,8 +21,5 @@ main:
 tex:
 	pandoc $(POPTS) -o index.tex *.md
 
-groff:
-	pandoc $(POPTS) -o index.groff *.md
-
 clean:
 	rm -rf *.{aux,log,pdf,out,toc,tex}
