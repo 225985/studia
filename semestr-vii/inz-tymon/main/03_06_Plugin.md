@@ -1,7 +1,6 @@
 ## Plugin sbt ##
 
-Kluczowym elementem procesu publikacji jest poprawne skonfigurowanie narzędzi używanych podczas ??. Najbardziej popularnym tego typu narzędziem w środowisku języka Scala jest sbt^[sbt - Simple Build Tool - [http://scala-sbt.org/](http://www.scala-sbt.org/)]. Konfiguracja polega na ustawieniu repozytorium do którego mają zostać wysłane skompilowane artefakty^[sbt Publishing - [http://www.scala-sbt.org/release/docs/Detailed-Topics/Publishing.html](http://www.scala-sbt.org/release/docs/Detailed-Topics/Publishing.html) 
-].
+Kluczowym elementem procesu publikacji jest poprawne skonfigurowanie narzędzi używanych podczas pracy na projektem. Najbardziej popularnym tego typu narzędziem w środowisku języka Scala jest sbt[^sbt]. Konfiguracja polega na ustawieniu repozytorium do którego mają zostać wysłane skompilowane artefakty[^sbt-publishing].
 
 Przykład konfiguracji (plik `build.sbt`):
 
@@ -34,3 +33,4 @@ publishTo := Some("ScalaJars" at "http://scalajars.org/publish/projekt/token")
 ```
 
 gdzie `projekt` jest nazwą projektu pobieraną z parametru `scalajarsProjectName` a `token` z pliku `.scalajars`.
+

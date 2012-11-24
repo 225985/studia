@@ -1,9 +1,0 @@
-http://www.amazon.com/Programming-Scala-Comprehensive-Step---Step/dp/0981531644/ref=sr_1_1?s=books&ie=UTF8&qid=1353462202&sr=1-1&keywords=scala
-http://www.amazon.com/Getting-Started-OAuth-Ryan-Boyd/dp/1449311601
-http://www.amazon.com/Redis-Definitive-modeling-caching-messaging/dp/1449396097/ref=sr_1_2?s=books&ie=UTF8&qid=1353462213&sr=1-2&keywords=redis
-http://manning.com/bjarnason/
-http://www.manning.com/hilton/
-http://offers.apigee.com/ebook-oauth/
-http://www.sonatype.com/books/mvnref-book/reference/
-http://www.amazon.com/Maven-Definitive-Guide-Sonatype-Company/dp/0596517335
-http://www.amazon.com/Version-Control-Git-collaborative-development/dp/1449316387/ref=sr_1_1?s=books&ie=UTF8&qid=1353462471&sr=1-1&keywords=git+book

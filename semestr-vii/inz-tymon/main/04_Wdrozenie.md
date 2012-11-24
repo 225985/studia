@@ -1,10 +1,10 @@
 # Wdrożenie #
 
-Aplikacja działa na Maszynie Wirtualnej Javy, więc jest teoretyczna możliwość uruchomienia jej na każdym systemie. Jednak autorzy bazy danych Redis oficjalnie wspierają tylko środowiska kompatybilne ze standardem POSIX. Z tego względu opisany sposób instalacji będzie oparty na tym właśnie standardzie. 
+Aplikacja działa na Maszynie Wirtualnej Javy, więc jest teoretyczna możliwość uruchomienia jej na każdym systemie. Jednak autorzy bazy danych Redis oficjalnie wspierają tylko środowiska kompatybilne ze standardem POSIX[^posix]. Z tego względu opisany sposób instalacji będzie oparty na tym właśnie standardzie. 
 
-Standardową metodą uruchamiania aplikacji opartych o framework Play! jest użycie tzw. reverse proxy - użycie serwera HTTP (np. nginx, apache) który działa na porcie 80 i przekazuje połączenia do serwera aplikacji który działa na porcie z zakresu 1024-65535. Istnieje również możliwość uruchomienia aplikacji bezpośrednio na porcie 80 jednak wymaga to uruchomienia procesu aplikacji z prawami roota co w razie błędów w aplikacji może narazić serwer na uszkodzenie.
+Standardową metodą uruchamiania aplikacji opartych o framework Play! jest użycie tzw. reverse proxy - użycie serwera HTTP (np. nginx[^nginx], Apache[^apache]) który działa na porcie 80 i przekazuje połączenia do serwera aplikacji który działa na porcie z zakresu 1024-65535. Istnieje również możliwość uruchomienia aplikacji bezpośrednio na porcie 80 jednak wymaga to uruchomienia procesu aplikacji z prawami roota co w razie błędów w aplikacji może narazić serwer na uszkodzenie.
 
-Opisany sposób instalacji dotyczy systemu Ubuntu 12.04 LTS x86_64 oraz serwera HTTP nginx.
+Opisany sposób instalacji dotyczy systemu Ubuntu[^ubuntu] 12.04 LTS x86_64 oraz serwera HTTP nginx.
 
 ## Konfiguracja środowiska ##
 
@@ -14,7 +14,7 @@ Wymagania systemowe:
   * JRE + JDK (wersja 6 lub wyższa)
   * nginx
   * redis
-  * git
+  * git[^git]
   * sbt
 
 W przypadku systemu Ubuntu powyższe aplikacji można zainstalować za pomocą menadżera pakietów `apt-get`.
@@ -90,9 +90,9 @@ http {
 
 Ważne elementy powyższej konfiguracji:
 
-* `client_max_body_size 256M;` - zwiększenie standardowego limitu na rozmiar pliku przesyłanego na serwer
-* `server_name  *.scalajars.org scalajars.org;` - definicja domen które mają być przekierowane do aplikacji
-* `proxy_pass http://localhost:60001;` - definicja portu na którym działa aplikacja
+* `client_max_body_size 256M;`[^nginx-body] - zwiększenie standardowego limitu na rozmiar pliku przesyłanego na serwer
+* `server_name  *.scalajars.org scalajars.org;`^[nginx-servername] - definicja domen które mają być przekierowane do aplikacji
+* `proxy_pass http://localhost:60001;`[^nginx-proxypass] - definicja portu na którym działa aplikacja
 
 
 ## Konfiguracja aplikacji ##
@@ -106,7 +106,7 @@ Aby umożliwić użytkownikom logowanie do aplikacji ScalaJars kontem z serwisu 
 
 ### Pobranie kodu aplikacji ###
 
-Kod źródłowy aplikacji ScalaJars jest przechowywany za pomocą systemu kontroli wersji Git, opublikowany w serwisie GitHub w repozytorium publicznym `teamon/scalajars.org`^[[https://github.com/teamon/scalajars.org](https://github.com/teamon/scalajars.org)]. Pobranie aplikacji sprowadza się do wykonania komendy:
+Kod źródłowy aplikacji ScalaJars jest przechowywany za pomocą systemu kontroli wersji Git, opublikowany w serwisie GitHub w repozytorium publicznym `teamon/scalajars.org`[^github-scalajars]. Pobranie aplikacji sprowadza się do wykonania komendy:
 
 ```bash
 $ git clone git@github.com:teamon/scalajars.org.git
@@ -117,7 +117,7 @@ Serwis GitHub umożliwia także pobranie archiwum z ostatnią wersją projektu z
 
 ### Konfiguracja parametrów aplikacji ###
 
-Konfiguracja aplikacji znajduje się w pliku `conf/application.conf`. Jest to plik w formacie HOCON^[HOCON - [https://github.com/typesafehub/config](https://github.com/typesafehub/config)].
+Konfiguracja aplikacji znajduje się w pliku `conf/application.conf`. Jest to plik w formacie HOCON[^hocon].
 W repozytorium plik ten jest jest przygotowany tak, aby pobierał parametry ze zmiennych środowiskowych, jednak można wpisać ustawienia bezpośrednio do pliku. 
 
 Ważne parametry aplikacji:
@@ -149,4 +149,3 @@ $ target/start -Dhttp.port=60001
 Po wykonaniu powyższej komendy aplikacja zostanie uruchomiona i będzie dostępna pod adresem `http://scalajars.org`.
 
 ![Strona główna aplikacji ScalaJars](assets/homepage.png)
-
