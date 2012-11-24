@@ -106,7 +106,7 @@ W tym przypadku nie ma zjawiska wyścigu - nie następuje utrata danych.
 
 
 
-![Schemat bazy danych\label{fig-data}](assets/data.pdf)
+![Schemat struktury projektu\label{fig-data}](assets/data.pdf)
 
 Zależności między danymi pokazane są na rysunku \ref{fig-data}.
 
