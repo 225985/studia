@@ -33,7 +33,7 @@ int main(int argc, char**argv)
    {
       clilen = sizeof(cliaddr);
       connfd = accept(listenfd, (struct sockaddr *)&cliaddr,&clilen);
-      
+      .
       if ((childpid = fork()) == 0)
       {
          close (listenfd);
