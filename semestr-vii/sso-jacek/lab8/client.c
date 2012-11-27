@@ -1,128 +1,80 @@
-	#include <netinet/in.h>
+#include <netinet/in.h>
 #include <stdio.h>
 #include <sys/types.h>
+#include <stdlib.h>
 #include <sys/socket.h>
 #include <unistd.h>
 #include <string.h>
-#include <fcntl.h>
-#include <sys/stat.h>
+#include <arpa/inet.h>
 
-#include "common.h"
+#define BUFLEN 80
+#define KROKI 10
+#define PORT 9950
+#define SRV_IP "127.0.0.1"
 
-
-struct sockaddr_in my_adr, addr_serv;
-int s, i, slen, rec, blen;
-msg_t msg;
-
+typedef struct {
+  char buf[BUFLEN];
+} msg_t;
 
 void error(char *s) {
-   perror(s);
-   _exit(1);
-}
-
-
-void download_file(msg_t * msg, char * filename) {
-  
-  int st;
-  sprintf(msg->buf, "%s", filename);
-  msg->typ = OPENR;
-  st = sendto(s, msg, blen, 0, &addr_serv, slen);
-  if(st < 0) error("sending error");
-  
-  st=recvfrom(s, msg, blen, 0, &addr_serv, &slen);
-  if (st<0) error("recvfrom()");
-
-  do {
-      msg->typ = READ;
-      st = sendto(s, msg, blen, 0, &addr_serv, slen);
-      if (st<0) error("sendto()");
-
-      st = recvfrom(s, msg, blen, 0, &addr_serv, &slen);
-      if (st<0) error("recvfrom()"); 
-      else printf("%s\n", msg->buf);
-
-      if(msg->ile < SIZE) break;
-
-  } while (1);
-    msg->typ = CLOSE;
-    st = sendto(s, msg, blen, 0, &addr_serv, slen);
-    if (st<0) error("sendto()");
-
-}
-
-void save_file(msg_t * msg, char * filename, char * save_filename) {
-    int fh, st;
-    fh = open(filename, O_RDONLY);
-    sprintf(msg->buf,"%s", save_filename);
-    msg->typ = OPENW;
-    st = sendto(s, msg, blen, 0, &addr_serv, slen);
-    if (st<0) error("sendto()");
-
-    st=recvfrom(s,msg,blen,0,&addr_serv,&slen);
-    if ( st<0 ) error("recvfrom()");
-
-    do {
-        msg->typ = WRITE;
-        msg->ile = read(fh, msg->buf, SIZE);
-        st=sendto(s, msg, blen, 0, &addr_serv, slen);
-        if (st<0) error("sendto()");
-        
-        st=recvfrom(s, msg, blen, 0, &addr_serv, &slen);
-        if (st<0) error("recvfrom()");
-
-        if (msg->ile < SIZE) break;
-    } while (1);
-    
-    msg->typ = CLOSE;
-    st= sendto(s, msg, blen, 0, &addr_serv, slen);
-    if (st<0) error("sendto()");
-    
-    close(fh);
-}
-
+ perror(s);
+ exit(1);
+}	
 
 int main(int argc, char * argv[]) {
-  char filename[255];
-  char sfilename[255];
-  int which;
+   struct sockaddr_in server_addr, adr_x;
+   int s, i=0, slen=sizeof(server_addr), snd, blen=sizeof(msg_t),rec;
+   // char buf[BUFLEN];
+   msg_t msg;
+   fd_set socks;
+   struct timeval t;
+   int reply = 0;
 
-  slen = sizeof(addr_serv);
-  blen = sizeof(msg_t);
+   s=socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+   if(s < 0) error("socket");
 
-  s = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
-  if(s < 0) error("socket");
-  printf("Socket %d created \n", s);
-  
-  memset((char *) &addr_serv, 0, sizeof(addr_serv));
-  addr_serv.sin_family = AF_INET;
-  addr_serv.sin_port = htons(PORT);
-  
-  if (inet_aton(argv[1], &addr_serv.sin_addr)==0) {
-      fprintf(stderr, "inet_aton() failed\n");
-      _exit(1);
-  }
+   memset((char *) &server_addr, 0, sizeof(server_addr));
+   server_addr.sin_family = AF_INET;
+   server_addr.sin_port = htons(PORT);
+   
+   if (inet_aton(argv[1], &server_addr.sin_addr)==0) {
+        error("inet_aton");
+        exit(1);
+   }
 
-  printf("1.Download file\n2.Save file\n3.Show dir\n");
-  scanf("%d", &which);
 
-  switch(which) {
-    case 1 : 
-      printf("Podaj nazwe pliku : \n");
-      scanf("%s", filename);
-      download_file(&msg, &filename);
-      break;
-    case 2 :
-      printf("Podaj nazwe pliku : \n");
-      scanf("%s", filename);
-      printf("Podaj nazwe pliku na serv: \n");
-      scanf("%s", sfilename);
-      save_file(&msg, &filename, &sfilename);
-    default : 
-      break;
+    while(++i) {
+        printf("Send %d\n", i);
+        sprintf(msg.buf, "Message %d", i);
+        snd = sendto(s, &msg, blen, 0, &server_addr, slen);
+        if(snd < 0) error("sendto()");
+        
 
-  }
+        reply = 0;
 
-  
-  close(s);
-  return 0;
+        while(1){
+          FD_ZERO(&socks);
+          FD_SET(s, &socks);
+          t.tv_sec = 1;
+          if(select(s+1, &socks, NULL, NULL, &t)){
+            rec = recvfrom(s, &msg, blen, 0, &adr_x, &slen);
+            if(rec < 0) error("recvfrom()");
+            printf("Response: %s\n", msg.buf);
+            break;
+          } else {
+            if(reply > 2){
+              printf("No response\n");
+              break;
+            } else {
+              reply++;
+              printf("wait for response %d\n", reply);
+            }
+          }
+        }
+
+        sleep(1);
+     }
+
+   close(s);
+   return 0;
 }

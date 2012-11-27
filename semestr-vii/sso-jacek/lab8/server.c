@@ -4,85 +4,55 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <unistd.h>
-#include <dirent.h>
-#include <sys/stat.h>
-#include <fcntl.h>
+#include <stdlib.h>
 #include <string.h>
-#include <assert.h>
+#define BUFLEN 80
+#define KROKI 10
+#define PORT 9950
 
-#include "common.h"
+ typedef struct {
+  char buf[BUFLEN];
+} msgt;
+
+  void error(char *s) {
+     perror(s);
+     exit(1);
+   }
+
+int main(void) {
+   struct sockaddr_in myaddr, client_addr;
+   int s, i, slen=sizeof(client_addr),snd, rec, blen=sizeof(msgt);
+   char buf[BUFLEN];
+   msgt msg;
+   i=0;
+   gethostname(buf,sizeof(buf));
 
 
-void error(char *s) {
-   perror(s);
-   _exit(1);
-}
+   s=socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+   if(s < 0) error("socket");
 
-void read_packet(msg_t * packet) {
-    int result;
-    struct dirent * files;
-    switch (packet->typ) {
-        case OPENR : // open to read
-            packet->fh = open(packet->buf,O_RDONLY);
-            if ( packet->fh == -1 ) error( "serv file open to read error" );
-            printf("Open file %s to read \n", packet->buf);
-            break;
-        case OPENW : // open to write
-            packet->fh = open(packet->buf, O_WRONLY|O_CREAT, S_IRWXU|S_IRWXG|S_IRWXO);
-            if (packet->fh == -1) error("serv file opet to write error ");
-            printf("Open file %s to save \n", packet->buf);
-            break;
-        case READ : // read from file
-            packet->ile = read(packet->fh,packet->buf,SIZE);
-            if (packet->ile == -1) error("read file error");
-            printf("reading from file \n ");
-            break;
-        case WRITE : // write to file
-            packet->ile = write(packet->fh, packet->buf, packet->ile);
-            if (packet->ile == -1) error("write to file error");
-            printf("writing to file \n");
-            break;
-        case CLOSE : //closing file
-            result = close(packet->fh);
-            if( result == -1 ) error("error while closing file");
-            printf("closed file \n");
-            break;
-        default:
-            printf("default\n");
-            break;
+
+   memset((char *) &myaddr, 0, sizeof(myaddr));
+   myaddr.sin_family = AF_INET;
+   myaddr.sin_port = htons(PORT);
+   myaddr.sin_addr.s_addr = htonl(INADDR_ANY);
+   if (bind(s, &myaddr, sizeof(myaddr))==-1) error("bind");
+
+
+
+    while(1){
+      rec = recvfrom(s, &msg, blen, 0, &client_addr, &slen);
+      if(rec < 0) error("recvfrom()");
+      i++;
+      printf("Receive message : %s \n", msg.buf);
+      sprintf(msg.buf,"Response %d", i);
+
+      if(rand() % 8 != 0){
+        printf("Send answear: %s\n", msg.buf);
+        snd = sendto(s, &msg, blen, 0, &client_addr, slen);
+        if(snd < 0) error("sendto()");
+      } 
     }
-}
-
-int main() {
-  struct sockaddr_in my_adr, adr_cli;
-  int s, i, slen = sizeof(adr_cli), rec, blen = sizeof(msg_t);
-  msg_t msg;
-
-  s = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
-  
-   // killing precesses when no needed
-   signal(SIGCHLD, SIG_IGN);
-  
-  if(s < 0) error("socket");
-  
-  printf("Socket %d created \n", s);
-  
-  memset((char *) &my_adr, 0, sizeof(my_adr));
-  my_adr.sin_family = AF_INET;
-  my_adr.sin_port = htons(PORT);
-  my_adr.sin_addr.s_addr = htonl(INADDR_ANY);
-  
-  if (bind(s, &my_adr, sizeof(my_adr)) == -1)
-      error("bind");
-
-  while (1) {
-      rec = recvfrom(s, &msg, blen, 0, &adr_cli, &slen);
-      if (rec<0) error("error while receiving");
-      read_packet(&msg);
-      rec = sendto(s, &msg, blen, 0, &adr_cli, slen);
-      if (rec<0) error("error while sending");
-  }
-
-  close(s);
-  return 0;
+   close(s);
+   return 0;
 }
