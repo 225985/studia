@@ -7,9 +7,10 @@ AUTHOR = "Tymon Tobolski (181037)"
 POPTS = -N --toc -s \
 				-V title=$(TITLE) \
 				-V author=$(AUTHOR) \
-				-V fontsize=wide,a4paper,titlepage \
+				-V fontsize=12pt \
 				-V lang=polish \
 				-V geometry=portrait \
+				-V geometry=left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm,headsep=1.2cm \
 				-H header.pandoc \
 				--highlight-style tango
 
