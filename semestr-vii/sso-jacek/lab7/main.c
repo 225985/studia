@@ -33,7 +33,6 @@ int main(int argc, char**argv)
    {
       clilen = sizeof(cliaddr);
       connfd = accept(listenfd, (struct sockaddr *)&cliaddr,&clilen);
-      .
       if ((childpid = fork()) == 0)
       {
          close (listenfd);
@@ -46,7 +45,9 @@ int main(int argc, char**argv)
             mesg[n] = 0;
             printf("%s",mesg);
          }
-         
+         shutdown(connfd, SHUT_RDWR);
+         close(connfd);
+         exit(0);
       }
       close(connfd);
    }
