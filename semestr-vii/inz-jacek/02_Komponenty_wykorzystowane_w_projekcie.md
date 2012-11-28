@@ -34,7 +34,17 @@ W celu ułatwienia procesu wytwarzania oprogramowania po tę platformę, firma M
 ## Android SDK ##
 Android SDK jest paczką narzędzi programistycznych, niezbędnych w procesie tworzenia i testowania aplikacji na platformę Android. Ważnymi elementami Android SDK są wtyczki dla środowiska programistycznego Eclipse, symulator systemu.
 
+## CoffeeScript ##
+CoffeeScript jest językiem skryptowym kompilowalnym do kodu JavaScript. Główną zaletą tego języka jest wyeliminowanie nawiasów, klamr i średników, co zmniejsza ryzyko popełnienia składniowych błędów, uniemoż;iwiających poprawne działanie aplikacji internetowej.
+
+## HTML5 i CSS3 ##
+HTML5 jest językiem wykorzystywanym do tworzenia stron WWW. Jest rozwinięciem standardu języka HTML4, posiadając wiele udogodnień dla programistów. Główne technologie wersji 5 jest obsługa grafiki 2D/3D, audio i video oraz pełne wsparcie dla kaskadowych arkuszów styli w wersji 3 (CSS3). Dzięki temu, nie trzeba posiłkować się bibliotekami JavaScript oraz technologią Flash, by osiągnąć oczekiwane efekty wizualnei użytkowe aplikacji.
+
+
 ## Inne biblioteki wykorzystane w projekcie ##
 
 ### Entity Framework ###
-Entity Framework jest 
+Entity Framework jest biblioteką służącą do relacyjno-obiektowego mapowania w środowisku ADO.NET. Dzięki zastosowaniu tej biblioteki wraz z narzędziami będącymi integralną częścią języka C#, można w wygodny sposób zarządzać bazą danych bez konieczności używania języka SQL.
+
+### AutoMapper ###
+AutoMapper jest biblioteką służącą do mapaowania obiektów jednego typu na drugi. Pozwala to w szybki sposób odzielić warstwę aplikacji od warstwy biznesowej na poziomie modleu aplikacji.
