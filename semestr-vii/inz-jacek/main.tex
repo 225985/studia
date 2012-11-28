@@ -1,0 +1,257 @@
+\pdfoutput=1
+\pdfcompresslevel=9
+\pdfinfo
+{
+    /Author ()
+    /Title ()
+    /Subject ()
+    /Keywords ()
+}
+
+%\newcommand*{\memfontfamily}{pnc}
+%\newcommand*{\memfontpack}{newcent}
+\documentclass[a4paper,onecolumn,oneside,12pt]{memoir}
+% Wydruk do archiwum
+%\documentclass[a4paper,onecolumn,twoside,10pt]{memoir} 
+%\renewcommand{\normalsize}{\fontsize{8pt}{10pt}\selectfont}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage{setspace}
+\usepackage{tabularx}
+\usepackage{color,calc}
+%\usepackage{soul} % pakiet z komendami do podkreœlania tekstu
+%\usepackage{fourier} % pakiet zmieniaj¹cy czcionki na utopia
+\usepackage{times} % pakiet zmieniaj¹cy czcionki na times 
+
+%\usepackage{longtable}
+%\usepackage{ltxtable}
+%\usepackage{tabulary}
+
+%%%%%% Ustawienia odpowiedzialne za sposób ³amania dokumentu
+%\hyphenpenalty=10000		% nie dziel wyrazów zbyt czêsto
+\clubpenalty=10000      %kara za sierotki
+\widowpenalty=10000  % nie pozostawiaj wdów
+\brokenpenalty=10000		% nie dziel wyrazów miêdzy stronami
+\exhyphenpenalty=999999		% nie dziel s³ów z myœlnikiem
+\righthyphenmin=3			% dziel minimum 3 litery
+
+%\tolerance=4500
+%\pretolerance=250
+%\hfuzz=1.5pt
+%\hbadness=1450
+
+%ustawienia rozmiarów: tekstu, stopki, marginesów 
+\setlength{\textwidth}{\paperwidth}
+\addtolength{\textwidth}{-5cm}
+\setlength{\textheight}{\paperheight}
+\addtolength{\textheight}{-5cm}
+\setlength{\oddsidemargin}{-0.04cm} % domyœlnie jest 1 cal = 2.54 cm, st¹d -0.04 da margines 2.5cm
+\setlength{\evensidemargin}{-0.04cm} % domyœlnie jest 1 cal = 2.54 cm, st¹d -0.04 da margines 2.5cm
+\topmargin -1.25cm
+\footskip 1.4cm 
+
+\linespread{1.3}
+
+\usepackage{ifpdf}
+%\newif\ifpdf \ifx\pdfoutput\undefined
+%\pdffalse % we are not running PDFLaTeX
+%\else
+%\pdfoutput=1 % we are running PDFLaTeX
+%\pdftrue \fi
+\ifpdf
+\usepackage[pdftex]{graphicx,hyperref}
+\DeclareGraphicsExtensions{.pdf,.jpg,.mps,.png}
+\pdfcompresslevel=9
+\else
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.eps,.ps,.jpg,.mps,.png}
+\fi
+\sloppy
+
+%\graphicspath{{rys01/}{rys02/}}
+
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.95}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.35}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                  Definicja strony tytu³owej 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+%Uczelnia
+\newcommand\uczelnia[1]{\renewcommand\@uczelnia{#1}}
+\newcommand\@uczelnia{}
+%Wydzia³
+\newcommand\wydzial[1]{\renewcommand\@wydzial{#1}}
+\newcommand\@wydzial{}
+%Kierunek
+\newcommand\kierunek[1]{\renewcommand\@kierunek{#1}}
+\newcommand\@kierunek{}
+%Specjalnoœæ
+\newcommand\specjalnosc[1]{\renewcommand\@specjalnosc{#1}}
+\newcommand\@specjalnosc{}
+%Tytu³ po angielsku
+\newcommand\titleEN[1]{\renewcommand\@titleEN{#1}}
+\newcommand\@titleEN{}
+%Tytu³ krótki
+\newcommand\titleShort[1]{\renewcommand\@titleShort{#1}}
+\newcommand\@titleShort{}
+%Promotor
+\newcommand\promotor[1]{\renewcommand\@promotor{#1}}
+\newcommand\@promotor{}
+
+\def\maketitle{%
+  \null
+  \pagestyle{empty}%
+	{\centering\vspace{-1cm}
+		{\fontsize{22pt}{24pt}\selectfont \@uczelnia}\\[0.4cm]
+		{\fontsize{22pt}{24pt}\selectfont \@wydzial }\\[0.5cm]
+		\hrule \vspace*{0.7cm}
+	}
+{\flushleft\fontsize{14pt}{16pt}\selectfont%
+\begin{tabular}{ll}
+Kierunek: & \@kierunek\\
+Specjalność & \@specjalnosc\\
+\end{tabular}\\[1.3cm]
+}
+{\centering
+%{\fontsize{24pt}{26pt}\selectfont PRACA DYPLOMOWA}\\[0.5cm]
+%{\fontsize{24pt}{26pt}\selectfont MAGISTERSKA}\\[2cm]
+{\fontsize{24pt}{26pt}\selectfont Projekt Inżynierski}\\[1.5cm]
+}
+%
+\begin{tabularx}{\linewidth}{p{6cm}>{\centering\arraybackslash}X}
+		&{\fontsize{16pt}{18pt}\selectfont \@title}\\[5mm] 	%UWAGA: tutaj jest miejsce na tyty³ w jêzyku polskim
+		&{\fontsize{16pt}{18pt}\selectfont \@titleEN}\\[10mm] %UWAGA: tutaj jest miejsce na tyty³ w jêzyku angielskim
+\end{tabularx}
+\vfill
+\begin{tabularx}{\linewidth}{p{6cm}l}
+		%UWAGA: tutaj jest miejsce na autora pracy
+		&{\fontsize{16pt}{18pt}\selectfont Autor:}\\[5mm]
+		&{\fontsize{14pt}{16pt}\selectfont \@author}\\[10mm]
+		%UWAGA: tutaj jest miejsce na promotora pracy
+		&{\fontsize{16pt}{18pt}\selectfont Prowadzący pracę:}\\[5mm]
+		&{\fontsize{14pt}{16pt}\selectfont \@promotor}\\[10mm]
+		&{\fontsize{16pt}{18pt}\selectfont Ocena pracy:}\\[20mm]
+	\end{tabularx}
+\hrule\vspace*{0.3cm}
+{\centering
+%{\fontsize{24pt}{26pt}\selectfont PRACA DYPLOMOWA}\\[0.5cm]
+%{\fontsize{24pt}{26pt}\selectfont MAGISTERSKA}\\[2cm]
+{\fontsize{16pt}{18pt}\selectfont \@date}\\[0cm]
+}
+\normalfont
+ \cleardoublepage
+}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                  Styl rozdzia³ów 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+%\definecolor{niceblue}{rgb}{.168,.234,.671}
+
+%\AtBeginDocument{% 
+        \addto\captionspolish{% 
+        \renewcommand{\tablename}{Tab.}% 
+}%} 
+
+%\AtBeginDocument{% 
+%        \addto\captionspolish{% 
+%        \renewcommand{\chaptername}{Rozdzia³}% 
+%}} 
+
+%\AtBeginDocument{% 
+        \addto\captionspolish{% 
+        \renewcommand{\figurename}{Rys.}% 
+}%}
+        \addto\captionspolish{% 
+        \renewcommand{\bibname}{Literatura}% 
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                  Styl wyliczenia (opis skrótów) 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newenvironment{Ventry}[1]%
+ {\begin{list}{}{\renewcommand{\makelabel}[1]{\textbf{##1}\hfill}%
+   \settowidth{\labelwidth}{\textbf{#1}}%
+   \setlength{\leftmargin}{3cm}}}%
+ {\end{list}}
+
+\addtopsmarks{headings}{%
+\nouppercaseheads % added at the beginning
+}{%
+\createmark{chapter}{both}{shownumber}{}{. \space}
+%\createmark{chapter}{left}{shownumber}{}{. \space}
+\createmark{section}{right}{shownumber}{}{. \space}
+}%use the new settings
+\pagestyle{headings}
+
+\newlength\mytemplengtha
+
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+\setsecnumdepth{subsection} % activating subsubsec numbering in doc
+
+\makeatletter
+\copypagestyle{outer}{headings}
+\makeoddhead{outer}{}{}{\slshape\rightmark}
+\makeevenhead{outer}{\slshape\leftmark}{}{}
+\makeoddfoot{outer}{\@author:~\@titleShort}{}{\thepage}
+\makeevenfoot{outer}{\thepage}{}{\@author:~\@title}
+\makeheadrule{outer}{\linewidth}{\normalrulethickness}
+\makefootrule{outer}{\linewidth}{\normalrulethickness}{6pt}
+\makeatother
+
+% fix plain
+%\copypagestyle{plain}{outer} % overwrite plain with outer
+\makeoddhead{plain}{}{}{} % remove right header
+\makeevenhead{plain}{}{}{} % remove left header
+\makeevenfoot{plain}{}{}{}
+\makeoddfoot{plain}{}{}{}
+
+%\copypagestyle{plain}{outer} % overwrite plain with outer
+\makeoddhead{empty}{}{}{} % remove right header
+\makeevenhead{empty}{}{}{} % remove left header
+\makeevenfoot{empty}{}{}{}
+\makeoddfoot{empty}{}{}{}
+
+\pagestyle{outer}
+
+
+\makeatletter
+\def\@seccntformat#1{\csname the#1\endcsname.\quad}
+\def\numberline#1{\hb@xt@\@tempdima{#1\if&#1&\else.\fi\hfil}}
+\makeatother
+
+\renewcommand{\chapternumberline}[1]{#1.\quad}
+\renewcommand{\cftchapterdotsep}{\cftdotsep}
+
+\begin{document}
+\title{Internetowy system wspomagania treningów    aerobowych z aplikacją mobilną}
+\titleShort{Internetowy system wspomagania ...}
+\titleEN{Internet system for aerobic training with a mobile application}
+\author{Jacek Wieczorek}
+\uczelnia{Politechnika Wrocławska}
+\wydzial{Wydział Elektroniki}
+\kierunek{Informatyka}
+\specjalnosc{Inżynieria Internetowa}
+\promotor{dr inż. Tomasz Walkowiak}
+\date{Wrocław, 2012}
+\maketitle
+
+\pagestyle{outer}
+
+\tableofcontents
+
+
+\include{chapters/chapter01}
+\include{chapters/chapter02}
+
+
+\bibliographystyle{plalpha}
+
+\end{document}

@@ -1,1 +1,0 @@
-# Optymalizacja wydajności aplikacji #
