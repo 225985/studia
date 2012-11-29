@@ -37,32 +37,70 @@ Kontrolery to komponenty odpowiedzialne za utrzymanie interakcji z użytkownikie
 \paragraph{} % (fold)
 \label{par:}
 W projekcie \textit{Wzorzec Repozytorium} został zaimplementowany poprzez biblioteki \textbf{PI.Service (Serwis)} i \textbf{PI.Data (Repozytorium)}.
-Dane z kontrolerów przekazywane są do \textit{Serwisu} pod postacią \textit{ViewModles} lub typów prymitywnych. \textbf{PI.Service} odpowiada za odpowiednią logikę przetwarzania danych, konwersji \textit{ViewModels} na \textit{Models} (przy wykorzystaniu narzędzia \textit{AutoMapper Sekcja \ref{sub:automapper}}) i przekazaniu ich do \textit{Repozytorium}.
+Dane z kontrolerów przekazywane są do \textit{Serwisu} pod postacią \textit{ViewModles} lub typów prymitywnych. \textbf{PI.Service} odpowiada za odpowiednią logikę przetwarzania danych, konwersji \textit{ViewModels} na \textit{Models} (przy wykorzystaniu narzędzia \textit{AutoMapper \footnote{AutoMapper - Sekcja \ref{sub:automapper}}}) i przekazaniu ich do \textit{Repozytorium}.
 
 \paragraph{} % (fold)
 \label{par:}
-Funkcją biblioteki \textbf{PI.Data} jest odbieranie danych z \textit{Serwisu} i dokonanie odpowiednich operacji bazodanowych przy użyciu \textit{EntityFramework (Sekcja \ref{sub:EntityFramework})}
+Funkcją biblioteki \textbf{PI.Data} jest odbieranie danych z \textit{Serwisu} i dokonanie odpowiednich operacji bazodanowych przy użyciu \textit{EntityFramework \footnote{EntityFramework - Sekcja \ref{sub:EntityFramework}}}
 
 \paragraph{} % (fold)
 \label{par:}
 Schemat działania logiki biznesowej w oparciu o \textit{Wzorzec Repozytorium} został przedstawiony na Rysunku \ref{fig:repository-pattern} .
 
-\newpage
 \begin{figure}[ht]
 	\centering
-		\includegraphics[width=0.5\linewidth]{assets/repository_pattern.png}
+		\includegraphics[width=0.8\linewidth]{assets/repository_pattern.png}
 	\caption{Schemat przepływu danych przy wykorzystaniu Wzorca Repozytorium}
 	\label{fig:repository-pattern}
 \end{figure}
 
 \subsection{Odwrócenie sterowania} % (fold)
 \label{sub:odwr_cenie_sterowania}
+\paragraph{} 
+\textit{Odwrócenie sterowania} (\textit{ang. Inversion of Control}) to pradygmat odpowiedzialny za przeniesienie na zaewnątrz obiektu odpowiedzialnego za kontrolę niektórych czynności. Termin ten jest często utożsamiany z \textit{Wstrzykiwaniem zależności (ang. Dependency Injection)}, jednak jest to tylko jedna z realizacji \textit{Odwrócenia sterowania}. 
 
-% subsection odwr_cenie_sterowania (end)
-% section architektura_aplikacji (end)
+\paragraph{} % (fold)
+\label{par:}
+\textit{Wstrzykiwanie zależności} zosatało zrealizowane w projekcie za pomocą biblioteki \textit{Unity \footnote{Unity - Sekcja \ref{sub:unity}}} na dwóch poziomach :
+\begin{itemize}
+	\item W warstwie Modelu - wszytskie serwizy i repozytoria, oraz kontekst bazodanowy wstrzykiwane są jako parametry w konstruktorze
+	\item W warstwie Kontrolorów - wstrzykiwany jest dostawca serwisów
+\end{itemize} 
+
+\paragraph{} % (fold)
+\label{par:}
+Takie rozdzielenie wstrzykiwania serwisów pozwoliło na całkowite odseparowanie logiki bazodanowej i elementów za nią odpowiedzialnych od warstwy aplikacji.
+% paragraph  (end)
+
+% \subsection{JavaScript Model Revealing Patter}
+% \paragraph{} % (fold)
+% \label{par:}
+% JavaScript Model Revealing Pattern jest wzorcem projektowym pozwalającym zastosować
+
+% paragraph  (end)
 
 \section{Baza Danych} % (fold)
 \label{sec:baza_danych}
+\paragraph{} % (fold)
+\label{par:}
+Baza danych, do której dostęp ma aplikacja internetowa działa na serwerze \textit{Microsoft SQL Server 2012 \footnote{MS SQL 2012 - Sekcja \ref{sub:mssql}}}. Do zarządzania danymi wykorzystany został wykorzystana bibliotek \textit{EntityFramework \footnote{EntityFramework - Sekcja \ref{sub:EntityFramework}}}. W bazie danych przechowywane są informacje o profilu użytkownika, ustawieniach konta oraz zarejestrowane przez aplikację mobilną współrzędne GPS.
+
+\paragraph{} % (fold)
+\label{par:}
+W tworzeniu i zarządzaniu bazą danych wykorzystane zostało podejście \textit{Code First}, polegające na modelowaniu bazy danych pod postacią klas języka \textit{C\#}, a następnie wygenerowaniu gotowej bazy danych przy pomocy EntityFramework. By zabezpieczyć dane składowane w bazie danych przed usunięciem ich w wyniku zmiany modelu w kodzie projektu, użyty został mechanizm migracji, zabezpieczający dane trzymane w tabelach. 
+Schemat bazy danych przedstawiony został na Rysunku \ref{fig:database} .
+
+
+\label{sub:schemat_bazy_danych}
+\begin{figure}[ht]
+	\centering
+		\includegraphics[width=1\linewidth]{assets/database.png}
+	\caption{Schemat bazy danych}
+	\label{fig:database}
+\end{figure}
+
+% subsection schemat_bazy_danych (end)
+% paragraph  (end)
 
 % section baza_danych (end)
 
