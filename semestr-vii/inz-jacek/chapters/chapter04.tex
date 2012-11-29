@@ -1,0 +1,79 @@
+\chapter{Aplikacja mobilna} % (fold)
+\label{cha:aplikacja_mobilna}
+
+\paragraph{} % (fold)
+\label{par:}
+Aplikacja mobilna jest integralną częścią całego systemu do wspierania treningów areobowych. Jej zadaniem jest pobieranie informacji o przebytej trasie za pomocą odbiornika GPS, obliczanie dystansu i czasu trwania treningu, przetrzymywaniu informacji w bazie danych oraz synchronizacja rekordów z apikacją internetową. 
+% paragraph  (end)
+
+\section{Architektura system} % (fold)
+\label{sec:architektura_system}
+
+% section architektura_system (end)
+\paragraph{} % (fold)
+\label{par:}
+Aplikacja została napisana w języku Java i działa na mobilnej platformie Android w wersji 4.0.3. Najważniejszą częścia programów napisanych na system Android jest \textit{Aktywność (ang. Activity)}, charakteryzująca się określonym cyklem życia. Sposób w jaki zarządza się cyklem życia aplikacji, uruchamia odpowiednie zdarzenia w określonych momentach i zachowanie aktywności ma fundamentalny wpływ na działanie całej aplikacji.
+
+\subsection{Aktywności} % (fold)
+\label{sub:aktywno_ci}
+
+% subsection aktywno_ci (end)
+\paragraph{} % (fold)
+\label{par:}
+Aktywności wyróżniają się czterema stanami :
+\begin{itemize}
+	\item Aktywna (ang. active) lub chodząca (ang. running) - gdy aktywność znajduje się w warstwie szczytowej aplikacji
+	\item Wstrzymana (ang. paused) - gdy aktywność jest widoczna, ale nie znajduje się na pierwszym planie. W tym stanie może zostać zakończona przez system, w przypadku barku pamięci
+	\item Zatrzymana (ang. stopped) - gdy aktywność zostanie zasłonięta przez inna aktywność. W tym stanie system przechowuje pełną informację na temat aktywności, lecz nie jest ona widoczna dla użytkownika
+	\item Gdy aplikacja jest w stanie wstrzymania lub zatrzymania, może zostać usunięta z pamięci systemu. W momencie ponownego uruchomienia aktywności, będzie musiała być stworzona od początku.
+\end{itemize}
+
+\paragraph{} 
+Pełny cykl życia aktywności został przedstawiony na Rysunku \ref{fig:activity_lifecycle}
+
+\begin{figure}[ht]
+	\centering
+		\includegraphics[width=0.7\linewidth]{assets/activity_lifecycle.png}
+		\caption{Pełny cykl życia aktywności}
+	\label{fig:activity_lifecycle}
+\end{figure}
+
+\subsection{Moduł GPS} % (fold)
+\label{sub:modu_gps}
+
+% subsection modu_gps (end)
+\paragraph{} % (fold)
+\label{par:}
+Obsługa modułu GPS polega na zaimplementowaniu interfejsów odpowiedzialnych za szczytywanie informacji (\textit{LocationListener}) na temat położenia i badanie stanu odbiornika GPS (\textit{GpsStatusListener}). Oba interfejsy są uruchamiane w zdarzeniu \textit{onCreate()} głównej aktywności. 
+
+\subsection{Baza danych} % (fold)
+\label{sub:baza_danych}
+Informacje na temat treningów przechowywane są w bazie danych SQLite \footnote{SQLLite - Sekcja \ref{sub:sqlite}}. Model bazy danych (Rysunek \ref{fig:sqlite-model}) stanowią dwie tabele : \textit{Workout} i \textit{WorkoutDetails}. Pierwsza z nich służy do przechowywania podstawowych informacji o treningu : początek, koniec, czas trwania, dystans. W drugiej tabeli natomiast przechowywane są współrzędne geograficzne szczytane z GPS.
+% subsection baza_danych (end)
+
+\subsection{Autoryzacja} % (fold)
+\label{sub:}
+Po wprowadzeniu nazwy użytkownika i hasła w formularzu na aktywności Login, wysłane zostaje rządanie autoryzacji do REST API. Po pozytywnej weryfikacji danych zwrócona zostaje odpowiedź o statusie HTTP 200 wraz z tokenem, służącym do dalszej autoryzacji aplikacji. Zweryfikowane dane użytkownika (login i hasło) przechowywane są w \textit{SharedPreferences}. Szczegółowy opis autoryzacji znajduje się w sekcji \ref{sub:autoryzacja}.
+
+\subsection{Wyświetlanie mapy} % (fold)
+\label{sub:wy_wietlanie_mapy}
+\paragraph{} % (fold)
+
+
+W celu wyświetlenia przebytej trasy w aplikacji mobilnej wykorzystane zostało \textit{Google Map Android API}. Pozwala ono na pobranie z serwisu Google mapy o wskazanej pozycji i przyblizeniu, a także na rysowaniu lini pomiędzy punktami na jednej z jej warstw. 
+
+\paragraph{}
+Aby wyznaczyć środek wyświetlanego obszaru, trzeba znaleźć cztery wartości : maksymalną i minimalną długość i szerokość. Punkt środka mapy wyznacza się z następującego wzoru :
+
+\begin{equation}
+	CenterLatitude = \frac{MaxLatitude + MinLatitude}{2}
+\end{equation}
+
+\begin{equation}
+		CenterLongitude = \frac{MaxLongitiude + MinLongitiude}{2}
+\end{equation}
+
+\paragraph{} % (fold)
+\label{par:}
+NAstępnym etapem jest pobranie z bazy danych współrzędnych zarejestrowanych punktów i połączenie ich za pomocą linii.
+% paragraph  (end)
