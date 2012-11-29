@@ -70,14 +70,43 @@ Schemat działania logiki biznesowej w oparciu o \textit{Wzorzec Repozytorium} z
 \paragraph{} % (fold)
 \label{par:}
 Takie rozdzielenie wstrzykiwania serwisów pozwoliło na całkowite odseparowanie logiki bazodanowej i elementów za nią odpowiedzialnych od warstwy aplikacji.
+
+\subsection{Bezpieczeństwo} % (fold)
+\subsubsection{Autoryzacja}
+\paragraph{paragraph name} % (fold)
+\label{par:paragraph_name}
+
+% paragraph paragraph_name (end)
+Do autoryzacji użytkowników, w projekcie wykorzystany zsotał popularny z technologii ASP.NET system \textit{Forms authentication}. \textit{Forms authentication} wykorzystuje znacznik uwierzytelniający, który zostaje utworzony w momencie gdy użytkownik zaloguje się na stronie. Zancznik \textit{Forms authentication} zwykle przechowywane jest wewnątrz szyfrowanego ciasteczka.
+
+\paragraph{} % (fold)
+\label{par:}
+W momencie gdy użytkownik będzie chciał uzyskać dostęp do strony wymagającej uwierzytelnienia, a nie przechodził wcześniej procesu logowania, zostanie przekierowany na zdefiniowaną w pliku konfiguracyjnym stronę logowania, na której będzie mógł wprowadzić nazwę użytkownika i hasło. Te dane są następnie przekazane do serwera, który sprawdza czy takowy użytkownik istnieje w bazie danych. Po pomyślnej weryfikacji danych, użytkownik zostaje uwierzytelniony, stworzony zostaje znacznik i następuje przekierowanie na stronę główną aplikacji.
 % paragraph  (end)
 
-% \subsection{JavaScript Model Revealing Patter}
-% \paragraph{} % (fold)
-% \label{par:}
-% JavaScript Model Revealing Pattern jest wzorcem projektowym pozwalającym zastosować
+\subsubsection{Przechowywanie hasła}
+\paragraph{} % (fold)
+\label{par:}
+Przechowywane w systemie hasła, szyfrowane są poprzez wygenerowanie funkcji skrótu \textit{SHA-2} o wilekości 256 sklejeonego z \textit{Solą} hasła. \textit{Sól} stanowi wygenerowany w momencie rejestracji \textit{GUID - identyfikator globalnie unikatowy}. W aplikacji został wykorzystany algorytm \textit{SHA-2}, ponieważ jest zancznie silniejszy od swoich poprzedników z rodziny \textit{SHA-1}, w którym zidentyfikowano luki w bezpieczeństwie. Ogólny algorytm szyfrowania wygląda następująco :
+
+\paragraph{} % (fold)
+\label{par:}
 
 % paragraph  (end)
+\lstset{language=Java,caption={Szyfrowanie hasła},label=DescriptiveLabel}
+
+\begin{lstlisting}
+		SHA256(concat(password,salt))
+\end{lstlisting}
+
+\paragraph{} % (fold)
+\label{par:}
+Dzięki zastosowaniu \textit{soli} zmniejszone zostaje prawdopodobieństwo złamania hasła popularnymi atakami brutal force, atakiem słownikowym czy wykorzystującym tablice tęczowe.
+% paragraph  (end)
+
+% paragraph  (end)
+% subsection autoryzacja (end)
+% section section_name (end)
 
 \section{Baza Danych} % (fold)
 \label{sec:baza_danych}
@@ -87,7 +116,7 @@ Baza danych, do której dostęp ma aplikacja internetowa działa na serwerze \te
 
 \paragraph{} % (fold)
 \label{par:}
-W tworzeniu i zarządzaniu bazą danych wykorzystane zostało podejście \textit{Code First}, polegające na modelowaniu bazy danych pod postacią klas języka \textit{C\#}, a następnie wygenerowaniu gotowej bazy danych przy pomocy EntityFramework. By zabezpieczyć dane składowane w bazie danych przed usunięciem ich w wyniku zmiany modelu w kodzie projektu, użyty został mechanizm migracji, zabezpieczający dane trzymane w tabelach. 
+W tworzeniu i zarządzaniu bazą danych wykorzystane zostało podejście \textit{Code First}, polegające na modelowaniu bazy danych pod postacią klas języka \textit{C\#}, a następnie wygenerowaniu gotowej bazy danych przy pomocy EntityFramework. By zabezpieczyć dane składowane w bazie danych przed usunięciem ich w wyniku zmiany modelu w kodzie projektu, użyty został mechanizm migracji 
 Schemat bazy danych przedstawiony został na Rysunku \ref{fig:database} .
 
 
@@ -104,12 +133,59 @@ Schemat bazy danych przedstawiony został na Rysunku \ref{fig:database} .
 
 % section baza_danych (end)
 
-\section{Warstwa aplikacji} % (fold)
+\section{Warstwa prezentacji} % (fold)
 \label{sec:warstwa_aplikacji}
+\paragraph{} % (fold)
+\label{par:}
+By aplikacja internetowa była przyjazna i łatwa w użyciu, należy zadbać o przejrzysty, łatwy w obsłudze i estetyczny interfejs. W tym celu wykorzystana została popularna biblioteka stylów CSS Twitter-Bootstrap \footnote{http://twitter.github.com/bootstrap/}. Dzięki dużej ilośći gotowych komponentów, można w łatwy i szybki sposób projektować wygląd strony internetowej, spełniający oczekiwania współczesnego użytkownika. Twitter-Bootstrap to nie tylko biblioteka styli CSS, ale również zbiór elementów JavaScript takich jak okna modalne czy zakładki.
 
-% section warstwa_aplikacji (end)
+\paragraph{} % (fold)
+\label{par:}
+W celu poprawienia funkcjonalności aplikacji i interakcji z użytkownikiem wykorzystane zotały dodatkowe moduły takie jak :
+\begin{itemize}
+\item jQuery Data Table \footnote{http://datatables.net/}
+\item pNotify \footnote{http://pinesframework.org/pnotify/}
+\item jQuery DatePicker \footnote{http://jqueryui.com/}
+\item jQuery DateTimePicker \footnote{http://trentrichardson.com/examples/timepicker/}
+\item FullCalendar \footnote{http://arshaw.com/fullcalendar/}
+\item Google Maps JavaScript API v3 \footnote{https://developers.google.com/maps/documentation/javascript/}
+\end{itemize}
+
 
 \section{Funkcjonalności} % (fold)
 \label{sec:funkcjonalno_ci}
 
-% section funkcjonalno_ci (end)
+\subsection{Treningi} % (fold)
+\label{sub:treningi}
+
+\paragraph{}
+Moduł do obsługi treningów jest najważniejszym elementem projektu. Pozwala on na śledzenie dodawanie i archiwizowanie danych dotyczących. Zapisane w systemie treningi wyświetlane są na kalendarzu (Rysunek \ref{fig:workout_main}), przez co można w uporządkowany sposób zarządzać treningami, planować następne sesje, archiwizować dane i wyszukiwać wcześniejsze rekordy. Po kliknięciu na wybrany przez nas trening, wyświetlone zostaje modalne okno zawierjące wsyztskie inforamcje dotyczące aktywności : typ, data początku i końca, czas, dystans i jeżeli w bazie danych są przechowane współrzędne GPS, to również mapa z zaznaczoną trasą (Rysunek \ref{fig:workout_map}). Dodawanie treningu może odbywać się na dwa sposoby : poprzez synchronizację z danymi przechowywanymi przez aplikację mobilną lub dodając rekord bezpośrednio poprzez interfejs aplikacji internetowej (Rysunek \ref{fig:add_workout}).
+
+
+\begin{figure}[ht]
+	\centering
+		\includegraphics[width=1\linewidth]{assets/workouts_main.png}
+	\caption{Widok strony agregującej dodane rekordy}
+	\label{fig:workout_main}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+		\includegraphics[width=1\linewidth]{assets/workout_map.png}
+	\caption{Widok treningu z zaznaczoną trasą}
+	\label{fig:workout_map}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+		\includegraphics[width=1\linewidth]{assets/add_workout2.png}
+	\caption{Dodawanie treningu poprzez aplikację internetową}
+	\label{fig:add_workout}
+\end{figure}
+
+\section{Funkcje portalu społecznościowego} % (fold)
+\label{sec:profil_u_ytkownika}
+\paragraph{} % (fold)
+\label{par:}
+By zapewnić powodzenie aplikacji w dzisiejszych czasach należy zadbać również o dodatkowe funkcjonalności aplikacji, pozwalające na interakcję z użytkowników między sobą,
+% paragraph  (end)
