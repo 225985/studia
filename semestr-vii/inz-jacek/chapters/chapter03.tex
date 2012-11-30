@@ -159,7 +159,12 @@ W celu poprawienia funkcjonalności aplikacji i interakcji z użytkownikiem wyko
 \label{sub:treningi}
 
 \paragraph{}
-Moduł do obsługi treningów jest najważniejszym elementem projektu. Pozwala on na śledzenie dodawanie i archiwizowanie danych dotyczących. Zapisane w systemie treningi wyświetlane są na kalendarzu (Rysunek \ref{fig:workout_main}), przez co można w uporządkowany sposób zarządzać treningami, planować następne sesje, archiwizować dane i wyszukiwać wcześniejsze rekordy. Po kliknięciu na wybrany przez nas trening, wyświetlone zostaje modalne okno zawierjące wsyztskie inforamcje dotyczące aktywności : typ, data początku i końca, czas, dystans i jeżeli w bazie danych są przechowane współrzędne GPS, to również mapa z zaznaczoną trasą (Rysunek \ref{fig:workout_map}). Dodawanie treningu może odbywać się na dwa sposoby : poprzez synchronizację z danymi przechowywanymi przez aplikację mobilną lub dodając rekord bezpośrednio poprzez interfejs aplikacji internetowej (Rysunek \ref{fig:add_workout}).
+Moduł do obsługi treningów jest najważniejszym elementem projektu. Pozwala on na śledzenie dodawanie i archiwizowanie danych dotyczących. Zapisane w systemie treningi wyświetlane są na kalendarzu (Rysunek \ref{fig:workout_main}), przez co można w uporządkowany sposób zarządzać treningami, planować następne sesje, archiwizować dane i wyszukiwać wcześniejsze rekordy. Po kliknięciu na wybrany przez nas trening, wyświetlone zostaje modalne okno zawierjące wsyztskie inforamcje dotyczące aktywności : typ, data początku i końca, czas, dystans i jeżeli w bazie danych są przechowane współrzędne GPS, to również mapa z zaznaczoną trasą (Rysunek \ref{fig:workout_map}).
+\paragraph{} % (fold)
+\label{par:}
+
+% paragraph  (end)
+ Dodawanie treningu może odbywać się na dwa sposoby : poprzez synchronizację z danymi przechowywanymi przez aplikację mobilną lub dodając rekord bezpośrednio poprzez interfejs aplikacji internetowej (Rysunek \ref{fig:add_workout}).
 
 
 \begin{figure}[ht]
@@ -192,27 +197,7 @@ By zapewnić powodzenie aplikacji w dzisiejszych czasach należy zadbać równie
 \label{par:}
 
 % paragraph  (end)
-Jednak by zadowolić użytkowników, chcących wykorzystywać serwis tylko i wyłącznie jako internetowy dziennik treningów, zaimplementowane zostały różne poziomy udostępniania treści innyym użytkownikom portalu. Podstawowe wiadomości jak imię i nazwisko oraz nazwa użytkownika są widoczne dla wszytskich, jednak resztę informacji w tym adres email można ukryć, wyłączając w widoku edycji profilu flagę "Publiczny profil". Również istnieje możliwość udostępniania swoich treningów innym użytkownikom na trzech poziomach : dostępne dla wszytskich, dostępne dla użytkowników podążających, niewidoczne dla nikogo.
+Jednak by zadowolić użytkowników, chcących wykorzystywać serwis tylko i wyłącznie jako internetowy dziennik treningów, zaimplementowane zostały różne poziomy udostępniania treści innyym użytkownikom portalu. Podstawowe wiadomości jak imię i nazwisko oraz nazwa użytkownika są widoczne dla wszytskich, jednak resztę informacji w tym adres email można ukryć, wyłączając w widoku edycji profilu flagę "Profil publiczny". Również istnieje możliwość udostępniania swoich treningów innym użytkownikom na trzech poziomach : dostępne dla wszytskich, dostępne dla użytkowników podążających, niewidoczne dla nikogo.
 % paragraph  (end)
 
-\begin{figure}[ht]
-	\centering
-		\includegraphics[width=1\linewidth]{assets/profil.png}
-	\caption{Profil użytkownika}
-	\label{fig:profil}
-\end{figure}
 
-
-\begin{figure}[ht]
-	\centering
-		\includegraphics[width=1\linewidth]{assets/edit.png}
-	\caption{Widok edycji profilu}
-	\label{fig:add_workout}
-\end{figure}
-
-\begin{figure}[ht]
-	\centering
-		\includegraphics[width=1\linewidth]{assets/chat.png}
-	\caption{Widok wysyłania wiadomości z historią w formie czatu}
-	\label{fig:add_workout}
-\end{figure}

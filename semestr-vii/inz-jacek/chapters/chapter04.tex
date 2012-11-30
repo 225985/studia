@@ -48,8 +48,14 @@ Obsługa modułu GPS polega na zaimplementowaniu interfejsów odpowiedzialnych z
 
 \subsection{Baza danych} % (fold)
 \label{sub:baza_danych}
-Informacje na temat treningów przechowywane są w bazie danych SQLite \footnote{SQLLite - Sekcja \ref{sub:sqlite}}. Model bazy danych (Rysunek \ref{fig:sqlite-model}) stanowią dwie tabele : \textit{Workout} i \textit{WorkoutDetails}. Pierwsza z nich służy do przechowywania podstawowych informacji o treningu : początek, koniec, czas trwania, dystans. W drugiej tabeli natomiast przechowywane są współrzędne geograficzne szczytane z GPS.
+Informacje na temat treningów przechowywane są w bazie danych SQLite \footnote{SQLLite - Sekcja \ref{sub:sqlite}}. Model bazy danych (Rysunek \ref{fig:sqlite-model}) stanowią dwie tabele : \textit{Workout} i \textit{WorkoutDetails}. Pierwsza z nich służy do przechowywania podstawowych informacji o treningu : początek, koniec, czas trwania, dystans. W drugiej tabeli natomiast przechowywane są współrzędne geograficzne zczytane z GPS.
 % subsection baza_danych (end)
+\begin{figure}[ht]
+	\centering
+		\includegraphics[width=0.6\linewidth]{assets/sql_schema.png}
+		\caption{Schemat bazy danych w aplikacji mobilnej}
+	\label{fig:sqlite-model}
+\end{figure}
 
 \subsection{Autoryzacja} % (fold)
 \label{sub:}
@@ -75,5 +81,5 @@ Aby wyznaczyć środek wyświetlanego obszaru, trzeba znaleźć cztery wartości
 
 \paragraph{} % (fold)
 \label{par:}
-NAstępnym etapem jest pobranie z bazy danych współrzędnych zarejestrowanych punktów i połączenie ich za pomocą linii.
+Następnym etapem jest pobranie z bazy danych współrzędnych zarejestrowanych punktów i połączenie ich za pomocą linii.
 % paragraph  (end)
