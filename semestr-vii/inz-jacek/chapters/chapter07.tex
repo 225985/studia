@@ -1,4 +1,90 @@
 \chapter{Optymalizacja wydajności aplikacji} % (fold)
 \label{cha:wdra_anie}
 
-% chapter wdra_anie (end)
+\paragraph{} % (fold)
+\label{par:}
+W celu poprawienia wydajności aplikacji oraz sprawdzenia zachowania w przypadku obciążenia dużą liczbą jednoczesnych zapytań pobierających rekordy z bazy danych, przeprowadzone zostały testy obciążeniowe aplikacji. Jako środowisko testowe, wykorzystany został program \textit{Gatling Tool \footnote{Gatling Tool - http://gatling-tool.org/}}. \textit{Gatling} jest wolnym oprogramowaniem cechującym się :
+\begin{itemize}
+ 	\item Wysoką wydajnością
+ 	\item Prostotą założeń
+ 	\item Wsparciem dla protokołu \textit{HTTP}
+ 	\item Możliwością nagrywania scenariuszy
+ 	\item Złożoną analizą rezultatów
+ \end{itemize} 
+
+\paragraph{} % (fold)
+\label{par:}
+Gatling jest programem napisanym w języku \textit{Scala \footnote{Scala - http://scala.org}} i działającym na wirtualnej maszynie javy. Dzięki temu, teoretycznie, testy można przeprowadzić na każdym systemie wspierającym technologie \textit{JVM} . Komputer testowy miał następujące parametry :
+\begin{itemize}
+	\item Procesor : Intel Pentium i5 - 2,3 GHz
+	\item Pamięć RAM : 8GB DDR3
+	\item Sytem operacyjny : OSX 10.8 Mountain Lion
+\end{itemize}
+
+\paragraph{} % (fold)
+ \label{par:}
+ Aplikacja internetowa została wdrożona na serwer o nastpujących parametrach :
+ \begin{itemize}
+ 	\item Procesor : Intel Pentium Dual Core 1,83 GHz
+ 	\item Pamięć RAM : 3 GB DDR2
+ 	\item System operacyjny : Windows 7
+ 	\item Oprogramowanie : IIS 7, Microsoft SQL Server 2012
+ \end{itemize}
+
+
+ \paragraph{} % (fold)
+ \label{par:}
+ Scenariusz testów obejmował załadwoanie strony głównej aplikacji, a następnie wyświetlenie profilu o id = 1 i id = 2. Testy wykonane zostały dla zmiennej liczby użytkowników od 1 do 10000 (1, 10, 100, 1000, 2000,..., 10000). Wyniki symulacji przedstawione zostały na Rysunkch \ref{fig:sred1} i \ref{fig:got1}
+ % paragraph  (end)
+
+\begin{figure}[ht]
+	\centering
+		\includegraphics[width=1\linewidth]{assets/sredni1.png}
+		\caption{Przebieg średniego czasu odpowiedzi dla całego testu}
+	\label{fig:sred1}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+		\includegraphics[width=1\linewidth]{assets/gotowosc1.png}
+		\caption{Przebieg gotowości systemu dla całego testu}
+	\label{fig:got1}
+\end{figure}
+
+\paragraph{} % (fold)
+\label{par:}
+Z danych odczytanych na wykresach można zauważyć, że istotny z punktu poprawy wydajności systemu jest zakres jednoczesnych użytkowników systemu od 2000 - 5000. Powyżej 7000 użytkowników, komputer testowy nie dawał rady z obsługą przychądzących rządań, powodując błędy programu testowego. Na Rysunkach \ref{fig:sred2} i \ref{fig:got2} przedstawiono wyniki dokładniejszego próbkowania, wspomnianego zakresu użytkowników.
+
+\begin{figure}[ht]
+	\centering
+		\includegraphics[width=1\linewidth]{assets/sredni2.png}
+		\caption{Przebieg średniego czasu odpowiedzi dla zakresu użytkowników od 2000 do 5000}
+	\label{fig:sred2}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+		\includegraphics[width=1\linewidth]{assets/gotowosc2.png}
+		\caption{Przebieg gotowości systemu dla zakresu użytkowników od 2000 do 5000}
+	\label{fig:got2}
+\end{figure}
+% paragraph  (end)
+
+\paragraph{} % (fold)
+\label{par:}
+Powyższe testy wykonane zostały na bazie danych, która została zindeksowana przez \textit{EntityFramework \footnote{EntityFramework - \ref{sub:EntityFramework}}} przy kreowaniu jej. Poprawa wydajności aplikacji została wykonana poprzez modyfikację ustawień serwera IIS poprzez zwiększenie czasu odpowiedzi na rządania i przetwarzanej ich liczby. W tym celu wykorzystany został program \textit{IIS Tuner \footnote{IIS Tuner - http://iistuner.codeplex.com/}} , służący do optymalizacji puli aplikacji. Wyniki symulacji po rekonfiguracji ustawień serwera przedstawione zostały na Rysunkach \ref{fig:sred3} i \ref{fig:got3}. Średni czas odpowiedzi serwera znacząco wzrósł, ale za to gotowość systemu utrzymywała się cały czas na stu procentowym poziomie.
+% paragraph  (end)
+
+\begin{figure}[ht]
+	\centering
+		\includegraphics[width=1\linewidth]{assets/sredni3.png}
+		\caption{Przebieg średniego czasu odpowiedzi dla zakresu użytkowników od 2000 do 5000 po rekonfiguracji serwera}
+	\label{fig:sred3}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+		\includegraphics[width=1\linewidth]{assets/gotowosc3.png}
+		\caption{Przebieg gotowości systemu dla zakresu użytkowników od 2000 do 5000 po rekonfiguracji serwera}
+	\label{fig:got3}
+\end{figure}
