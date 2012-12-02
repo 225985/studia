@@ -1,0 +1,84 @@
+\documentclass[wide,a4paper,titlepage,12pt]{article}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{xcolor,listings}
+
+\title{Zastosowanie systemów wbudowanych}
+\author{Tymon Tobolski {\small(181037)}\\ Jacek Wieczorek {\small(181043)}}
+
+\makeatletter
+\renewcommand{\maketitle}{
+  \begin{titlepage}
+    \begin{center}
+      \vspace*{3cm}
+      \LARGE \@title \par
+      \vspace{2cm}
+      \textit{\small Autor:}\par
+      \normalsize \@author\par \normalsize
+      \vspace{3cm}
+      \textit{\small Prowadzący:}\par
+      dr inż. Jacek Majewski \par
+      \vspace{2cm}
+      Wydział Elektroniki\\ IV rok\\ Pn 08.00 - 11.00\par
+
+    \end{center}
+  \end{titlepage}
+}
+\makeatother
+\setlength{\parindent}{0em}
+\onehalfspacing
+
+
+\begin{document}
+\maketitle
+
+\section{Cel projektu} % (fold)
+\label{sec:cel_projektu}
+\paragraph{} % (fold)
+\label{par:}
+
+% paragraph  (end)
+Celem projektu było stworzenie systemu do obsługi balona meteorologicznego w oparciu o platformę \textit{Raspberry PI}.
+% section cel_projektu (end)
+\section{Wykorzystany sprzęt} % (fold)
+\label{sec:potrzebyn_sprz_t}
+\begin{itemize}
+  \item Komputer Raspberry PI w wersji z 256 MB pamięci RAM
+  \item Karta pamięci SD o minimalnej wielkości 4GB
+  \item Odbiornik Bluetooth na USB
+  \item Odbiornik GPS komunikujący się po Bluetooth 
+\end{itemize}
+% section potrzebyn_sprz_t (end)
+
+\section{Instalacja oprogramowania i konfiguracja} % (fold)
+\label{sec:instalacja_oprogramowania_i_konfiguracja}
+\paragraph{} % (fold)
+\label{par:}
+W celu uruchomienia projketu należy w systemi Raspberrian zainstalować potrzebne biblioteki następującymi komendami: 
+\lstset{language=bash,caption={Instalacja bibliotek},label=DescriptiveLabel}
+
+\begin{lstlisting}
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install bluetooth bluez-utils blueman ruby1.9.1 ffmpeg
+\end{lstlisting}
+
+\paragraph{} % (fold)
+\label{par:}
+By uruchomić projekt należy wykonać komendę:
+\lstset{language=bash,caption={Uruchomienie projektu},label=DescriptiveLabel}
+
+\begin{lstlisting}
+                        ruby app.rb
+\end{lstlisting}
+
+\lstset{language=bash,caption={Przydatne komendy},label=DescriptiveLabel}
+
+\begin{lstlisting}
+service bluetooth status - sprawdzenie stanu odbiornika bluetooth
+hcitool scan - wyszukanie nadajnikow bluetooth
+\end{lstlisting}
+\end{document}
+
