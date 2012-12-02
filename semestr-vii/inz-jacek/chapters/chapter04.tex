@@ -23,9 +23,9 @@ Aplikacja została napisana w języku Java i działa na mobilnej platformie Andr
 Aktywności wyróżniają się czterema stanami :
 \begin{itemize}
 	\item Aktywna (ang. active) lub chodząca (ang. running) - gdy aktywność znajduje się w warstwie szczytowej aplikacji
-	\item Wstrzymana (ang. paused) - gdy aktywność jest widoczna, ale nie znajduje się na pierwszym planie. W tym stanie może zostać zakończona przez system, w przypadku barku pamięci
-	\item Zatrzymana (ang. stopped) - gdy aktywność zostanie zasłonięta przez inna aktywność. W tym stanie system przechowuje pełną informację na temat aktywności, lecz nie jest ona widoczna dla użytkownika
-	\item Gdy aplikacja jest w stanie wstrzymania lub zatrzymania, może zostać usunięta z pamięci systemu. W momencie ponownego uruchomienia aktywności, będzie musiała być stworzona od początku.
+	\item Wstrzymana (ang. paused) - gdy aktywność jest widoczna, ale nie znajduje się na pierwszym planie. W tym stanie może zostać zakończona przez system, w przypadku braku pamięci
+	\item Zatrzymana (ang. stopped) - gdy aktywność zostanie zasłonięta przez inna aktywność. W tym stanie system przechowuje pełną informację na temat aktywności, lecz nie jest widoczna dla użytkownika
+	\item Gdy aplikacja jest w stanie wstrzymania lub zatrzymania, może zostać usunięta z pamięci systemu. W momencie ponownego uruchomienia, aktywność będzie musiała być stworzona od początku.
 \end{itemize}
 
 \paragraph{} 
@@ -44,7 +44,7 @@ Pełny cykl życia aktywności został przedstawiony na Rysunku \ref{fig:activit
 % subsection modu_gps (end)
 \paragraph{} % (fold)
 \label{par:}
-Obsługa modułu GPS polega na zaimplementowaniu interfejsów odpowiedzialnych za szczytywanie informacji (\textit{LocationListener}) na temat położenia i badanie stanu odbiornika GPS (\textit{GpsStatusListener}). Oba interfejsy są uruchamiane w zdarzeniu \textit{onCreate()} głównej aktywności. 
+Obsługa modułu GPS polega na zaimplementowaniu interfejsów odpowiedzialnych za zczytywanie informacji (\textit{LocationListener}) na temat położenia i badanie stanu odbiornika GPS (\textit{GpsStatusListener}). Oba interfejsy są uruchamiane w zdarzeniu \textit{onCreate()} głównej aktywności. 
 
 \subsection{Baza danych} % (fold)
 \label{sub:baza_danych}
@@ -61,12 +61,17 @@ Informacje na temat treningów przechowywane są w bazie danych SQLite \footnote
 \label{sub:}
 Po wprowadzeniu nazwy użytkownika i hasła w formularzu na aktywności Login, wysłane zostaje rządanie autoryzacji do REST API. Po pozytywnej weryfikacji danych zwrócona zostaje odpowiedź o statusie HTTP 200 wraz z tokenem, służącym do dalszej autoryzacji aplikacji. Zweryfikowane dane użytkownika (login i hasło) przechowywane są w \textit{SharedPreferences}. Szczegółowy opis autoryzacji znajduje się w sekcji \ref{sub:autoryzacja}.
 
+\subsection{Wielojęzykowść} % (fold)
+\label{sub:wieloj_zykow_}
+Podobnie jak strona internetowa, aplikacja mobilna została dostosowana do wielojęzykowości, dzięki popularnemu w środowisku android systemowi zasobów.
+% subsection wieloj_zykow_ (end)
+
 \subsection{Wyświetlanie mapy} % (fold)
 \label{sub:wy_wietlanie_mapy}
 \paragraph{} % (fold)
 
 
-W celu wyświetlenia przebytej trasy w aplikacji mobilnej wykorzystane zostało \textit{Google Map Android API}. Pozwala ono na pobranie z serwisu Google mapy o wskazanej pozycji i przyblizeniu, a także na rysowaniu lini pomiędzy punktami na jednej z jej warstw. 
+W celu wyświetlenia przebytej trasy w aplikacji mobilnej wykorzystane zostało \textit{Google Map Android API}. Pozwala ono na pobranie z serwisu Google mapy o wskazanej pozycji i przybliżeniu, a także na rysowaniu lini pomiędzy punktami na jednej z jej warstw. 
 
 \paragraph{}
 Aby wyznaczyć środek wyświetlanego obszaru, trzeba znaleźć cztery wartości : maksymalną i minimalną długość i szerokość. Punkt środka mapy wyznacza się z następującego wzoru :

@@ -21,11 +21,11 @@ Systemy w tej architekturze składają się z przynajmniej dwóch elementów : k
 
 \paragraph{} % (fold)
 \label{par:}
-\textit{RESTowe} Web Services, zwane także , są serwisami zaimplementowanymi przy użyciu \textit{HTTP} i głównych założeń \textit{REST}. Standardowe serwisy składają się z :
+\textit{RESTowe} Web Services, zwane także API, są serwisami zaimplementowanymi przy użyciu protokołu \textit{HTTP} i głównych założeń \textit{REST}. Standardowe serwisy składają się z :
 \begin{itemize}
 	\item bazowego \textit{URI} (Uniform Resource Identifier) identyfikującego serwis np. http://runner.jacbar.pl/Api.svc
 	\item Internetowego nośnika danych obsługiwanego przez serwis, najczęściej \textit{XML} lub \textit{JSON}
-	\item Zbioru operacji bazujących na podsatawowych metodach protokołu \textit{HTTP}
+	\item Zbioru operacji bazujących na podstawowych metodach protokołu \textit{HTTP}
 \end{itemize}
 
 \paragraph{} % (fold)
@@ -100,7 +100,7 @@ By zapewnić bezpieczeństwo tego rozwiązania, należy zadbać o szyfrowanie po
 \label{sub:synchronizacja_trening_w}
 \paragraph{} % (fold)
 \label{par:}
-W celu umożliwienia użytkownikowi możliwości zarządzania trenigami, nagranymi za pomocą aplikacji mobilnej, w serwisie internetowym, web serwis posiada metody pozwalająće na przesyłanie danych z urządzenia na serwer. Proces synchronizacji polega na wysłaniu dwóch rządań : pierwsze w celu stworzenia nowego treningu w bazie na serwerze i wygenerowaniu jego unikalnego identyfikatora, a następny przesyłający pozycje zczytane z GPS, jeżeli takowe zostały zapisane w pamięci telefonu. Celem rozdzielenia tych dwóch procesów jest zapewnienie możliwośći wysyłania pozycji GPS w paczkach. W przyszłości pozwoli to na zmniejszenie ryzyka utraty danych oraz ułatwi proces retransmisji danych, które nie zostały zapisane w bazie danych na serwerze. Szczegółowe parametry dotyczące wysyłanych rządań przedstawione zsotały w tabelach 5.2 i 5.3 .
+W celu umożliwienia użytkownikowi zarządzania trenigami, nagranymi za pomocą aplikacji mobilnej, w serwisie internetowym, web serwis posiada metody pozwalające na przesyłanie danych z urządzenia na serwer. Proces synchronizacji polega na wysłaniu dwóch rządań : pierwsze w celu stworzenia nowego treningu w bazie na serwerze i wygenerowaniu jego unikalnego identyfikatora, a następny przesyłający pozycje zczytane z GPS, jeżeli takowe zostały zapisane w pamięci telefonu. Celem rozdzielenia tych dwóch procesów jest zapewnienie w przyszłości możliwości wysyłania pozycji GPS w paczkach. Pozwoli to na zmniejszenie ryzyka utraty danych oraz ułatwi proces retransmisji danych, które nie zostały zapisane w bazie danych na serwerze. Szczegółowe parametry dotyczące wysyłanych rządań przedstawione zsotały w tabelach 5.2 i 5.3 .
 
 \begin{figure}[ht]
 	\centering
@@ -138,7 +138,7 @@ W celu umożliwienia użytkownikowi możliwości zarządzania trenigami, nagrany
 
 \begin{table}
  \label{workoutpart}
-  \caption{Rządanie autoryzacji}
+  \caption{Synchronizacja zarejestrowanych współrzędnych geograficznych}
   \begin{center}
   \begin{tabular}{| l | l |}
   	\hline

@@ -3,7 +3,7 @@
 
 \paragraph{} % (fold)
 \label{par:}
-W celu poprawienia wydajności aplikacji oraz sprawdzenia zachowania w przypadku obciążenia dużą liczbą jednoczesnych zapytań pobierających rekordy z bazy danych, przeprowadzone zostały testy obciążeniowe aplikacji. Jako środowisko testowe, wykorzystany został program \textit{Gatling Tool \footnote{Gatling Tool - http://gatling-tool.org/}}. \textit{Gatling} jest wolnym oprogramowaniem cechującym się :
+W celu poprawienia wydajności aplikacji oraz sprawdzenia zachowania w przypadku obciążenia dużą liczbą jednoczesnych zapytań pobierających rekordy z bazy danych, przeprowadzone zostały testy obciążeniowe. Jako środowisko testowe, wykorzystany został program \textit{Gatling Tool \footnote{Gatling Tool - http://gatling-tool.org/}}. \textit{Gatling} jest wolnym oprogramowaniem cechującym się :
 \begin{itemize}
  	\item Wysoką wydajnością
  	\item Prostotą założeń
@@ -72,7 +72,7 @@ Z danych odczytanych na wykresach można zauważyć, że istotny z punktu popraw
 
 \paragraph{} % (fold)
 \label{par:}
-Powyższe testy wykonane zostały na bazie danych, która została zindeksowana przez \textit{EntityFramework \footnote{EntityFramework - \ref{sub:EntityFramework}}} przy kreowaniu jej. Poprawa wydajności aplikacji została wykonana poprzez modyfikację ustawień serwera IIS poprzez zwiększenie czasu odpowiedzi na rządania i przetwarzanej ich liczby. W tym celu wykorzystany został program \textit{IIS Tuner \footnote{IIS Tuner - http://iistuner.codeplex.com/}} , służący do optymalizacji puli aplikacji. Wyniki symulacji po rekonfiguracji ustawień serwera przedstawione zostały na Rysunkach \ref{fig:sred3} i \ref{fig:got3}. Średni czas odpowiedzi serwera znacząco wzrósł, ale za to gotowość systemu utrzymywała się cały czas na stu procentowym poziomie.
+Powyższe testy wykonane zostały na bazie danych, która została zindeksowana przez \textit{EntityFramework \footnote{EntityFramework - \ref{sub:EntityFramework}}} przy kreowaniu jej. Poprawa wydajności aplikacji została wykonana poprzez modyfikację ustawień serwera IIS : zwiększenie czasu odpowiedzi na rządania i przetwarzanej ich liczby. W tym celu wykorzystany został program \textit{IIS Tuner \footnote{IIS Tuner - http://iistuner.codeplex.com/}} , służący do optymalizacji puli aplikacji. Wyniki symulacji po rekonfiguracji ustawień serwera przedstawione zostały na Rysunkach \ref{fig:sred3} i \ref{fig:got3}. Średni czas odpowiedzi serwera znacząco wzrósł, ale za to gotowość systemu utrzymywała się cały czas na stu procentowym poziomie.
 % paragraph  (end)
 
 \begin{figure}[ht]

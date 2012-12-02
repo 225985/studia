@@ -18,7 +18,7 @@ Widok jest warstwą odpowiedzialną za wyświetlanie interfejsu użytkownika. Na
 
 \subsubsection{Kontroler}
 \paragraph{} 
-Kontrolery to komponenty odpowiedzialne za utrzymanie interakcji z użytkownikiem, pracę z modelem i renderowaniem odpowiednich widoków. Kontrolery obsługują rządania użytkowników, konwertują parametry zapytań na modele i przekazują je do kolejnej warstwy. Kontrolery, podobnie jka widoki znajdują się w bibliotece \textbf{PI.Web}.  
+Kontrolery to komponenty odpowiedzialne za utrzymanie interakcji z użytkownikiem, pracę z modelem i renderowaniem odpowiednich widoków. Kontrolery obsługują rządania użytkowników, konwertują parametry zapytań na modele i przekazują je do kolejnej warstwy. Kontrolery, podobnie jak widoki znajdują się w bibliotece \textbf{PI.Web}.  
 
 \newpage
 \begin{figure}[ht]
@@ -32,7 +32,7 @@ Kontrolery to komponenty odpowiedzialne za utrzymanie interakcji z użytkownikie
 \label{sub:wzorzec_repozytorium}
 \paragraph{} % (fold)
 \label{par:}
-\textit{Wzorzec Repozytorium} (\textit{Repository Pattern}) to popularna technika mająca na celu podział warstwy biznesowej na dwie części : \textit{Serwis} i \textit{Repozytorium}. \textit{Serwis} jest elementem odpowiedzialnym za logikę aplikacji oraz komunikację między kontrolerem, a repozytorium. \textit{Repozytorium} natomiast jest komponentem, ktorego zadanie polega na komunikacji z bazą danych : zapisywanie, pobieranie, edytowanie i usuwanie danych (model \textit{CRUD}). Takie rozsczepienie poszczególnych elementów pozwal na łatwe testowanie kodu, programowanie zorientowane na testy (\textit{ang. Test Driven Development}), szybką modernizację istniejącej logiki oraz rozbudowę aplikacji.
+\textit{Wzorzec Repozytorium} (\textit{Repository Pattern}) to popularna technika mająca na celu podział warstwy biznesowej na dwie części : \textit{Serwis} i \textit{Repozytorium}. \textit{Serwis} jest elementem odpowiedzialnym za logikę aplikacji oraz komunikację między kontrolerem, a repozytorium. \textit{Repozytorium} natomiast jest komponentem, ktorego zadanie polega na komunikacji z bazą danych : zapisywanie, pobieranie, edytowanie i usuwanie danych (model \textit{CRUD}). Takie rozsczepienie poszczególnych elementów pozwal na łatwe testowanie kodu, programowanie zorientowane na testy (\textit{ang. Test Driven Development}), szybką modernizację istniejącej logiki i rozbudowę aplikacji.
 
 \paragraph{} % (fold)
 \label{par:}
@@ -57,19 +57,19 @@ Schemat działania logiki biznesowej w oparciu o \textit{Wzorzec Repozytorium} z
 \subsection{Odwrócenie sterowania} % (fold)
 \label{sub:odwr_cenie_sterowania}
 \paragraph{} 
-\textit{Odwrócenie sterowania} (\textit{ang. Inversion of Control}) to pradygmat odpowiedzialny za przeniesienie na zaewnątrz obiektu odpowiedzialnego za kontrolę niektórych czynności. Termin ten jest często utożsamiany z \textit{Wstrzykiwaniem zależności (ang. Dependency Injection)}, jednak jest to tylko jedna z realizacji \textit{Odwrócenia sterowania}. 
+\textit{Odwrócenie sterowania} (\textit{ang. Inversion of Control}) to pradygmat odpowiedzialny za przeniesienie na zewnątrz obiektu odpowiedzialnego za kontrolę niektórych czynności. Termin ten jest często utożsamiany z \textit{Wstrzykiwaniem zależności (ang. Dependency Injection)}, jednak jest to tylko jedna z realizacji \textit{Odwrócenia sterowania}. 
 
 \paragraph{} % (fold)
 \label{par:}
 \textit{Wstrzykiwanie zależności} zosatało zrealizowane w projekcie za pomocą biblioteki \textit{Unity \footnote{Unity - Sekcja \ref{sub:unity}}} na dwóch poziomach :
 \begin{itemize}
-	\item W warstwie Modelu - wszytskie serwizy i repozytoria, oraz kontekst bazodanowy wstrzykiwane są jako parametry w konstruktorze
+	\item W warstwie Modelu - wszytstkie serwisy i repozytoria, oraz kontekst bazodanowy wstrzykiwane są jako parametry w konstruktorze
 	\item W warstwie Kontrolorów - wstrzykiwany jest dostawca serwisów
 \end{itemize} 
 
 \paragraph{} % (fold)
 \label{par:}
-Takie rozdzielenie wstrzykiwania serwisów pozwoliło na całkowite odseparowanie logiki bazodanowej i elementów za nią odpowiedzialnych od warstwy aplikacji.
+Takie rozdzielenie wstrzykiwania zależności pozwoliło na całkowite odseparowanie logiki bazodanowej i elementów za nią odpowiedzialnych od warstwy aplikacji.
 
 \subsection{Bezpieczeństwo} % (fold)
 \subsubsection{Autoryzacja}
@@ -81,13 +81,13 @@ Do autoryzacji użytkowników, w projekcie wykorzystany zsotał popularny z tech
 
 \paragraph{} % (fold)
 \label{par:}
-W momencie gdy użytkownik będzie chciał uzyskać dostęp do strony wymagającej uwierzytelnienia, a nie przechodził wcześniej procesu logowania, zostanie przekierowany na zdefiniowaną w pliku konfiguracyjnym stronę logowania, na której będzie mógł wprowadzić nazwę użytkownika i hasło. Te dane są następnie przekazane do serwera, który sprawdza czy takowy użytkownik istnieje w bazie danych. Po pomyślnej weryfikacji danych, użytkownik zostaje uwierzytelniony, stworzony zostaje znacznik i następuje przekierowanie na stronę główną aplikacji.
+W momencie gdy użytkownik będzie chciał uzyskać dostęp do strony wymagającej uwierzytelnienia, a nie przechodził wcześniej procesu uwierzytelniania, zostanie przekierowany na zdefiniowaną w pliku konfiguracyjnym stronę logowania, na której będzie mógł wprowadzić nazwę użytkownika i hasło. Te dane są następnie przekazane do serwera, który sprawdza czy takowy użytkownik istnieje w bazie danych. Po pomyślnej weryfikacji danych, użytkownik zostaje uwierzytelniony, stworzony zostaje znacznik i następuje przekierowanie na stronę główną aplikacji.
 % paragraph  (end)
 
 \subsubsection{Przechowywanie hasła}
 \paragraph{} % (fold)
 \label{par:}
-Przechowywane w systemie hasła, szyfrowane są poprzez wygenerowanie funkcji skrótu \textit{SHA-2} o wilekości 256 sklejeonego z \textit{Solą} hasła. \textit{Sól} stanowi wygenerowany w momencie rejestracji \textit{GUID - identyfikator globalnie unikatowy}. W aplikacji został wykorzystany algorytm \textit{SHA-2}, ponieważ jest zancznie silniejszy od swoich poprzedników z rodziny \textit{SHA-1}, w którym zidentyfikowano luki w bezpieczeństwie. Ogólny algorytm szyfrowania wygląda następująco :
+Przechowywane w systemie hasła, szyfrowane są poprzez wygenerowanie funkcji skrótu \textit{SHA-2} o wilekości 256 sklejonego z \textit{Solą} hasła. \textit{Sól} stanowi wygenerowany w momencie rejestracji \textit{GUID - identyfikator globalnie unikatowy}. W aplikacji został wykorzystany algorytm \textit{SHA-2}, ponieważ jest zancznie silniejszy od swoich poprzedników z rodziny \textit{SHA-1}, w którym zidentyfikowano luki w bezpieczeństwie. Ogólny algorytm szyfrowania wygląda następująco :
 
 \paragraph{} % (fold)
 \label{par:}
@@ -107,7 +107,7 @@ Dzięki zastosowaniu \textit{soli} zmniejszone zostaje prawdopodobieństwo złam
 
 \subsection{Wielojęzykowość} % (fold)
 \label{sub:wieloj_zykowo_}
-Dzięki zastosowaniu mechanizmu \textit{Zasobów (ang. Resource)} aplikacja internetowa jest dostosowana do szybkiego tłumaczenia na inne języki. Domyśnym językiem aplikacji jest angielski, a w obecnej wersji obsługuje również polski. By inne tłumaczenie, należy stworzyć nowy plik \textit{resx}, o nazwie :
+Dzięki zastosowaniu mechanizmu \textit{Zasobów (ang. Resource)} aplikacja internetowa jest dostosowana do szybkiego tłumaczenia na inne języki. Domyśnym językiem aplikacji jest angielski, a w obecnej wersji obsługuje również polski. By dodać inne tłumaczenie, należy stworzyć nowy plik \textit{resx}, o nazwie :
 
 \lstset{language=Java,caption={Tłumaczenie aplikacji},label=DescriptiveLabel}
 \begin{lstlisting}
@@ -116,14 +116,14 @@ Dzięki zastosowaniu mechanizmu \textit{Zasobów (ang. Resource)} aplikacja inte
 
 \paragraph{} % (fold)
 \label{par:}
-gdzie \textit{xx} to dwuliterowy skrót języka przeglądarki.
+gdzie \textit{xx} to dwuliterowy skrót języka przeglądarki, w którym należy umieścić odopwiednie wartość dla podaych kluczy.
 % paragraph  (end)
 
 \subsection{Azure} % (fold)
 \label{sub:azure}
 \paragraph{} % (fold)
 \label{par:}
-Aplikacja została przystosowana do natychmiastowej możliwośći wdrożenai na platformę Windows Azure SDK. W tym celu należy dokonać publikacji projektu o nazwie \textbf{PI.Azure} oraz zaimportować go jak serwis lub stronę www w portalu http://windos.azure.com .
+Aplikacja została przystosowana do natychmiastowej możliwośći wdrożenia na platformę Windows Azure SDK. W tym celu należy dokonać publikacji projektu o nazwie \textbf{PI.Azure} oraz zaimportować go jak serwis lub stronę w portalu http://windos.azure.com .
 % paragraph  (end)
 % subsection azure (end)
 
@@ -131,11 +131,11 @@ Aplikacja została przystosowana do natychmiastowej możliwośći wdrożenai na 
 \label{sec:baza_danych}
 \paragraph{} % (fold)
 \label{par:}
-Baza danych, do której dostęp ma aplikacja internetowa działa na serwerze \textit{Microsoft SQL Server 2012 \footnote{MS SQL 2012 - Sekcja \ref{sub:mssql}}}. Do zarządzania danymi wykorzystany został wykorzystana bibliotek \textit{EntityFramework \footnote{EntityFramework - Sekcja \ref{sub:EntityFramework}}}. W bazie danych przechowywane są informacje o profilu użytkownika, ustawieniach konta oraz zarejestrowane przez aplikację mobilną współrzędne GPS.
+Baza danych, do której dostęp ma aplikacja internetowa działa na serwerze \textit{Microsoft SQL Server 2012 \footnote{MS SQL 2012 - Sekcja \ref{sub:mssql}}}. Do zarządzania danymi wykorzystany został wykorzystana bibliotek \textit{EntityFramework \footnote{EntityFramework - Sekcja \ref{sub:EntityFramework}}}. W bazie danych przechowywane są informacje o profilu użytkownika,treningach, wiadomościach, logach, ustawieniach konta oraz zarejestrowane przez aplikację mobilną współrzędne GPS.
 
 \paragraph{} % (fold)
 \label{par:}
-W tworzeniu i zarządzaniu bazą danych wykorzystane zostało podejście \textit{Code First}, polegające na modelowaniu bazy danych pod postacią klas języka \textit{C\#}, a następnie wygenerowaniu gotowej bazy danych przy pomocy EntityFramework. By zabezpieczyć dane składowane w bazie danych przed usunięciem ich w wyniku zmiany modelu w kodzie projektu, użyty został mechanizm migracji 
+W tworzeniu i zarządzaniu bazą danych wykorzystane zostało podejście \textit{Code First}, polegające na modelowaniu bazy danych pod postacią klas języka \textit{C\#}, a następnie wygenerowaniu gotowej bazy danych przy pomocy EntityFramework. By zabezpieczyć dane składowane w bazie danych przed usunięciem ich w wyniku zmiany modelu w kodzie projektu, użyty został mechanizm migracji. 
 Schemat bazy danych przedstawiony został na Rysunku \ref{fig:database} .
 
 
@@ -151,7 +151,7 @@ Schemat bazy danych przedstawiony został na Rysunku \ref{fig:database} .
 % paragraph  (end)
 
 % section baza_danych (end)
-
+\newpage
 \section{Warstwa prezentacji} % (fold)
 \label{sec:warstwa_aplikacji}
 \paragraph{} % (fold)
@@ -178,7 +178,7 @@ W celu poprawienia funkcjonalności aplikacji i interakcji z użytkownikiem wyko
 \label{sub:treningi}
 
 \paragraph{}
-Moduł do obsługi treningów jest najważniejszym elementem projektu. Pozwala on na śledzenie dodawanie i archiwizowanie danych dotyczących. Zapisane w systemie treningi wyświetlane są na kalendarzu (Rysunek \ref{fig:workout_main}), przez co można w uporządkowany sposób zarządzać treningami, planować następne sesje, archiwizować dane i wyszukiwać wcześniejsze rekordy. Po kliknięciu na wybrany przez nas trening, wyświetlone zostaje modalne okno zawierjące wsyztskie inforamcje dotyczące aktywności : typ, data początku i końca, czas, dystans i jeżeli w bazie danych są przechowane współrzędne GPS, to również mapa z zaznaczoną trasą (Rysunek \ref{fig:workout_map}).
+Moduł do obsługi treningów jest najważniejszym elementem projektu. Pozwala on na śledzenie dodawanie i archiwizowanie danych dotyczących. Zapisane w systemie treningi wyświetlane są na kalendarzu (Rysunek \ref{fig:workout_main}), przez co można w uporządkowany sposób zarządzać treningami, planować następne sesje, archiwizować dane i wyszukiwać wcześniejsze rekordy. Po kliknięciu na wybrany przez nas trening, wyświetlone zostaje modalne okno zawierjące wszystkie inforamcje dotyczące aktywności : typ, data początku i końca, czas, dystans i jeżeli w bazie danych są przechowane współrzędne GPS, to również mapa z zaznaczoną trasą (Rysunek \ref{fig:workout_map}).
 \paragraph{} % (fold)
 \label{par:}
 
@@ -216,7 +216,7 @@ By zapewnić powodzenie aplikacji w dzisiejszych czasach należy zadbać równie
 \label{par:}
 
 % paragraph  (end)
-Jednak by zadowolić użytkowników, chcących wykorzystywać serwis tylko i wyłącznie jako internetowy dziennik treningów, zaimplementowane zostały różne poziomy udostępniania treści innyym użytkownikom portalu. Podstawowe wiadomości jak imię i nazwisko oraz nazwa użytkownika są widoczne dla wszytskich, jednak resztę informacji w tym adres email można ukryć, wyłączając w widoku edycji profilu flagę "Profil publiczny". Również istnieje możliwość udostępniania swoich treningów innym użytkownikom na trzech poziomach : dostępne dla wszytskich, dostępne dla użytkowników podążających, niewidoczne dla nikogo.
+Jednak by zadowolić użytkowników, chcących wykorzystywać serwis tylko i wyłącznie jako internetowy dziennik treningów, zaimplementowane zostały różne poziomy udostępniania treści innym osobom korzystającym z portalu. Podstawowe wiadomości jak imię i nazwisko oraz nazwa użytkownika są widoczne dla wszystkich, jednak resztę informacji w tym adres email można ukryć, wyłączając w widoku edycji profilu flagę "Profil publiczny". Również istnieje możliwość udostępniania swoich treningów innym użytkownikom na trzech poziomach : dostępne dla wszytskich, dostępne dla użytkowników podążających, niewidoczne dla nikogo.
 % paragraph  (end)
 
 
