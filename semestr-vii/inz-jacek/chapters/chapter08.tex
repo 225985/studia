@@ -7,14 +7,14 @@
 \label{par:}
 
 % paragraph  (end)
-Przedstawiony projekt w pełni realizuje załóżenia przedstawione w Sekcji \ref{sec:cel_pracy}. Jest wcałkowicie funkcjonalnym i działającym systemem, pozwalającym na kontrolowanie swoich treningów oraz interakcje z innymi użytkownikami portalu.
+Przedstawiony projekt w pełni realizuje założenia przedstawione w Sekcji \ref{sec:cel_pracy}. Jest całkowicie funkcjonalnym i działającym systemem, pozwalającym na kontrolowanie swoich treningów oraz interakcje z innymi użytkownikami portalu.
 % section realizacja_za_o_e_ (end)
 
 \section{Napotkane problemy} % (fold)
 \label{sec:napotkane_problemy}
 \paragraph{} % (fold)
 \label{par:}
-Głównym problemem napotkanym podczas implementacji i testowania systemu była konfiguracja serwera \textit{IIS}, która na domyślnych parametrach nie zezwalała na sposoby autoryzacji zastosowane w projkecie.
+Głównym problemem napotkanym podczas implementacji i testowania systemu była konfiguracja serwera \textit{IIS}. Przy użyciu domyślnych parametrów serwer nie zezwalała na sposoby autoryzacji zastosowane w projkecie.
 % paragraph  (end)
 
 % section napotkane_problemy (end)
@@ -24,11 +24,16 @@ Głównym problemem napotkanym podczas implementacji i testowania systemu była 
 
 \paragraph{} % (fold)
 \label{par:}
-By zapewnić sukces marketingowy projektowi, należałoby zaimplementować aplikacje mobilne na inne systemy operacyjne niż tylko \textit{Andorid}. W dzisiejszych czasach najpopularniejszymi systemami operacyjnymi są : iOS, Android, BlackBerry, w ostatnich czasach również Windows 7.5 i 8. Nie można takżę zapomnieć o użytkownikach posiadających starsze telefony działające na systemie Symbian OS.
+By zapewnić sukces marketingowy projektu, należałoby zaimplementować aplikacje mobilne na inne systemy operacyjne niż tylko \textit{Andorid}. W dzisiejszych czasach jednymi z najpopularniejszych systemów operacyjnych są: iOS, Android, BlackBerry OS, a w ostatnich czasach również Windows Phone 7.5 i 8. Nie można także zapomnieć o użytkownikach posiadających starsze telefony działające na systemie Symbian OS, Bada OS.
 
 \paragraph{} % (fold)
-W celu zapewnienia bezpieczeństwa przesyłanych danych pomiędzy aplikacją mobilną, a REST API, wykupiony powinien zostać certyfikat SSL, pozwalający na szyfrowanie przesyłanych danych.
+W celu zapewnienia bezpieczeństwa przesyłanych danych pomiędzy aplikacją mobilną, a REST API, system powinien zostać uzupełniony o możliwość szyfrowania danych poprzez wykorzystanie certyfiaktów \textit{SSL}.
 
 \paragraph{} % (fold)
  \label{par:}
- Ważnym elementem jest również niezawodność działania aplikacji internetowej. By zapewnić skalowalność serwera i łatwą konfigurowalność parametrów instancji na jakich działa system, wdrożony powinien zostać na platformę Windows Azure, do czego został dostosowany.
+ Ważnym elementem jest również niezawodność działania aplikacji internetowej. By zapewnić skalowalność serwera i łatwą konfigurowalność parametrów instancji na jakich działa system, powinien zostać wdrożony na platformę Windows Azure, do czego został dostosowany.
+
+ \paragraph{} % (fold)
+ \label{par:}
+ 
+ Z uwagi na niską jakość montowanych w urządzenaich mobilnych odbiorników GPS, a w konsekwencji niską dokładność odczytywanych pozycji, należałoby w celu wyświetlania na mapie przebytej trasy zaimplementować filtr Kalmana. Pozwoliłoby to na pokazanie wygładzonej trasy z mniejszą ilością niedokładności spowodowanych dużą rozdzielczością odbiornika.
