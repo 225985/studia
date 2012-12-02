@@ -6,7 +6,7 @@
 Aplikacja mobilna jest integralną częścią całego systemu do wspierania treningów areobowych. Jej zadaniem jest pobieranie informacji o przebytej trasie za pomocą odbiornika GPS, obliczanie dystansu i czasu trwania treningu, przetrzymywanie informacji w bazie danych oraz synchronizacja rekordów z apikacją internetową. 
 % paragraph  (end)
 
-\section{Architektura system} % (fold)
+\section{Architektura systemu} % (fold)
 \label{sec:architektura_system}
 
 % section architektura_system (end)
@@ -44,8 +44,9 @@ Pełny cykl życia aktywności został przedstawiony na Rysunku \ref{fig:activit
 % subsection modu_gps (end)
 \paragraph{} % (fold)
 \label{par:}
-Obsługa modułu GPS polega na zaimplementowaniu interfejsów odpowiedzialnych za zczytywanie informacji (\textit{LocationListener}) na temat położenia i badanie stanu odbiornika GPS (\textit{GpsStatusListener}). Oba interfejsy są uruchamiane w zdarzeniu \textit{onCreate()} głównej aktywności. 
-
+Obsługa modułu GPS polega na zaimplementowaniu interfejsów odpowiedzialnych za zczytywanie informacji (\textit{LocationListener}) na temat położenia i badanie stanu odbiornika GPS (\textit{GpsStatusListener}). Oba interfejsy są uruchamiane w zdarzeniu \textit{onCreate()} głównej aktywności.
+ 
+\newpage
 \subsection{Baza danych} % (fold)
 \label{sub:baza_danych}
 \paragraph{} % (fold)
