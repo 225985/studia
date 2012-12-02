@@ -104,9 +104,28 @@ Przechowywane w systemie hasła, szyfrowane są poprzez wygenerowanie funkcji sk
 Dzięki zastosowaniu \textit{soli} zmniejszone zostaje prawdopodobieństwo złamania hasła popularnymi atakami : brutal force, atakiem słownikowym czy wykorzystującym tablice tęczowe.
 % paragraph  (end)
 
+
+\subsection{Wielojęzykowość} % (fold)
+\label{sub:wieloj_zykowo_}
+Dzięki zastosowaniu mechanizmu \textit{Zasobów (ang. Resource)} aplikacja internetowa jest dostosowana do szybkiego tłumaczenia na inne języki. Domyśnym językiem aplikacji jest angielski, a w obecnej wersji obsługuje również polski. By inne tłumaczenie, należy stworzyć nowy plik \textit{resx}, o nazwie :
+
+\lstset{language=Java,caption={Tłumaczenie aplikacji},label=DescriptiveLabel}
+\begin{lstlisting}
+			Main.xx.resx
+\end{lstlisting}
+
+\paragraph{} % (fold)
+\label{par:}
+gdzie \textit{xx} to dwuliterowy skrót języka przeglądarki.
 % paragraph  (end)
-% subsection autoryzacja (end)
-% section section_name (end)
+
+\subsection{Azure} % (fold)
+\label{sub:azure}
+\paragraph{} % (fold)
+\label{par:}
+Aplikacja została przystosowana do natychmiastowej możliwośći wdrożenai na platformę Windows Azure SDK. W tym celu należy dokonać publikacji projektu o nazwie \textbf{PI.Azure} oraz zaimportować go jak serwis lub stronę www w portalu http://windos.azure.com .
+% paragraph  (end)
+% subsection azure (end)
 
 \section{Baza Danych} % (fold)
 \label{sec:baza_danych}
