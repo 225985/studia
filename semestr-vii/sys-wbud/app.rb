@@ -17,7 +17,7 @@ system "sudo echo '0000' | sudo bluez-simple-agent hci0 #{mac}"
 
 conn_thread = Thread.new do
   puts "Connecting to GPS devise..."
-  system "rfcomm connect 0 #{mac}"
+  system "sudo rfcomm connect 0 #{mac}"
 end
 
 
