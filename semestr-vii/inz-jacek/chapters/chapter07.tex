@@ -34,26 +34,12 @@ Gatling Tool jest programem napisanym w języku \textit{Scala \footnote{Scala - 
 
  \paragraph{} % (fold)
  \label{par:}
- Scenariusz testów obejmował załadowanie strony głównej aplikacji, a następnie wyświetlenie profilu o id=1 i id=2. Testy wykonane zostały dla zmiennej liczby użytkowników od 1 do 10000 (1, 10, 100, 1000, 2000, ..., 10000). Wyniki symulacji przedstawione zostały na Rysunkch \ref{fig:sred1} i \ref{fig:got1}
+ Scenariusz testów obejmował załadowanie strony głównej aplikacji, a następnie wyświetlenie profilu o id=1 i id=2. Testy wykonane zostały dla zmiennej liczby użytkowników od 1 do 10000 (1, 10, 100, 1000, 2000, ..., 10000). 
  % paragraph  (end)
-
-\begin{figure}[ht]
-	\centering
-		\includegraphics[width=1\linewidth]{assets/sredni1.png}
-		\caption{Przebieg średniego czasu odpowiedzi dla całego testu}
-	\label{fig:sred1}
-\end{figure}
-
-\begin{figure}[ht]
-	\centering
-		\includegraphics[width=1\linewidth]{assets/gotowosc1.png}
-		\caption{Przebieg gotowości systemu dla całego testu}
-	\label{fig:got1}
-\end{figure}
 
 \paragraph{} % (fold)
 \label{par:}
-Z danych odczytanych na wykresach (Rysunek \ref{fig:sred1} i \ref{fig:got1}) można zauważyć, że istotny z punktu poprawy wydajności systemu jest zakres jednoczesnych użytkowników systemu od 2000 - 5000. Powyżej 7000 użytkowników, komputer testowy nie nadążał obsługiwać wszytskich przychodzących rządań, powodując błędy programu testowego. Na Rysunkach \ref{fig:sred2} i \ref{fig:got2} przedstawiono wyniki dokładniejszego próbkowania zakresu użytkowników 2000 - 5000.
+Po wstępnej analizie testów zauważono, że istotny z punktu poprawy wydajności systemu jest zakres jednoczesnych użytkowników systemu od 2000 - 5000. Powyżej 7000 użytkowników, komputer testowy nie nadążał obsługiwać wszytskich przychodzących żądań, powodując błędy programu testowego. Na Rysunkach \ref{fig:sred2} i \ref{fig:got2} przedstawiono wyniki dokładniejszego próbkowania zakresu użytkowników 2000 - 5000.
 
 \begin{figure}[ht]
 	\centering
@@ -72,7 +58,11 @@ Z danych odczytanych na wykresach (Rysunek \ref{fig:sred1} i \ref{fig:got1}) mo�
 
 \paragraph{} % (fold)
 \label{par:}
-Powyższe testy zostały wykonane przy wykorzystaniu bazy danych, która została zindeksowana przez \textit{EntityFramework \footnote{EntityFramework - \ref{sub:EntityFramework}}} przy kreowaniu jej. Poprawa wydajności aplikacji została osiągnięta poprzez modyfikację ustawień serwera IIS -  zwiększenie czasu odpowiedzi na rządania i przetwarzanej ich liczby. W tym celu wykorzystany został program \textit{IIS Tuner \footnote{IIS Tuner - http://iistuner.codeplex.com/}}, służący do optymalizacji puli aplikacji. Wyniki symulacji po rekonfiguracji ustawień serwera przedstawione zostały na Rysunkach \ref{fig:sred3} i \ref{fig:got3}. Średni czas odpowiedzi serwera znacząco wzrósł, ale za to gotowość systemu utrzymywała się cały czas na stu procentowym poziomie.
+Powyższe testy zostały wykonane przy wykorzystaniu bazy danych, która została zindeksowana przez \textit{EntityFramework \footnote{EntityFramework - \ref{sub:EntityFramework}}} przy kreowaniu jej. Poprawa wydajności aplikacji została osiągnięta poprzez modyfikację ustawień serwera IIS -  zwiększenie czasu odpowiedzi na żądania i przetwarzanej ich liczby. W tym celu wykorzystany został program \textit{IIS Tuner \footnote{IIS Tuner - http://iistuner.codeplex.com/}}, służący do optymalizacji puli aplikacji. Wyniki symulacji po rekonfiguracji ustawień serwera przedstawione zostały na Rysunkach \ref{fig:sred3} i \ref{fig:got3}. Średni czas odpowiedzi serwera znacząco wzrósł, ale za to gotowość systemu utrzymywała się cały czas na stu procentowym poziomie. Zyskuje się dzięki temu większą stabilność i niezawodność działania aplikacji, niestety kosztem czasu przetwarzania żądań. 
+\paragraph{} % (fold)
+\label{par:}
+% paragraph  (end)
+Otrzymane wyniki pozwalają stworzyć pule aplikacji, które mogą być zmieniane w stosunku do ilości odwiedzin na stronie. Gdy liczba użytkowników jest mniejsza, uzyskają oni szybsze odpowiedzi z serwera przy klasycznej puli, jednak przy dużym natężęniu ruchu, wszystkie zapytania zostaną obsłużone gdy zostanie włączona zrekonfigurowana pula aplikacji.
 % paragraph  (end)
 
 \begin{figure}[ht]

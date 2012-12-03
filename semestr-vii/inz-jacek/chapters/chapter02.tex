@@ -3,9 +3,8 @@
 
 \section{Projekt systemu} % (fold)
 \label{sec:projket_systemu}
-W celu otrzymania w pełni działającego systemu, należy w odpowiedni sposób synchronizować pracę czterech kluczowych elementów:
+W celu otrzymania w pełni działającego systemu, należy w odpowiedni sposób synchronizować pracę trzech kluczowych elementów:
 \begin{itemize}
-	\item bazy danych - najważniejsza część systemu, składnica danych,
 	\item aplikacja internetowa - warstwa prezentacji systemu,
 	\item aplikacja mobilna z bazą danych SQLite - wspomaganie aplikacji internetowej w gromadzeniu danych,
 	\item REST Api - umożliwienie przesyłania danych z aplikacji mobilnej do bazy danych.
@@ -13,7 +12,7 @@ W celu otrzymania w pełni działającego systemu, należy w odpowiedni sposób 
 
 \paragraph{} % (fold)
 \label{par:}
-Ogólny schemat całego systemu pokazany został na rysunku \ref{fig:system_schema}. Aplikacja internetowa napisana została w języku C\# działającym na platformie .NET z wykorzystaniem frameworka ASP.NET MVC 3. Moduł odpowiedzialny za implementację REST Api również wykorzystuje język C\# i popularną w świecie .NET paltformę do tworzenia WebService'ów - Windows Communication Foundation. Aplikacja mobilna napisana została natomiast w języku Java i działa na systemie operacyjnym Android. Szczegółowy opis wykorzystanych technologii wraz z odnośnikami do literatury zamieszczony został w Sekcjach od \ref{sec:jezyk} do \ref{sec:inne_biblioteki_wykorzystane_w_projekcie}. W rozdziałach od \ref{cha:webapp} do \ref{cha:restapi} znajdują się dokładne przedstawionych modułów. W sekcji \ref{sec:in_ynieria_wymaga_} umieszczona została pełna lista wymagań dostycząca poszczególnych elementów systemu.
+Ogólny schemat całego systemu pokazany został na rysunku \ref{fig:system_schema}. Aplikacja internetowa napisana została w języku C\# działającym na platformie .NET z wykorzystaniem frameworka ASP.NET MVC 3. Moduł odpowiedzialny za implementację REST Api również wykorzystuje język C\# i popularną w świecie .NET platformę do tworzenia WebService'ów - Windows Communication Foundation. Aplikacja mobilna napisana została natomiast w języku Java i działa na systemie operacyjnym Android. Szczegółowy opis wykorzystanych technologii wraz z odnośnikami do literatury zamieszczony został w Sekcjach od \ref{sec:jezyk} do \ref{sec:inne_biblioteki_wykorzystane_w_projekcie}. W rozdziałach od \ref{cha:webapp} do \ref{cha:restapi} znajdują się dokładne opisy przedstawionych modułów. W sekcji \ref{sec:in_ynieria_wymaga_} umieszczona została pełna lista wymagań dostycząca poszczególnych elementów systemu.
 % paragraph  (end)
 
 % section projket_systemu (end)
@@ -28,7 +27,7 @@ Ogólny schemat całego systemu pokazany został na rysunku \ref{fig:system_sche
 
 \section{Inżynieria wymagań} % (fold)
 \label{sec:in_ynieria_wymaga_}
-Sekcje przedstawionne poniżej opsiują wymagania funkcjonalne, jkaie zostały nałożone na projekt. Wszytskie wymienione niżej funkcjonalności zostały zaimplementowane.
+Sekcje przedstawionne poniżej opsiują wymagania, jakie zostały nałożone na projekt. Wszytskie wymienione niżej funkcjonalności zostały zaimplementowane.
 
 \subsection{Apliakcja intenetowa} % (fold)
 \label{sub:apliakcja_intenetowa}
@@ -60,7 +59,7 @@ Sekcje przedstawionne poniżej opsiują wymagania funkcjonalne, jkaie zostały n
 	      \multicolumn{2}{l}{\textbf{Wyświetlanie treningów}} \\
 	      \hline
 	      ID: & FUN3 \\
-	      Opis: & Aplikacja agregowanie treningów poprzez wyświetlenie ich na kalendarzu \\
+	      Opis: & Aplikacja umożliwia agregowanie treningów poprzez wyświetlenie ich na kalendarzu \\
 	      Priorytet: & wymagane \\
 	      Powiązania: & --- \\
     \end{tabular}
@@ -165,6 +164,17 @@ Sekcje przedstawionne poniżej opsiują wymagania funkcjonalne, jkaie zostały n
     \end{tabular}
 \end{center}
 
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Lokalizacja}} \\
+	      \hline
+	      ID: & FUN13 \\
+	      Opis: & Aplikacja pozwala na wielojęzykowość\\
+	      Priorytet: & niewymagane \\
+	      Powiązania: & --- \\
+    \end{tabular}
+\end{center}
+
 \subsubsection{Wymagania niefunkcjonalne}
  \begin{center}
     \begin{tabular}{rp{10cm}}
@@ -228,7 +238,7 @@ Sekcje przedstawionne poniżej opsiują wymagania funkcjonalne, jkaie zostały n
         \multicolumn{2}{l}{\textbf{ASP.NET MVC 3}} \\
         \hline
         ID: & TEC2 \\
-        Opis: & Aplikacja została stworzona wykorzsytaując framework ASP.NET MVC 3 \\
+        Opis: & Aplikacja powinna zostać stworzona wykorzsytaując framework ASP.NET MVC 3 \\
         Priorytet: & wymagane \\
         Powiązania: & TEC1 \\
       \end{tabular}
@@ -241,7 +251,7 @@ Sekcje przedstawionne poniżej opsiują wymagania funkcjonalne, jkaie zostały n
         \multicolumn{2}{l}{\textbf{Baza danych}} \\
         \hline
         ID: & TEC3 \\
-        Opis: & Aplikacja ma wykorzystywać bazę Microsoft SQL Server 2012. \\
+        Opis: & Aplikacja powinna wykorzystywać bazę Microsoft SQL Server 2012. \\
         Priorytet: & wymagane \\
         Powiązania: & --- \\
       \end{tabular}
@@ -260,17 +270,247 @@ Sekcje przedstawionne poniżej opsiują wymagania funkcjonalne, jkaie zostały n
       \end{tabular}
       \end{center}
 
+\subsection{Aplikacja mobilna} % (fold)
+\subsubsection{Wymagania funkcjonalne}
+\label{sub:aplikacja_mobilna}
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Rejestrowanie przebytej trasy}} \\
+	      \hline
+	      ID: & FUN14 \\
+	      Opis: & Aplikacja pozwala na rejestrowanie przebytej trasy zapomocą odbiornika GPS i zapisywanie w bazie danych \\
+	      Priorytet: & wymagane \\
+	      Powiązania: & --- \\
+    \end{tabular}
+\end{center}
+
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Logowanie}} \\
+	      \hline
+	      ID: & FUN15 \\
+	      Opis: & Aplikacja pozwala na zalogowanie się przez wysłanie żądania do REST API \\
+	      Priorytet: & wymagane \\
+	      Powiązania: & --- \\
+    \end{tabular}
+\end{center}
+
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Rejestrowanie danych dotyczących treningu}} \\
+	      \hline
+	      ID: & FUN16 \\
+	      Opis: & Aplikacja pozwala na zapisanie w bazie danych podstawowych informacji dotyczących treningu: data rozpoczęcia i zakończenia, typ treningu, przebyty dystans  \\
+	      Priorytet: & wymagane \\
+	      Powiązania: & FUN13 \\
+    \end{tabular}
+\end{center}
+
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Wyświetlanie aktualnych danych dotyczących trwającego treningu}} \\
+	      \hline
+	      ID: & FUN17 \\
+	      Opis: & Aplikacja pozwala na wyświetlenie czasu trwania trenigu i przebytego dystansu w czasie rzeczywistym \\
+	      Priorytet: & wymagane \\
+	      Powiązania: & --- \\
+    \end{tabular}
+\end{center}
+
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Wysyłanie danych}} \\
+	      \hline
+	      ID: & FUN18 \\
+	      Opis: & Aplikacja pozwala na wysyłąnie danych do REST API w celu zapisania ich w bazie danych na serwerze \\
+	      Priorytet: & wymagane \\
+	      Powiązania: & --- \\
+    \end{tabular}
+\end{center}
+% subsection aplikacja_mobilna (end)
+
+\subsubsection{Wymagania niefunkcjonalne}
+ \begin{center}
+    \begin{tabular}{rp{10cm}}
+      \multicolumn{2}{l}{\textbf{Interfejs WWW}} \\
+      \hline
+      ID: & NFUN2 \\
+      Opis: & Aplikacja ma posiadać graficzny interfejs użytkownika \\
+      Priorytet: & wymagane \\
+      Powiązania: & --- \\
+    \end{tabular}
+    \end{center}
+
+\subsubsection{Wymagania bezpieczeństwa}
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Autoryzacja użytkowników}} \\
+	      \hline
+	      ID: & SEC4 \\
+	      Opis: & Aplikacja powinna umożliwiać dostęp do informacji tylko zalogowanym użytkownikom \\
+	      Priorytet: & wymagane \\
+	      Powiązania: & --- \\
+    \end{tabular}
+\end{center}
+
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Autoryzacja za pomocą tokenu}} \\
+	      \hline
+	      ID: & SEC5 \\
+	      Opis: & Aplikacja powinna autoryzować żądania za pomocą token  \\
+	      Priorytet: & wymagane \\
+	      Powiązania: & --- \\
+    \end{tabular}
+\end{center}
+
+\subsubsection{Wymagania technologiczne}
+      \begin{center}
+      \begin{tabular}{rp{10cm}}
+        \multicolumn{2}{l}{\textbf{Java}} \\
+        \hline
+        ID: & TEC5 \\
+        Opis: & Aplikacja powinna zostać napisana w języku Java\\
+        Priorytet: & wymagane \\
+        Powiązania: & --- \\
+      \end{tabular}
+      \end{center}
+
+      \begin{center}
+      \begin{tabular}{rp{10cm}}
+        \multicolumn{2}{l}{\textbf{Android}} \\
+        \hline
+        ID: & TEC6 \\
+        Opis: & Aplikacja powinna działać na platformie Android \\
+        Priorytet: & wymagane \\
+        Powiązania: & TEC1 \\
+      \end{tabular}
+      \end{center}
+
+
+
+      \begin{center}
+      \begin{tabular}{rp{10cm}}
+        \multicolumn{2}{l}{\textbf{Baza danych}} \\
+        \hline
+        ID: & TEC7 \\
+        Opis: & Aplikacja ma wykorzystywać bazę Microsoft SQLite. \\
+        Priorytet: & wymagane \\
+        Powiązania: & --- \\
+      \end{tabular}
+      \end{center}
+
+
+
+      \begin{center}
+      \begin{tabular}{rp{10cm}}
+        \multicolumn{2}{l}{\textbf{GPS}} \\
+        \hline
+        ID: & TEC8 \\
+        Opis: & Aplikacja powinna obsługiwać odbiornik GPS \\
+        Priorytet: & niewymagane \\
+        Powiązania: & --- \\
+      \end{tabular}
+      \end{center}
+
+\subsection{REST API} % (fold)
+\subsubsection{Wymagania funkcjonalne}
+\label{sub:aplikacja_mobilna}
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Autoryzacja użytkowników}} \\
+	      \hline
+	      ID: & FUN19 \\
+	      Opis: & API pozwala na autoryzowanie użytkowników aplikacji mobilnej \\
+	      Priorytet: & wymagane \\
+	      Powiązania: & --- \\
+    \end{tabular}
+\end{center}
+
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Zapisywanie treningów}} \\
+	      \hline
+	      ID: & FUN12 \\
+	      Opis: & API pozwala na zapisywanie treningów z aplikacji mobilnej w bazie danych na serwerze \\
+	      Priorytet: & wymagane \\
+	      Powiązania: & --- \\
+    \end{tabular}
+\end{center}
+
+% subsection aplikacja_mobilna (end)
+
+\subsubsection{Wymagania niefunkcjonalne}
+ \begin{center}
+    \begin{tabular}{rp{10cm}}
+      \multicolumn{2}{l}{\textbf{Zewnętrzne metody}} \\
+      \hline
+      ID: & NFUN3 \\
+      Opis: & Aplikacja ma posiadać dostępne pod postacią adresów URI metody \\
+      Priorytet: & wymagane \\
+      Powiązania: & --- \\
+    \end{tabular}
+    \end{center}
+
+\subsubsection{Wymagania bezpieczeństwa}
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Autoryzacja użytkowników}} \\
+	      \hline
+	      ID: & SEC4 \\
+	      Opis: & Aplikacja powinna przetwarzać tylko autoryzowane żądania \\
+	      Priorytet: & wymagane \\
+	      Powiązania: & --- \\
+    \end{tabular}
+\end{center}
+
+
+\subsubsection{Wymagania technologiczne}
+      \begin{center}
+      \begin{tabular}{rp{10cm}}
+        \multicolumn{2}{l}{\textbf{C\#}} \\
+        \hline
+        ID: & TEC8 \\
+        Opis: & Aplikacja powinna zostać napisana w języku C\#\\
+        Priorytet: & wymagane \\
+        Powiązania: & --- \\
+      \end{tabular}
+      \end{center}
+
+      \begin{center}
+      \begin{tabular}{rp{10cm}}
+        \multicolumn{2}{l}{\textbf{Windows Communication Foundation}} \\
+        \hline
+        ID: & TEC9 \\
+        Opis: & Aplikacja powinna działać z wykorzystaniem Windows Communication Foundation \\
+        Priorytet: & wymagane \\
+        Powiązania: & TEC1 \\
+      \end{tabular}
+      \end{center}
+
+      \begin{center}
+      \begin{tabular}{rp{10cm}}
+        \multicolumn{2}{l}{\textbf{Baza danych}} \\
+        \hline
+        ID: & TEC10 \\
+        Opis: & Aplikacja ma wykorzystywać bazę Microsoft SQLite. \\
+        Priorytet: & wymagane \\
+        Powiązania: & --- \\
+      \end{tabular}
+      \end{center}
+
+
 \section{ C\# i .NET }
 \label{sec:jezyk}
 \paragraph{}
-C\# jest obiektowym językiem programowania stworzonym dla firmy Microsoft przez zespół Andersa Hejslberga. Język ten powstał jako alternatywa dla Javy. Programy napisane w C\# kompilowane są do natywnego języka Common Intermediate Language (CIL), czyli kodu pośredniego w środowisku takim jak .NET czy Mono.
+C\# \cite{csharp}  jest obiektowym językiem programowania stworzonym dla firmy Microsoft przez zespół Andersa Hejslberga. Język ten powstał jako alternatywa dla Javy. Programy napisane w C\# kompilowane są do natywnego języka Common Intermediate Language (CIL), czyli kodu pośredniego w środowisku takim jak .NET czy Mono.
 \paragraph{}
 .NET Framework jest platformą programistyczną obejmującą środowisko uruchomieniowe CLR (Common Language Runtime) oraz biblioteki klas z podstawowymi funkcjonalnościami. Zadaniem .NET jest zarządzanie elementami systemu, takimi jak: kod aplikacji, pamięć oraz zabezpieczenia. .NET umożliwia uruchamianie aplikacji zarówno na systemie, w którym istnieje działająca implementacja platformy oraz po stronie serwera IIS. Platforma .NET nie określa jednoznacznie języka programowania. Aplikacje działające przy wykorzystaniu platformy .NET mogą być napisane w C\#, F\#, J\#, VB.NET, C++/CLI czy Delphi 8. 
 
 \section{Framework ASP.NET MVC 3}
 
 \paragraph{}
-ASP.NET MVC 3 jest platformą do budowy aplikacji internetowych korzystającą z wzorca MVC (Model - Widok - Kontroler) bazującej na platformie ASP.NET. Zaletą z korzystania ze wzorca MVC jest odseparowanie warstw aplikacji i logiki biznesowej. Aplikacje stworzone za pomocą tego frameworka są z reguły łatwiejsze w rozbudowie i testowaniu (testy jednostkowe).
+ASP.NET MVC 3 \cite{HackMVC3} jest platformą do budowy aplikacji internetowych korzystającą z wzorca MVC (Model - Widok - Kontroler) bazującej na platformie ASP.NET. Zaletą z korzystania ze wzorca MVC jest odseparowanie warstw aplikacji i logiki biznesowej. Aplikacje stworzone za pomocą tego frameworka są z reguły łatwiejsze w rozbudowie i testowaniu (testy jednostkowe).
 
 \paragraph{}
 ASP.NET MVC bazuje na tradycyjnym silniku ASP.NET, dzięki czemu można wykorzystać wiele mechanizmów stworzonych dla tej platformy jak zarządzanie cachem, autoryzacja czy monitorowanie. Mechanizm mapowania adresów umożliwia łatwą budowę aplikacji w oparciu o architekturę REST. Model programistyczny silnie bazuje na interfejsach, co pozwala na łatwą rozbudowę i testowanie komponentów.
@@ -278,14 +518,14 @@ ASP.NET MVC bazuje na tradycyjnym silniku ASP.NET, dzięki czemu można wykorzys
 \section{ Windows Communication Foundation }
 \label{sec:wcf}
 \paragraph{}
-Windows Communication Foundation (w skrócie WCF) jest platformą służącą do budowy aplikacji zorientowanych serwisowo. Pozwala na budowę serwisów, które mogą działać na serwerze IIS lub jako część systemu. WCF pozwala na komunikację między platformową za pomocą technologii SOAP przy użyciu prostych formatów XML lub JSON. Kluczowym aspektem biznesowym platformy WCF jest zapewnienie wysokiej wydajności, przy równie wysokiej niezawodności działania systemu.
+Windows Communication Foundation \cite{wcf1} \cite{wcf2} (w skrócie WCF) jest platformą służącą do budowy aplikacji zorientowanych serwisowo. Pozwala na budowę serwisów, które mogą działać na serwerze IIS lub jako część systemu. WCF pozwala na komunikację między platformową za pomocą technologii SOAP przy użyciu prostych formatów XML lub JSON. Kluczowym aspektem biznesowym platformy WCF jest zapewnienie wysokiej wydajności, przy równie wysokiej niezawodności działania systemu.
 
 \section{Baza danych}
 
 \subsection{Microsoft SQL Server 2012}
 \label{sub:mssql}
 \paragraph{}
-Microsoft SQL Server (MS SQL) to system zarządzania relacyjnymi bazami danych. Jako język zapytań używany jest Transact-SQL będący rozwinięciem standardu ANSI/ISO. MS SQL jest platformą bazodanową typu klient-serwer charakteryzującą się wysoką wydajnością, niezawodnością i bezpieczeństwem.
+Microsoft SQL Server \cite{sql} (MS SQL) to system zarządzania relacyjnymi bazami danych. Jako język zapytań używany jest Transact-SQL będący rozwinięciem standardu ANSI/ISO. MS SQL jest platformą bazodanową typu klient-serwer charakteryzującą się wysoką wydajnością, niezawodnością i bezpieczeństwem.
 
 \subsection{SQLite} % (fold)
 \label{sub:sqlite}
@@ -295,7 +535,7 @@ SQLite jest systemem zarządzania bazą danych i biblioteką języka C, implemen
 \section{Windows Azure} % (fold)
 
 \paragraph{} % (fold)
-Windows Azure jest platformą chmurową stworzoną przez firmę Microsoft. Udostępnia ona mechanizmy do przetwarzania danych (Windows Azure Compute) oraz do ich przechowywania (Windows Azure Storage  i SQL Azure).
+Windows Azure \cite{azure} jest platformą chmurową stworzoną przez firmę Microsoft. Udostępnia ona mechanizmy do przetwarzania danych (Windows Azure Compute) oraz do ich przechowywania (Windows Azure Storage  i SQL Azure).
 \paragraph{} % (fold)
 \label{par:}
 
@@ -314,7 +554,7 @@ W celu ułatwienia procesu wytwarzania oprogramowania pod tę platformę, firma 
 \label{par:}
 
 % paragraph  (end)
-Android SDK jest paczką narzędzi programistycznych, niezbędnych w procesie tworzenia i testowania aplikacji na platformę Android. Ważnymi elementami Android SDK są wtyczki dla środowiska programistycznego Eclipse i symulator systemu.
+Android SDK \cite{and1} \cite{and2} \cite{android1} \cite{android2} jest paczką narzędzi programistycznych, niezbędnych w procesie tworzenia i testowania aplikacji na platformę Android. Ważnymi elementami Android SDK są wtyczki dla środowiska programistycznego Eclipse i symulator systemu.
 
 \section{CoffeeScript} % (fold)
 \label{sec:coffeescript}
@@ -323,7 +563,7 @@ Android SDK jest paczką narzędzi programistycznych, niezbędnych w procesie tw
 
 % paragraph  (end)
 % section coffeescript (end)
-CoffeeScript jest językiem skryptowym kompilowalnym do kodu JavaScript. Główną zaletą tego języka jest wyeliminowanie nawiasów, klamr i średników, co zmniejsza ryzyko popełnienia błędów składniowych, uniemożliwiających poprawne działanie aplikacji internetowej.
+CoffeeScript \cite{coffee} jest językiem skryptowym kompilowalnym do kodu JavaScript. Główną zaletą tego języka jest wyeliminowanie nawiasów, klamr i średników, co zmniejsza ryzyko popełnienia błędów składniowych, uniemożliwiających poprawne działanie aplikacji internetowej.
 
 \section{HTML5 i CSS3} % (fold)
 \label{par:html5_i_css3}
@@ -331,7 +571,7 @@ CoffeeScript jest językiem skryptowym kompilowalnym do kodu JavaScript. Główn
 \label{par:}
 % paragraph  (end)
 % paragraph html5_i_css3 (end)
-HTML5 jest językiem wykorzystywanym do tworzenia stron WWW. Jest rozwinięciem standardu języka HTML4, posiadając wiele udogodnień dla programistów. Głównymi technologie wersji 5 są obsługa grafiki 2D i 3D, audio i video oraz pełne wsparcie dla kaskadowych arkuszów styli w wersji 3 (CSS3). Dzięki temu, nie trzeba posiłkować się bibliotekami JavaScript oraz technologią Flash, by osiągnąć oczekiwane efekty wizualne i użytkowe aplikacji.
+HTML5 \cite{html5} jest językiem wykorzystywanym do tworzenia stron WWW. Jest rozwinięciem standardu języka HTML4, posiadając wiele udogodnień dla programistów. Głównymi technologie wersji 5 są obsługa grafiki 2D i 3D, audio i video oraz pełne wsparcie dla kaskadowych arkuszów styli w wersji 3 (CSS3 \cite{css3}). Dzięki temu, nie trzeba posiłkować się bibliotekami JavaScript oraz technologią Flash, by osiągnąć oczekiwane efekty wizualne i użytkowe aplikacji.
 
 
 \section{Inne biblioteki wykorzystane w projekcie} % (fold)
@@ -340,7 +580,7 @@ HTML5 jest językiem wykorzystywanym do tworzenia stron WWW. Jest rozwinięciem 
 \subsection{Entity Framework} 
 \label{sub:EntityFramework}
 \paragraph{}
-Entity Framework jest biblioteką służącą do relacyjno-obiektowego mapowania w środowisku ADO.NET. Dzięki zastosowaniu tej biblioteki wraz z narzędziami będącymi integralną częścią języka C\#, można w wygodny sposób zarządzać bazą danych bez konieczności używania języka SQL.
+Entity Framework \cite{ef} jest biblioteką służącą do relacyjno-obiektowego mapowania w środowisku ADO.NET. Dzięki zastosowaniu tej biblioteki wraz z narzędziami będącymi integralną częścią języka C\#, można w wygodny sposób zarządzać bazą danych bez konieczności używania języka SQL.
 
 \subsection{AutoMapper} % (fold)
 \label{sub:automapper}
@@ -348,13 +588,13 @@ Entity Framework jest biblioteką służącą do relacyjno-obiektowego mapowania
 \label{par:}
 
 % paragraph  (end)
-AutoMapper jest biblioteką służącą do mapawania obiektów jednego typu na drugi. Pozwala to w szybki sposób odzielić warstwę aplikacji od warstwy biznesowej na poziomie modelu aplikacji.
+AutoMapper \cite{au} jest biblioteką służącą do mapawania obiektów jednego typu na drugi. Pozwala to w szybki sposób odzielić warstwę aplikacji od warstwy biznesowej na poziomie modelu aplikacji.
 
 \subsection{Unity} % (fold)
 \label{sub:unity}
 \paragraph{} % (fold)
 \label{par:paragraph_name}
-Unity jest lekkim, łatwo rozszerzalnym kontenerem do wstrzykiwania zależności, działającym na platformie .NET. Umożliwia ono programistom osiągnięcie następujących korzyści:
+Unity \cite{unity} jest lekkim, łatwo rozszerzalnym kontenerem do wstrzykiwania zależności, działającym na platformie .NET. Umożliwia ono programistom osiągnięcie następujących korzyści:
 \begin{itemize}
 \item uproszczenie tworzenia obiektów,
 \item uwiększenie elastyczności poprzez konfigurację komponentów w kontenerze,

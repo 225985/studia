@@ -16,7 +16,7 @@
 
 \paragraph{} % (fold)
 \label{par:}
-Systemy w tej architekturze składają się z przynajmniej dwóch elementów: klienta i serwera. Aplikacje klienckie wysyłają rządania do serwera, który odpowiada za przetworzenie ich i zwrócenie odpowiedzi.
+Systemy w tej architekturze składają się z przynajmniej dwóch elementów: klienta i serwera. Aplikacje klienckie wysyłają żądania do serwera, który odpowiada za przetworzenie ich i zwrócenie odpowiedzi.
 \textit{World Wide Web} jest największym znanym przykładem systemu zgodnego z architektuą \textit{REST}.
 
 \paragraph{} % (fold)
@@ -45,13 +45,13 @@ Podobnie jak w przypadku apliakcji internetowej, również w serwisie zastosowan
 \paragraph{} % (fold)
 \label{par:}
 
-Autoryzacja w aplikacji przebiega w dwóch etapach: zalogowanie się i autoryzacja rządań z wykorzystaniem tokenu. 
+Autoryzacja w aplikacji przebiega w dwóch etapach: zalogowanie się i autoryzacja żądań z wykorzystaniem tokenu. 
 \subsubsection{Proces logowania} 
 \paragraph{} % (fold)
 \label{par:}
-W celu poprawnej identyfikacji użytkownika starającego się uzyskać dostęp do aplikacji mobilnej, wysyłane jest rządanie identyfikacji do API. W tym etapie wykorzystana została podstawowa metoda autoryzacji - \textit{Basic Authentication}. Do wysyłanego requestu wstawiany jest nagłówek \textit{RunnerAuthorization}, którego wartość wyznaczana jest w następujący sposób:
+W celu poprawnej identyfikacji użytkownika starającego się uzyskać dostęp do aplikacji mobilnej, wysyłane jest żądanie identyfikacji do API. W tym etapie wykorzystana została podstawowa metoda autoryzacji - \textit{Basic Authentication}. Do wysyłanego requestu wstawiany jest nagłówek \textit{RunnerAuthorization}, którego wartość wyznaczana jest w następujący sposób:
 
-\lstset{language=Java,caption={Parametr nagłówka rządania autoryzacji},label=basicauthentication}
+\lstset{language=Java,caption={Parametr nagłówka żądania autoryzacji},label=basicauthentication}
 
 \begin{lstlisting}
 	RunnerAuthorization : Base B64(username:password)
@@ -60,7 +60,7 @@ W celu poprawnej identyfikacji użytkownika starającego się uzyskać dostęp d
 
 \paragraph{} % (fold)
 \label{par:}
-Gdy proces dekodowania danych i autoryzacji użytkownika przebiegnie pomyślnie (Rysunek \ref{fig:auth_schema}), zwracana jest odpowiedź o statusie HTTP 200 zawierająca token, ktorego okres życia wynosi 30 minut. Od tego czasu aplikacja w celach autoryzacji posługuje się tokenem. Każdy kolejne zautoryzowane rządanie z apliakcji mobilnej do web serwisu ustawia ważność tokenu na 30 minut. W przypadku, gdy okres ten zostanie przekroczony, API zwraca odpowiedź o statusie 401. W tym momencie aplikacja mobilna pobiera zapisane w \textit{SharedPreferences} login i hasło, a następnie wysyła podstawowe rządanie autoryzacji. W przypadku braku autoryzacji ze strony serwera lub braku danych autentykujących w \textit{SharedPreferences}, użytkownik przenoszony jest na aktywność logowania. Szczegółowy opis parametrów rządania autoryzacji przedstawiony został w tabeli 5.1 .
+Gdy proces dekodowania danych i autoryzacji użytkownika przebiegnie pomyślnie (Rysunek \ref{fig:auth_schema}), zwracana jest odpowiedź o statusie HTTP 200 zawierająca token, ktorego okres życia wynosi 30 minut. Od tego czasu aplikacja w celach autoryzacji posługuje się tokenem. Każdy kolejne zautoryzowane żądanie z apliakcji mobilnej do web serwisu ustawia ważność tokenu na 30 minut. W przypadku, gdy okres ten zostanie przekroczony, API zwraca odpowiedź o statusie 401. W tym momencie aplikacja mobilna pobiera zapisane w \textit{SharedPreferences} login i hasło, a następnie wysyła podstawowe żądanie autoryzacji. W przypadku braku autoryzacji ze strony serwera lub braku danych autentykujących w \textit{SharedPreferences}, użytkownik przenoszony jest na aktywność logowania. Szczegółowy opis parametrów żądania autoryzacji przedstawiony został w tabeli 5.1 .
 
 \paragraph{} % (fold)
 \label{par:}
@@ -69,7 +69,7 @@ By zapewnić bezpieczeństwo tego rozwiązania, należy zadbać o szyfrowanie po
 % paragraph  (end)
 \begin{table}
  \label{tab:aut}
-  \caption{Rządanie autoryzacji}
+  \caption{żądanie autoryzacji}
   \begin{center}
   \begin{tabular}{| l | l |}
   	\hline
@@ -78,7 +78,7 @@ By zapewnić bezpieczeństwo tego rozwiązania, należy zadbać o szyfrowanie po
   	Autoryzacja & Basic Authentication \\ \hline
   	HTTP Status & 200 - ok \\
                 & 401 - brak autoryzacji \\
-                & 400 - nieprawidłowe rządanie \\ \hline
+                & 400 - nieprawidłowe żądanie \\ \hline
     Przykładowa odpowiedź & \{ \\
                           & \quad ''username'' : ''jacek'' \\
                           & \quad ''token'' : ''030B4A82-1B7C-11CF-9D53-00AA003C9CB6'' \\
@@ -100,7 +100,7 @@ By zapewnić bezpieczeństwo tego rozwiązania, należy zadbać o szyfrowanie po
 \label{sub:synchronizacja_trening_w}
 \paragraph{} % (fold)
 \label{par:}
-W celu umożliwienia użytkownikowi zarządzania treningami, nagranymi za pomocą aplikacji mobilnej, w serwisie internetowym web serwis posiada metody pozwalające na przesyłanie danych z urządzenia na serwer. Proces synchronizacji polega na wysłaniu dwóch rządań. Pierwszego w celu stworzenia nowego treningu w bazie na serwerze i wygenerowaniu jego unikalnego identyfikatora. Drugiego przesyłającego pozycje zczytane z GPS, jeżeli takowe zostały zapisane w pamięci telefonu. Celem rozdzielenia tych dwóch procesów jest zapewnienie w przyszłości możliwości wysyłania pozycji GPS w paczkach. Pozwoli to na zmniejszenie ryzyka utraty danych oraz ułatwi proces retransmisji danych, które nie zostały zapisane w bazie danych na serwerze. Szczegółowe parametry dotyczące wysyłanych rządań przedstawione zsotały w tabelach 5.2 i 5.3 .
+W celu umożliwienia użytkownikowi zarządzania treningami, nagranymi za pomocą aplikacji mobilnej, w serwisie internetowym web serwis posiada metody pozwalające na przesyłanie danych z urządzenia na serwer. Proces synchronizacji polega na wysłaniu dwóch żądań. Pierwszego w celu stworzenia nowego treningu w bazie na serwerze i wygenerowaniu jego unikalnego identyfikatora. Drugiego przesyłającego pozycje zczytane z GPS, jeżeli takowe zostały zapisane w pamięci telefonu. Celem rozdzielenia tych dwóch procesów jest zapewnienie w przyszłości możliwości wysyłania pozycji GPS w paczkach. Pozwoli to na zmniejszenie ryzyka utraty danych oraz ułatwi proces retransmisji danych, które nie zostały zapisane w bazie danych na serwerze. Szczegółowe parametry dotyczące wysyłanych żądań przedstawione zsotały w tabelach 5.2 i 5.3 .
 
 \begin{figure}[ht]
 	\centering
@@ -120,7 +120,7 @@ W celu umożliwienia użytkownikowi zarządzania treningami, nagranymi za pomoc�
   	Autoryzacja & token \\ \hline
   	HTTP Status & 200 - ok \\
                 & 401 - brak autoryzacji \\
-                & 400 - nieprawidłowe rządanie \\ \hline
+                & 400 - nieprawidłowe żądanie \\ \hline
     Przykładowe dane & \{ \\
     								 & \quad ''Distance'' : ''2000'', \\
     								 & \quad ''Duration" : ''300'', \\
@@ -147,7 +147,7 @@ W celu umożliwienia użytkownikowi zarządzania treningami, nagranymi za pomoc�
   	Autoryzacja & token\\ \hline
   	HTTP Status & 200 - ok \\
                 & 401 - brak autoryzacji \\
-                & 400 - nieprawidłowe rządanie \\ \hline
+                & 400 - nieprawidłowe żądanie \\ \hline
     Przykładowe dane & \{ \\
     								 & \quad ''WorkoutId'' : ''5'', \\
     								 & \quad ''WorkoutParts'' : [ \\
