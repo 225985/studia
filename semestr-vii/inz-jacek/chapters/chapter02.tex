@@ -1,13 +1,267 @@
 \chapter{Opis systemu i komponenty wykorzystywane w projekcie}
 \label{cha:projektsys}
 
-\section{Projket systemu} % (fold)
+\section{Projekt systemu} % (fold)
 \label{sec:projket_systemu}
-Zaprojektowany system składa się z 4 kluczowych elementów
+W celu otrzymania w pełni działającego systemu, należy w odpowiedni sposób synchronizować pracę czterech kluczowych elementów:
+\begin{itemize}
+	\item bazy danych - najważniejsza część systemu, składnica danych,
+	\item aplikacja internetowa - warstwa prezentacji systemu,
+	\item aplikacja mobilna z bazą danych SQLite - wspomaganie aplikacji internetowej w gromadzeniu danych,
+	\item REST Api - umożliwienie przesyłania danych z aplikacji mobilnej do bazy danych.
+\end{itemize}
+
+\paragraph{} % (fold)
+\label{par:}
+Ogólny schemat całego systemu pokazany został na rysunku \ref{fig:system_schema}. Aplikacja internetowa napisana została w języku C\# działającym na platformie .NET z wykorzystaniem frameworka ASP.NET MVC 3. Moduł odpowiedzialny za implementację REST Api również wykorzystuje język C\# i popularną w świecie .NET paltformę do tworzenia WebService'ów - Windows Communication Foundation. Aplikacja mobilna napisana została natomiast w języku Java i działa na systemie operacyjnym Android. Szczegółowy opis wykorzystanych technologii wraz z odnośnikami do literatury zamieszczony został w Sekcjach od \ref{sec:jezyk} do \ref{sec:inne_biblioteki_wykorzystane_w_projekcie}. W rozdziałach od \ref{cha:webapp} do \ref{cha:restapi} znajdują się dokładne przedstawionych modułów. W sekcji \ref{sec:in_ynieria_wymaga_} umieszczona została pełna lista wymagań dostycząca poszczególnych elementów systemu.
+% paragraph  (end)
 
 % section projket_systemu (end)
 
+\begin{figure}[ht]
+	\centering
+		\includegraphics[width=1\linewidth]{assets/system_schema.png}
+	\caption{Schemat zaprojektowanego systemu}
+	\label{fig:system_schema}
+\end{figure}
+
+
+\section{Inżynieria wymagań} % (fold)
+\label{sec:in_ynieria_wymaga_}
+Sekcje przedstawionne poniżej opsiują wymagania funkcjonalne, jkaie zostały nałożone na projekt. Wszytskie wymienione niżej funkcjonalności zostały zaimplementowane.
+
+\subsection{Apliakcja intenetowa} % (fold)
+\label{sub:apliakcja_intenetowa}
+\subsubsection{Wymagania funkcjonalne}
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Rejestracja użytkowników}} \\
+	      \hline
+	      ID: & FUN1 \\
+	      Opis: & Aplikacja umożliwia rejestrację użytkowników z podaniem unikalnej nazwy użytkownika, adresu email, hasła, imienia i nazwiska, daty urodzenia. \\
+	      Priorytet: & wymagane \\
+	      Powiązania: & --- \\
+    \end{tabular}
+\end{center}
+
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Logowanie użytkowników}} \\
+	      \hline
+	      ID: & FUN2 \\
+	      Opis: & Aplikacja umożliwia logowanie użytkowników poprzez podanie prawidłowego loginu i hasła \\
+	      Priorytet: & wymagane \\
+	      Powiązania: & FUN1 \\
+    \end{tabular}
+\end{center}
+
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Wyświetlanie treningów}} \\
+	      \hline
+	      ID: & FUN3 \\
+	      Opis: & Aplikacja agregowanie treningów poprzez wyświetlenie ich na kalendarzu \\
+	      Priorytet: & wymagane \\
+	      Powiązania: & --- \\
+    \end{tabular}
+\end{center}
+
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Szczegółowy widok treningu}} \\
+	      \hline
+	      ID: & FUN4 \\
+	      Opis: & Aplikacja pozwala na wyświetlenie szczegółowych danych dotyczących treningu wraz z widokiem zaznaczonej na mapie przebytej trasy \\
+	      Priorytet: & wymagane \\
+	      Powiązania: & FUN3\\
+    \end{tabular}
+\end{center}
+
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Tworzenie treningu z podstawowymi danymi}} \\
+	      \hline
+	      ID: & FUN5 \\
+	      Opis: & Aplikacja pozwala na dodanie treningu z podstawowymi danymi : typ treningu, czas rozpoczęcia i zakończenia,	 przebyty dystans \\
+	      Priorytet: & wymagane \\
+	      Powiązania: & FUN3 \\
+    \end{tabular}
+\end{center}
+
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Wyświetlanie profilu użytkownika}} \\
+	      \hline
+	      ID: & FUN6 \\
+	      Opis: & Aplikacja pozwala na wyświetlenie profilu użytkowników \\
+	      Priorytet: & wymagane \\
+	      Powiązania: & --- \\
+    \end{tabular}
+\end{center}
+
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Edycja profilu użytkownika}} \\
+	      \hline
+	      ID: & FUN7 \\
+	      Opis: & Aplikacja pozwala na edytowanie profilu użytkowników \\
+	      Priorytet: & wymagane \\
+	      Powiązania: & FUN6 \\
+    \end{tabular}
+\end{center}
+
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Profil prywatny}} \\
+	      \hline
+	      ID: & FUN7 \\
+	      Opis: & Aplikacja pozwala na ukrycie częsci danych wyświetlanych na profilu \\
+	      Priorytet: & wymagane \\
+	      Powiązania: & FUN6 \\
+    \end{tabular}
+\end{center}
+
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Ukrywanie treningów}} \\
+	      \hline
+	      ID: & FUN9 \\
+	      Opis: & Aplikacja pozwala na pokazywanie treningów wszytskim użytkownikom, użytkownikom, którzy za mną podążają, tylko właścicielowi profilu \\
+	      Priorytet: & wymagane \\
+	      Powiązania: & FUN3 \\
+    \end{tabular}
+\end{center}
+
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Podążanie za użytkownikami}} \\
+	      \hline
+	      ID: & FUN10 \\
+	      Opis: & Aplikacja pozwala na podążanie za użytkownikami \\
+	      Priorytet: & wymagane \\
+	      Powiązania: & FUN3 \\
+    \end{tabular}
+\end{center}
+
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Wysyłanie wiadmości}} \\
+	      \hline
+	      ID: & FUN11 \\
+	      Opis: & Aplikacja pozwala na wysyłanie wiadomości pomiędzy użytkownikami \\
+	      Priorytet: & wymagane \\
+	      Powiązania: & FUN3 \\
+    \end{tabular}
+\end{center}
+
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Tablica ogłoszeń}} \\
+	      \hline
+	      ID: & FUN12 \\
+	      Opis: & Aplikacja pozwala na wyświetlanie informacji o aktywnościach podążanych użytkowników \\
+	      Priorytet: & niewymagane \\
+	      Powiązania: & FUN3 \\
+    \end{tabular}
+\end{center}
+
+\subsubsection{Wymagania niefunkcjonalne}
+ \begin{center}
+    \begin{tabular}{rp{10cm}}
+      \multicolumn{2}{l}{\textbf{Interfejs WWW}} \\
+      \hline
+      ID: & NFUN1 \\
+      Opis: & Aplikacja ma posiadać interfejs WWW. \\
+      Priorytet: & wymagane \\
+      Powiązania: & --- \\
+    \end{tabular}
+    \end{center}
+
+\subsubsection{Wymagania bezpieczeństwa}
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Autoryzacja użytkowników}} \\
+	      \hline
+	      ID: & SEC1 \\
+	      Opis: & Aplikacja powinna umożliwiać dostęp do informacji tylko zalogowanym użytkownikom \\
+	      Priorytet: & wymagane \\
+	      Powiązania: & --- \\
+    \end{tabular}
+\end{center}
+
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Odporność na SQL Injection}} \\
+	      \hline
+	      ID: & SEC2 \\
+	      Opis: & Aplikacja powinna uniemożliwiać ataki typu SQL Injection \\
+	      Priorytet: & wymagane \\
+	      Powiązania: & --- \\
+    \end{tabular}
+\end{center}
+
+\begin{center}
+      \begin{tabular}{rp{10cm}}
+	      \multicolumn{2}{l}{\textbf{Przechowywanie hasła}} \\
+	      \hline
+	      ID: & SEC3 \\
+	      Opis: & Aplikacja powinna uniemożliwić złamanie hasła popularnymi metodami : brutal force, atak słownikowy, atak z wykorzystaniem tablic tęczowych \\
+	      Priorytet: & wymagane \\
+	      Powiązania: & --- \\
+    \end{tabular}
+\end{center}
+
+\subsubsection{Wymagania technologiczne}
+      \begin{center}
+      \begin{tabular}{rp{10cm}}
+        \multicolumn{2}{l}{\textbf{C\#, CoffeeScript, HTML5, CSS3}} \\
+        \hline
+        ID: & TEC1 \\
+        Opis: & Aplikacja powinna zostać napisana w języku C\# z wykorzystaniem języków CoffeeScript, HTML5, CSS3 \\
+        Priorytet: & wymagane \\
+        Powiązania: & --- \\
+      \end{tabular}
+      \end{center}
+
+      \begin{center}
+      \begin{tabular}{rp{10cm}}
+        \multicolumn{2}{l}{\textbf{ASP.NET MVC 3}} \\
+        \hline
+        ID: & TEC2 \\
+        Opis: & Aplikacja została stworzona wykorzsytaując framework ASP.NET MVC 3 \\
+        Priorytet: & wymagane \\
+        Powiązania: & TEC1 \\
+      \end{tabular}
+      \end{center}
+
+
+
+      \begin{center}
+      \begin{tabular}{rp{10cm}}
+        \multicolumn{2}{l}{\textbf{Baza danych}} \\
+        \hline
+        ID: & TEC3 \\
+        Opis: & Aplikacja ma wykorzystywać bazę Microsoft SQL Server 2012. \\
+        Priorytet: & wymagane \\
+        Powiązania: & --- \\
+      \end{tabular}
+      \end{center}
+
+
+
+      \begin{center}
+      \begin{tabular}{rp{10cm}}
+        \multicolumn{2}{l}{\textbf{Windows Azure}} \\
+        \hline
+        ID: & TEC4 \\
+        Opis: & Aplikacja powinna być przystosowana do platformy Windows Azure \\
+        Priorytet: & niewymagane \\
+        Powiązania: & --- \\
+      \end{tabular}
+      \end{center}
+
 \section{ C\# i .NET }
+\label{sec:jezyk}
 \paragraph{}
 C\# jest obiektowym językiem programowania stworzonym dla firmy Microsoft przez zespół Andersa Hejslberga. Język ten powstał jako alternatywa dla Javy. Programy napisane w C\# kompilowane są do natywnego języka Common Intermediate Language (CIL), czyli kodu pośredniego w środowisku takim jak .NET czy Mono.
 \paragraph{}
