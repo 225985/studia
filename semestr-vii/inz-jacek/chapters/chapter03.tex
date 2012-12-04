@@ -14,11 +14,11 @@ Model-Widok-Kontroler (\textit{ang. Model-View-Controller}) w skrócie MVC, jest
 
 \subsubsection{Model}
 \paragraph{}
-Warstwa modelu odpowiada za reprezentację logiki systemu oraz dostęp do bazy danych. W projekcie za tę część aplikacji odpowiadają dwie biblioteki DLL : \textbf{PI.Service} oraz \textbf{PI.Data}.
+Warstwa modelu odpowiada za reprezentację logiki systemu oraz dostęp do bazy danych. W projekcie za tę część aplikacji odpowiadają dwie biblioteki DLL : \textbf{PI.Service \footnote{PI.Service - część projektu apliakcji internetowej (biblioteka DLL) odpowiedzialna za logikę serwisów}} oraz \textbf{PI.Data \footnote{PI.Data - część projektu aplikacji internetowej (biblioteka DLL) odpowiedzialna za logikę repozytorium i bazodanową}}.
 
 \subsubsection{Widok}
 \paragraph{}
-Widok jest warstwą odpowiedzialną za wyświetlanie interfejsu użytkownika. Najczęściej widoki generowane są na podstawie modelu. W apliakcjach MVC widoki tylko wyświetlają informacje. Ta warstwa znajduje się w bibliotece \textbf{PI.Web}.
+Widok jest warstwą odpowiedzialną za wyświetlanie interfejsu użytkownika. Najczęściej widoki generowane są na podstawie modelu. W apliakcjach MVC widoki tylko wyświetlają informacje. Ta warstwa znajduje się w bibliotece \textbf{PI.Web \footnote{PI.Web - część projektu apliakcji internetowej odpowiedzialna za interfejs użytkowy i logikę warstwy kontrolerów}}.
 
 \subsubsection{Kontroler}
 \paragraph{} 
@@ -27,7 +27,7 @@ Kontrolery to komponenty odpowiedzialne za utrzymanie interakcji z użytkownikie
 \newpage
 \begin{figure}[ht]
 	\centering
-		\includegraphics[width=0.5\linewidth]{assets/03_1.jpg}
+		\includegraphics[width=0.75\linewidth]{assets/03_1.jpg}
 	\caption{Schemat graficzny wzorca Model-Widok-Kontroler}
 	\label{fig:mvc-pic}
 \end{figure}
@@ -36,7 +36,7 @@ Kontrolery to komponenty odpowiedzialne za utrzymanie interakcji z użytkownikie
 \label{sub:wzorzec_repozytorium}
 \paragraph{} % (fold)
 \label{par:}
-Wzorzec Repozytorium (\textit{Repository Pattern}) to popularna technika mająca na celu podział warstwy biznesowej na dwie części: \textit{Serwis} i \textit{Repozytorium}. \textit{Serwis} jest elementem odpowiedzialnym za logikę aplikacji oraz komunikację między kontrolerem a repozytorium. \textit{Repozytorium} natomiast jest komponentem, ktorego zadanie polega na komunikacji z bazą danych: zapisywanie, pobieranie, edytowanie i usuwanie danych (model \textit{CRUD}). Takie rozszczepienie poszczególnych elementów pozwala na łatwe testowanie kodu, programowanie zorientowane na testy (\textit{ang. Test Driven Development}), szybką modernizację istniejącej logiki i rozbudowę aplikacji.
+Wzorzec Repozytorium \cite{rp} (\textit{Repository Pattern}) to popularna technika mająca na celu podział warstwy biznesowej na dwie części: \textit{Serwis} i \textit{Repozytorium}. \textit{Serwis} jest elementem odpowiedzialnym za logikę aplikacji oraz komunikację między kontrolerem a repozytorium. \textit{Repozytorium} natomiast jest komponentem, ktorego zadanie polega na komunikacji z bazą danych: zapisywanie, pobieranie, edytowanie i usuwanie danych (model \textit{CRUD}). Takie rozszczepienie poszczególnych elementów pozwala na łatwe testowanie kodu, programowanie zorientowane na testy (\textit{ang. Test Driven Development}), szybką modernizację istniejącej logiki i rozbudowę aplikacji.
 
 \paragraph{} % (fold)
 \label{par:}
