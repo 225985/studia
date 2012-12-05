@@ -1,26 +1,26 @@
-# SRCS = $(wildcard *.md)
-# OBJS = $(SRCS:.md=.tex)
-
-TITLE  = "Projekt inżynierski"
-AUTHOR = "Tymon Tobolski (181037)"
+SRCS = $(wildcard *.md)
 
 POPTS = -N --toc -s \
-				-V title=$(TITLE) \
-				-V author=$(AUTHOR) \
-				-V fontsize=12pt \
+				-V fontsize=a4paper,onecolumn,oneside,10pt \
 				-V lang=polish \
 				-V geometry=portrait \
-				-V geometry=left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm,headsep=1.2cm \
 				-H header.pandoc \
 				--highlight-style tango
 
-all: main
+all: index.pdf
 
-main:
-	pandoc $(POPTS) -o index.pdf *.md
+index.pdf: title.pdf content.pdf
+	gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=index.pdf title.pdf content.pdf
+
+title.pdf: title.tex
+	latex --output-format=pdf title.tex
+
+content.pdf: $(SRCS)
+	pandoc $(POPTS) -o content.pdf *.md
 
 tex:
-	pandoc $(POPTS) -o index.tex *.md
+	pandoc $(POPTS) -o content.tex *.md
 
 clean:
-	rm -rf *.{aux,log,pdf,out,toc,tex}
+	rm -rf *.{aux,log,pdf,out,toc,index.tex}
+

@@ -3,6 +3,8 @@
 
 % You know, for landscape
 \usepackage{lscape}
+\usepackage{pdfpages}
+
 
 % pandoc does not parse latex env - https://groups.google.com/forum/?fromgroups=#!topic/pandoc-discuss/oZETB5Ii1Cw
 \newcommand{\blandscape}{\begin{landscape}}
@@ -21,3 +23,16 @@
 
 \let\OldTexttt\texttt
 \renewcommand{\texttt}[1]{\OldTexttt{\hl{#1}}}
+
+
+\clubpenalty=10000      %kara za sierotki
+\widowpenalty=10000  % nie pozostawiaj wdów
+\brokenpenalty=10000    % nie dziel wyrazów miêdzy stronami
+\exhyphenpenalty=999999   % nie dziel s³ów z myœlnikiem
+\righthyphenmin=3     % dziel minimum 3 litery
+
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.95}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.35}
+

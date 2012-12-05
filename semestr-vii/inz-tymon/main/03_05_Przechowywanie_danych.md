@@ -187,17 +187,9 @@ index:org:scalaz                                {"name": "scalaz-core_2.8.0",   
 index:org:scalaz:scalaz-core_2.8.0              {"name": "7.0.0",                                     "_type": "package"}
 -------------------------------------------------------------------------------------------------------------------------
 index:org:scalaz:scalaz-core_2.8.0:7.0.0        {"name": "scalaz-core_2.8.0-7.0.0.pom",               "_type": "file"}    
-                                                {"name": "scalaz-core_2.8.0-7.0.0.pom.md5",           "_type": "file"}
-                                                {"name": "scalaz-core_2.8.0-7.0.0.pom.sha1",          "_type": "file"}    
                                                 {"name": "scalaz-core_2.8.0-7.0.0.jar",               "_type": "file"}
-                                                {"name": "scalaz-core_2.8.0-7.0.0.jar.md5",           "_type": "file"}
-                                                {"name": "scalaz-core_2.8.0-7.0.0.jar.sha1",          "_type": "file"}    
                                                 {"name": "scalaz-core_2.8.0-7.0.0-javadoc.jar",       "_type": "file"}    
-                                                {"name": "scalaz-core_2.8.0-7.0.0-javadoc.jar.md5",   "_type": "file"}    
-                                                {"name": "scalaz-core_2.8.0-7.0.0-javadoc.jar.sha1",  "_type": "file"}
                                                 {"name": "scalaz-core_2.8.0-7.0.0-sources.jar",       "_type": "file"}
-                                                {"name": "scalaz-core_2.8.0-7.0.0-sources.jar.md5",   "_type": "file"}    
-                                                {"name": "scalaz-core_2.8.0-7.0.0-sources.jar.sha1",  "_type": "file"}    
 -------------------------------------------------------------------------------------------------------------------------
 index:org:scalaz:scalaz-core_2.9.1              {"name": "7.0.0",                                     "_type": "package"}
 -------------------------------------------------------------------------------------------------------------------------

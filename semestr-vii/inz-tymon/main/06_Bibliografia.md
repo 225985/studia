@@ -1,13 +1,12 @@
 # Bibliografia #
 
-1. "Programming in Scala: A Comprehensive Step-by-Step Guide, 2nd Edition", Martin Odersky, Lex Spoon, Bill Venners, ISBN: 9780981531649
-2. "Functional Programming in Scala", Pual Chiusano, Rúnar Bjarnason, ISBN: 9781617290657
-3. "Play for Scala", Peter Hilton, Erik Bakker, Francisco Canedo, ISBN: 9781617290794
-4. "Redis: The Definitive Guide: Data modeling, caching, and messaging", Jay A. Kreibich, ISBN: 9781449396091
-5. "Maven: The Complete Reference", http://sonatype.com/books/mvnref-book/reference/
-6. "Maven: The Definitive Guide", Sonatype Company, ISBN: 9780596517335
-7. "Getting Started with OAuth 2.0", Ryan Boyd, ISBN: 978-1449311605
-8. "Version Control with Git: Powerful tools and techniques for collaborative software development", Jon Loeliger, Matthew McCullough, ISBN: 9781449316389
+1. "Programming in Scala: A Comprehensive Step-by-Step Guide, 2nd Edition", Martin Odersky, Lex Spoon, Bill Venners, 2008, ISBN: 9780981531649
+2. "Functional Programming in Scala", Pual Chiusano, Rúnar Bjarnason, 2012, ISBN: 9781617290657
+3. "Play for Scala", Peter Hilton, Erik Bakker, Francisco Canedo, 2012, ISBN: 9781617290794
+4. "Maven: The Complete Reference", http://sonatype.com/books/mvnref-book/reference/
+5. "Maven: The Definitive Guide", Sonatype Company, ISBN: 9780596517335
+6. "Getting Started with OAuth 2.0", Ryan Boyd, 2012, ISBN: 978-1449311605
+7. "Version Control with Git: Powerful tools and techniques for collaborative software development", Jon Loeliger, Matthew McCullough, 2009, ISBN: 9781449316389
 
 [^apache]: Apache - [http://httpd.apache.org/](http://httpd.apache.org/)
 [^artifactory]: Atifactory - [http://www.jfrog.com/home/v_artifactory_opensource_overview#](http://www.jfrog.com/home/v_artifactory_opensource_overview#)
