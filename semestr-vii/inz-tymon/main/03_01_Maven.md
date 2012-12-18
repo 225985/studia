@@ -65,6 +65,7 @@ W celu ułatwienia publikowania projektów poprzez sbt wprowadzone zostało komp
 Standard Maven określa także sposób pobierania projektów jako zależności w innych projektach. Odbywa się to dwuetapowo. W celu pobrania artefaktu Maven przeszukuje dostępne repozytoria za pomocą zapytań HTTP HEAD.
 
 Schemat adresu:
+
 ```bash
 HEAD http://repozytorium/pakiet/nazwa/wersja/nazwa-artefaktu-wersja-rozszerzenie
 ```
