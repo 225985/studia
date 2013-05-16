@@ -1,0 +1,14 @@
+Metoda A
+1. Zapisz plik *.xls w formacie *.csv
+2. W przypadku używania systemu z polskimi ustawieniami regionalnym, należy zamienić średniki rozdzielające poszczególne kolumny na wiersze, a w przypadku liczb typu real, przecinek rozdzielający część całkowitą od ułamkowej na kropkę (można również zmienić ustawienia systemowe i wtedy excel będzie zapisywał w poprawnym formacie csv)
+3. Otworzyć plik csv w programie Weka
+4. Zapisać plik jako *.arff
+5. Kolumny, które mają mieć wartości jako zbiór poprawić ręcznie (dodać 15)
+6. Zrelaksować się przy piwie :)
+
+Metoda B
+Skorzystać z tego: http://sourceforge.net/projects/exceltoarffconv/
+1. Wczytać plik
+2. Zdefiniować typy atrybutów
+3. Zrelaksować się przy piwie :)
+
