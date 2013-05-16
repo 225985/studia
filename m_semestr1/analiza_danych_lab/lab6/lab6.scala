@@ -27,49 +27,56 @@ object Program {
 
         val foldsCount = 10
         val itt = 2
-        val rnd = new Random(1)
         
+        // complexClassificator(data, itt, foldsCount)
 
-        println("J48 - Bare")
-        test(data, new J48, foldsCount, itt, 1)
-        println("J48 - Smote")
-        test(data, new J48, foldsCount, itt, 2)
-        println("J48 - SJ")
-        test(data, new J48, foldsCount, itt, 3)
+        // println("J48 - Bare")
+        // test(data, new J48, foldsCount, itt, 1, 300.0)
+        // println("J48 - Smote")
+        // test(data, new J48, foldsCount, itt, 2, 300.0)
+        // println("J48 - SJ")
+        // test(data, new J48, foldsCount, itt, 3, 300.0)
 
-        println("-----===|===-----")
-        println("ZeroRules - Bare")
-        test(data, new ZeroR, foldsCount, itt, 1)
-        println("ZeroRules - Smote")
-        test(data, new ZeroR, foldsCount, itt, 2)
-        println("ZeroRules - SJ")
-        test(data, new ZeroR, foldsCount, itt, 3)
+        // println("-----===|===-----")
+        // println("ZeroRules - Bare")
+        // test(data, new ZeroR, foldsCount, itt, 1, 300.0)
+        // println("ZeroRules - Smote")
+        // test(data, new ZeroR, foldsCount, itt, 2, 300.0)
+        // println("ZeroRules - SJ")
+        // test(data, new ZeroR, foldsCount, itt, 3, 300.0)
 
-        println("-----===|===-----")
-        println("NaiveBayes - Bare")
-        test(data, new NaiveBayes, foldsCount, itt, 1)
-        println("NaiveBayes - Smote")
-        test(data, new NaiveBayes, foldsCount, itt, 2)
-        println("NaiveBayes - SJ")
-        test(data, new NaiveBayes, foldsCount, itt, 3)
+        // println("-----===|===-----")
+        // println("NaiveBayes - Bare")
+        // test(data, new NaiveBayes, foldsCount, itt, 1, 300.0)
+        // println("NaiveBayes - Smote")
+        // test(data, new NaiveBayes, foldsCount, itt, 2, 300.0)
+        // println("NaiveBayes - SJ")
+        // test(data, new NaiveBayes, foldsCount, itt, 3, 300.0)
 
-        println("-----===|===-----")
-        println("SMO - Bare")
-        test(data, new SMO, foldsCount, itt, 1)
-        println("SMO - Smote")
-        test(data, new SMO, foldsCount, itt, 2)
-        println("SMO - SJ")
-        test(data, new SMO, foldsCount, itt, 3)
+        // println("-----===|===-----")
+        // println("SMO - Bare")
+        // test(data, new SMO, foldsCount, itt, 1, 300.0)
+        // println("SMO - Smote")
+        // test(data, new SMO, foldsCount, itt, 2, 300.0)
+        // println("SMO - SJ")
+        // test(data, new SMO, foldsCount, itt, 3, 300.0)
         
-        println("-----===|===-----")
-        println("JRip - Bare")
-        test(data, new JRip, foldsCount, itt, 1)
-        println("JRip - Smote")
-        test(data, new JRip, foldsCount, itt, 2)
-        println("JRip - SJ")
-        test(data, new JRip, foldsCount, itt, 3)
+        // println("-----===|===-----")
+        // println("JRip - Bare")
+        // test(data, new JRip, foldsCount, itt, 1, 300.0)
+        // println("JRip - Smote")
+        // test(data, new JRip, foldsCount, itt, 2, 300.0)
+        // println("JRip - SJ")
+        // test(data, new JRip, foldsCount, itt, 3, 300.0)
 
+        // println("test for smote")
+        // (0 to 30).foreach{i => 
+        //     test(data, new JRip, foldsCount, itt, 2, i * 10.0)    
+        // }
 
+        val classifier = new JRip     
+        classifier.buildClassifier(getSmote(data, 300.0))
+        println(classifier);
     }
 
     def test_bare(instances: Instances, classifier: Classifier, foldsCount: Int, itt: Int, rnd: Random){
@@ -88,7 +95,7 @@ object Program {
 
 
     // type: 1 - bare, 2 - smote, 3 - sj
-    def test(instances: Instances, classifier: Classifier, foldsCount: Int, itt: Int, t: Int){
+    def test(instances: Instances, classifier: Classifier, foldsCount: Int, itt: Int, t: Int, percentage: Double){
         var tp = 0
         var tn = 0
         var fn = 0
@@ -106,7 +113,7 @@ object Program {
                     classifier.buildClassifier(folds(fold))
                 }
                 if(t == 2) {
-                    classifier.buildClassifier(getSmote(tmpData))
+                    classifier.buildClassifier(getSmote(tmpData, percentage))
                 } else {
                     classifier.buildClassifier(getSJ(tmpData))
                 }
@@ -160,10 +167,10 @@ object Program {
         result
     }
 
-    def getSmote(instances: Instances) : Instances = {
+    def getSmote(instances: Instances, percentage: Double) : Instances = {
         val smote = new SMOTE();      
         smote.setInputFormat(instances);
-        smote.setPercentage(300.0);
+        smote.setPercentage(percentage);
         smote.setRandomSeed(1);
         smote.setNearestNeighbors(5);               
         Filter.useFilter(instances, smote);       
@@ -205,15 +212,71 @@ object Program {
 
     }
 
+    def complexClassificator(instances: Instances, itt: Int, foldsCount: Int){
+        var tp = 0
+        var tn = 0
+        var fn = 0
+        var fp = 0 
+        
+
+        val classifiers = new Array[Classifier](itt * foldsCount)
+        val instancesList = new Array[Instances](itt * foldsCount)
+        (0 until itt).foreach{ i => 
+            val folds = foldSplit(new Instances(instances), foldsCount)
+            (0 until foldsCount).foreach{ j => 
+                classifiers(i * foldsCount + j) = new J48
+                instancesList(i * foldsCount + j) = folds(j)
+                val classData = new Instances(folds(i), 1)
+                (0 until foldsCount).filter{k => k != j}.foreach{ k => 
+                    (0 until folds(k).numInstances).foreach{ l => 
+                        classData.add(folds(k).instance(l))
+                    }
+                }
+                classifiers(i * foldsCount + j).buildClassifier(getSJ(classData))
+            }
+            
+            val periodEnd = (i + 1) * foldsCount
+            println()
+            (0 until periodEnd).foreach{ j => 
+                (0 until instancesList(j).numInstances).foreach{ k => 
+                    val tmpCount = (0 until periodEnd).map{ l => 
+                        classifiers(l).classifyInstance(instancesList(j).instance(k))
+                    }.sum
+                    if (instancesList(j).instance(k).value(8) != 0) {
+                        if (tmpCount > (periodEnd / 2)) {
+                            tp = tp + 1;
+                        } else {
+                            fn = fn + 1;
+                        }
+                    } else {
+                        if (tmpCount > (periodEnd / 2)) {
+                            fp = fp + 1
+                        } else {
+                            tn = tn + 1
+                        }
+                    }
+
+                }
+            }
+
+            val c = new Criterium(tn, tp, fn, fp)
+            c.test()
+            printResult(c)  
+        }
+
+ 
+    }
+
     def countDistance(in1: Instance, in2: Instance) = 
         (0 until in1.numAttributes).filter{i => in1.value(i) != in2.value(1)}.size
 
     def printResult(c : Criterium) {
-        println("Accuracy: " + c.accuracy)
-        println("TPrate: " + c.tpRate)
-        println("TNrate: " + c.tnRate)
-        println("GMean: " + c.gMean)
-        println("AUC: " + c.auc)
+        // println("Accuracy: " + c.accuracy)
+        // println("TPrate: " + c.tpRate)
+        // println("TNrate: " + c.tnRate)
+        // println("GMean: " + c.gMean)
+        // println("AUC: " + c.auc)
+        println(c.gMean)
     }
 
     class Criterium(tn: Double, tp: Double, fn: Double, fp: Double) {
