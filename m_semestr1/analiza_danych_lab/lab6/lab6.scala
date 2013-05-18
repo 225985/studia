@@ -271,11 +271,11 @@ object Program {
         (0 until in1.numAttributes).filter{i => in1.value(i) != in2.value(1)}.size
 
     def printResult(c : Criterium) {
-        // println("Accuracy: " + c.accuracy)
-        // println("TPrate: " + c.tpRate)
-        // println("TNrate: " + c.tnRate)
-        // println("GMean: " + c.gMean)
-        // println("AUC: " + c.auc)
+        println("Accuracy: " + c.accuracy)
+        println("TPrate: " + c.tpRate)
+        println("TNrate: " + c.tnRate)
+        println("GMean: " + c.gMean)
+        println("AUC: " + c.auc)
         println(c.gMean)
     }
 
