@@ -1,0 +1,8 @@
+*.xlsx
+*.xls
+*.csv
+*.arff
+*.class
+m_semestr1/systemy_informacyjne/materialy/
+m_semestr1/systemy_informacyjne/prezentacja.pptx
+.DS_Store
